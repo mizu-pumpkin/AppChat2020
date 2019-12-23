@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\Mizu\UMU\TDS\AppChat\.metadata\.plugins\org.eclipse.jdt.core

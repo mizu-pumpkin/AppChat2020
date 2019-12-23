@@ -1,0 +1,109 @@
+package vista;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.BoxLayout;
+import javax.swing.JSplitPane;
+import javax.swing.JScrollPane;
+import javax.swing.JPanel;
+import java.awt.Dimension;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Panel;
+import java.awt.Button;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JTextArea;
+
+public class VentanaPrincipal {
+
+	private JFrame frmAppchat;
+	private JTextField textField_write;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					VentanaPrincipal window = new VentanaPrincipal();
+					window.frmAppchat.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public VentanaPrincipal() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmAppchat = new JFrame();
+		frmAppchat.setTitle("AppChat");
+		frmAppchat.setMinimumSize(new Dimension(400, 300));
+		frmAppchat.setBounds(100, 100, 450, 300);
+		frmAppchat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAppchat.getContentPane().setLayout(new BoxLayout(frmAppchat.getContentPane(), BoxLayout.X_AXIS));
+		
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setDividerSize(1);
+		splitPane.setResizeWeight(0.2);
+		frmAppchat.getContentPane().add(splitPane);
+		
+		JPanel panel_izq = new JPanel();
+		splitPane.setLeftComponent(panel_izq);
+		panel_izq.setLayout(new BoxLayout(panel_izq, BoxLayout.Y_AXIS));
+		
+		JLabel lblContactos = new JLabel("Contactos");
+		panel_izq.add(lblContactos);
+		
+		JPanel panel_der = new JPanel();
+		splitPane.setRightComponent(panel_der);
+		GridBagLayout gbl_panel_der = new GridBagLayout();
+		gbl_panel_der.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_der.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_panel_der.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_der.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		panel_der.setLayout(gbl_panel_der);
+		
+		JTextArea textArea = new JTextArea();
+		GridBagConstraints gbc_textArea = new GridBagConstraints();
+		gbc_textArea.gridwidth = 2;
+		gbc_textArea.insets = new Insets(0, 0, 5, 0);
+		gbc_textArea.fill = GridBagConstraints.BOTH;
+		gbc_textArea.gridx = 0;
+		gbc_textArea.gridy = 1;
+		panel_der.add(textArea, gbc_textArea);
+		
+		textField_write = new JTextField();
+		textField_write.setText("|");
+		GridBagConstraints gbc_textField_write = new GridBagConstraints();
+		gbc_textField_write.insets = new Insets(0, 0, 0, 5);
+		gbc_textField_write.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_write.gridx = 0;
+		gbc_textField_write.gridy = 2;
+		panel_der.add(textField_write, gbc_textField_write);
+		textField_write.setColumns(10);
+		
+		JButton btnEnter = new JButton("Enter");
+		GridBagConstraints gbc_btnEnter = new GridBagConstraints();
+		gbc_btnEnter.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnEnter.gridx = 1;
+		gbc_btnEnter.gridy = 2;
+		panel_der.add(btnEnter, gbc_btnEnter);
+	}
+
+}

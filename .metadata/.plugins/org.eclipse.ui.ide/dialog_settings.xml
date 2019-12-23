@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="true"/>
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\Mizu\UMU\TDS\MavenAppChat"/>
+			<item value=""/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+			<item value="C:\Users\Mizu\UMU\TDS\Practica\Practica 8. Refactoring\videoclubFowlerRefactoring.zip"/>
+			<item value="C:\Users\Mizu\UMU\TDS\Practica\Practica 5. Arquitectura de la aplicación\Ventanas Login y Registro\login_Registro-2016.zip"/>
+			<item value="C:\Users\Mizu\UMU\TDS\Practica\Practica 5. Arquitectura de la aplicación\Tienda.zip"/>
+		</list>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+</section>

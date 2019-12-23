@@ -1,0 +1,71 @@
+package vista;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.BoxLayout;
+import javax.swing.JSplitPane;
+import javax.swing.JScrollPane;
+import javax.swing.JPanel;
+import java.awt.Dimension;
+import javax.swing.JLabel;
+
+public class VentanaPrincipal {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					VentanaPrincipal window = new VentanaPrincipal();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public VentanaPrincipal() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
+		
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setPreferredSize(new Dimension(200, 25));
+		frame.getContentPane().add(splitPane);
+		
+		JPanel panel = new JPanel();
+		splitPane.setLeftComponent(panel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		
+		JLabel lblContactos = new JLabel("Contactos");
+		panel.add(lblContactos);
+		
+		JPanel panel_1 = new JPanel();
+		splitPane.setRightComponent(panel_1);
+		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.Y_AXIS));
+		
+		JLabel lblAppchat = new JLabel("AppChat");
+		panel_1.add(lblAppchat);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		panel_1.add(scrollPane);
+	}
+
+}

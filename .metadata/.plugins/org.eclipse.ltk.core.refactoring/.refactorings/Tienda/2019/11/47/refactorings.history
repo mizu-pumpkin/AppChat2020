@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 elements to &apos;AppChat/src/persistencia&apos;&#x0D;&#x0A;- Original project: &apos;Tienda&apos;&#x0D;&#x0A;- Destination element: &apos;AppChat/src/persistencia&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     persistencia.TDSFactoriaDAO.java&#x0D;&#x0A;     persistencia.PoolDAO.java&#x0D;&#x0A;     persistencia.DAOException.java&#x0D;&#x0A;     persistencia.FactoriaDAO.java" description="Copy compilation units" destination="=AppChat/src&lt;persistencia" element1="/src&lt;persistencia{TDSFactoriaDAO.java" element2="/src&lt;persistencia{PoolDAO.java" element3="/src&lt;persistencia{DAOException.java" element4="/src&lt;persistencia{FactoriaDAO.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1574633586314" units="4" version="1.0"/>
+</session>

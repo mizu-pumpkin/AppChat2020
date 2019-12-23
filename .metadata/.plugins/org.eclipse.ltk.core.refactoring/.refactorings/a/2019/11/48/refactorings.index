@@ -1,0 +1,33 @@
+1574672405888	Move files
+1574672410433	Delete element
+1574674075965	Encapsulate field 'code'
+1574675353041	Rename method 'getCode'
+1574675365280	Rename method 'setCode'
+1574675392418	Rename method 'getCode'
+1574675401732	Rename method 'setCode'
+1574675436110	Rename method 'getCode'
+1574675445189	Rename method 'setCode'
+1574675768316	Rename field 'contactos'
+1574676328709	Rename method 'getMemberIDs'
+1574677418734	Rename local variable 'eCliente'
+1574677428303	Rename local variable 'cliente'
+1574677435334	Rename local variable 'clientegrupo'
+1574677566719	Rename local variable 'codigo'
+1574677595310	Rename local variable 'eCliente'
+1574677633940	Rename local variable 'ventas'
+1574677738540	Rename local variable 'cliente'
+1574704532438	Rename local variable 'eGrupo'
+1574704542678	Rename local variable 'grupo'
+1574704697785	Rename field 'movil'
+1574704708509	Rename local variable 'movil'
+1574704970751	Rename local variable 'grupo'
+1574704980842	Rename local variable 'eGrupo'
+1574705081519	Rename local variable 'eGrupo'
+1574705089043	Rename local variable 'eContactoIndividualç'
+1574705145540	Rename local variable 'grupo'
+1574705299088	Delete elements
+1574756904800	Copy compilation unit
+1574756911762	Copy compilation units
+1574756922386	Copy compilation units
+1574756928960	Copy compilation units
+1574757723659	Copy packages

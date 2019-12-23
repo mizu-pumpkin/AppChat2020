@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="existe"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="existe"/>
+			<item value="contacto_individual"/>
+			<item value="cont_ind"/>
+			<item value="&quot;USER&quot;"/>
+			<item value="&quot;messages&quot;"/>
+			<item value="&quot;name&quot;"/>
+			<item value="&quot;members&quot;"/>
+			<item value="&quot;admin&quot;"/>
+			<item value="servPersistencia.eliminarPropiedadEntidad(eGrupo, &quot;"/>
+			<item value="getIndividualsFromIDs"/>
+			<item value="getContactsFromIDs"/>
+			<item value="getIndividualsIDs"/>
+			<item value="contacts"/>
+			<item value="adminGroups"/>
+			<item value="PROPERTY_ = &quot;_"/>
+		</list>
+		<list key="replacehistory">
+			<item value="contactoIndividual"/>
+			<item value="contacto_individual"/>
+			<item value="PROPERTY_USER"/>
+			<item value="PROPERTY_MESSAGES"/>
+			<item value="PROPERTY_NAME"/>
+			<item value="PROPERTY_MEMBERS"/>
+			<item value="PROPERTY_ADMIN"/>
+			<item value="private static final String ENTITY_ = &quot;_"/>
+			<item value="PROPERTY_ = &quot;"/>
+			<item value="PROPERTY_STORY"/>
+			<item value="PROPERTY_AVATAR"/>
+			<item value="PROPERTY_PREMIUM"/>
+			<item value="PROPERTY_BIRTHDAY"/>
+			<item value="PROPERTY_GREETING"/>
+			<item value="PROPERTY_PHONE"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="772"/>
+		<item key="DIALOG_Y_ORIGIN" value="196"/>
+		<item key="DIALOG_WIDTH" value="284"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

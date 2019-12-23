@@ -1,0 +1,108 @@
+package vista;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+
+public class VentanaRegistro {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					VentanaRegistro window = new VentanaRegistro();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public VentanaRegistro() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{10, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		frame.getContentPane().setLayout(gridBagLayout);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
+		gbc_lblNombre.anchor = GridBagConstraints.EAST;
+		gbc_lblNombre.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNombre.gridx = 1;
+		gbc_lblNombre.gridy = 2;
+		frame.getContentPane().add(lblNombre, gbc_lblNombre);
+		
+		JLabel lblFechaDeNacimiento = new JLabel("Fecha de nacimiento");
+		GridBagConstraints gbc_lblFechaDeNacimiento = new GridBagConstraints();
+		gbc_lblFechaDeNacimiento.anchor = GridBagConstraints.EAST;
+		gbc_lblFechaDeNacimiento.insets = new Insets(0, 0, 5, 0);
+		gbc_lblFechaDeNacimiento.gridx = 1;
+		gbc_lblFechaDeNacimiento.gridy = 3;
+		frame.getContentPane().add(lblFechaDeNacimiento, gbc_lblFechaDeNacimiento);
+		
+		JLabel lblEmail = new JLabel("Email");
+		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
+		gbc_lblEmail.anchor = GridBagConstraints.EAST;
+		gbc_lblEmail.insets = new Insets(0, 0, 5, 0);
+		gbc_lblEmail.gridx = 1;
+		gbc_lblEmail.gridy = 4;
+		frame.getContentPane().add(lblEmail, gbc_lblEmail);
+		
+		JLabel lblMovil = new JLabel("Movil");
+		GridBagConstraints gbc_lblMovil = new GridBagConstraints();
+		gbc_lblMovil.anchor = GridBagConstraints.EAST;
+		gbc_lblMovil.insets = new Insets(0, 0, 5, 0);
+		gbc_lblMovil.gridx = 1;
+		gbc_lblMovil.gridy = 5;
+		frame.getContentPane().add(lblMovil, gbc_lblMovil);
+		
+		JLabel lblUsername = new JLabel("Username");
+		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
+		gbc_lblUsername.anchor = GridBagConstraints.EAST;
+		gbc_lblUsername.insets = new Insets(0, 0, 5, 0);
+		gbc_lblUsername.gridx = 1;
+		gbc_lblUsername.gridy = 6;
+		frame.getContentPane().add(lblUsername, gbc_lblUsername);
+		
+		JLabel lblPassword = new JLabel("Password");
+		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
+		gbc_lblPassword.anchor = GridBagConstraints.EAST;
+		gbc_lblPassword.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPassword.gridx = 1;
+		gbc_lblPassword.gridy = 7;
+		frame.getContentPane().add(lblPassword, gbc_lblPassword);
+		
+		JLabel lblSaludoopcional = new JLabel("Saludo (opcional)");
+		GridBagConstraints gbc_lblSaludoopcional = new GridBagConstraints();
+		gbc_lblSaludoopcional.anchor = GridBagConstraints.EAST;
+		gbc_lblSaludoopcional.gridx = 1;
+		gbc_lblSaludoopcional.gridy = 8;
+		frame.getContentPane().add(lblSaludoopcional, gbc_lblSaludoopcional);
+	}
+
+}

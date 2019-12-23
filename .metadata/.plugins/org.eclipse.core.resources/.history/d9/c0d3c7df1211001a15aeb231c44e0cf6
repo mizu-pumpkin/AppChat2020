@@ -1,0 +1,268 @@
+package vista;
+
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+@SuppressWarnings("serial")
+public class VentanaRegistro extends JPanel {
+	
+	private JFrame frame;
+	private JPanel jpanelAnterior;
+	private JLabel lblRegistro;
+	private JLabel lblNombre;
+	private JLabel lblFechaDeNacimiento;
+	private JLabel lblMovil;
+	private JLabel lblEmail;
+	private JLabel lblUsername;
+	private JLabel lblPassword;
+	private JLabel lblPasswordChk;
+	private JLabel lblSaludo;
+	private JTextField textField_name;
+	private JTextField textField_birthday;
+	private JTextField textField_phone;
+	private JTextField textField_email;
+	private JTextField textField_username;
+	private JTextField textField_password;
+	private JTextField textField_passwordchk;
+	private JTextField textField_greeting;
+	private JButton btnAceptar;
+	private JButton btnCancelar;
+
+	public VentanaRegistro(JFrame _frame) {
+		frame = _frame;
+		jpanelAnterior = (JPanel) frame.getContentPane();
+		
+		setLayout(new BorderLayout(0, 0));
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		add(tabbedPane, BorderLayout.CENTER);
+		
+		JPanel datosPersonales = new JPanel();
+		tabbedPane.addTab("User Registrarion", null, datosPersonales, null);
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 100, 0, 100, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0};
+		datosPersonales.setLayout(gridBagLayout);
+		
+		lblRegistro = new JLabel("Registro");
+		lblRegistro.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_lblRegistro = new GridBagConstraints();
+		gbc_lblRegistro.gridwidth = 6;
+		gbc_lblRegistro.insets = new Insets(0, 0, 5, 0);
+		gbc_lblRegistro.gridx = 0;
+		gbc_lblRegistro.gridy = 0;
+		datosPersonales.add(lblRegistro, gbc_lblRegistro);
+		
+		lblNombre = new JLabel("Nombre");
+		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
+		gbc_lblNombre.anchor = GridBagConstraints.EAST;
+		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNombre.gridx = 1;
+		gbc_lblNombre.gridy = 1;
+		datosPersonales.add(lblNombre, gbc_lblNombre);
+		
+		textField_name = new JTextField();
+		textField_name.setColumns(10);
+		GridBagConstraints gbc_textField_name = new GridBagConstraints();
+		gbc_textField_name.gridwidth = 2;
+		gbc_textField_name.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_name.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_name.gridx = 2;
+		gbc_textField_name.gridy = 1;
+		datosPersonales.add(textField_name, gbc_textField_name);
+		
+		lblFechaDeNacimiento = new JLabel("Fecha de nacimiento");
+		GridBagConstraints gbc_lblFechaDeNacimiento = new GridBagConstraints();
+		gbc_lblFechaDeNacimiento.anchor = GridBagConstraints.EAST;
+		gbc_lblFechaDeNacimiento.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFechaDeNacimiento.gridx = 1;
+		gbc_lblFechaDeNacimiento.gridy = 2;
+		datosPersonales.add(lblFechaDeNacimiento, gbc_lblFechaDeNacimiento);
+		
+		textField_birthday = new JTextField();
+		textField_birthday.setColumns(10);
+		GridBagConstraints gbc_textField_birthday = new GridBagConstraints();
+		gbc_textField_birthday.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_birthday.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_birthday.gridx = 2;
+		gbc_textField_birthday.gridy = 2;
+		datosPersonales.add(textField_birthday, gbc_textField_birthday);
+		
+		lblMovil = new JLabel("Movil");
+		GridBagConstraints gbc_lblMovil = new GridBagConstraints();
+		gbc_lblMovil.anchor = GridBagConstraints.EAST;
+		gbc_lblMovil.insets = new Insets(0, 0, 5, 5);
+		gbc_lblMovil.gridx = 1;
+		gbc_lblMovil.gridy = 3;
+		datosPersonales.add(lblMovil, gbc_lblMovil);
+		
+		textField_phone = new JTextField();
+		textField_phone.setColumns(10);
+		GridBagConstraints gbc_textField_phone = new GridBagConstraints();
+		gbc_textField_phone.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_phone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_phone.gridx = 2;
+		gbc_textField_phone.gridy = 3;
+		datosPersonales.add(textField_phone, gbc_textField_phone);
+		
+		lblEmail = new JLabel("Email");
+		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
+		gbc_lblEmail.anchor = GridBagConstraints.EAST;
+		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEmail.gridx = 1;
+		gbc_lblEmail.gridy = 4;
+		datosPersonales.add(lblEmail, gbc_lblEmail);
+		
+		textField_email = new JTextField();
+		textField_email.setColumns(10);
+		GridBagConstraints gbc_textField_email = new GridBagConstraints();
+		gbc_textField_email.gridwidth = 2;
+		gbc_textField_email.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_email.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_email.gridx = 2;
+		gbc_textField_email.gridy = 4;
+		datosPersonales.add(textField_email, gbc_textField_email);
+		
+		lblUsername = new JLabel("Username");
+		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
+		gbc_lblUsername.anchor = GridBagConstraints.EAST;
+		gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUsername.gridx = 1;
+		gbc_lblUsername.gridy = 5;
+		datosPersonales.add(lblUsername, gbc_lblUsername);
+		
+		textField_username = new JTextField();
+		textField_username.setColumns(10);
+		GridBagConstraints gbc_textField_username = new GridBagConstraints();
+		gbc_textField_username.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_username.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_username.gridx = 2;
+		gbc_textField_username.gridy = 5;
+		datosPersonales.add(textField_username, gbc_textField_username);
+		
+		lblPassword = new JLabel("Password");
+		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
+		gbc_lblPassword.anchor = GridBagConstraints.EAST;
+		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPassword.gridx = 1;
+		gbc_lblPassword.gridy = 6;
+		datosPersonales.add(lblPassword, gbc_lblPassword);
+		
+		textField_password = new JTextField();
+		textField_password.setColumns(10);
+		GridBagConstraints gbc_textField_password = new GridBagConstraints();
+		gbc_textField_password.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_password.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_password.gridx = 2;
+		gbc_textField_password.gridy = 6;
+		datosPersonales.add(textField_password, gbc_textField_password);
+		
+		lblPasswordChk = new JLabel("Repetir password");
+		GridBagConstraints gbc_lblRepetirPassword = new GridBagConstraints();
+		gbc_lblRepetirPassword.anchor = GridBagConstraints.EAST;
+		gbc_lblRepetirPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRepetirPassword.gridx = 3;
+		gbc_lblRepetirPassword.gridy = 6;
+		datosPersonales.add(lblPasswordChk, gbc_lblRepetirPassword);
+		
+		textField_passwordchk = new JTextField();
+		textField_passwordchk.setColumns(10);
+		GridBagConstraints gbc_textField_password2 = new GridBagConstraints();
+		gbc_textField_password2.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_password2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_password2.gridx = 4;
+		gbc_textField_password2.gridy = 6;
+		datosPersonales.add(textField_passwordchk, gbc_textField_password2);
+		
+		lblSaludo = new JLabel("Saludo (opcional)");
+		GridBagConstraints gbc_lblSaludo = new GridBagConstraints();
+		gbc_lblSaludo.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSaludo.anchor = GridBagConstraints.EAST;
+		gbc_lblSaludo.gridx = 1;
+		gbc_lblSaludo.gridy = 7;
+		datosPersonales.add(lblSaludo, gbc_lblSaludo);
+		
+		textField_greeting = new JTextField();
+		textField_greeting.setColumns(10);
+		GridBagConstraints gbc_textField_greeting = new GridBagConstraints();
+		gbc_textField_greeting.gridwidth = 3;
+		gbc_textField_greeting.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_greeting.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_greeting.gridx = 2;
+		gbc_textField_greeting.gridy = 7;
+		datosPersonales.add(textField_greeting, gbc_textField_greeting);
+		
+		/* botones */
+		JPanel panel_botones = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 4;
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 1;
+		gbc_panel.gridy = 8;
+		datosPersonales.add(panel_botones, gbc_panel);
+		
+		btnAceptar = new JButton("Aceptar");
+		btnCancelar = new JButton("Cancelar");
+		panel_botones.add(btnAceptar);
+		panel_botones.add(btnCancelar);
+		
+		// Manejador botón cancelar
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setContentPane(jpanelAnterior);
+				frame.setTitle("AppChat");	
+				frame.revalidate();
+			}
+		});
+		
+		// Manejador botón Registrar
+		/*btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean OK=false;
+				//TODO OK=checkFields();
+				if (OK) {
+						boolean registrado=false;
+						registrado = ControladorAsistentes.getUnicaInstancia().registrarAsistente(
+										txtNombre.getText(),
+										txtApellidos.getText(),
+										txtDNI.getText(),
+										Integer.parseInt(txtEdad.getText()),
+										txtMovil.getText(),
+										txtEmail.getText(),
+										txtUsuario.getText(),
+										new String(txtPassword.getPassword()));
+						if (registrado) {
+							JOptionPane.showMessageDialog(
+										ventana,
+										"Asistente registrado correctamente.",
+										"Registro",
+										JOptionPane.INFORMATION_MESSAGE);
+							ventana.setContentPane(jpanelAnterior);
+							ventana.revalidate();
+						} else JOptionPane.showMessageDialog(ventana,
+								"No se ha podido llevar a cabo el registro.\n",
+								"Registro",
+								JOptionPane.ERROR_MESSAGE);
+						ventana.setTitle("Login Gestor Eventos");	
+				}
+			}
+		}); */
+	}
+
+}

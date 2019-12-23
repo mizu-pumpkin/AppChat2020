@@ -1,0 +1,23 @@
+1574845262229	Move files
+1574845265638	Delete element
+1574845390284	Delete element
+1574846920645	Delete element
+1574847874926	Delete element
+1574847882324	Copy compilation unit
+1574847903802	Rename type 'VentanaLogin'
+1574847910267	Delete element
+1574853344374	Rename field 'lblRepetirPassword'
+1574853408110	Rename field 'textField_password2'
+1574853433207	Rename field 'frmAppchatRegister'
+1574854030645	Rename field 'panel'
+1574854038948	Rename field 'panelBotones'
+1574854841331	Rename field 'textField_password'
+1574854926430	Rename field 'frmAppchat'
+1574855956017	Rename type 'VentanaPrincipal'
+1574857044549	Delete element
+1574857941822	Rename local variable 'panel_center'
+1574858410075	Rename field 'btnAceptar'
+1574859410158	Rename field 'asistenteActual'
+1574859516688	Rename method 'esAsistenteRegistrado'
+1574859762791	Rename local variable 'asistente'
+1574859788026	Rename method 'loginAsistente'
