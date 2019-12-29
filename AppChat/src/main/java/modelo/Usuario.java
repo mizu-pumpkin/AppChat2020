@@ -1,8 +1,10 @@
 package modelo;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -40,7 +42,8 @@ public class Usuario {
 	private String avatar;
 	private boolean premium;
 	private Estado story;
-	private List<Contacto> contacts;
+	private Map<Integer, Contacto> contacts;
+	private Map<Usuario, ContactoIndividual> privateChats;
 	private List<Contacto> adminGroups;
 	
 	// Constructors
@@ -60,8 +63,9 @@ public class Usuario {
 		this.greeting = greeting;
 		this.avatar = "";
 		this.premium = false;
-		this.story = null;
-		this.contacts = new LinkedList<>();
+		this.story = new Estado("", "");
+		this.contacts = new HashMap<>();
+		this.privateChats = new HashMap<>();
 		this.adminGroups = new LinkedList<>();
 	}
 
@@ -147,55 +151,37 @@ public class Usuario {
 	}
 
 	public List<Contacto> getContacts() {
-		return new LinkedList<Contacto>(contacts);
+		return new LinkedList<Contacto>(contacts.values());
 	}
 
 	public List<Contacto> getContactosIndividuales() {
-		return contacts.stream()
-					   .filter(c -> c instanceof ContactoIndividual)
-					   .collect(Collectors.toList())
-					   ;
+		return new LinkedList<Contacto>(/*privateChats.values()*/);
 	}
 
 	public List<Contacto> getGrupos() {
-		return contacts.stream()
-					   .filter(c -> c instanceof Grupo)
-					   .collect(Collectors.toList())
-					   ;
-	}
-	
-	/**
-	 * En cualquier momento, un usuario puede añadir contactos a su lista
-	 * indicando un nombre para el contacto y su teléfono.
-	 */
-	public ContactoIndividual addContact(String contactName, String contactPhone) {
-		ContactoIndividual contactoIndividual = new ContactoIndividual(contactName, contactPhone);
-		contacts.add(contactoIndividual);
-		return contactoIndividual;
-	}
-
-	public Grupo addContact(String groupName, Usuario groupAdmin) {
-		Grupo group = new Grupo(groupName, groupAdmin);
-		contacts.add(group);
-		return group;
+		return contacts.values().stream()
+							    .filter(c -> c instanceof Grupo)
+							    .collect(Collectors.toList())
+							    ;
 	}
 
 	public void addContact(Contacto contact) {
-		contacts.add(contact);
+		if (contacts.containsKey(contact.getId())) return;
+		
+		contacts.put(contact.getId(), contact);
+		
+		if (contact instanceof ContactoIndividual) {
+			ContactoIndividual c = (ContactoIndividual) contact;
+			privateChats.put(c.getUser(), c);
+		}
 	}
 	
 	public void removeContact(Contacto contact) {
-		contacts.remove(contact);
+		contacts.remove(contact.getId());
 	}
 
 	public List<Contacto> getAdminGroups() {
 		return new LinkedList<Contacto>(adminGroups);
-	}
-
-	public Grupo addAdminGroup(String name) {
-		Grupo group = new Grupo(name, this);
-		adminGroups.add(group);
-		return group;
 	}
 
 	public void addAdminGroup(Grupo adminGroup) {
@@ -207,15 +193,137 @@ public class Usuario {
 	}
 
 	// Methods
-	public void sendMessageToChat(Contacto chat, String text) {
-		chat.sendMessage(this, text);
+	public void sendMessage(Contacto chat, String text, Date timestamp) {
+		chat.addMessage(this, text, timestamp);
 	}
 	
 	/**
 	 * Cuando un usuario recibe un mensaje de otro usuario que no esté en su
 	 * lista de contactos lo puede añadir asociando un nombre a su teléfono.
 	 */
-	public void receiveMessage(Mensaje message) {
-		//Usuario emisor = message.getSender();
+	public void receivePrivateMessage(Mensaje message) {
+		Usuario sender = message.getSender();
+		ContactoIndividual c = privateChats.get(sender);
+		if (c == null) {
+			c = new ContactoIndividual(sender);
+			addContact(c);
+		}
+		c.addMessage(message);
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id +
+				"\n         username=" + username +
+				"\n         password=" + password + 
+				"\n         name=" + name +
+				"\n         birthday=" + birthday +
+				"\n         email=" + email +
+				"\n         phone=" + phone +
+				"\n         greeting=" + greeting +
+				"\n         avatar=" + avatar +
+				"\n         premium=" + premium +
+				"\n         story=" + story +
+				"\n         contacts=" + contacts +
+				"\n         privateChats=" + privateChats +
+				"\n         adminGroups=" + adminGroups + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((adminGroups == null) ? 0 : adminGroups.hashCode());
+		result = prime * result + ((avatar == null) ? 0 : avatar.hashCode());
+		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
+		result = prime * result + ((contacts == null) ? 0 : contacts.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((greeting == null) ? 0 : greeting.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		result = prime * result + (premium ? 1231 : 1237);
+		result = prime * result + ((privateChats == null) ? 0 : privateChats.hashCode());
+		result = prime * result + ((story == null) ? 0 : story.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (adminGroups == null) {
+			if (other.adminGroups != null)
+				return false;
+		} else if (!adminGroups.equals(other.adminGroups))
+			return false;
+		if (avatar == null) {
+			if (other.avatar != null)
+				return false;
+		} else if (!avatar.equals(other.avatar))
+			return false;
+		if (birthday == null) {
+			if (other.birthday != null)
+				return false;
+		} else if (!birthday.equals(other.birthday))
+			return false;
+		if (contacts == null) {
+			if (other.contacts != null)
+				return false;
+		} else if (!contacts.equals(other.contacts))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (greeting == null) {
+			if (other.greeting != null)
+				return false;
+		} else if (!greeting.equals(other.greeting))
+			return false;
+		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
+			return false;
+		if (premium != other.premium)
+			return false;
+		if (privateChats == null) {
+			if (other.privateChats != null)
+				return false;
+		} else if (!privateChats.equals(other.privateChats))
+			return false;
+		if (story == null) {
+			if (other.story != null)
+				return false;
+		} else if (!story.equals(other.story))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+	
 }

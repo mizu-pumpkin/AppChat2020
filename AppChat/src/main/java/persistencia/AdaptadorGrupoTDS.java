@@ -62,25 +62,22 @@ public class AdaptadorGrupoTDS implements IAdaptadorGrupoDAO {
 		eGrupo = new Entidad();
 		eGrupo.setNombre(ENTITY_NAME);
 		eGrupo.setPropiedades(new ArrayList<Propiedad>(Arrays.asList(
-				new Propiedad(PROPERTY_NAME, grupo.getName()),
-				new Propiedad(PROPERTY_MESSAGES, getMessagesIDs(grupo.getMessages())),
-				new Propiedad(PROPERTY_ADMIN, String.valueOf(grupo.getAdmin().getId())),
-				new Propiedad(PROPERTY_MEMBERS, getMembersIDs(grupo.getMembers()))
-				)));
+			new Propiedad(PROPERTY_NAME, grupo.getName()),
+			new Propiedad(PROPERTY_MESSAGES, getMessagesIDs(grupo.getMessages())),
+			new Propiedad(PROPERTY_ADMIN, String.valueOf(grupo.getAdmin().getId())),
+			new Propiedad(PROPERTY_MEMBERS, getMembersIDs(grupo.getMembers()))
+		)));
 		
 		// Registrar entidad
 		eGrupo = servPersistencia.registrarEntidad(eGrupo);
 		
 		// Asignar el identificador único que genera el servicio de persistencia
 		grupo.setId(eGrupo.getId());
-		
-		//FIXME Añadir al pool?
-		PoolDAO.getInstance().addObject(grupo.getId(), grupo);
 	}
 
 	@Override
 	public void delete(Grupo grupo) {
-		//TODO No se comprueban restricciones de integridad
+		//TODO Restricciones de integridad
 		Entidad eGrupo = servPersistencia.recuperarEntidad(grupo.getId());
 		
 		servPersistencia.borrarEntidad(eGrupo);
@@ -99,6 +96,8 @@ public class AdaptadorGrupoTDS implements IAdaptadorGrupoDAO {
 		servPersistencia.anadirPropiedadEntidad(eGrupo, PROPERTY_MESSAGES, getMessagesIDs(grupo.getMessages()));
 		servPersistencia.anadirPropiedadEntidad(eGrupo, PROPERTY_ADMIN, String.valueOf(grupo.getAdmin().getId()));
 		servPersistencia.anadirPropiedadEntidad(eGrupo, PROPERTY_MEMBERS, getMembersIDs(grupo.getMembers()));
+		
+		PoolDAO.getInstance().addObject(grupo.getId(), grupo);
 	}
 
 	@Override
@@ -154,10 +153,12 @@ public class AdaptadorGrupoTDS implements IAdaptadorGrupoDAO {
 	}
 
 	private List<Mensaje> getMessagesFromIDs(String messagesIds) {
-		StringTokenizer strTok = new StringTokenizer(messagesIds, " ");
-		AdaptadorMensajeTDS adaptadorMensaje = AdaptadorMensajeTDS.getInstance();
 		List<Mensaje> messages = new LinkedList<>();
+		if (messagesIds.equals(""))
+			return messages;
 		
+		AdaptadorMensajeTDS adaptadorMensaje = AdaptadorMensajeTDS.getInstance();
+		StringTokenizer strTok = new StringTokenizer(messagesIds, " ");
 		while (strTok.hasMoreTokens())
 			messages.add(adaptadorMensaje.get(Integer.valueOf((String) strTok.nextElement())));
 		
@@ -174,10 +175,12 @@ public class AdaptadorGrupoTDS implements IAdaptadorGrupoDAO {
 	}
 
 	private List<ContactoIndividual> getMembersFromIDs(String membersIds) {
-		StringTokenizer strTok = new StringTokenizer(membersIds, " ");
-		AdaptadorContactoIndividualTDS adaptadorC = AdaptadorContactoIndividualTDS.getInstance();
 		List<ContactoIndividual> members = new LinkedList<>();
+		if (membersIds.equals(""))
+			return members;
 		
+		AdaptadorContactoIndividualTDS adaptadorC = AdaptadorContactoIndividualTDS.getInstance();
+		StringTokenizer strTok = new StringTokenizer(membersIds, " ");
 		while (strTok.hasMoreTokens())
 			members.add(adaptadorC.get(Integer.valueOf((String) strTok.nextElement())));
 		

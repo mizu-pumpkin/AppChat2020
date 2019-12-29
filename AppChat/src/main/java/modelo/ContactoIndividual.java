@@ -3,18 +3,15 @@ package modelo;
 public class ContactoIndividual extends Contacto {
 
 	private Usuario user;
-	
-	public ContactoIndividual(String name, Usuario user) {
-		super(name);
-		this.user = user;
-	}
 
 	public ContactoIndividual(String name, String phone) {
-		this(name, CatalogoUsuarios.getInstance().getByPhone(phone));
+		super(name);
+		this.user = CatalogoUsuarios.getInstance().getByPhone(phone);
 	}
 
-	public ContactoIndividual(String name) {
-		this(name, (Usuario) null);
+	public ContactoIndividual(Usuario user) {
+		super("");
+		this.user = user;
 	}
 	
 	public Usuario getUser() {
@@ -27,6 +24,12 @@ public class ContactoIndividual extends Contacto {
 	
 	public String getPhone() {
 		return user.getPhone();
+	}
+	
+	@Override
+	public void addMessage(Mensaje message) {
+		super.addMessage(message);
+		user.receivePrivateMessage(message);
 	}
 
 }

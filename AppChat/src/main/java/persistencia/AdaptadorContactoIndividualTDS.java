@@ -57,24 +57,21 @@ public class AdaptadorContactoIndividualTDS implements IAdaptadorContactoIndivid
 		eContactoIndividual = new Entidad();
 		eContactoIndividual.setNombre(ENTITY_NAME);
 		eContactoIndividual.setPropiedades(new ArrayList<Propiedad>(Arrays.asList(
-				new Propiedad(PROPERTY_NAME, contactoIndividual.getName()),
-				new Propiedad(PROPERTY_MESSAGES, getMessagesIDs(contactoIndividual.getMessages())),
-				new Propiedad(PROPERTY_USER, String.valueOf(contactoIndividual.getUser().getId()))
-				)));
+			new Propiedad(PROPERTY_NAME, contactoIndividual.getName()),
+			new Propiedad(PROPERTY_MESSAGES, getMessagesIDs(contactoIndividual.getMessages())),
+			new Propiedad(PROPERTY_USER, String.valueOf(contactoIndividual.getUser().getId()))
+		)));
 		
 		// Registrar entidad
 		eContactoIndividual = servPersistencia.registrarEntidad(eContactoIndividual);
 		
 		// Asignar el identificador  único que genera el servicio de persistencia
 		contactoIndividual.setId(eContactoIndividual.getId());
-		
-		//FIXME Añadir al pool
-		PoolDAO.getInstance().addObject(contactoIndividual.getId(), contactoIndividual);
 	}
 
 	@Override
 	public void delete(ContactoIndividual contactoIndividual) {
-		//TODO No se comprueban restricciones de integridad
+		//TODO Restricciones de integridad
 		Entidad eContactoIndividual = servPersistencia.recuperarEntidad(contactoIndividual.getId());
 		
 		servPersistencia.borrarEntidad(eContactoIndividual);
@@ -83,19 +80,16 @@ public class AdaptadorContactoIndividualTDS implements IAdaptadorContactoIndivid
 	@Override
 	public void update(ContactoIndividual contactoIndividual) {
 		Entidad eContactoIndividual = servPersistencia.recuperarEntidad(contactoIndividual.getId());
-
-		// Eliminar propiedades
+		
 		servPersistencia.eliminarPropiedadEntidad(eContactoIndividual, PROPERTY_NAME);
 		servPersistencia.eliminarPropiedadEntidad(eContactoIndividual, PROPERTY_MESSAGES);
 		servPersistencia.eliminarPropiedadEntidad(eContactoIndividual, PROPERTY_USER);
 		
-		// Añadir las nuevas propiedades
-		servPersistencia.anadirPropiedadEntidad(eContactoIndividual, PROPERTY_NAME,
-												contactoIndividual.getName());
-		servPersistencia.anadirPropiedadEntidad(eContactoIndividual, PROPERTY_MESSAGES,
-												getMessagesIDs(contactoIndividual.getMessages()));
-		servPersistencia.anadirPropiedadEntidad(eContactoIndividual, PROPERTY_USER,
-												String.valueOf(contactoIndividual.getUser().getId()));
+		servPersistencia.anadirPropiedadEntidad(eContactoIndividual, PROPERTY_NAME, contactoIndividual.getName());
+		servPersistencia.anadirPropiedadEntidad(eContactoIndividual, PROPERTY_MESSAGES, getMessagesIDs(contactoIndividual.getMessages()));
+		servPersistencia.anadirPropiedadEntidad(eContactoIndividual, PROPERTY_USER, String.valueOf(contactoIndividual.getUser().getId()));
+		
+		PoolDAO.getInstance().addObject(contactoIndividual.getId(), contactoIndividual);
 	}
 
 	@Override
@@ -113,10 +107,10 @@ public class AdaptadorContactoIndividualTDS implements IAdaptadorContactoIndivid
 		int idUser = Integer.parseInt(servPersistencia.recuperarPropiedadEntidad(eContactoIndividual, PROPERTY_USER));
 		
 		// Crear el objeto
-		ContactoIndividual contactoIndividual = new ContactoIndividual(name);
+		ContactoIndividual contactoIndividual = new ContactoIndividual(name, null);
 		contactoIndividual.setId(id);
 		
-		// Añadir el cliente al pool antes de llamar a otros adaptadores
+		// Añadir el objeto al pool antes de llamar a otros adaptadores
 		PoolDAO.getInstance().addObject(id, contactoIndividual);
 		
 		// Recuperar propiedades que son objetos llamando a adaptadores
@@ -149,9 +143,11 @@ public class AdaptadorContactoIndividualTDS implements IAdaptadorContactoIndivid
 
 	private List<Mensaje> getMessagesFromIDs(String messagesIds) {
 		List<Mensaje> messages = new LinkedList<>();
-		StringTokenizer strTok = new StringTokenizer(messagesIds, " ");
-		AdaptadorMensajeTDS adaptadorMensaje = AdaptadorMensajeTDS.getInstance();
+		if (messagesIds.equals(""))
+			return messages;
 		
+		AdaptadorMensajeTDS adaptadorMensaje = AdaptadorMensajeTDS.getInstance();
+		StringTokenizer strTok = new StringTokenizer(messagesIds, " ");
 		while (strTok.hasMoreTokens())
 			messages.add(adaptadorMensaje.get(Integer.valueOf((String) strTok.nextElement())));
 		

@@ -1,6 +1,5 @@
 package controlador;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import modelo.CatalogoUsuarios;
@@ -67,6 +66,8 @@ public class Controlador {
 		if (usuario == null || !usuario.getPassword().equals(password)) return false;
 		
 		this.usuarioActual = usuario;
+		
+		System.out.println(usuario.getId());
 		return true;
 	}
 	
@@ -95,14 +96,14 @@ public class Controlador {
 
 	/* Métodos Mensaje */
 	
-	public boolean sendMessage(Contacto receiver, String text, LocalDate timestamp) {
+	public boolean sendMessage(Contacto receiver, String text, Date timestamp) {
 		Mensaje msg = new Mensaje(usuarioActual, receiver, text, timestamp);
 		adaptadorMensaje.create(msg);
 		receiver.addMessage(msg);
 		return true;
 	}
 	
-	public boolean sendMessage(Contacto receiver, int emoticon, LocalDate timestamp) {
+	public boolean sendMessage(Contacto receiver, int emoticon, Date timestamp) {
 		Mensaje msg = new Mensaje(usuarioActual, receiver, emoticon, timestamp);
 		adaptadorMensaje.create(msg);
 		receiver.addMessage(msg);
@@ -116,20 +117,26 @@ public class Controlador {
 	}
 
 	/* Métodos Contacto */
-	
-	public boolean newChat(String contactName, String contactPhone) {
-		ContactoIndividual contactoIndividual = usuarioActual.addContact(contactName, contactPhone);
+
+	/**
+	 * En cualquier momento, un usuario puede añadir contactos a su lista
+	 * indicando un nombre para el contacto y su teléfono.
+	 */
+	public boolean registerContact(String contactName, String contactPhone) {
+		ContactoIndividual contactoIndividual = new ContactoIndividual(contactName, contactPhone);
+		usuarioActual.addContact(contactoIndividual);
 		adaptadorContactoIndividual.create(contactoIndividual);
 		return true;
 	}
 	
-	public boolean newChat(String groupName, Usuario groupAdmin) {
-		Grupo group = usuarioActual.addContact(groupName, groupAdmin);
+	public boolean registerContact(String groupName, Usuario groupAdmin) {
+		Grupo group = new Grupo(groupName, groupAdmin);
+		usuarioActual.addContact(group);
 		adaptadorGrupo.create(group);
 		return true;
 	}
 	
-	public boolean deleteChat(Contacto contact) {
+	public boolean deleteContact(Contacto contact) {
 		if (contact instanceof ContactoIndividual)
 			adaptadorContactoIndividual.delete( (ContactoIndividual) contact );
 		else
@@ -138,8 +145,9 @@ public class Controlador {
 		return true;
 	}
 	
-	public boolean makeGroup(String groupName) {
-		Grupo group = usuarioActual.addAdminGroup(groupName);
+	public boolean registerGroup(String groupName) {
+		Grupo group = new Grupo(groupName, usuarioActual);
+		usuarioActual.addAdminGroup(group);
 		adaptadorGrupo.create(group);
 		return true;
 	}

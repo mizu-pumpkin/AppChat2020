@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="existe"/>
+		<item key="selection" value="\n         "/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="\n      "/>
+			<item value="\n"/>
+			<item value="/n"/>
+			<item value=", "/>
+			<item value="birthday"/>
+			<item value="PROPERTY_TIMESTAMP"/>
+			<item value="PROPERTY_BIRTHDAY"/>
+			<item value="parse"/>
+			<item value="�"/>
+			<item value="eContactoIndividual"/>
 			<item value="existe"/>
 			<item value="contacto_individual"/>
 			<item value="cont_ind"/>
 			<item value="&quot;USER&quot;"/>
 			<item value="&quot;messages&quot;"/>
-			<item value="&quot;name&quot;"/>
-			<item value="&quot;members&quot;"/>
-			<item value="&quot;admin&quot;"/>
-			<item value="servPersistencia.eliminarPropiedadEntidad(eGrupo, &quot;"/>
-			<item value="getIndividualsFromIDs"/>
-			<item value="getContactsFromIDs"/>
-			<item value="getIndividualsIDs"/>
-			<item value="contacts"/>
-			<item value="adminGroups"/>
-			<item value="PROPERTY_ = &quot;_"/>
 		</list>
 		<list key="replacehistory">
+			<item value="\n         "/>
+			<item value="\n      "/>
+			<item value="\n"/>
+			<item value="/n"/>
+			<item value="ñ"/>
+			<item value="entidad"/>
 			<item value="contactoIndividual"/>
 			<item value="contacto_individual"/>
 			<item value="PROPERTY_USER"/>
@@ -34,12 +40,6 @@
 			<item value="PROPERTY_ADMIN"/>
 			<item value="private static final String ENTITY_ = &quot;_"/>
 			<item value="PROPERTY_ = &quot;"/>
-			<item value="PROPERTY_STORY"/>
-			<item value="PROPERTY_AVATAR"/>
-			<item value="PROPERTY_PREMIUM"/>
-			<item value="PROPERTY_BIRTHDAY"/>
-			<item value="PROPERTY_GREETING"/>
-			<item value="PROPERTY_PHONE"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

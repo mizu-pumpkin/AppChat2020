@@ -1,6 +1,6 @@
 package modelo;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Un mensaje está formado por texto y puede contener emoticonos.
@@ -20,11 +20,11 @@ public class Mensaje {
 	private Usuario sender;
 	private Contacto receiver;
 	private String body;
-	private LocalDate timestamp;
+	private Date timestamp;
 	private int bodyType;
 
 	// Constructors
-	public Mensaje(Usuario sender, Contacto receiver, String text, LocalDate timestamp) {
+	public Mensaje(Usuario sender, Contacto receiver, String text, Date timestamp) {
 		this.sender = sender;
 		this.receiver = receiver;
 		this.body = text;
@@ -32,15 +32,11 @@ public class Mensaje {
 		this.bodyType = TEXT_BODY;
 	}
 	
-	public Mensaje(Usuario sender, Contacto receiver, String text) {
-		this(sender, receiver, text, LocalDate.now());
-	}
-	
-	public Mensaje(String text, LocalDate timestamp) {
+	public Mensaje(String text, Date timestamp) {
 		this(null, null, text, timestamp);
 	}
 	
-	public Mensaje(Usuario sender, Contacto receiver, int emoticon, LocalDate timestamp) {
+	public Mensaje(Usuario sender, Contacto receiver, int emoticon, Date timestamp) {
 		this.sender = sender;
 		this.receiver = receiver;
 		this.body = Integer.toString(emoticon);
@@ -48,11 +44,7 @@ public class Mensaje {
 		this.bodyType = EMOTICON_BODY;
 	}
 	
-	public Mensaje(Usuario sender, Contacto receiver, int emoticon) {
-		this(sender, receiver, emoticon, LocalDate.now());
-	}
-	
-	public Mensaje( int emoticon, LocalDate timestamp) {
+	public Mensaje(int emoticon, Date timestamp) {
 		this(null, null, emoticon, timestamp);
 	}
 	
@@ -85,7 +77,7 @@ public class Mensaje {
 		return body;
 	}
 
-	public LocalDate getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 	

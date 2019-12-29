@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 /**
  * Los usuarios pueden crear grupos de contactos para compartir mensajes sobre un
- * tema. Un grupo se crea a�adiendo los contactos que lo forman y asoci�ndole un
- * nombre al grupo. S�lo el usuario que cre� el grupo (�nico administrador) puede
- * a�adir a otros contactos y eliminar el grupo. Cualquier usuario del grupo puede
- * dejar de pertenecer a �l en cualquier momento. Un grupo se maneja igual que un
+ * tema. Un grupo se crea añadiendo los contactos que lo forman y asociándole un
+ * nombre al grupo. Sólo el usuario que creó el grupo (único administrador) puede
+ * añadir a otros contactos y eliminar el grupo. Cualquier usuario del grupo puede
+ * dejar de pertenecerle en cualquier momento. Un grupo se maneja igual que un
  * contacto en el intercambio de mensajes.
  */
 public class Grupo extends Contacto {
@@ -28,6 +28,8 @@ public class Grupo extends Contacto {
 		this(name, null);
 	}
 	
+	/* Getters and setters */
+	
 	public Usuario getAdmin() {
 		return admin;
 	}
@@ -43,6 +45,12 @@ public class Grupo extends Contacto {
 	public void addMember(ContactoIndividual contact) {
 		members.add(contact);
 	}
+	
+	public void removeMember(ContactoIndividual contact) {
+		members.remove(contact);
+	}
+	
+	/* Methods */
 	
 	public List<Mensaje> findMessagesByUsername(Usuario user) {
 		return messages.stream()

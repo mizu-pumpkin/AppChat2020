@@ -2,8 +2,8 @@ package modelo;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -50,14 +50,12 @@ public abstract class Contacto {
 		messages.add(message);
 	}
 	
-	public void removeMessage(Mensaje message) {
-		messages.remove(message);
+	public void addMessage(Usuario sender, String text, Date timestamp) {
+		this.addMessage(new Mensaje(sender, this, text, timestamp));
 	}
 	
-	// Methods
-	public void sendMessage(Usuario sender, String text) {
-		Mensaje message = new Mensaje(sender, this, text);
-		messages.add(message);
+	public void removeMessage(Mensaje message) {
+		messages.remove(message);
 	}
 	
 	public List<Mensaje> findMessagesByText(String text) {
@@ -68,10 +66,10 @@ public abstract class Contacto {
 					   ;
 	}
 	
-	public List<Mensaje> findMessagesByDate(LocalDate d1, LocalDate d2) {
+	public List<Mensaje> findMessagesByDate(Date d1, Date d2) {
 		return messages.stream()
-					   .filter(m -> !m.getTimestamp().isBefore(d1))
-					   .filter(m -> !m.getTimestamp().isAfter(d2))
+					   .filter(m -> !m.getTimestamp().before(d1))
+					   .filter(m -> !m.getTimestamp().after(d2))
 					   .sorted()
 					   .collect(Collectors.toList())
 					   ;

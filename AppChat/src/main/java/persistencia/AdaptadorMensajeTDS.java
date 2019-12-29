@@ -1,6 +1,8 @@
 package persistencia;
 
-import java.time.LocalDate;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -32,6 +34,7 @@ public class AdaptadorMensajeTDS implements IAdaptadorMensajeDAO {
 
 	private static ServicioPersistencia servPersistencia;
 	private static AdaptadorMensajeTDS instance = null;
+	private SimpleDateFormat dateFormat;
 	
 	public static AdaptadorMensajeTDS getInstance() {
 		if (instance == null)
@@ -42,6 +45,7 @@ public class AdaptadorMensajeTDS implements IAdaptadorMensajeDAO {
 	
 	private AdaptadorMensajeTDS() {
 		servPersistencia = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
+		dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	}
 
 	@Override
@@ -74,27 +78,24 @@ public class AdaptadorMensajeTDS implements IAdaptadorMensajeDAO {
 		eMensaje = new Entidad();
 		eMensaje.setNombre(ENTITY_NAME);
 		eMensaje.setPropiedades(new ArrayList<Propiedad>(Arrays.asList(
-				new Propiedad(PROPERTY_SENDER, String.valueOf(mensaje.getSender().getId())),
-				new Propiedad(PROPERTY_RECEIVER, String.valueOf(mensaje.getReceiver().getId())),
-				new Propiedad(PROPERTY_BODY, mensaje.getBody()),
-				new Propiedad(PROPERTY_TIMESTAMP, String.valueOf(mensaje.getTimestamp())),
-				new Propiedad(PROPERTY_CHAT_TYPE, chatType),
-				new Propiedad(PROPERTY_BODY_TYPE, bodyType)
-				)));
+			new Propiedad(PROPERTY_SENDER, String.valueOf(mensaje.getSender().getId())),
+			new Propiedad(PROPERTY_RECEIVER, String.valueOf(mensaje.getReceiver().getId())),
+			new Propiedad(PROPERTY_BODY, mensaje.getBody()),
+			new Propiedad(PROPERTY_TIMESTAMP, dateFormat.format(mensaje.getTimestamp())),
+			new Propiedad(PROPERTY_CHAT_TYPE, chatType),
+			new Propiedad(PROPERTY_BODY_TYPE, bodyType)
+		)));
 		
 		// Registrar entidad
 		eMensaje = servPersistencia.registrarEntidad(eMensaje);
 		
 		// Asignar el identificador único que genera el servicio de persistencia
 		mensaje.setId(eMensaje.getId());
-		
-		//FIXME Añadir al pool?
-		PoolDAO.getInstance().addObject(mensaje.getId(), mensaje);
 	}
 
 	@Override
 	public void delete(Mensaje mensaje) {
-		//TODO No se comprueban restricciones de integridad
+		//TODO Restricciones de integridad
 		Entidad eMensaje = servPersistencia.recuperarEntidad(mensaje.getId());
 		
 		servPersistencia.borrarEntidad(eMensaje);
@@ -117,9 +118,11 @@ public class AdaptadorMensajeTDS implements IAdaptadorMensajeDAO {
 		servPersistencia.anadirPropiedadEntidad(eMensaje, PROPERTY_SENDER, String.valueOf(mensaje.getSender().getId()));
 		servPersistencia.anadirPropiedadEntidad(eMensaje, PROPERTY_RECEIVER, String.valueOf(mensaje.getReceiver().getId()));
 		servPersistencia.anadirPropiedadEntidad(eMensaje, PROPERTY_BODY, mensaje.getBody());
-		servPersistencia.anadirPropiedadEntidad(eMensaje, PROPERTY_TIMESTAMP, String.valueOf(mensaje.getTimestamp()));
+		servPersistencia.anadirPropiedadEntidad(eMensaje, PROPERTY_TIMESTAMP, dateFormat.format(mensaje.getTimestamp()));
 		servPersistencia.anadirPropiedadEntidad(eMensaje, PROPERTY_CHAT_TYPE, chatType);
 		servPersistencia.anadirPropiedadEntidad(eMensaje, PROPERTY_BODY_TYPE, bodyType);
+		
+		PoolDAO.getInstance().addObject(mensaje.getId(), mensaje);
 	}
 
 	@Override
@@ -135,7 +138,13 @@ public class AdaptadorMensajeTDS implements IAdaptadorMensajeDAO {
 		int idSender = Integer.parseInt(servPersistencia.recuperarPropiedadEntidad(eMensaje, PROPERTY_SENDER));
 		int idReceiver = Integer.parseInt(servPersistencia.recuperarPropiedadEntidad(eMensaje, PROPERTY_RECEIVER));
 		String body = servPersistencia.recuperarPropiedadEntidad(eMensaje, PROPERTY_BODY);
-		LocalDate timestamp = LocalDate.parse(servPersistencia.recuperarPropiedadEntidad(eMensaje, PROPERTY_TIMESTAMP));
+		Date timestamp = null;
+		try {
+			timestamp = dateFormat.parse(servPersistencia.recuperarPropiedadEntidad(eMensaje, PROPERTY_TIMESTAMP));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 		String chatType = servPersistencia.recuperarPropiedadEntidad(eMensaje, PROPERTY_CHAT_TYPE);
 		String bodyType = servPersistencia.recuperarPropiedadEntidad(eMensaje, PROPERTY_BODY_TYPE);
 
