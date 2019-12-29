@@ -17,7 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 
 import com.toedter.calendar.JDateChooser;
-import controlador.Controlador;
+import controlador.AppChat;
 
 
 @SuppressWarnings("serial")
@@ -350,7 +350,7 @@ public class PanelRegistro extends JPanel implements ActionListener {
 			warningPasswordChk.setVisible(true); 
 			ok=false;
 		}
-		if (Controlador.getInstance().isRegistered(field_username.getText())) {
+		if (AppChat.getInstance().isRegistered(field_username.getText())) {
 			warningUsername.setVisible(true); 
 			warningExiste.setVisible(true); 
 			ok=false;		
@@ -359,7 +359,7 @@ public class PanelRegistro extends JPanel implements ActionListener {
 	}
 	
 	private boolean register() {
-		boolean ok = Controlador.getInstance().register(
+		boolean ok = AppChat.getInstance().register(
 								field_username.getText(),
 								new String(field_password.getPassword()),
 								field_name.getText(),

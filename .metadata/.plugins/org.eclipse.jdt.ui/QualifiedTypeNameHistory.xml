@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="persistencia.FactoriaDAO"/>
 <fullyQualifiedTypeName name="persistencia.DAOException"/>
@@ -38,17 +36,14 @@
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.sql.Timestamp"/>
 <fullyQualifiedTypeName name="java.time.LocalDate"/>
-<fullyQualifiedTypeName name="modelo.Contacto"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.awt.datatransfer.StringSelection"/>
 <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
 <fullyQualifiedTypeName name="modelo.Mensaje"/>
-<fullyQualifiedTypeName name="modelo.Grupo"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
-<fullyQualifiedTypeName name="modelo.ContactoIndividual"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="java.text.ParseException"/>
 <fullyQualifiedTypeName name="persistencia.AdaptadorUsuarioTDS"/>
@@ -60,4 +55,9 @@
 <fullyQualifiedTypeName name="modelo.Usuario"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="beans.Propiedad"/>
+<fullyQualifiedTypeName name="modelo.Contacto"/>
+<fullyQualifiedTypeName name="persistencia.AdaptadorContactoIndividualTDS"/>
+<fullyQualifiedTypeName name="modelo.Grupo"/>
+<fullyQualifiedTypeName name="persistencia.AdaptadorGrupoTDS"/>
+<fullyQualifiedTypeName name="modelo.ContactoIndividual"/>
 </qualifiedTypeNameHistroy>

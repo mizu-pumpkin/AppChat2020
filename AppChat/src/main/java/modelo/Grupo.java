@@ -69,5 +69,10 @@ public class Grupo extends Contacto {
 		//TODO
 		return messages.stream().collect(Collectors.toList());
 	}
-
+	
+	@Override
+	public String toString() {
+		return super.toString() + "[admin=" + admin.getId() + ", members=" + members + "]";
+	}
+	
 }

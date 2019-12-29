@@ -77,10 +77,12 @@ public class AdaptadorGrupoTDS implements IAdaptadorGrupoDAO {
 
 	@Override
 	public void delete(Grupo grupo) {
-		//TODO Restricciones de integridad
-		Entidad eGrupo = servPersistencia.recuperarEntidad(grupo.getId());
-		
-		servPersistencia.borrarEntidad(eGrupo);
+		// Restricciones de integridad
+		AdaptadorMensajeTDS adaptadorMensaje = AdaptadorMensajeTDS.getInstance();
+		for (Mensaje m : adaptadorMensaje.getAll())
+			if (m.getReceiver().equals(grupo)) adaptadorMensaje.delete(m);
+		// Borrar entidad
+		servPersistencia.borrarEntidad(servPersistencia.recuperarEntidad(grupo.getId()));
 	}
 
 	@Override
@@ -156,7 +158,7 @@ public class AdaptadorGrupoTDS implements IAdaptadorGrupoDAO {
 		List<Mensaje> messages = new LinkedList<>();
 		if (messagesIds.equals(""))
 			return messages;
-		
+
 		AdaptadorMensajeTDS adaptadorMensaje = AdaptadorMensajeTDS.getInstance();
 		StringTokenizer strTok = new StringTokenizer(messagesIds, " ");
 		while (strTok.hasMoreTokens())
@@ -178,11 +180,11 @@ public class AdaptadorGrupoTDS implements IAdaptadorGrupoDAO {
 		List<ContactoIndividual> members = new LinkedList<>();
 		if (membersIds.equals(""))
 			return members;
-		
-		AdaptadorContactoIndividualTDS adaptadorC = AdaptadorContactoIndividualTDS.getInstance();
+
+		AdaptadorContactoIndividualTDS adaptadorContactoIndividual = AdaptadorContactoIndividualTDS.getInstance();
 		StringTokenizer strTok = new StringTokenizer(membersIds, " ");
 		while (strTok.hasMoreTokens())
-			members.add(adaptadorC.get(Integer.valueOf((String) strTok.nextElement())));
+			members.add(adaptadorContactoIndividual.get(Integer.valueOf((String) strTok.nextElement())));
 		
 		return members;
 	}

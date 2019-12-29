@@ -72,7 +72,7 @@ public class AdaptadorMensajeTDS implements IAdaptadorMensajeDAO {
 			AdaptadorGrupoTDS.getInstance().create((Grupo) receiver);
 			chatType = TYPE_GROUP_CHAT;
 		}
-		
+
 		// Crear entidad
 		String bodyType = (mensaje.getBodyType() == Mensaje.TEXT_BODY) ? TYPE_TEXT_BODY : TYPE_EMOTICON_BODY;
 		eMensaje = new Entidad();
@@ -95,10 +95,8 @@ public class AdaptadorMensajeTDS implements IAdaptadorMensajeDAO {
 
 	@Override
 	public void delete(Mensaje mensaje) {
-		//TODO Restricciones de integridad
-		Entidad eMensaje = servPersistencia.recuperarEntidad(mensaje.getId());
-		
-		servPersistencia.borrarEntidad(eMensaje);
+		// TODO Restricciones de integridad?
+		servPersistencia.borrarEntidad(servPersistencia.recuperarEntidad(mensaje.getId()));
 	}
 
 	@Override
@@ -161,7 +159,7 @@ public class AdaptadorMensajeTDS implements IAdaptadorMensajeDAO {
 		Contacto receiver = (chatType.equals(TYPE_INDIVIDUAL_CHAT)) ?
 							AdaptadorContactoIndividualTDS.getInstance().get(idReceiver) :
 							AdaptadorGrupoTDS.getInstance().get(idReceiver);
-		
+							
 		mensaje.setSender(sender);
 		mensaje.setReceiver(receiver);
 

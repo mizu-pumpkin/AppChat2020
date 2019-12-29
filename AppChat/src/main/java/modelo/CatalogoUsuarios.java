@@ -35,7 +35,7 @@ public class CatalogoUsuarios {
 		}
 	}
 	
-	/*Recupera todos los usuarios para trabajar con ellos en memoria*/
+	// Recupera todos los usuarios para trabajar con ellos en memoria
 	private void cargarCatalogo() throws DAOException {
 		List<Usuario> listaUsuarios = adaptadorUsuarios.getAll();
 		for (Usuario usuario : listaUsuarios) {

@@ -31,5 +31,11 @@ public class ContactoIndividual extends Contacto {
 		super.addMessage(message);
 		user.receivePrivateMessage(message);
 	}
-
+	
+	@Override
+	public String toString() {
+		return super.toString() + 
+				"[user=" + user.getId() + "]";
+	}
+	
 }

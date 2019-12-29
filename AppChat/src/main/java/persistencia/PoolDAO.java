@@ -1,7 +1,5 @@
 package persistencia;
 
-/*Esta clase implementa un pool para los adaptadores que lo necesiten*/
-
 import java.util.Hashtable;
 
 public class PoolDAO {
@@ -15,13 +13,13 @@ public class PoolDAO {
 	public static PoolDAO getInstance() {
 		if (instance == null)
 			instance = new PoolDAO();
-		return instance;
 		
+		return instance;
 	}
 	
 	public Object getObject(int id) {
-		return pool.get(id);
-	} // devuelve null si no encuentra el objeto
+		return pool.get(id); // devuelve null si no encuentra el objeto
+	}
 
 	public void addObject(int id, Object object) {
 		pool.put(id, object);

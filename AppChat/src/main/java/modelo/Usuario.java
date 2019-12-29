@@ -42,7 +42,7 @@ public class Usuario {
 	private String avatar;
 	private boolean premium;
 	private Estado story;
-	private Map<Integer, Contacto> contacts;
+	private Map<Integer, Contacto> contacts;	// key=id
 	private Map<Usuario, ContactoIndividual> privateChats;
 	private List<Contacto> adminGroups;
 	
@@ -206,14 +206,14 @@ public class Usuario {
 		ContactoIndividual c = privateChats.get(sender);
 		if (c == null) {
 			c = new ContactoIndividual(sender);
-			addContact(c);
+			this.addContact(c);
 		}
 		c.addMessage(message);
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id +
+		return this.getClass().getSimpleName() + " [id=" + id +
 				"\n         username=" + username +
 				"\n         password=" + password + 
 				"\n         name=" + name +
@@ -225,7 +225,6 @@ public class Usuario {
 				"\n         premium=" + premium +
 				"\n         story=" + story +
 				"\n         contacts=" + contacts +
-				"\n         privateChats=" + privateChats +
 				"\n         adminGroups=" + adminGroups + "]";
 	}
 

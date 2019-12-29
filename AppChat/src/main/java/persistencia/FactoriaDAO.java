@@ -13,7 +13,8 @@ public abstract class FactoriaDAO {
 	 */
 	public static FactoriaDAO getInstance(String tipo) throws DAOException{
 		if (instance == null)
-			try { instance=(FactoriaDAO) Class.forName(tipo).newInstance();
+			try {
+				instance=(FactoriaDAO) Class.forName(tipo).newInstance();
 			} catch (Exception e) {	
 				throw new DAOException(e.getMessage());
 			} 
@@ -21,13 +22,13 @@ public abstract class FactoriaDAO {
 	}
 
 
-	public static FactoriaDAO getInstance() throws DAOException{
-			if (instance == null) return getInstance (FactoriaDAO.DAO_TDS);
-					else return instance;
-		}
+	public static FactoriaDAO getInstance() throws DAOException {
+		if (instance == null) return getInstance (FactoriaDAO.DAO_TDS);
+			else return instance;
+	}
 
 	/* Constructor */
-	protected FactoriaDAO (){}
+	protected FactoriaDAO() {}
 		
 	// Metodos factoria que devuelven adaptadores que implementen estos interfaces
 	public abstract IAdaptadorContactoIndividualDAO getAdaptadorContactoIndividualDAO();

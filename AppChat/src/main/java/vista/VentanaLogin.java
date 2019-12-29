@@ -13,7 +13,7 @@ import javax.swing.JPasswordField;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
-import controlador.Controlador;
+import controlador.AppChat;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -133,7 +133,7 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLogin) {
-			boolean login = Controlador.getInstance().login(
+			boolean login = AppChat.getInstance().login(
 					textField_username.getText(), new String(passwField_password.getPassword()));
 			if (login) {
 				VentanaAppChat window = new VentanaAppChat();

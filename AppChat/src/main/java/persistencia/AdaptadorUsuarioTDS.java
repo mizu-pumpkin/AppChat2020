@@ -68,9 +68,9 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 		
 		// Registrar primero los atributos que son objetos
 		AdaptadorContactoIndividualTDS adaptadorContactoIndividual = AdaptadorContactoIndividualTDS.getInstance();
-		AdaptadorGrupoTDS adaptadorGrupo = AdaptadorGrupoTDS.getInstance();
 		for (Contacto c : usuario.getContactosIndividuales())
 			adaptadorContactoIndividual.create((ContactoIndividual) c);
+		AdaptadorGrupoTDS adaptadorGrupo= AdaptadorGrupoTDS.getInstance();
 		for (Contacto g : usuario.getGrupos())
 			adaptadorGrupo.create((Grupo) g);
 		
@@ -103,10 +103,16 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 
 	@Override
 	public void delete(Usuario usuario) {
-		//TODO Restricciones de integridad
-		Entidad eUsuario = servPersistencia.recuperarEntidad(usuario.getId());
-		
-		servPersistencia.borrarEntidad(eUsuario);
+		// Restricciones de integridad
+		AdaptadorGrupoTDS adaptadorGrupo = AdaptadorGrupoTDS.getInstance();
+		for (Grupo g: adaptadorGrupo.getAll())
+			if (g.getAdmin().equals(usuario)) adaptadorGrupo.delete(g);
+
+		AdaptadorContactoIndividualTDS adaptadorContactoIndividual = AdaptadorContactoIndividualTDS.getInstance();
+		for (ContactoIndividual c: adaptadorContactoIndividual.getAll())
+			if (c.getUser().equals(usuario)) adaptadorContactoIndividual.delete(c);
+		// Borrar entidad
+		servPersistencia.borrarEntidad(servPersistencia.recuperarEntidad(usuario.getId()));
 	}
 	
 	@Override
@@ -221,11 +227,11 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 		List<Contacto> contacts = new LinkedList<>();
 		if (privateChatIds.equals(""))
 			return contacts;
-		
-		AdaptadorContactoIndividualTDS adaptador = AdaptadorContactoIndividualTDS.getInstance();
+
+		AdaptadorContactoIndividualTDS adaptadorContactoIndividual = AdaptadorContactoIndividualTDS.getInstance();
 		StringTokenizer strTok = new StringTokenizer(privateChatIds, " ");
 		while (strTok.hasMoreTokens())
-			contacts.add(adaptador.get(Integer.valueOf((String) strTok.nextElement())));
+			contacts.add(adaptadorContactoIndividual.get(Integer.valueOf((String) strTok.nextElement())));
 		
 		return contacts;
 	}
@@ -235,10 +241,10 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 		if (groupChatIds.equals(""))
 			return groups;
 		
-		AdaptadorGrupoTDS adaptador = AdaptadorGrupoTDS.getInstance();
+		AdaptadorGrupoTDS adaptadorGrupo= AdaptadorGrupoTDS.getInstance();
 		StringTokenizer strTok = new StringTokenizer(groupChatIds, " ");
 		while (strTok.hasMoreTokens())
-			groups.add(adaptador.get(Integer.valueOf((String) strTok.nextElement())));
+			groups.add(adaptadorGrupo.get(Integer.valueOf((String) strTok.nextElement())));
 		
 		return groups;
 	}

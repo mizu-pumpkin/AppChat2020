@@ -7,10 +7,10 @@ import java.util.Date;
 import java.util.LinkedList;
 
 /**
- * Dentro de un grupo o para un contacto dado, un usuario podr� buscar mensajes con
- * diferentes filtros. Para grupos, podr� buscar combinando nombre de usuario, texto
+ * Dentro de un grupo o para un contacto dado, un usuario podrá buscar mensajes con
+ * diferentes filtros. Para grupos, podrá buscar combinando nombre de usuario, texto
  * a buscar y rango de fechas, cualquiera de ellos puede ser opcional. En el caso de
- * un contacto, la b�squeda es s�lo por texto y rango de fechas.
+ * un contacto, la búsqueda es sólo por texto y rango de fechas.
  */
 public abstract class Contacto {
 	
@@ -73,6 +73,11 @@ public abstract class Contacto {
 					   .sorted()
 					   .collect(Collectors.toList())
 					   ;
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName() + " [id=" + id + ", name=" + name + ", messages=" + messages + "]";
 	}
 	
 }

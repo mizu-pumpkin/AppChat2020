@@ -71,10 +71,12 @@ public class AdaptadorContactoIndividualTDS implements IAdaptadorContactoIndivid
 
 	@Override
 	public void delete(ContactoIndividual contactoIndividual) {
-		//TODO Restricciones de integridad
-		Entidad eContactoIndividual = servPersistencia.recuperarEntidad(contactoIndividual.getId());
-		
-		servPersistencia.borrarEntidad(eContactoIndividual);
+		// Restricciones de integridad
+		AdaptadorMensajeTDS adaptadorMensaje = AdaptadorMensajeTDS.getInstance();
+		for (Mensaje m : adaptadorMensaje.getAll())
+			if (m.getReceiver().equals(contactoIndividual)) adaptadorMensaje.delete(m);
+		// Borrar entidad
+		servPersistencia.borrarEntidad(servPersistencia.recuperarEntidad(contactoIndividual.getId()));
 	}
 
 	@Override
@@ -145,7 +147,7 @@ public class AdaptadorContactoIndividualTDS implements IAdaptadorContactoIndivid
 		List<Mensaje> messages = new LinkedList<>();
 		if (messagesIds.equals(""))
 			return messages;
-		
+
 		AdaptadorMensajeTDS adaptadorMensaje = AdaptadorMensajeTDS.getInstance();
 		StringTokenizer strTok = new StringTokenizer(messagesIds, " ");
 		while (strTok.hasMoreTokens())

@@ -15,9 +15,9 @@ import persistencia.IAdaptadorGrupoDAO;
 import persistencia.IAdaptadorMensajeDAO;
 import persistencia.IAdaptadorUsuarioDAO;
 
-public class Controlador {
+public class AppChat {
 	
-	private static Controlador instance;
+	private static AppChat instance;
 
 	private IAdaptadorUsuarioDAO adaptadorUsuario;
 	private IAdaptadorMensajeDAO adaptadorMensaje;
@@ -27,7 +27,7 @@ public class Controlador {
 	private CatalogoUsuarios catalogoUsuarios;
 	private Usuario usuarioActual;
 	
-	private Controlador() {
+	private AppChat() {
 		FactoriaDAO factory = null;
 		try {
 			factory = FactoriaDAO.getInstance(FactoriaDAO.DAO_TDS);
@@ -43,9 +43,9 @@ public class Controlador {
 		usuarioActual = null;
 	}
 	
-	public static Controlador getInstance() {
+	public static AppChat getInstance() {
 		if (instance == null)
-			instance = new Controlador();
+			instance = new AppChat();
 		
 		return instance;
 	}
