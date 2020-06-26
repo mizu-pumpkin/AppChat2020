@@ -24,15 +24,14 @@ public abstract class FactoriaDAO {
 
 	public static FactoriaDAO getInstance() throws DAOException {
 		if (instance == null) return getInstance (FactoriaDAO.DAO_TDS);
-			else return instance;
+		return instance;
 	}
 
 	/* Constructor */
 	protected FactoriaDAO() {}
 		
 	// Metodos factoria que devuelven adaptadores que implementen estos interfaces
-	public abstract IAdaptadorContactoIndividualDAO getAdaptadorContactoIndividualDAO();
-	public abstract IAdaptadorGrupoDAO getAdaptadorGrupoDAO();
+	public abstract IAdaptadorChatDAO getAdaptadorChatDAO();
 	public abstract IAdaptadorMensajeDAO getAdaptadorMensajeDAO();
 	public abstract IAdaptadorUsuarioDAO getAdaptadorUsuarioDAO();
 

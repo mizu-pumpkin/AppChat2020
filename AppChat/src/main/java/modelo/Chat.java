@@ -2,30 +2,34 @@ package modelo;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 
-/**
- * Dentro de un grupo o para un contacto dado, un usuario podrá buscar mensajes con
- * diferentes filtros. Para grupos, podrá buscar combinando nombre de usuario, texto
- * a buscar y rango de fechas, cualquiera de ellos puede ser opcional. En el caso de
- * un contacto, la búsqueda es sólo por texto y rango de fechas.
- */
-public abstract class Contacto {
+public abstract class Chat {
 	
-	// Attributes
+// ---------------------------------------------------------------------
+//		                                                      Attributes
+// ---------------------------------------------------------------------
+		
 	private int id;
 	private String name;
-	protected List<Mensaje> messages;
+	private Usuario owner; // usuario o admin
+	protected List<Mensaje> messages; // mensajes
 	
-	// Constructors
-	public Contacto(String name) {
+// ---------------------------------------------------------------------
+//		                                                    Constructors
+// ---------------------------------------------------------------------
+		
+	public Chat(String name, Usuario owner) {
 		this.name = name;
+		this.owner = owner;
 		this.messages = new LinkedList<>();
 	}
 	
-	// Getters and Setters
+// ---------------------------------------------------------------------
+//		                                             Getters and Setters
+// ---------------------------------------------------------------------
+		
 	public int getId() {
 		return id;
 	}
@@ -42,22 +46,42 @@ public abstract class Contacto {
 		this.name = name;
 	}
 	
+	public Usuario getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Usuario owner) {
+		this.owner = owner;
+	}
+
 	public List<Mensaje> getMessages() {
-		return Collections.unmodifiableList(messages);
+		return new LinkedList<Mensaje>(messages);
 	}
 	
 	public void addMessage(Mensaje message) {
 		messages.add(message);
 	}
 	
-	public void addMessage(Usuario sender, String text, Date timestamp) {
-		this.addMessage(new Mensaje(sender, this, text, timestamp));
-	}
-	
 	public void removeMessage(Mensaje message) {
 		messages.remove(message);
 	}
 	
+// ---------------------------------------------------------------------
+//		                                                         Methods
+// ---------------------------------------------------------------------
+	
+	public Mensaje sendMessage(Usuario sender, String text) {
+		Mensaje msg = new Mensaje(sender, this, text);
+		addMessage(msg);
+		return msg;
+	}
+	
+	public Mensaje sendMessage(Usuario sender, int emoticon) {
+		Mensaje msg = new Mensaje(sender, this, emoticon);
+		addMessage(msg);
+		return msg;
+	}
+		
 	public List<Mensaje> findMessagesByText(String text) {
 		return messages.stream()
 					   .filter(m -> m.getBody().contains(text))
@@ -77,7 +101,8 @@ public abstract class Contacto {
 
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + " [id=" + id + ", name=" + name + ", messages=" + messages + "]";
+		return this.getClass().getSimpleName() +
+			   " [id=" + id + ", name=" + name + ", messages=" + messages + "]";
 	}
 	
 }

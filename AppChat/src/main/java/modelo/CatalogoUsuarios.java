@@ -10,13 +10,21 @@ import persistencia.IAdaptadorUsuarioDAO;
 
 public class CatalogoUsuarios {
 	
+// ---------------------------------------------------------------------
+//		                                                      Attributes
+// ---------------------------------------------------------------------
+			
 	private static CatalogoUsuarios instance;
 	private FactoriaDAO factory;
 	private IAdaptadorUsuarioDAO adaptadorUsuarios;
 
 	private HashMap<String, Usuario> usersByUsername;
 	private HashMap<String, Usuario> usersByPhone;
-
+	
+// ---------------------------------------------------------------------
+//		                                                    Constructors
+// ---------------------------------------------------------------------
+		
 	public static CatalogoUsuarios getInstance() {
 		if (instance == null)
 			instance = new CatalogoUsuarios();
@@ -37,13 +45,17 @@ public class CatalogoUsuarios {
 	
 	// Recupera todos los usuarios para trabajar con ellos en memoria
 	private void cargarCatalogo() throws DAOException {
-		List<Usuario> listaUsuarios = adaptadorUsuarios.getAll();
+		List<Usuario> listaUsuarios = adaptadorUsuarios.readAll();
 		for (Usuario usuario : listaUsuarios) {
 			usersByUsername.put(usuario.getUsername(), usuario);
 			usersByPhone.put(usuario.getPhone(), usuario);
 		}
 	}
 	
+// ---------------------------------------------------------------------
+//	                                                 Getters and Setters
+// ---------------------------------------------------------------------
+			
 	public List<Usuario> getAll() throws DAOException {
 		return new LinkedList<Usuario>(usersByUsername.values());
 	}

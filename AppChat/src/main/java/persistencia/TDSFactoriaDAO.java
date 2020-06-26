@@ -6,13 +6,8 @@ public class TDSFactoriaDAO extends FactoriaDAO {
 	}
 
 	@Override
-	public IAdaptadorContactoIndividualDAO getAdaptadorContactoIndividualDAO() {
-		return AdaptadorContactoIndividualTDS.getInstance();
-	}
-
-	@Override
-	public IAdaptadorGrupoDAO getAdaptadorGrupoDAO() {
-		return AdaptadorGrupoTDS.getInstance();
+	public IAdaptadorChatDAO getAdaptadorChatDAO() {
+		return AdaptadorChatTDS.getInstance();
 	}
 
 	@Override

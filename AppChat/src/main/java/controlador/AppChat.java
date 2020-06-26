@@ -3,45 +3,34 @@ package controlador;
 import java.util.Date;
 
 import modelo.CatalogoUsuarios;
-import modelo.Contacto;
-import modelo.ContactoIndividual;
-import modelo.Grupo;
+import modelo.Chat;
+import modelo.ChatGrupo;
 import modelo.Mensaje;
 import modelo.Usuario;
 import persistencia.DAOException;
 import persistencia.FactoriaDAO;
-import persistencia.IAdaptadorContactoIndividualDAO;
-import persistencia.IAdaptadorGrupoDAO;
+import persistencia.IAdaptadorChatDAO;
 import persistencia.IAdaptadorMensajeDAO;
 import persistencia.IAdaptadorUsuarioDAO;
 
 public class AppChat {
 	
+// ---------------------------------------------------------------------
+//		                                                      Attributes
+// ---------------------------------------------------------------------
+	
 	private static AppChat instance;
 
-	private IAdaptadorUsuarioDAO adaptadorUsuario;
+	private IAdaptadorChatDAO adaptadorChat;
 	private IAdaptadorMensajeDAO adaptadorMensaje;
-	private IAdaptadorGrupoDAO adaptadorGrupo;
-	private IAdaptadorContactoIndividualDAO adaptadorContactoIndividual;
+	private IAdaptadorUsuarioDAO adaptadorUsuario;
 
 	private CatalogoUsuarios catalogoUsuarios;
 	private Usuario usuarioActual;
 	
-	private AppChat() {
-		FactoriaDAO factory = null;
-		try {
-			factory = FactoriaDAO.getInstance(FactoriaDAO.DAO_TDS);
-		} catch (DAOException e) {
-			e.printStackTrace();
-		}
-		adaptadorUsuario = factory.getAdaptadorUsuarioDAO();
-		adaptadorMensaje = factory.getAdaptadorMensajeDAO();
-		adaptadorGrupo = factory.getAdaptadorGrupoDAO();
-		adaptadorContactoIndividual = factory.getAdaptadorContactoIndividualDAO();
-		
-		catalogoUsuarios = CatalogoUsuarios.getInstance();
-		usuarioActual = null;
-	}
+// ---------------------------------------------------------------------
+//		                                                    Constructors
+// ---------------------------------------------------------------------
 	
 	public static AppChat getInstance() {
 		if (instance == null)
@@ -50,7 +39,24 @@ public class AppChat {
 		return instance;
 	}
 	
-	/* Métodos Usuario */
+	private AppChat() {
+		FactoriaDAO factory = null;
+		try {
+			factory = FactoriaDAO.getInstance(FactoriaDAO.DAO_TDS);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+		adaptadorChat = factory.getAdaptadorChatDAO();
+		adaptadorMensaje = factory.getAdaptadorMensajeDAO();
+		adaptadorUsuario = factory.getAdaptadorUsuarioDAO();
+		
+		catalogoUsuarios = CatalogoUsuarios.getInstance();
+		usuarioActual = null;
+	}
+	
+// ---------------------------------------------------------------------
+//                                                    Gestión de Usuario
+// ---------------------------------------------------------------------
 	
 	public Usuario getUsuarioActual() {
 		return usuarioActual;
@@ -67,7 +73,6 @@ public class AppChat {
 		
 		this.usuarioActual = usuario;
 		
-		System.out.println(usuario.getId());
 		return true;
 	}
 	
@@ -89,72 +94,120 @@ public class AppChat {
 	public boolean delete(Usuario usuario) {
 		if (!isRegistered(usuario.getUsername())) return false;
 		
-		adaptadorUsuario.delete(usuario);	// Borramos el Usuario de la BD
 		catalogoUsuarios.remove(usuario);	// Borramos el Usuario del catalogo
+		adaptadorUsuario.delete(usuario);	// Borramos el Usuario de la BD
 		return true;
+	}
+	
+	public Usuario findUser(String data) {
+		Usuario user = catalogoUsuarios.getByPhone(data);
+		if (user == null) user = catalogoUsuarios.getByUsername(data);
+		return user;
 	}
 
-	/* Métodos Mensaje */
+// ---------------------------------------------------------------------
+//                                                    Gestión de Mensaje
+// ---------------------------------------------------------------------
 	
-	public boolean sendMessage(Contacto receiver, String text, Date timestamp) {
-		Mensaje msg = new Mensaje(usuarioActual, receiver, text, timestamp);
-		adaptadorMensaje.create(msg);
-		receiver.addMessage(msg);
-		return true;
+	public boolean sendMessage(Chat chat, String text) {
+		Mensaje msg_sent = chat.sendMessage(usuarioActual, text);
+		
+		if (chat instanceof ChatGrupo)
+			return registerMessage(chat, msg_sent);
+		
+		Chat chatR = getRecipient(chat);
+		Mensaje msg_rcvd = chatR.sendMessage(usuarioActual, text);
+		
+		return registerMessage(chat, msg_sent) && registerMessage(chatR, msg_rcvd);
+	}
+
+	public boolean sendMessage(Chat chat, int emoticon) {
+		Mensaje msg_sent = chat.sendMessage(usuarioActual, emoticon);
+		
+		if (chat instanceof ChatGrupo)
+			return registerMessage(chat, msg_sent);
+		
+		Chat chatR = getRecipient(chat);
+		Mensaje msg_rcvd = chatR.sendMessage(usuarioActual, emoticon);
+		
+		return registerMessage(chat, msg_sent) && registerMessage(chatR, msg_rcvd);
 	}
 	
-	public boolean sendMessage(Contacto receiver, int emoticon, Date timestamp) {
-		Mensaje msg = new Mensaje(usuarioActual, receiver, emoticon, timestamp);
+	private Chat getRecipient(Chat chat) {
+		Usuario user = chat.getOwner();
+		Chat recipient = user.getPrivateChat(usuarioActual);
+		if (recipient.getId() == 0) registerChat(chat, user); //FIXME
+		return recipient;
+	}
+	
+	private boolean registerMessage(Chat chat, Mensaje msg) {
 		adaptadorMensaje.create(msg);
-		receiver.addMessage(msg);
+		adaptadorChat.update(chat);
 		return true;
 	}
 	
 	public boolean deleteMessage(Mensaje msg) {
+		Chat chat = msg.getChat();
+		chat.removeMessage(msg);
+		adaptadorChat.update(chat);
+		
 		adaptadorMensaje.delete(msg);
-		msg.getReceiver().removeMessage(msg);
 		return true;
 	}
 
-	/* Métodos Contacto */
-
-	/**
-	 * En cualquier momento, un usuario puede añadir contactos a su lista
-	 * indicando un nombre para el contacto y su teléfono.
-	 */
+// ---------------------------------------------------------------------
+//                                         Gestión de ContactoIndividual
+// ---------------------------------------------------------------------
+	
+	private boolean registerChat(Chat chat) {
+		return registerChat(chat, usuarioActual);
+	}
+	
+	private boolean registerChat(Chat chat, Usuario user) {
+		if (chat == null) return false;
+		adaptadorChat.create(chat);
+		adaptadorUsuario.update(user);
+		return true;
+	}
+	
 	public boolean registerContact(String contactName, String contactPhone) {
-		ContactoIndividual contactoIndividual = new ContactoIndividual(contactName, contactPhone);
-		usuarioActual.addContact(contactoIndividual);
-		adaptadorContactoIndividual.create(contactoIndividual);
-		return true;
+		Usuario user = CatalogoUsuarios.getInstance().getByPhone(contactPhone);
+		if (user == null) return false;
+		return registerChat(usuarioActual.addContact(contactName, user));
 	}
 	
-	public boolean registerContact(String groupName, Usuario groupAdmin) {
-		Grupo group = new Grupo(groupName, groupAdmin);
-		usuarioActual.addContact(group);
-		adaptadorGrupo.create(group);
-		return true;
+	public boolean registerContact(Usuario user) {
+		if (user == null) return false;
+		return registerChat(usuarioActual.addContact(user));
+	}
+
+	public boolean createGroup(String groupName) {
+		return registerChat(usuarioActual.makeGroup(groupName));
+	}
+
+	public boolean joinGroup(ChatGrupo group) {
+		usuarioActual.joinGroup(group);
+		return registerChat(group);
 	}
 	
-	public boolean deleteContact(Contacto contact) {
-		if (contact instanceof ContactoIndividual)
-			adaptadorContactoIndividual.delete( (ContactoIndividual) contact );
+	public boolean deleteChat(Chat chat) {
+		if (chat instanceof ChatGrupo)
+			((ChatGrupo) chat).clearGroup();
 		else
-			adaptadorGrupo.delete( (Grupo) contact );
-		usuarioActual.removeContact(contact);
+			usuarioActual.removeChat(chat);
+			
+		adaptadorUsuario.update(usuarioActual);
+		adaptadorChat.delete(chat);
 		return true;
 	}
 	
-	public boolean registerGroup(String groupName) {
-		Grupo group = new Grupo(groupName, usuarioActual);
-		usuarioActual.addAdminGroup(group);
-		adaptadorGrupo.create(group);
+	public boolean leaveGroup(ChatGrupo group) {
+		usuarioActual.removeChat(group);
+		group.removeMember(usuarioActual);
+		
+		adaptadorUsuario.update(usuarioActual);
+		adaptadorChat.update(group);
 		return true;
 	}
-	
-	public boolean deleteGroup(Grupo group) {
-		adaptadorGrupo.delete(group);
-		usuarioActual.removeAdminGroup(group);
-		return true;
-	}
+
 }

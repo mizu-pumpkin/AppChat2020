@@ -9,23 +9,21 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import modelo.Contacto;
-import modelo.ContactoIndividual;
-import modelo.Grupo;
+import modelo.Chat;
+import modelo.ChatIndividual;
+import modelo.ChatGrupo;
 import modelo.Usuario;
-import persistencia.AdaptadorContactoIndividualTDS;
-import persistencia.AdaptadorGrupoTDS;
+import persistencia.AdaptadorChatTDS;
 import persistencia.AdaptadorUsuarioTDS;
 
 public class TestMessages {
 	
 	private static AdaptadorUsuarioTDS aUsuario = AdaptadorUsuarioTDS.getInstance();
-	private static AdaptadorContactoIndividualTDS aContInd = AdaptadorContactoIndividualTDS.getInstance();
-	private static AdaptadorGrupoTDS aGrupo = AdaptadorGrupoTDS.getInstance();
-	private static Usuario umizu = aUsuario.get(6209);
+	private static AdaptadorChatTDS aChat = AdaptadorChatTDS.getInstance();
+	private static Usuario umizu = aUsuario.read(6851);
 	private static Usuario u1, u2;
-	private static ContactoIndividual c1, c2, c3;
-	private static Grupo g1;
+	private static ChatIndividual c1, c2, c3;
+	private static ChatGrupo g1;
 	
 	@BeforeClass
 	public static void create() throws ParseException {
@@ -44,23 +42,23 @@ public class TestMessages {
 		
 		// ContactoIndividual
 		
-		c1 = new ContactoIndividual("mizu", "684253969");
-		aContInd.create(c1);
-		u1.addContact(c1);
-		u2.addContact(c1);
+		c1 = new ChatIndividual("mizu");
+		aChat.create(c1);
+		u1.addChat(c1);
+		u2.addChat(c1);
 		
-		c2 = new ContactoIndividual("rey", "684208637");
-		aContInd.create(c2);
-		umizu.addContact(c2);
-		u2.addContact(c2);
+		c2 = new ChatIndividual("rey");
+		aChat.create(c2);
+		//umizu.addContact(c2);
+		u2.addChat(c2);
 		
-		c3 = new ContactoIndividual("dado", "0");
-		aContInd.create(c3);
-		umizu.addContact(c3);
-		u1.addContact(c3);
+		c3 = new ChatIndividual("dado");
+		aChat.create(c3);
+		//umizu.addContact(c3);
+		u1.addChat(c3);
 		
 		// Grupo
-		
+		/*
 		g1 = new Grupo("zucchini", u1);
 		g1.addMember(c1);
 		g1.addMember(c2);
@@ -68,33 +66,30 @@ public class TestMessages {
 		aGrupo.create(g1);
 		
 		u1.addAdminGroup(g1);
-		umizu.addContact(g1);
+		//umizu.addContact(g1);
 		u1.addContact(g1);
 		u2.addContact(g1);
 		
-		aUsuario.update(umizu);
+		//aUsuario.update(umizu);
 		aUsuario.update(u1);	
-		aUsuario.update(u2);
+		aUsuario.update(u2);*/
 	}
 
 	@AfterClass
 	public static void delete() {
 		System.out.println("---------------------------------------");
-		for (Usuario u : aUsuario.getAll()) System.out.println(u);
-		for (Contacto c : aContInd.getAll()) System.out.println(c);
-		for (Contacto g : aGrupo.getAll()) System.out.println(g);
+		for (Usuario u : aUsuario.readAll()) System.out.println(u);
+		for (Chat c : aChat.readAll()) System.out.println(c);
 		System.out.println("---------------------------------------");
 		
-		for (Usuario u: aUsuario.getAll())
+		for (Usuario u: aUsuario.readAll())
 			if (!u.getUsername().equals("mizu")) aUsuario.delete(u);
 		
-		for (Grupo g: aGrupo.getAll()) aGrupo.delete(g);
-		for (ContactoIndividual c: aContInd.getAll()) aContInd.delete(c);
+		for (Chat c: aChat.readAll()) aChat.delete(c);
 		
 		System.out.println("---------------------------------------");
-		for (Usuario u : aUsuario.getAll()) System.out.println(u);
-		for (Contacto c : aContInd.getAll()) System.out.println(c);
-		for (Contacto g : aGrupo.getAll()) System.out.println(g);
+		for (Usuario u : aUsuario.readAll()) System.out.println(u);
+		for (Chat c : aChat.readAll()) System.out.println(c);
 		System.out.println("---------------------------------------");
 		System.out.println("TEST END");
 	}

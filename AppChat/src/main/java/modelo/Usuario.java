@@ -1,52 +1,36 @@
 package modelo;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
-/**
- * Para utilizar los servicios del sistema, los usuarios deben estar registrados
- * y realizar un login con su nombre y contrase�a.
- * Para registrarse un usuario debe indicar su nombre, fecha de nacimiento, email,
- * n�mero de tel�fono m�vil, usuario y contrase�a, y un mensaje de saludo opcional.
- * 
- * Un usuario puede enviar y recibir mensajes a/de otros usuarios. Cuando un usuario
- * recibe un mensaje de otro usuario que no est� en su lista de contactos lo puede
- * a�adir asociando un nombre a su tel�fono. En cualquier momento, un usuario puede
- * a�adir contactos a su lista indicando un nombre para el contacto y su tel�fono.
- * Un usuario puede en cualquier momento a�adir una imagen a sus datos personales.
- * 
- * Una vez registrado, el usuario podr� convertir su cuenta en una cuenta �Premium�
- * pagando una cantidad anual. Existen descuentos como son aquellos dirigidos a
- * usuarios registrados en un intervalo de fechas o aquellos usuarios que han enviado
- * m�s de un cierto n�mero de mensajes en el �ltimo mes. Los usuarios Premium tienen
- * disponible la funcionalidad de las estad�sticas de uso comentada m�s adelante y la
- * de generar un documento pdf con la lista de contactos.
- * (Opcional) Un usuario puede tener un estado que consiste en una frase y una imagen.
- * Un usuario puede ver la lista de estados actuales de sus contactos.
- */
 public class Usuario {
 
-	// Attributes
-	private int id;
-	private String username;
-	private String password;
-	private String name;
-	private Date birthday;
-	private String email;
-	private String phone;
-	private String greeting;
-	private String avatar;
-	private boolean premium;
-	private Estado story;
-	private Map<Integer, Contacto> contacts;	// key=id
-	private Map<Usuario, ContactoIndividual> privateChats;
-	private List<Contacto> adminGroups;
+// ---------------------------------------------------------------------
+//                                                            Attributes
+// ---------------------------------------------------------------------
 	
-	// Constructors
+	private int id;
+	private final String username; // usuario
+	private String password; // contraseña
+	private String name; // nombre
+	private Date birthday; // fechanacimiento
+	private String email;
+	private String phone; // movil
+	private String greeting;
+	private String avatar; // imagen
+	private Estado story; // estado
+	private boolean premium; // premium
+	private Collection<Chat> chats; // contactos
+	private HashMap<Usuario, ChatIndividual> privateChats;
+	
+// ---------------------------------------------------------------------
+//                                                          Constructors
+// ---------------------------------------------------------------------
+	
 	public Usuario(String username,
 				   String password,
 				   String name,
@@ -62,14 +46,16 @@ public class Usuario {
 		this.phone = phone;
 		this.greeting = greeting;
 		this.avatar = "";
-		this.premium = false;
 		this.story = new Estado("", "");
-		this.contacts = new HashMap<>();
+		this.premium = false;
+		this.chats = new HashSet<>();
 		this.privateChats = new HashMap<>();
-		this.adminGroups = new LinkedList<>();
 	}
-
-	// Getters and Setters
+	
+// ---------------------------------------------------------------------
+//                                                   Getters and Setters
+// ---------------------------------------------------------------------
+	
 	public int getId() {
 		return id;
 	}
@@ -142,6 +128,14 @@ public class Usuario {
 		this.premium = premium;
 	}
 
+	public void setPremiumOn() {
+		this.premium = true;
+	}
+
+	public void setPremiumOff() {
+		this.premium = false;
+	}
+
 	public Estado getStory() {
 		return story;
 	}
@@ -150,92 +144,100 @@ public class Usuario {
 		this.story = story;
 	}
 
-	public List<Contacto> getContacts() {
-		return new LinkedList<Contacto>(contacts.values());
-	}
-
-	public List<Contacto> getContactosIndividuales() {
-		return new LinkedList<Contacto>(/*privateChats.values()*/);
-	}
-
-	public List<Contacto> getGrupos() {
-		return contacts.values().stream()
-							    .filter(c -> c instanceof Grupo)
-							    .collect(Collectors.toList())
-							    ;
-	}
-
-	public void addContact(Contacto contact) {
-		if (contacts.containsKey(contact.getId())) return;
-		
-		contacts.put(contact.getId(), contact);
-		
-		if (contact instanceof ContactoIndividual) {
-			ContactoIndividual c = (ContactoIndividual) contact;
-			privateChats.put(c.getUser(), c);
-		}
+	public Collection<Chat> getChats() {
+		return Collections.unmodifiableCollection(chats);
 	}
 	
-	public void removeContact(Contacto contact) {
-		contacts.remove(contact.getId());
-	}
-
-	public List<Contacto> getAdminGroups() {
-		return new LinkedList<Contacto>(adminGroups);
-	}
-
-	public void addAdminGroup(Grupo adminGroup) {
-		adminGroups.add(adminGroup);
-	}
-
-	public void removeAdminGroup(Grupo adminGroup) {
-		adminGroups.remove(adminGroup);
-	}
-
-	// Methods
-	public void sendMessage(Contacto chat, String text, Date timestamp) {
-		chat.addMessage(this, text, timestamp);
+	public Collection<ChatIndividual> getPrivateChats() {
+		return Collections.unmodifiableCollection(privateChats.values());
 	}
 	
-	/**
-	 * Cuando un usuario recibe un mensaje de otro usuario que no esté en su
-	 * lista de contactos lo puede añadir asociando un nombre a su teléfono.
-	 */
-	public void receivePrivateMessage(Mensaje message) {
-		Usuario sender = message.getSender();
-		ContactoIndividual c = privateChats.get(sender);
-		if (c == null) {
-			c = new ContactoIndividual(sender);
-			this.addContact(c);
-		}
-		c.addMessage(message);
+	public Collection<Chat> getGroups() {
+		return chats.stream()
+					.filter(c -> c instanceof ChatGrupo)
+					.collect(Collectors.toSet())
+					;
+	}
+
+	public Collection<Chat> getAdminGroups() { // gruposAdmin
+		return getGroups().stream()
+					.filter(g -> g.getOwner().equals(this))
+					.collect(Collectors.toSet())
+					;
+	}
+	
+	public ChatIndividual getPrivateChat(Usuario user) {
+		if (privateChats.containsKey(user))
+			return privateChats.get(user);
+		ChatIndividual c = new ChatIndividual(user);
+		addChat(c);
+		return c;
+	}
+
+	public boolean addChat(Chat chat) {
+		if (chats.contains(chat)) return false;
+		
+		chats.add(chat);
+		if (chat instanceof ChatIndividual)
+			privateChats.put(chat.getOwner(), (ChatIndividual) chat);
+		return true;
+	}
+	
+	public void removeChat(Chat chat) {
+		if (!chats.contains(chat)) return;
+		
+		chats.remove(chat);
+		if (chat instanceof ChatIndividual)
+			privateChats.remove(chat.getOwner());
+	}
+	
+// ---------------------------------------------------------------------
+//                                                               Methods
+// ---------------------------------------------------------------------
+	
+	public ChatIndividual addContact(String name, Usuario contact) {
+		if (privateChats.containsKey(contact)) return null;
+		
+		ChatIndividual chat = new ChatIndividual(name, contact);
+		addChat(chat);
+		return chat;
+	}
+	
+	public ChatIndividual addContact(Usuario contact) {
+		if (privateChats.containsKey(contact)) return null;
+		
+		ChatIndividual chat = new ChatIndividual(contact);
+		addChat(chat);
+		return chat;
+	}
+	
+	public ChatGrupo makeGroup(String name) {
+		ChatGrupo grupo = new ChatGrupo(name, this);
+		addChat(grupo);
+		return grupo;
+	}
+	
+	public boolean joinGroup(ChatGrupo grupo) {
+		return addChat(grupo);
 	}
 
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + " [id=" + id +
-				"\n         username=" + username +
-				"\n         password=" + password + 
-				"\n         name=" + name +
-				"\n         birthday=" + birthday +
-				"\n         email=" + email +
-				"\n         phone=" + phone +
-				"\n         greeting=" + greeting +
-				"\n         avatar=" + avatar +
-				"\n         premium=" + premium +
-				"\n         story=" + story +
-				"\n         contacts=" + contacts +
-				"\n         adminGroups=" + adminGroups + "]";
+		return "Usuario [id=" + id +
+				", username=" + username +
+				", phone=" + phone +
+				", chats=" + chats +
+				"]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((adminGroups == null) ? 0 : adminGroups.hashCode());
 		result = prime * result + ((avatar == null) ? 0 : avatar.hashCode());
 		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
-		result = prime * result + ((contacts == null) ? 0 : contacts.hashCode());
+		result = prime * result + ((chats == null) ? 0 : chats.hashCode());
+		//result = prime * result + ((privateChats == null) ? 0 : privateChats.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((greeting == null) ? 0 : greeting.hashCode());
 		result = prime * result + id;
@@ -243,7 +245,6 @@ public class Usuario {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + (premium ? 1231 : 1237);
-		result = prime * result + ((privateChats == null) ? 0 : privateChats.hashCode());
 		result = prime * result + ((story == null) ? 0 : story.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -258,11 +259,6 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (adminGroups == null) {
-			if (other.adminGroups != null)
-				return false;
-		} else if (!adminGroups.equals(other.adminGroups))
-			return false;
 		if (avatar == null) {
 			if (other.avatar != null)
 				return false;
@@ -272,11 +268,6 @@ public class Usuario {
 			if (other.birthday != null)
 				return false;
 		} else if (!birthday.equals(other.birthday))
-			return false;
-		if (contacts == null) {
-			if (other.contacts != null)
-				return false;
-		} else if (!contacts.equals(other.contacts))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -307,11 +298,6 @@ public class Usuario {
 			return false;
 		if (premium != other.premium)
 			return false;
-		if (privateChats == null) {
-			if (other.privateChats != null)
-				return false;
-		} else if (!privateChats.equals(other.privateChats))
-			return false;
 		if (story == null) {
 			if (other.story != null)
 				return false;
@@ -324,5 +310,5 @@ public class Usuario {
 			return false;
 		return true;
 	}
-	
+
 }

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,10 +12,8 @@ import java.util.StringTokenizer;
 
 import beans.Entidad;
 import beans.Propiedad;
-import modelo.Contacto;
-import modelo.ContactoIndividual;
+import modelo.Chat;
 import modelo.Estado;
-import modelo.Grupo;
 import modelo.Usuario;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
@@ -33,9 +32,7 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 	private static final String PROPERTY_AVATAR = "avatar";
 	private static final String PROPERTY_STORY_TEXT = "storytext";
 	private static final String PROPERTY_STORY_PICTURE = "storypicture";
-	private static final String PROPERTY_PRIVATE_CHATS = "privatechats";
-	private static final String PROPERTY_GROUP_CHATS = "groupchats";
-	private static final String PROPERTY_ADMINGROUPS = "adminGroups";
+	private static final String PROPERTY_CHATS = "chats";
 
 	private static ServicioPersistencia servPersistencia;
 	private static AdaptadorUsuarioTDS instance = null;
@@ -54,133 +51,115 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 	}
 
 	@Override
-	public void create(Usuario usuario) {
-		Entidad eUsuario;
+	public void create(Usuario user) {
+		Entidad eUser;
 		
 		// Si la entidad está registrada no la registra de nuevo
 		boolean existe = true; 
 		try {
-			eUsuario = servPersistencia.recuperarEntidad(usuario.getId());
+			eUser = servPersistencia.recuperarEntidad(user.getId());
 		} catch (NullPointerException e) {
 			existe = false;
 		}
 		if (existe) return;
 		
 		// Registrar primero los atributos que son objetos
-		AdaptadorContactoIndividualTDS adaptadorContactoIndividual = AdaptadorContactoIndividualTDS.getInstance();
-		for (Contacto c : usuario.getContactosIndividuales())
-			adaptadorContactoIndividual.create((ContactoIndividual) c);
-		AdaptadorGrupoTDS adaptadorGrupo= AdaptadorGrupoTDS.getInstance();
-		for (Contacto g : usuario.getGrupos())
-			adaptadorGrupo.create((Grupo) g);
+		registrarObjetos(user);
 		
 		// Crear entidad
-		eUsuario = new Entidad();
-		eUsuario.setNombre(ENTITY_NAME);
-		eUsuario.setPropiedades(new ArrayList<Propiedad>(Arrays.asList(
-			new Propiedad(PROPERTY_USERNAME, usuario.getUsername()),
-			new Propiedad(PROPERTY_PASSWORD, usuario.getPassword()),
-			new Propiedad(PROPERTY_NAME, usuario.getName()),
-			new Propiedad(PROPERTY_BIRTHDAY, dateFormat.format(usuario.getBirthday())),
-			new Propiedad(PROPERTY_EMAIL, usuario.getEmail()),
-			new Propiedad(PROPERTY_PHONE, usuario.getPhone()),
-			new Propiedad(PROPERTY_GREETING, usuario.getGreeting()),
-			new Propiedad(PROPERTY_PREMIUM, String.valueOf(usuario.isPremium())),
-			new Propiedad(PROPERTY_AVATAR, usuario.getAvatar()),
-			new Propiedad(PROPERTY_STORY_TEXT, usuario.getStory().getText()),
-			new Propiedad(PROPERTY_STORY_PICTURE, usuario.getStory().getPicture()),
-			new Propiedad(PROPERTY_PRIVATE_CHATS, getContactsIDs(usuario.getContactosIndividuales())),
-			new Propiedad(PROPERTY_GROUP_CHATS, getContactsIDs(usuario.getGrupos())),
-			new Propiedad(PROPERTY_ADMINGROUPS, getContactsIDs(usuario.getAdminGroups()))
+		eUser = new Entidad();
+		eUser.setNombre(ENTITY_NAME);
+		eUser.setPropiedades(new ArrayList<Propiedad>(Arrays.asList(
+			new Propiedad(PROPERTY_USERNAME, user.getUsername()),
+			new Propiedad(PROPERTY_PASSWORD, user.getPassword()),
+			new Propiedad(PROPERTY_NAME, user.getName()),
+			new Propiedad(PROPERTY_BIRTHDAY, dateFormat.format(user.getBirthday())),
+			new Propiedad(PROPERTY_EMAIL, user.getEmail()),
+			new Propiedad(PROPERTY_PHONE, user.getPhone()),
+			new Propiedad(PROPERTY_GREETING, user.getGreeting()),
+			new Propiedad(PROPERTY_PREMIUM, String.valueOf(user.isPremium())),
+			new Propiedad(PROPERTY_AVATAR, user.getAvatar()),
+			new Propiedad(PROPERTY_STORY_TEXT, user.getStory().getText()),
+			new Propiedad(PROPERTY_STORY_PICTURE, user.getStory().getPicture()),
+			new Propiedad(PROPERTY_CHATS, getChatsIDs(user.getChats()))
 		)));
 		
 		// Registrar entidad
-		eUsuario = servPersistencia.registrarEntidad(eUsuario);
+		eUser = servPersistencia.registrarEntidad(eUser);
 		
 		// Asignar el identificador único que genera el servicio de persistencia
-		usuario.setId(eUsuario.getId());
+		user.setId(eUser.getId());
 	}
 
 	@Override
-	public void delete(Usuario usuario) {
-		// Restricciones de integridad
-		AdaptadorGrupoTDS adaptadorGrupo = AdaptadorGrupoTDS.getInstance();
-		for (Grupo g: adaptadorGrupo.getAll())
-			if (g.getAdmin().equals(usuario)) adaptadorGrupo.delete(g);
-
-		AdaptadorContactoIndividualTDS adaptadorContactoIndividual = AdaptadorContactoIndividualTDS.getInstance();
-		for (ContactoIndividual c: adaptadorContactoIndividual.getAll())
-			if (c.getUser().equals(usuario)) adaptadorContactoIndividual.delete(c);
-		// Borrar entidad
-		servPersistencia.borrarEntidad(servPersistencia.recuperarEntidad(usuario.getId()));
+	public void delete(Usuario user) {
+		// No se tienen en cuenta restricciones de integridad
+		servPersistencia.borrarEntidad(servPersistencia.recuperarEntidad(user.getId()));
 	}
 	
 	@Override
-	public void update(Usuario usuario) {
-		Entidad eUsuario = servPersistencia.recuperarEntidad(usuario.getId());
+	public void update(Usuario user) {
+		Entidad eUser = servPersistencia.recuperarEntidad(user.getId());
 		
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_USERNAME);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_PASSWORD);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_NAME);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_BIRTHDAY);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_EMAIL);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_PHONE);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_GREETING);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_PREMIUM);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_AVATAR);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_STORY_TEXT);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_STORY_PICTURE);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_PRIVATE_CHATS);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_GROUP_CHATS);
-		servPersistencia.eliminarPropiedadEntidad(eUsuario, PROPERTY_ADMINGROUPS);
+		//servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_USERNAME);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_PASSWORD);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_NAME);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_BIRTHDAY);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_EMAIL);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_PHONE);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_GREETING);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_PREMIUM);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_AVATAR);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_STORY_TEXT);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_STORY_PICTURE);
+		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_CHATS);
 		
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_USERNAME, usuario.getUsername());
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_PASSWORD, usuario.getPassword());
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_NAME, usuario.getName());
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_BIRTHDAY, dateFormat.format(usuario.getBirthday().getTime()));
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_EMAIL, usuario.getEmail());
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_PHONE, usuario.getPhone());
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_GREETING, usuario.getGreeting());
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_PREMIUM, String.valueOf(usuario.isPremium()));
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_AVATAR, usuario.getAvatar());
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_STORY_TEXT, usuario.getStory().getText());
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_STORY_PICTURE, usuario.getStory().getPicture());
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_PRIVATE_CHATS, getContactsIDs(usuario.getContactosIndividuales()));
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_GROUP_CHATS, getContactsIDs(usuario.getGrupos()));
-		servPersistencia.anadirPropiedadEntidad(eUsuario, PROPERTY_ADMINGROUPS, getContactsIDs(usuario.getAdminGroups()));
+		// ???:FIXME: debería volver a registrar las propiedades que son objetos?
+		registrarObjetos(user);
 		
-		PoolDAO.getInstance().addObject(usuario.getId(), usuario);
+		//servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_USERNAME, user.getUsername());
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_PASSWORD, user.getPassword());
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_NAME, user.getName());
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_BIRTHDAY, dateFormat.format(user.getBirthday().getTime()));
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_EMAIL, user.getEmail());
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_PHONE, user.getPhone());
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_GREETING, user.getGreeting());
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_PREMIUM, String.valueOf(user.isPremium()));
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_AVATAR, user.getAvatar());
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_STORY_TEXT, user.getStory().getText());
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_STORY_PICTURE, user.getStory().getPicture());		
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_CHATS, getChatsIDs(user.getChats()));
+		
+		PoolDAO.getInstance().addObject(user.getId(), user);
 	}
 	
 	@Override
-	public Usuario get(int id) {
+	public Usuario read(int id) {
 		// Si la entidad está en el pool la devuelve directamente
 		if (PoolDAO.getInstance().contains(id))
 			return (Usuario) PoolDAO.getInstance().getObject(id);
 		
 		// Si no, la recupera de la base de datos
-		Entidad eUsuario = servPersistencia.recuperarEntidad(id);
+		Entidad eUser = servPersistencia.recuperarEntidad(id);
 		
 		// Recuperar propiedades que no son objetos
-		String username = servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_USERNAME);
-		String password = servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_PASSWORD);
-		String name = servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_NAME);
+		String username = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_USERNAME);
+		String password = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_PASSWORD);
+		String name = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_NAME);
 		Date birthday = null;
 		try {
-			birthday = dateFormat.parse(servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_BIRTHDAY));
+			birthday = dateFormat.parse(servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_BIRTHDAY));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		String email = servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_EMAIL);
-		String phone = servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_PHONE);
-		String greeting = servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_GREETING);
-		boolean premium = Boolean.getBoolean(servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_PREMIUM));
-		String avatar = servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_AVATAR);
-		Estado story = new Estado(servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_STORY_TEXT),
-								  servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_STORY_PICTURE));
-		String idsPrivateChats = servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_PRIVATE_CHATS);
-		String idsGroupChats = servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_GROUP_CHATS);
-		String idsAdminGroups = servPersistencia.recuperarPropiedadEntidad(eUsuario, PROPERTY_ADMINGROUPS);
+		String email = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_EMAIL);
+		String phone = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_PHONE);
+		String greeting = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_GREETING);
+		boolean premium = Boolean.getBoolean(servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_PREMIUM));
+		String avatar = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_AVATAR);
+		Estado story = new Estado(servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_STORY_TEXT),
+								  servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_STORY_PICTURE));
+		String idsChats = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_CHATS);
 
 		// Crear el objeto
 		Usuario usuario = new Usuario(username, password, name, birthday, email, phone, greeting);
@@ -193,60 +172,43 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 		PoolDAO.getInstance().addObject(id, usuario);
 
 		// Recuperar propiedades que son objetos llamando a adaptadores
-		for (Contacto c : getPrivateChatsFromIDs(idsPrivateChats))
-			usuario.addContact(c);
-		for (Contacto g : getGroupsFromIDs(idsGroupChats))
-			usuario.addContact(g);
-		for (Grupo ag : getGroupsFromIDs(idsAdminGroups))
-			usuario.addAdminGroup(ag);
+		for (Chat c : getChatsFromIDs(idsChats))
+			usuario.addChat(c);
 
 		return usuario;
 	}
 
 	@Override
-	public List<Usuario> getAll() {
+	public List<Usuario> readAll() {
 		List<Usuario> usuarios = new LinkedList<>();
-		
 		for (Entidad e : servPersistencia.recuperarEntidades(ENTITY_NAME))
-			usuarios.add(get(e.getId()));
-		
+			usuarios.add(read(e.getId()));
 		return usuarios;
 	}
 
 	// -------------------Funciones auxiliares-----------------------------
-	private String getContactsIDs(List<Contacto> contacts) {
-		String contactsIds = "";
-		
-		for (Contacto c : contacts)
-			contactsIds += c.getId() + " ";
-		
-		return contactsIds.trim();
-	}
-
-	private List<Contacto> getPrivateChatsFromIDs(String privateChatIds) {
-		List<Contacto> contacts = new LinkedList<>();
-		if (privateChatIds.equals(""))
-			return contacts;
-
-		AdaptadorContactoIndividualTDS adaptadorContactoIndividual = AdaptadorContactoIndividualTDS.getInstance();
-		StringTokenizer strTok = new StringTokenizer(privateChatIds, " ");
-		while (strTok.hasMoreTokens())
-			contacts.add(adaptadorContactoIndividual.get(Integer.valueOf((String) strTok.nextElement())));
-		
-		return contacts;
-	}
-
-	private List<Grupo> getGroupsFromIDs(String groupChatIds) {
-		List<Grupo> groups = new LinkedList<>();
-		if (groupChatIds.equals(""))
-			return groups;
-		
-		AdaptadorGrupoTDS adaptadorGrupo= AdaptadorGrupoTDS.getInstance();
-		StringTokenizer strTok = new StringTokenizer(groupChatIds, " ");
-		while (strTok.hasMoreTokens())
-			groups.add(adaptadorGrupo.get(Integer.valueOf((String) strTok.nextElement())));
-		
-		return groups;
+	
+	private void registrarObjetos(Usuario user) {
+		for (Chat c : user.getChats())
+			AdaptadorChatTDS.getInstance().create(c);
 	}
 	
+	private String getChatsIDs(Collection<Chat> chats) {
+		String ids = "";
+		for (Chat c : chats)
+			ids += c.getId() + " ";
+		return ids.trim();
+	}
+
+	private List<Chat> getChatsFromIDs(String ids) {
+		List<Chat> chats = new LinkedList<>();
+		if (ids.equals(""))
+			return chats;
+
+		StringTokenizer strTok = new StringTokenizer(ids, " ");
+		while (strTok.hasMoreTokens())
+			chats.add(AdaptadorChatTDS.getInstance().read(Integer.valueOf((String) strTok.nextElement())));
+		
+		return chats;
+	}
 }

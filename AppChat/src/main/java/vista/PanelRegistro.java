@@ -19,14 +19,12 @@ import javax.swing.JTabbedPane;
 import com.toedter.calendar.JDateChooser;
 import controlador.AppChat;
 
-
 @SuppressWarnings("serial")
 public class PanelRegistro extends JPanel implements ActionListener {
 	
 	private JFrame frame;
 	private JPanel panel_previous;
 	private JPanel panel_registration;
-	private JPanel panel_buttons;
 	
 	private JLabel warningName;
 	private JLabel warningUsername;
@@ -70,7 +68,17 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0};
 		panel_registration.setLayout(gridBagLayout);
 		
-/* Name */
+		configurarCampos();
+		configurarBotones();
+		configurarWarnings();
+		
+		frame.setContentPane(this);
+		frame.revalidate(); //redibujar con el nuevo JPanel
+		frame.repaint();
+	}
+	
+	public void configurarCampos() {
+		/* Name */
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.EAST;
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
@@ -78,16 +86,160 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		gbc_lblNombre.gridy = 1;
 		panel_registration.add(new JLabel("Nombre:"), gbc_lblNombre);
 		
-		field_name = new JTextField();
-		field_name.setColumns(10);
 		GridBagConstraints gbc_textField_name = new GridBagConstraints();
 		gbc_textField_name.gridwidth = 3;
 		gbc_textField_name.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_name.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_name.gridx = 2;
 		gbc_textField_name.gridy = 1;
+		field_name = new JTextField();
+		field_name.setColumns(10);
 		panel_registration.add(field_name, gbc_textField_name);
 		
+/* Birthday */
+		GridBagConstraints gbc_lblFechaDeNacimiento = new GridBagConstraints();
+		gbc_lblFechaDeNacimiento.anchor = GridBagConstraints.EAST;
+		gbc_lblFechaDeNacimiento.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFechaDeNacimiento.gridx = 1;
+		gbc_lblFechaDeNacimiento.gridy = 2;
+		panel_registration.add(new JLabel("Fecha de nacimiento:"), gbc_lblFechaDeNacimiento);
+		
+		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
+		gbc_dateChooser.fill = GridBagConstraints.BOTH;
+		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
+		gbc_dateChooser.gridx = 2;
+		gbc_dateChooser.gridy = 2;
+		field_bday = new JDateChooser();
+		field_bday.setDateFormatString("dd/MM/yyyy");
+		panel_registration.add(field_bday, gbc_dateChooser);
+		
+/* Email */
+		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
+		gbc_lblEmail.anchor = GridBagConstraints.EAST;
+		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEmail.gridx = 1;
+		gbc_lblEmail.gridy = 3;
+		panel_registration.add(new JLabel("Email:"), gbc_lblEmail);
+		
+		GridBagConstraints gbc_textField_email = new GridBagConstraints();
+		gbc_textField_email.gridwidth = 3;
+		gbc_textField_email.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_email.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_email.gridx = 2;
+		gbc_textField_email.gridy = 3;
+		field_email = new JTextField();
+		field_email.setColumns(10);
+		panel_registration.add(field_email, gbc_textField_email);
+		
+/* Phone */
+		GridBagConstraints gbc_lblMovil = new GridBagConstraints();
+		gbc_lblMovil.anchor = GridBagConstraints.EAST;
+		gbc_lblMovil.insets = new Insets(0, 0, 5, 5);
+		gbc_lblMovil.gridx = 1;
+		gbc_lblMovil.gridy = 4;
+		panel_registration.add(new JLabel("Movil:"), gbc_lblMovil);
+		
+		GridBagConstraints gbc_textField_phone = new GridBagConstraints();
+		gbc_textField_phone.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_phone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_phone.gridx = 2;
+		gbc_textField_phone.gridy = 4;
+		field_phone = new JTextField();
+		field_phone.setColumns(10);
+		panel_registration.add(field_phone, gbc_textField_phone);
+		
+/* Username */
+		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
+		gbc_lblUsername.anchor = GridBagConstraints.EAST;
+		gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUsername.gridx = 1;
+		gbc_lblUsername.gridy = 5;
+		panel_registration.add(new JLabel("Username:"), gbc_lblUsername);
+		
+		GridBagConstraints gbc_textField_username = new GridBagConstraints();
+		gbc_textField_username.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_username.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_username.gridx = 2;
+		gbc_textField_username.gridy = 5;
+		field_username = new JTextField();
+		field_username.setColumns(10);
+		panel_registration.add(field_username, gbc_textField_username);
+		
+/* Password */
+		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
+		gbc_lblPassword.anchor = GridBagConstraints.EAST;
+		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPassword.gridx = 1;
+		gbc_lblPassword.gridy = 6;
+		panel_registration.add(new JLabel("Password:"), gbc_lblPassword);
+		
+		GridBagConstraints gbc_textField_password = new GridBagConstraints();
+		gbc_textField_password.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_password.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_password.gridx = 2;
+		gbc_textField_password.gridy = 6;
+		field_password = new JPasswordField();
+		field_password.setColumns(10);
+		panel_registration.add(field_password, gbc_textField_password);
+		
+/* Password check */
+		GridBagConstraints gbc_lblRepetirPassword = new GridBagConstraints();
+		gbc_lblRepetirPassword.anchor = GridBagConstraints.EAST;
+		gbc_lblRepetirPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRepetirPassword.gridx = 4;
+		gbc_lblRepetirPassword.gridy = 6;
+		panel_registration.add(new JLabel("Repetir:"), gbc_lblRepetirPassword);
+		
+		GridBagConstraints gbc_textField_password2 = new GridBagConstraints();
+		gbc_textField_password2.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_password2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_password2.gridx = 5;
+		gbc_textField_password2.gridy = 6;
+		field_passwordchk = new JPasswordField();
+		field_passwordchk.setColumns(10);
+		panel_registration.add(field_passwordchk, gbc_textField_password2);
+		
+/* Greeting */
+		GridBagConstraints gbc_lblSaludo = new GridBagConstraints();
+		gbc_lblSaludo.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSaludo.anchor = GridBagConstraints.EAST;
+		gbc_lblSaludo.gridx = 1;
+		gbc_lblSaludo.gridy = 7;
+		panel_registration.add(new JLabel("Saludo (opcional):"), gbc_lblSaludo);
+		
+		GridBagConstraints gbc_textField_greeting = new GridBagConstraints();
+		gbc_textField_greeting.gridwidth = 4;
+		gbc_textField_greeting.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_greeting.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_greeting.gridx = 2;
+		gbc_textField_greeting.gridy = 7;
+		field_greeting = new JTextField();
+		field_greeting.setColumns(10);
+		panel_registration.add(field_greeting, gbc_textField_greeting);
+	}
+	
+	public void configurarBotones() {
+		GridBagConstraints gbc_panel_botones = new GridBagConstraints();
+		gbc_panel_botones.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_botones.gridwidth = 6;
+		gbc_panel_botones.fill = GridBagConstraints.BOTH;
+		gbc_panel_botones.gridx = 1;
+		gbc_panel_botones.gridy = 8;
+		JPanel panel_buttons = new JPanel();
+		panel_registration.add(panel_buttons, gbc_panel_botones);
+		
+		btn_register = new JButton("Registrar");
+		panel_buttons.add(btn_register);
+
+		btn_cancel = new JButton("Cancelar");
+		panel_buttons.add(btn_cancel);
+		
+		btn_register.addActionListener(this);
+		btn_cancel.addActionListener(this);
+	}
+	
+	public void configurarWarnings() {
+/* Name */
 		warningName = new JLabel("*");
 		warningName.setForeground(Color.RED);
 		GridBagConstraints gbc_warningName = new GridBagConstraints();
@@ -98,22 +250,6 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		panel_registration.add(warningName, gbc_warningName);
 		
 /* Birthday */
-		GridBagConstraints gbc_lblFechaDeNacimiento = new GridBagConstraints();
-		gbc_lblFechaDeNacimiento.anchor = GridBagConstraints.EAST;
-		gbc_lblFechaDeNacimiento.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFechaDeNacimiento.gridx = 1;
-		gbc_lblFechaDeNacimiento.gridy = 2;
-		panel_registration.add(new JLabel("Fecha de nacimiento:"), gbc_lblFechaDeNacimiento);
-		
-		field_bday = new JDateChooser();
-		field_bday.setDateFormatString("dd/MM/yyyy");
-		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
-		gbc_dateChooser.fill = GridBagConstraints.BOTH;
-		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
-		gbc_dateChooser.gridx = 2;
-		gbc_dateChooser.gridy = 2;
-		panel_registration.add(field_bday, gbc_dateChooser);
-		
 		warningBday = new JLabel("*");
 		warningBday.setForeground(Color.RED);
 		GridBagConstraints gbc_warningBday = new GridBagConstraints();
@@ -124,23 +260,6 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		panel_registration.add(warningBday, gbc_warningBday);
 		
 /* Email */
-		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
-		gbc_lblEmail.anchor = GridBagConstraints.EAST;
-		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEmail.gridx = 1;
-		gbc_lblEmail.gridy = 3;
-		panel_registration.add(new JLabel("Email:"), gbc_lblEmail);
-		
-		field_email = new JTextField();
-		field_email.setColumns(10);
-		GridBagConstraints gbc_textField_email = new GridBagConstraints();
-		gbc_textField_email.gridwidth = 3;
-		gbc_textField_email.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_email.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_email.gridx = 2;
-		gbc_textField_email.gridy = 3;
-		panel_registration.add(field_email, gbc_textField_email);
-		
 		warningEmail = new JLabel("*");
 		warningEmail.setForeground(Color.RED);
 		GridBagConstraints gbc_warningEmail = new GridBagConstraints();
@@ -151,22 +270,6 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		panel_registration.add(warningEmail, gbc_warningEmail);
 		
 /* Phone */
-		GridBagConstraints gbc_lblMovil = new GridBagConstraints();
-		gbc_lblMovil.anchor = GridBagConstraints.EAST;
-		gbc_lblMovil.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMovil.gridx = 1;
-		gbc_lblMovil.gridy = 4;
-		panel_registration.add(new JLabel("Movil:"), gbc_lblMovil);
-		
-		field_phone = new JTextField();
-		field_phone.setColumns(10);
-		GridBagConstraints gbc_textField_phone = new GridBagConstraints();
-		gbc_textField_phone.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_phone.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_phone.gridx = 2;
-		gbc_textField_phone.gridy = 4;
-		panel_registration.add(field_phone, gbc_textField_phone);
-		
 		warningPhone = new JLabel("*");
 		warningPhone.setForeground(Color.RED);
 		GridBagConstraints gbc_warningPhone = new GridBagConstraints();
@@ -177,22 +280,6 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		panel_registration.add(warningPhone, gbc_warningPhone);
 		
 /* Username */
-		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
-		gbc_lblUsername.anchor = GridBagConstraints.EAST;
-		gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUsername.gridx = 1;
-		gbc_lblUsername.gridy = 5;
-		panel_registration.add(new JLabel("Username:"), gbc_lblUsername);
-		
-		field_username = new JTextField();
-		field_username.setColumns(10);
-		GridBagConstraints gbc_textField_username = new GridBagConstraints();
-		gbc_textField_username.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_username.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_username.gridx = 2;
-		gbc_textField_username.gridy = 5;
-		panel_registration.add(field_username, gbc_textField_username);
-		
 		warningUsername = new JLabel("*");
 		warningUsername.setForeground(Color.RED);
 		GridBagConstraints gbc_warningUsername = new GridBagConstraints();
@@ -213,22 +300,6 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		panel_registration.add(warningExiste, gbc_warningUsername2);
 		
 /* Password */
-		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
-		gbc_lblPassword.anchor = GridBagConstraints.EAST;
-		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPassword.gridx = 1;
-		gbc_lblPassword.gridy = 6;
-		panel_registration.add(new JLabel("Password:"), gbc_lblPassword);
-		
-		field_password = new JPasswordField();
-		field_password.setColumns(10);
-		GridBagConstraints gbc_textField_password = new GridBagConstraints();
-		gbc_textField_password.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_password.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_password.gridx = 2;
-		gbc_textField_password.gridy = 6;
-		panel_registration.add(field_password, gbc_textField_password);
-		
 		warningPassword = new JLabel("*");
 		warningPassword.setForeground(Color.RED);
 		GridBagConstraints gbc_warningPassword = new GridBagConstraints();
@@ -239,22 +310,6 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		panel_registration.add(warningPassword, gbc_warningPassword);
 		
 /* Password check */
-		GridBagConstraints gbc_lblRepetirPassword = new GridBagConstraints();
-		gbc_lblRepetirPassword.anchor = GridBagConstraints.EAST;
-		gbc_lblRepetirPassword.insets = new Insets(0, 0, 5, 5);
-		gbc_lblRepetirPassword.gridx = 4;
-		gbc_lblRepetirPassword.gridy = 6;
-		panel_registration.add(new JLabel("Repetir:"), gbc_lblRepetirPassword);
-		
-		field_passwordchk = new JPasswordField();
-		field_passwordchk.setColumns(10);
-		GridBagConstraints gbc_textField_password2 = new GridBagConstraints();
-		gbc_textField_password2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_password2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_password2.gridx = 5;
-		gbc_textField_password2.gridy = 6;
-		panel_registration.add(field_passwordchk, gbc_textField_password2);
-		
 		warningPasswordChk = new JLabel("* No coinciden");
 		warningPasswordChk.setForeground(Color.RED);
 		GridBagConstraints gbc_warningPasswordChk = new GridBagConstraints();
@@ -265,13 +320,6 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		panel_registration.add(warningPasswordChk, gbc_warningPasswordChk);
 		
 /* Greeting */
-		GridBagConstraints gbc_lblSaludo = new GridBagConstraints();
-		gbc_lblSaludo.insets = new Insets(0, 0, 5, 5);
-		gbc_lblSaludo.anchor = GridBagConstraints.EAST;
-		gbc_lblSaludo.gridx = 1;
-		gbc_lblSaludo.gridy = 7;
-		panel_registration.add(new JLabel("Saludo (opcional):"), gbc_lblSaludo);
-
 		warningGreeting = new JLabel("*");
 		warningGreeting.setForeground(Color.RED);
 		GridBagConstraints gbc_warningGreeting = new GridBagConstraints();
@@ -281,43 +329,11 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		gbc_warningGreeting.gridy = 7;
 		panel_registration.add(warningGreeting, gbc_warningGreeting);
 		
-		field_greeting = new JTextField();
-		field_greeting.setColumns(10);
-		GridBagConstraints gbc_textField_greeting = new GridBagConstraints();
-		gbc_textField_greeting.gridwidth = 4;
-		gbc_textField_greeting.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_greeting.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_greeting.gridx = 2;
-		gbc_textField_greeting.gridy = 7;
-		panel_registration.add(field_greeting, gbc_textField_greeting);
-		
-/* Buttons */
-		panel_buttons = new JPanel();
-		GridBagConstraints gbc_panel_botones = new GridBagConstraints();
-		gbc_panel_botones.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_botones.gridwidth = 6;
-		gbc_panel_botones.fill = GridBagConstraints.BOTH;
-		gbc_panel_botones.gridx = 1;
-		gbc_panel_botones.gridy = 8;
-		panel_registration.add(panel_buttons, gbc_panel_botones);
-		
-		btn_register = new JButton("Registrar");
-		btn_register.addActionListener(this);
-		panel_buttons.add(btn_register);
-
-		btn_cancel = new JButton("Cancelar");
-		btn_cancel.addActionListener(this);
-		panel_buttons.add(btn_cancel);
-		
-		ocultarErrores();
-		
-		frame.setContentPane(this);
-		frame.revalidate(); //redibujar con el nuevo JPanel
-		frame.repaint();
+		ocultarWarnings();
 	}
 	
 	private boolean checkFields() {
-		ocultarErrores();
+		ocultarWarnings();
 
 		boolean ok = true;
 		if (field_name.getText().trim().isEmpty()) {
@@ -360,35 +376,35 @@ public class PanelRegistro extends JPanel implements ActionListener {
 	
 	private boolean register() {
 		boolean ok = AppChat.getInstance().register(
-								field_username.getText(),
-								new String(field_password.getPassword()),
-								field_name.getText(),
-								field_bday.getDate(),
-								field_email.getText(),
-								field_phone.getText(),
-								field_greeting.getText()
-								);
+			field_username.getText(),
+			new String(field_password.getPassword()),
+			field_name.getText(),
+			field_bday.getDate(),
+			field_email.getText(),
+			field_phone.getText(),
+			field_greeting.getText()
+		);
 		if (ok) {
 			JOptionPane.showMessageDialog(
-						frame,
-						"Usuario registrado correctamente.",
-						"Registration success",
-						JOptionPane.INFORMATION_MESSAGE
-					  	);
+				frame,
+				"Usuario registrado correctamente.",
+				"Registration success",
+				JOptionPane.INFORMATION_MESSAGE
+			);
 			frame.setContentPane(panel_previous);
 			frame.revalidate();
 		} else {
 			JOptionPane.showMessageDialog(
-						frame,
-						"No se ha podido llevar a cabo el registro.",
-						"Registration fail",
-						JOptionPane.ERROR_MESSAGE
-						);
+				frame,
+				"No se ha podido llevar a cabo el registro.",
+				"Registration fail",
+				JOptionPane.ERROR_MESSAGE
+			);
 		}
 		return ok;
 	}
 
-	private void ocultarErrores() {
+	private void ocultarWarnings() {
 		warningExiste.setVisible(false);
 		warningUsername.setVisible(false);
 		warningPassword.setVisible(false);

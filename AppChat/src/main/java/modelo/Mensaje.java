@@ -2,53 +2,66 @@ package modelo;
 
 import java.util.Date;
 
-/**
- * Un mensaje está formado por texto y puede contener emoticonos.
- * Además, un mensaje incluye el número de teléfono del emisor, quien podrá
- * estar o no en la lista de contactos del receptor con un nombre asociado.
- * Si no lo está, el usuario receptor puede añadirlo asociándole un nombre.
- * Un mensaje también se registrará con la hora de envío.
- * 
- */
 public class Mensaje {
+
+// ---------------------------------------------------------------------
+//                                                             Constants
+// ---------------------------------------------------------------------
 	
 	public static final int TEXT_BODY = 1;
 	public static final int EMOTICON_BODY = 2;
 
-	// Attributes
+// ---------------------------------------------------------------------
+//                                                            Attributes
+// ---------------------------------------------------------------------
+	
 	private int id;
-	private Usuario sender;
-	private Contacto receiver;
-	private String body;
-	private Date timestamp;
-	private int bodyType;
+	private Usuario sender; // emisor
+	private Chat chat; // receptor
+	private final String body;
+	private final Date timestamp;
+	private final int bodyType;
+	
+// ---------------------------------------------------------------------
+//                                                          Constructors
+// ---------------------------------------------------------------------
 
-	// Constructors
-	public Mensaje(Usuario sender, Contacto receiver, String text, Date timestamp) {
+	public Mensaje(Usuario sender, Chat chat, String text, Date timestamp) {
 		this.sender = sender;
-		this.receiver = receiver;
+		this.chat = chat;
 		this.body = text;
 		this.timestamp = timestamp;
 		this.bodyType = TEXT_BODY;
+	}
+
+	public Mensaje(Usuario sender, Chat chat, String text) {
+		this(sender, chat, text, new Date());
 	}
 	
 	public Mensaje(String text, Date timestamp) {
 		this(null, null, text, timestamp);
 	}
 	
-	public Mensaje(Usuario sender, Contacto receiver, int emoticon, Date timestamp) {
+	public Mensaje(Usuario sender, Chat chat, int emoticon, Date timestamp) {
 		this.sender = sender;
-		this.receiver = receiver;
+		this.chat = chat;
 		this.body = Integer.toString(emoticon);
 		this.timestamp = timestamp;
 		this.bodyType = EMOTICON_BODY;
+	}
+
+	public Mensaje(Usuario sender, Chat chat, int emoticon) {
+		this(sender, chat, emoticon, new Date());
 	}
 	
 	public Mensaje(int emoticon, Date timestamp) {
 		this(null, null, emoticon, timestamp);
 	}
+
+// ---------------------------------------------------------------------
+//                                                   Getters and Setters
+// ---------------------------------------------------------------------
 	
-	// Getters and Setters
 	public int getId() {
 		return id;
 	}
@@ -65,12 +78,12 @@ public class Mensaje {
 		this.sender = sender;
 	}
 
-	public Contacto getReceiver() {
-		return receiver;
+	public Chat getChat() {
+		return chat;
 	}
 
-	public void setReceiver(Contacto receiver) {
-		this.receiver = receiver;
+	public void setChat(Chat chat) {
+		this.chat = chat;
 	}
 
 	public String getBody() {
@@ -83,6 +96,11 @@ public class Mensaje {
 	
 	public int getBodyType() {
 		return bodyType;
+	}
+
+	@Override
+	public String toString() {
+		return "Mensaje [id=" + id + ", body=" + body + "]";
 	}
 
 }

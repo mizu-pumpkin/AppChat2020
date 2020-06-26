@@ -1,10 +1,14 @@
 package modelo;
 
-public class Premium implements RolUsuario {
+public class RolPremium implements Rol {
 
 	private Descuento descuento;
 	
-	public Premium(Descuento descuento) {
+	public RolPremium() {
+		this.descuento = null;
+	}
+	
+	public RolPremium(Descuento descuento) {
 		this.descuento = descuento;
 	}
 	

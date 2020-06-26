@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="pool"/>
+		<item key="selection" value="System.out"/>
 		<item key="wrap" value="true"/>
-		<item key="casesensitive" value="true"/>
+		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="pool"/>
-			<item value="adaptadorGrupo"/>
-			<item value="Adaptador"/>
-			<item value="AdaptadorMensajeTDS"/>
-			<item value="AdaptadorGrupoTDS"/>
-			<item value="AdaptadorContactoIndividualTDS"/>
-			<item value="recuperarEntidad"/>
-			<item value="set"/>
-			<item value="regi"/>
-			<item value="login"/>
-			<item value="\n      "/>
-			<item value="\n"/>
-			<item value="/n"/>
-			<item value=", "/>
-			<item value="birthday"/>
+			<item value="System.out"/>
+			<item value="App"/>
+			<item value="user"/>
+			<item value="PROPERTY_USER"/>
+			<item value="border"/>
+			<item value="PanelChat"/>
+			<item value="panelList"/>
+			<item value="conta"/>
+			<item value="panelchat"/>
+			<item value="ra"/>
+			<item value="createListRenderer"/>
+			<item value="scrollpane"/>
+			<item value="getReceiver"/>
+			<item value="Receiver"/>
+			<item value="receiver"/>
 		</list>
 		<list key="replacehistory">
+			<item value="phone"/>
+			<item value="PROPERTY_PHONE"/>
+			<item value="getChat"/>
+			<item value="Chat"/>
+			<item value="chat"/>
 			<item value="AdaptadorGrupoTDS.getInstance()"/>
 			<item value="\n         "/>
 			<item value="\n      "/>
@@ -35,16 +40,11 @@
 			<item value="contactoIndividual"/>
 			<item value="contacto_individual"/>
 			<item value="PROPERTY_USER"/>
-			<item value="PROPERTY_MESSAGES"/>
-			<item value="PROPERTY_NAME"/>
-			<item value="PROPERTY_MEMBERS"/>
-			<item value="PROPERTY_ADMIN"/>
-			<item value="private static final String ENTITY_ = &quot;_"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1026"/>
-		<item key="DIALOG_Y_ORIGIN" value="149"/>
+		<item key="DIALOG_X_ORIGIN" value="620"/>
+		<item key="DIALOG_Y_ORIGIN" value="345"/>
 		<item key="DIALOG_WIDTH" value="284"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

@@ -6,10 +6,12 @@ import modelo.Mensaje;
 
 public interface IAdaptadorMensajeDAO {
 
-	public void create(Mensaje mensaje);
-	public void delete(Mensaje mensaje);
-	public void update(Mensaje mensaje);
-	public Mensaje get(int id);
-	public List<Mensaje> getAll();
+	// CRUD methods
+	public void create(Mensaje msg);
+	public Mensaje read(int id);
+	public void update(Mensaje msg);
+	public void delete(Mensaje msg);
+	
+	public List<Mensaje> readAll();
 
 }

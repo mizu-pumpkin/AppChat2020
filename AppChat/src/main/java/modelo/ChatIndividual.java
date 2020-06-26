@@ -1,41 +1,38 @@
 package modelo;
 
-public class ContactoIndividual extends Contacto {
-
-	private Usuario user;
-
-	public ContactoIndividual(String name, String phone) {
-		super(name);
-		this.user = CatalogoUsuarios.getInstance().getByPhone(phone);
+public class ChatIndividual extends Chat {
+	
+// ---------------------------------------------------------------------
+//	                                                        Constructors
+// ---------------------------------------------------------------------
+	
+	public ChatIndividual(String name) {
+		super(name, null);
 	}
 
-	public ContactoIndividual(Usuario user) {
-		super("");
-		this.user = user;
+	public ChatIndividual(String name, Usuario user) {
+		super(name, user);
+	}
+
+	public ChatIndividual(Usuario user) {
+		super(user.getUsername(), user);
 	}
 	
-	public Usuario getUser() {
-		return user;
-	}
-
-	public void setUser(Usuario user) {
-		this.user = user;
+// ---------------------------------------------------------------------
+//	                                                 Getters and Setters
+// ---------------------------------------------------------------------
+	
+	public String getPhone() { // movil
+		return getOwner().getPhone();
 	}
 	
-	public String getPhone() {
-		return user.getPhone();
-	}
-	
-	@Override
-	public void addMessage(Mensaje message) {
-		super.addMessage(message);
-		user.receivePrivateMessage(message);
-	}
+// ---------------------------------------------------------------------
+//		                                                         Methods
+// ---------------------------------------------------------------------
 	
 	@Override
 	public String toString() {
 		return super.toString() + 
-				"[user=" + user.getId() + "]";
+			   "[user=" + getOwner().getId() + "]";
 	}
-	
 }

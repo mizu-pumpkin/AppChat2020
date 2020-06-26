@@ -2,14 +2,26 @@ package modelo;
 
 public class Estado {
 	
+// ---------------------------------------------------------------------
+//			                                                  Attributes
+// ---------------------------------------------------------------------
+		
 	private String text;
 	private String picture;
 	
+// ---------------------------------------------------------------------
+//			                                                Constructors
+// ---------------------------------------------------------------------
+			
 	public Estado(String text, String picture) {
 		this.text = text;
 		this.picture = picture;
 	}
-
+	
+// ---------------------------------------------------------------------
+//		                                             Getters and Setters
+// ---------------------------------------------------------------------
+		
 	public String getText() {
 		return text;
 	}
@@ -17,7 +29,11 @@ public class Estado {
 	public String getPicture() {
 		return picture;
 	}
-
+	
+// ---------------------------------------------------------------------
+//		                                                         Methods
+// ---------------------------------------------------------------------
+		
 	@Override
 	public String toString() {
 		return "Estado [text=" + text + ", picture=" + picture + "]";

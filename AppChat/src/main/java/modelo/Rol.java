@@ -1,5 +1,5 @@
 package modelo;
 
-public interface RolUsuario {
+public interface Rol {
 
 }

@@ -1,56 +1,61 @@
 package modelo;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * Los usuarios pueden crear grupos de contactos para compartir mensajes sobre un
- * tema. Un grupo se crea añadiendo los contactos que lo forman y asociándole un
- * nombre al grupo. Sólo el usuario que creó el grupo (único administrador) puede
- * añadir a otros contactos y eliminar el grupo. Cualquier usuario del grupo puede
- * dejar de pertenecerle en cualquier momento. Un grupo se maneja igual que un
- * contacto en el intercambio de mensajes.
- */
-public class Grupo extends Contacto {
+public class ChatGrupo extends Chat {
 	
-	private Usuario admin;
-	private List<ContactoIndividual> members;
-
-	public Grupo(String name, Usuario admin) {
-		super(name);
-		this.admin = admin;
-		this.members = new LinkedList<>();
+// ---------------------------------------------------------------------
+//	                                                          Attributes
+// ---------------------------------------------------------------------
+	
+	private Map<Usuario, ChatIndividual> members; // contactos
+	
+// ---------------------------------------------------------------------
+//	                                                        Constructors
+// ---------------------------------------------------------------------
+		
+	public ChatGrupo(String name, Usuario admin) {
+		super(name, admin);
+		this.members = new HashMap<>();
 	}
 
-	public Grupo(String name) {
+	public ChatGrupo(String name) {
 		this(name, null);
 	}
 	
-	/* Getters and setters */
-	
-	public Usuario getAdmin() {
-		return admin;
-	}
-	
-	public void setAdmin(Usuario admin) {
-		this.admin = admin;
-	}
+// ---------------------------------------------------------------------
+//                                                   Getters and Setters
+// ---------------------------------------------------------------------
 
-	public List<ContactoIndividual> getMembers() {
-		return Collections.unmodifiableList(members);
+	public List<ChatIndividual> getMembers() {
+		return new LinkedList<ChatIndividual>(members.values());
 	}
 	
-	public void addMember(ContactoIndividual contact) {
-		members.add(contact);
+	public void addMember(ChatIndividual contact) {
+		members.put(contact.getOwner(), contact);
 	}
 	
-	public void removeMember(ContactoIndividual contact) {
-		members.remove(contact);
+	public void removeMember(ChatIndividual contact) {
+		members.remove(contact.getOwner());
 	}
 	
-	/* Methods */
+	public void removeMember(Usuario user) {
+		members.remove(user);
+	}
+	
+	public void clearGroup() {
+		for (Usuario u : members.keySet())
+			u.removeChat(this);
+		members.clear();
+	}
+	
+// ---------------------------------------------------------------------
+//	                                                             Methods
+// ---------------------------------------------------------------------
 	
 	public List<Mensaje> findMessagesByUsername(Usuario user) {
 		return messages.stream()
@@ -60,19 +65,19 @@ public class Grupo extends Contacto {
 					   ;
 	}
 	
-	/**
-	 * Dentro de un grupo un usuario podr� buscar mensajes combinando
-	 * nombre de usuario, texto a buscar y rango de fechas, cualquiera
-	 * de ellos puede ser opcional.
-	 */
 	public List<Mensaje> findMessages() {
-		//TODO
+		/* TODO
+		 * Dentro de un grupo un usuario podrá buscar mensajes combinando
+		 * nombre de usuario, texto a buscar y rango de fechas, cualquiera
+		 * de ellos puede ser opcional.
+		 */
 		return messages.stream().collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public String toString() {
-		return super.toString() + "[admin=" + admin.getId() + ", members=" + members + "]";
+		return super.toString() +
+			   "[admin=" + getOwner().getId() + ", members=" + members + "]";
 	}
-	
+
 }

@@ -5,10 +5,12 @@ import modelo.Usuario;
 
 public interface IAdaptadorUsuarioDAO {
 
-	public void create(Usuario usuario);
-	public void delete(Usuario usuario);
-	public void update(Usuario usuario);
-	public Usuario get(int id);
-	public List<Usuario> getAll();
+	// CRUD methods
+	public void create(Usuario user);
+	public Usuario read(int id);
+	public void update(Usuario user);
+	public void delete(Usuario user);
+	
+	public List<Usuario> readAll();
 	
 }

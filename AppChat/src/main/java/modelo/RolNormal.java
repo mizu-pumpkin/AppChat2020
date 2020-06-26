@@ -1,5 +1,5 @@
 package modelo;
 
-public class Normal implements RolUsuario {
+public class RolNormal implements Rol {
 
 }

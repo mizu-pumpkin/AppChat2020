@@ -39,4 +39,10 @@
 			<item value="C:/Users/Mizu/UMU/TDS/AppChat/AppChat/lib/jcalendar-1.4.jar"/>
 		</list>
 	</section>
+	<section name="org.eclipse.wb.internal.core.editor.actions.errors.ErrorsDialog">
+		<item key="x" value="341"/>
+		<item key="y" value="41"/>
+		<item key="width" value="684"/>
+		<item key="height" value="646"/>
+	</section>
 </section>
