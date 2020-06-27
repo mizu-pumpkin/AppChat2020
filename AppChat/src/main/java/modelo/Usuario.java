@@ -25,7 +25,7 @@ public class Usuario {
 	private Estado story; // estado
 	private boolean premium; // premium
 	private Collection<Chat> chats; // contactos
-	private HashMap<Usuario, ChatIndividual> privateChats;
+	private HashMap<Integer, ChatIndividual> privateChats;
 	
 // ---------------------------------------------------------------------
 //                                                          Constructors
@@ -165,21 +165,13 @@ public class Usuario {
 					.collect(Collectors.toSet())
 					;
 	}
-	
-	public ChatIndividual getPrivateChat(Usuario user) {
-		if (privateChats.containsKey(user))
-			return privateChats.get(user);
-		ChatIndividual c = new ChatIndividual(user);
-		addChat(c);
-		return c;
-	}
 
 	public boolean addChat(Chat chat) {
 		if (chats.contains(chat)) return false;
 		
 		chats.add(chat);
 		if (chat instanceof ChatIndividual)
-			privateChats.put(chat.getOwner(), (ChatIndividual) chat);
+			privateChats.put(chat.getOwner().getId(), (ChatIndividual) chat);
 		return true;
 	}
 	
@@ -188,25 +180,37 @@ public class Usuario {
 		
 		chats.remove(chat);
 		if (chat instanceof ChatIndividual)
-			privateChats.remove(chat.getOwner());
+			privateChats.remove(chat.getOwner().getId());
 	}
 	
 // ---------------------------------------------------------------------
 //                                                               Methods
 // ---------------------------------------------------------------------
 	
-	public ChatIndividual addContact(String name, Usuario contact) {
-		if (privateChats.containsKey(contact)) return null;
+	private boolean knowsUser(Usuario user) {
+		return privateChats.containsKey(user.getId());
+	}
+	
+	public ChatIndividual getPrivateChat(Usuario user) {
+		if (knowsUser(user)) return privateChats.get(user.getId());
 		
-		ChatIndividual chat = new ChatIndividual(name, contact);
+		ChatIndividual c = new ChatIndividual(user);
+		addChat(c);
+		return c;
+	}
+	
+	public ChatIndividual addContact(String name, Usuario user) {
+		if (knowsUser(user)) return null;
+		
+		ChatIndividual chat = new ChatIndividual(name, user);
 		addChat(chat);
 		return chat;
 	}
 	
-	public ChatIndividual addContact(Usuario contact) {
-		if (privateChats.containsKey(contact)) return null;
+	public ChatIndividual addContact(Usuario user) {
+		if (knowsUser(user)) return null;
 		
-		ChatIndividual chat = new ChatIndividual(contact);
+		ChatIndividual chat = new ChatIndividual(user);
 		addChat(chat);
 		return chat;
 	}
@@ -259,54 +263,7 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (avatar == null) {
-			if (other.avatar != null)
-				return false;
-		} else if (!avatar.equals(other.avatar))
-			return false;
-		if (birthday == null) {
-			if (other.birthday != null)
-				return false;
-		} else if (!birthday.equals(other.birthday))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (greeting == null) {
-			if (other.greeting != null)
-				return false;
-		} else if (!greeting.equals(other.greeting))
-			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (phone == null) {
-			if (other.phone != null)
-				return false;
-		} else if (!phone.equals(other.phone))
-			return false;
-		if (premium != other.premium)
-			return false;
-		if (story == null) {
-			if (other.story != null)
-				return false;
-		} else if (!story.equals(other.story))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
+		if (!username.equals(other.username))
 			return false;
 		return true;
 	}

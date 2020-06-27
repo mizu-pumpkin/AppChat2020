@@ -20,7 +20,6 @@
 <fullyQualifiedTypeName name="javax.swing.Scrollable"/>
 <fullyQualifiedTypeName name="javax.swing.ListCellRenderer"/>
 <fullyQualifiedTypeName name="javax.swing.event.ListSelectionListener"/>
-<fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="javax.swing.JList"/>
 <fullyQualifiedTypeName name="javax.swing.AbstractListModel"/>
@@ -51,7 +50,6 @@
 <fullyQualifiedTypeName name="persistencia.AdaptadorChatTDS"/>
 <fullyQualifiedTypeName name="modelo.Chat"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="vista.PanelChat"/>
 <fullyQualifiedTypeName name="modelo.Usuario"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="persistencia.AdaptadorMensajeTDS"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="controlador.AppChat"/>
 <fullyQualifiedTypeName name="vista.PanelListaChats"/>
 <fullyQualifiedTypeName name="modelo.ChatGrupo"/>
+<fullyQualifiedTypeName name="vista.PanelChat"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
 </qualifiedTypeNameHistroy>

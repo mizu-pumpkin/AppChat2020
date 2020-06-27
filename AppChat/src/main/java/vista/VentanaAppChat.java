@@ -22,6 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -45,15 +46,15 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	
 	private JPanel contentPane;
 	
-	private JTextField fieldWriteMsg;
-	private JTextField fieldFindUser;
-	private JTextField fieldFindMessage;
+	private JTextField txtWriteMsg;
+	private JTextField txtFindUser;
+	private JTextField txtFindMessage;
 	private JButton btnAvatar;
 	private JButton btnEmoticon;
 
 	public VentanaAppChat(Usuario user) {
 		this.loggedUser = user;
-		panelChat = new PanelChat();
+		panelChat = new PanelChat(user.getUsername());
 		panelList = new PanelListaChats(panelChat, user.getChats());
 		initialize();
 		setVisible(true);
@@ -142,16 +143,16 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_cb_selector.gridy = 2;
 		panel.add(cb_selector, gbc_cb_selector);
 /* Search */
-		fieldFindUser = new JTextField();
-		fieldFindUser.setColumns(10);
-		fieldFindUser.addActionListener(this);
+		txtFindUser = new JTextField();
+		txtFindUser.setColumns(10);
+		txtFindUser.addActionListener(this);
 		GridBagConstraints gbc_txtFindName = new GridBagConstraints();
 		gbc_txtFindName.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtFindName.gridwidth = 2;
 		gbc_txtFindName.insets = new Insets(0, 0, 5, 0);
 		gbc_txtFindName.gridx = 0;
 		gbc_txtFindName.gridy = 3;
-		panel.add(fieldFindUser, gbc_txtFindName);
+		panel.add(txtFindUser, gbc_txtFindName);
 /* Contact List panel */
 		GridBagConstraints gbc_scrollPane_names = new GridBagConstraints();
 		gbc_scrollPane_names.gridwidth = 2;
@@ -169,15 +170,15 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbl.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl);
 /* Search message */
-		fieldFindMessage = new JTextField();
-		fieldFindMessage.setColumns(10);
+		txtFindMessage = new JTextField();
+		txtFindMessage.setColumns(10);
 		GridBagConstraints gbc_txtFindMessage = new GridBagConstraints();
 		gbc_txtFindMessage.gridwidth = 2;
 		gbc_txtFindMessage.insets = new Insets(0, 0, 5, 0);
 		gbc_txtFindMessage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtFindMessage.gridx = 1;
 		gbc_txtFindMessage.gridy = 0;
-		panel.add(fieldFindMessage, gbc_txtFindMessage);
+		panel.add(txtFindMessage, gbc_txtFindMessage);
 /* Chat panel */
 		GridBagConstraints gbc_scrollPane_chat = new GridBagConstraints();
 		gbc_scrollPane_chat.gridwidth = 3;
@@ -187,9 +188,9 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_scrollPane_chat.gridy = 1;
 		panel.add(new JScrollPane(panelChat), gbc_scrollPane_chat);
 /* Text input */
-		fieldWriteMsg = new JTextField();
-		fieldWriteMsg.setColumns(10);
-		fieldWriteMsg.addActionListener(this);
+		txtWriteMsg = new JTextField();
+		txtWriteMsg.setColumns(10);
+		txtWriteMsg.addActionListener(this);
 		//txtWriteMsg.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		GridBagConstraints gbc_txtWrite = new GridBagConstraints();
 		gbc_txtWrite.gridwidth = 2;
@@ -197,7 +198,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_txtWrite.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtWrite.gridx = 0;
 		gbc_txtWrite.gridy = 2;
-		panel.add(fieldWriteMsg, gbc_txtWrite);
+		panel.add(txtWriteMsg, gbc_txtWrite);
 		
 		btnEmoticon = new JButton();
 		btnEmoticon.addActionListener(this);
@@ -223,21 +224,31 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnEmoticon) {
+			new VentanaNuevoGrupo(loggedUser);
+			return;
+		}
 		if (e.getSource() == btnAvatar) {
 			new VentanaPerfil(loggedUser);
 			return;
 		}
-		if (e.getSource() == fieldWriteMsg) {
-			panelChat.sendText(loggedUser.getUsername(), fieldWriteMsg.getText());
-			fieldWriteMsg.setText("");
+		if (e.getSource() == txtWriteMsg) {
+			panelChat.sendText(loggedUser.getUsername(), txtWriteMsg.getText());
+			txtWriteMsg.setText("");
 			return;
 		}
-		if (e.getSource() == fieldFindUser) {
-			Usuario user = AppChat.getInstance().findUser(fieldFindUser.getText());
-			AppChat.getInstance().registerContact(user);
-			fieldFindUser.setText("");
-			panelList = new PanelListaChats(panelChat, loggedUser.getChats());
-			panelList.repaint();
+		if (e.getSource() == txtFindUser) {
+			Usuario user = AppChat.getInstance().findUser(txtFindUser.getText());
+			txtFindUser.setText("");
+			if (AppChat.getInstance().registerContact(user)) {
+				panelList.loadList(loggedUser.getChats());
+				JOptionPane.showMessageDialog(
+					this,
+					user.getUsername() +" añadido correctamente.",
+					"New contact success",
+					JOptionPane.INFORMATION_MESSAGE
+				);
+			}
 			return;
 		}
 	}

@@ -20,8 +20,10 @@ public class PanelChat extends JPanel implements Scrollable {
 	public static final Color COLOR_MSG_SENT = new Color(255, 153, 255);
 	
 	private Chat actualChat;
+	private String myUsername;
 	
-	public PanelChat() {
+	public PanelChat(String myUsername) {
+		this.myUsername = myUsername;
 		setSize(400, 100);
 		//setPreferredSize(new Dimension(400, 100));
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -30,13 +32,12 @@ public class PanelChat extends JPanel implements Scrollable {
 	public void loadChat(Chat chat) {
 		removeAll();
 		this.actualChat = chat;
-		String interlocutor = actualChat.getOwner().getUsername();
 		for (Mensaje m : actualChat.getMessages()) {
 			String text = m.getBody();
 			String sender = m.getSender().getUsername();
-			boolean rcvd = sender.equals(interlocutor);
-			Color col = rcvd ? COLOR_MSG_RCVD : COLOR_MSG_SENT;
-			int inout = rcvd ? BubbleText.RECEIVED : BubbleText.SENT;
+			boolean sent = sender.equals(myUsername);
+			Color col = sent ? COLOR_MSG_SENT : COLOR_MSG_RCVD;
+			int inout = sent ? BubbleText.SENT : BubbleText.RECEIVED;
 			
 			if (m.getBodyType() == Mensaje.TEXT_BODY)
 				add(new BubbleText(this, text, col, sender, inout));
@@ -53,6 +54,7 @@ public class PanelChat extends JPanel implements Scrollable {
 	}
 	
 	public void sendEmoticon(String username, int emoticon) {
+		if (actualChat == null) return;
 		add(new BubbleText(this, emoticon, COLOR_MSG_SENT, username, BubbleText.SENT, 12));
 		AppChat.getInstance().sendMessage(actualChat, emoticon);
 	}

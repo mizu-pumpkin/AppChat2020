@@ -10,12 +10,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import controlador.AppChat;
+import modelo.Chat;
+import modelo.Mensaje;
 import modelo.Usuario;
+import persistencia.AdaptadorChatTDS;
+import persistencia.AdaptadorMensajeTDS;
 import persistencia.AdaptadorUsuarioTDS;
 
 public class TestBD {
 	
 	private static AdaptadorUsuarioTDS aU = AdaptadorUsuarioTDS.getInstance();
+	private static AdaptadorMensajeTDS aM = AdaptadorMensajeTDS.getInstance();
+	private static AdaptadorChatTDS aC = AdaptadorChatTDS.getInstance();
 	private static Usuario t1;
 	private static Usuario t2;
 	private static Usuario t3;
@@ -55,9 +61,12 @@ public class TestBD {
 		System.out.println("---------------------------------------");
 		for (Usuario u : aU.readAll()) {
 			System.out.println(u);
-			if (!u.equals(t1) && !u.equals(t2) && !u.equals(t3)) 
+			if (u.getId()!=1 && u.getId()!=14 && u.getId()!=27) 
 				aU.delete(u);
 		}
+		
+		//for (Mensaje m : aM.readAll()) System.out.println(m);
+		//for (Chat c : aC.readAll()) System.out.println(c);
 		System.out.println("---------------------------------------");
 		
 		for (Usuario u : aU.readAll()) System.out.println(u);

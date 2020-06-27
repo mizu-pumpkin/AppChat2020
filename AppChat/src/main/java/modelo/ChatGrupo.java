@@ -76,8 +76,11 @@ public class ChatGrupo extends Chat {
 
 	@Override
 	public String toString() {
+		String aaa = "";
+		for (Usuario u : members.keySet())
+			aaa += u.getId() + " ";
 		return super.toString() +
-			   "[admin=" + getOwner().getId() + ", members=" + members + "]";
+			   "[admin=" + getOwner().getId() + ", members=" + aaa + "]";
 	}
 
 }
