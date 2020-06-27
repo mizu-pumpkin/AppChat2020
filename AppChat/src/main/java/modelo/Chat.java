@@ -76,8 +76,8 @@ public abstract class Chat {
 		return msg;
 	}
 	
-	public Mensaje sendMessage(Usuario sender, int emoticon) {
-		Mensaje msg = new Mensaje(sender, this, emoticon);
+	public Mensaje sendMessage(Usuario sender, int emoji) {
+		Mensaje msg = new Mensaje(sender, this, emoji);
 		addMessage(msg);
 		return msg;
 	}

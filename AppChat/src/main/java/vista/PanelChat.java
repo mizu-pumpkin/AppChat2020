@@ -53,10 +53,10 @@ public class PanelChat extends JPanel implements Scrollable {
 		AppChat.getInstance().sendMessage(actualChat, text);
 	}
 	
-	public void sendEmoticon(String username, int emoticon) {
+	public void sendEmoji(String username, int emoji) {
 		if (actualChat == null) return;
-		add(new BubbleText(this, emoticon, COLOR_MSG_SENT, username, BubbleText.SENT, 12));
-		AppChat.getInstance().sendMessage(actualChat, emoticon);
+		add(new BubbleText(this, emoji, COLOR_MSG_SENT, username, BubbleText.SENT, 12));
+		AppChat.getInstance().sendMessage(actualChat, emoji);
 	}
 
 	@Override
