@@ -16,17 +16,25 @@ import persistencia.AdaptadorUsuarioTDS;
 public class TestBD {
 	
 	private static AdaptadorUsuarioTDS aU = AdaptadorUsuarioTDS.getInstance();
+	private static Usuario t1;
+	private static Usuario t2;
+	private static Usuario t3;
 	private static Usuario u1;
 	private static Usuario u2;
 	
 	public static void createTesters() throws ParseException {
-		aU.create(new Usuario("mizu", "aaa", "Marisol Zucca",
-			 new SimpleDateFormat("yyyy-MM-dd").parse("1989-08-31"),
-			 "mizu@um.es", "684253969", "Ho fame!"));
-
-		aU.create(new Usuario("rey", "aaa", "Reyes Giraldi",
-			 new SimpleDateFormat("yyyy-MM-dd").parse("1988-04-23"),
-			 "rey@um.es", "684208637", "Stupida sexy Catra..."));
+		t1 = new Usuario("mizu", "aaa", "Marisol Zucca",
+				new SimpleDateFormat("yyyy-MM-dd").parse("1989-08-31"),
+				"mizu@um.es", "111", "Ho fame!");
+		t2 = new Usuario("rey", "aaa", "Reyes Giraldi",
+				new SimpleDateFormat("yyyy-MM-dd").parse("1988-04-23"),
+				"rey@um.es", "222", "Stupida sexy Catra...");
+		t3 = new Usuario("edu", "aaa", "Eduardo Martínez",
+				new SimpleDateFormat("yyyy-MM-dd").parse("1999-12-26"),
+				"edu@um.es", "333", "");
+		aU.create(t1);
+		aU.create(t2);
+		aU.create(t3);
 	}
 	
 	@BeforeClass
@@ -35,10 +43,10 @@ public class TestBD {
 		u1 = new Usuario("gabrio", "aaa", "Gabriele Zucca",
 						 new SimpleDateFormat("yyyy-MM-dd").parse("2000-10-30"),
 						 "gabri@zucca.com", "111111111", "Chopo!");
-		aU.create(u1);
 		u2 = new Usuario("dado", "aaa", "Davide Zucca",
 						 new SimpleDateFormat("yyyy-MM-dd").parse("2017-08-09"),
 						 "dado@zucca.com", "000000000", "Sono qui!");
+		aU.create(u1);
 		aU.create(u2);
 	}
 
@@ -47,7 +55,7 @@ public class TestBD {
 		System.out.println("---------------------------------------");
 		for (Usuario u : aU.readAll()) {
 			System.out.println(u);
-			if (!u.getUsername().equals("mizu") && !u.getUsername().equals("rey")) 
+			if (!u.equals(t1) && !u.equals(t2) && !u.equals(t3)) 
 				aU.delete(u);
 		}
 		System.out.println("---------------------------------------");

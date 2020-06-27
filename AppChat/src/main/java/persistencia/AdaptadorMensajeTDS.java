@@ -149,7 +149,7 @@ public class AdaptadorMensajeTDS implements IAdaptadorMensajeDAO {
 	
 	private void registrarObjetos(Mensaje msg) {
 		AdaptadorUsuarioTDS.getInstance().create(msg.getSender());
-		//AdaptadorChatTDS.getInstance().create(msg.getChat());
+		//FIXME: AdaptadorChatTDS.getInstance().create(msg.getChat());
 	}
 	
 }

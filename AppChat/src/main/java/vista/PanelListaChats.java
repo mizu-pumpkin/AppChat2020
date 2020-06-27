@@ -76,8 +76,7 @@ public class PanelListaChats extends JPanel {
 	private ListSelectionListener createListSelectionListener(JList<Chat> chats) {
 		return e -> {
 			if (e.getValueIsAdjusting()) {
-				Chat chat = chats.getSelectedValue();
-				panelChat.loadChat(chat);
+				panelChat.loadChat(chats.getSelectedValue());
 			}
 		};
 	}

@@ -9,6 +9,10 @@
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
 			<item value="System.out"/>
+			<item value="system.out"/>
+			<item value="PoolDao"/>
+			<item value="pool"/>
+			<item value="send"/>
 			<item value="App"/>
 			<item value="user"/>
 			<item value="PROPERTY_USER"/>
@@ -19,10 +23,6 @@
 			<item value="panelchat"/>
 			<item value="ra"/>
 			<item value="createListRenderer"/>
-			<item value="scrollpane"/>
-			<item value="getReceiver"/>
-			<item value="Receiver"/>
-			<item value="receiver"/>
 		</list>
 		<list key="replacehistory">
 			<item value="phone"/>

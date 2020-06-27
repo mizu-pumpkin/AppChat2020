@@ -53,7 +53,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 
 	public VentanaAppChat(Usuario user) {
 		this.loggedUser = user;
-		panelChat = new PanelChat(user.getUsername());
+		panelChat = new PanelChat();
 		panelList = new PanelListaChats(panelChat, user.getChats());
 		initialize();
 		setVisible(true);
@@ -94,7 +94,8 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	}
 
 	public void configurarInfoUsuario(JPanel panel) {
-		btnAvatar = new JButton(); //FIXME
+/* Avatar */
+		btnAvatar = new JButton(); //TODO
 		btnAvatar.addActionListener(this);
 		btnAvatar.setIcon(new ImageIcon(BubbleText.getEmoji(2).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))); //FIXME
 		btnAvatar.setFocusPainted(false);
@@ -108,7 +109,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_lblAvatar.gridx = 0;
 		gbc_lblAvatar.gridy = 0;
 		panel.add(btnAvatar, gbc_lblAvatar);
-		
+/* Username */
 		JLabel lblUsername = new JLabel(loggedUser.getUsername());
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
@@ -117,7 +118,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_lblUsername.gridx = 1;
 		gbc_lblUsername.gridy = 0;
 		panel.add(lblUsername, gbc_lblUsername);
-		
+/* Greeting */
 		JLabel lblGreeting = new JLabel(loggedUser.getGreeting());
 		lblGreeting.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		GridBagConstraints gbc_lblGreeting = new GridBagConstraints();
@@ -140,7 +141,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_cb_selector.gridx = 0;
 		gbc_cb_selector.gridy = 2;
 		panel.add(cb_selector, gbc_cb_selector);
-		
+/* Search */
 		fieldFindUser = new JTextField();
 		fieldFindUser.setColumns(10);
 		fieldFindUser.addActionListener(this);
@@ -151,7 +152,6 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_txtFindName.gridx = 0;
 		gbc_txtFindName.gridy = 3;
 		panel.add(fieldFindUser, gbc_txtFindName);
-
 /* Contact List panel */
 		GridBagConstraints gbc_scrollPane_names = new GridBagConstraints();
 		gbc_scrollPane_names.gridwidth = 2;
@@ -168,8 +168,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbl.columnWeights = new double[]{4.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl);
-		
-/* Search */
+/* Search message */
 		fieldFindMessage = new JTextField();
 		fieldFindMessage.setColumns(10);
 		GridBagConstraints gbc_txtFindMessage = new GridBagConstraints();
@@ -179,7 +178,6 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_txtFindMessage.gridx = 1;
 		gbc_txtFindMessage.gridy = 0;
 		panel.add(fieldFindMessage, gbc_txtFindMessage);
-
 /* Chat panel */
 		GridBagConstraints gbc_scrollPane_chat = new GridBagConstraints();
 		gbc_scrollPane_chat.gridwidth = 3;
@@ -188,7 +186,6 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_scrollPane_chat.gridx = 0;
 		gbc_scrollPane_chat.gridy = 1;
 		panel.add(new JScrollPane(panelChat), gbc_scrollPane_chat);
-
 /* Text input */
 		fieldWriteMsg = new JTextField();
 		fieldWriteMsg.setColumns(10);
@@ -231,7 +228,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			return;
 		}
 		if (e.getSource() == fieldWriteMsg) {
-			panelChat.sendText(fieldWriteMsg.getText());
+			panelChat.sendText(loggedUser.getUsername(), fieldWriteMsg.getText());
 			fieldWriteMsg.setText("");
 			return;
 		}
