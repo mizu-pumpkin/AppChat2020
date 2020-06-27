@@ -97,7 +97,9 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 /* Avatar */
 		btnAvatar = new JButton(); //TODO
 		btnAvatar.addActionListener(this);
-		btnAvatar.setIcon(new ImageIcon(BubbleText.getEmoji(2).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))); //FIXME
+		// btnAvatar.setIcon(new ImageIcon(BubbleText.getEmoji(2).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)));
+		// TODO: debe poder cambiarse en la ventana "VentanaPerfil" la foto de loggedUser.
+		showAvatar(loggedUser.getAvatar());
 		btnAvatar.setFocusPainted(false);
 		btnAvatar.setMargin(new Insets(0, 0, 0, 0));
 		btnAvatar.setContentAreaFilled(false);
@@ -208,7 +210,9 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		panel.add(btnEmoticon, gbc_lblEmoticon);
 	}
 	
-	public void showAvatar(String nombre) {//TODO: entender como usar
+	// Dado una ruta almacenada en "nombre", establece la imagen apuntada en esa ruta
+	// como nuevo icono de "btnAvatar".
+	public void showAvatar(String nombre) {
 		URL url = this.getClass().getResource(nombre);
 		BufferedImage myPicture;
 		try { 

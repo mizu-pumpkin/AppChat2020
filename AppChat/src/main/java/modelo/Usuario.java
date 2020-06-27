@@ -14,6 +14,8 @@ public class Usuario {
 //                                                            Attributes
 // ---------------------------------------------------------------------
 	
+	private static String DEFAULT_AVATAR = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Roto2.svg/256px-Roto2.svg.png";
+	
 	private int id;
 	private final String username; // usuario
 	private String password; // contraseña
@@ -23,6 +25,7 @@ public class Usuario {
 	private String phone; // movil
 	private String greeting;
 	private String avatar; // imagen
+	// TODO: el Estado es opcional, por si acaso en un futuro decidimos prescindir de él.
 	private Estado story; // estado
 	private boolean premium; // premium
 	private Collection<Chat> chats; // contactos
@@ -47,7 +50,7 @@ public class Usuario {
 		this.email = email;
 		this.phone = phone;
 		this.greeting = greeting;
-		this.avatar = "";
+		this.avatar = DEFAULT_AVATAR;
 		this.story = new Estado("", "");
 		this.premium = false;
 		this.chats = new HashSet<>();

@@ -53,6 +53,7 @@ public class PanelChat extends JPanel implements Scrollable {
 	}
 	
 	public void sendEmoticon(String username, int emoticon) {
+		// FIXME: if (actualChat == null) return; ¿Es necesario comprobarlo también?
 		add(new BubbleText(this, emoticon, COLOR_MSG_SENT, username, BubbleText.SENT, 12));
 		AppChat.getInstance().sendMessage(actualChat, emoticon);
 	}

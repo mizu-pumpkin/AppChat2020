@@ -21,6 +21,8 @@ import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class VentanaPerfil extends JFrame {
+	
+	// TODO: desde este menú debe poder cambiarse el atributo "avatar" de "user".
 
 	private final static int MIN_WIDTH = 300;
 	private final static int MIN_HEIGHT = 200;
