@@ -84,7 +84,6 @@ public class AppChat {
 						    String phone,
 						    String greeting) {
 			if (isRegistered(username)) return false;
-			
 			Usuario usuario = new Usuario(username, password, name, birthday, email, phone, greeting);
 			adaptadorUsuario.create(usuario);	// Almacenamos el nuevo Usuario en la BD
 			catalogoUsuarios.add(usuario);		// Almacenamos el nuevo Usuario en el catalogo

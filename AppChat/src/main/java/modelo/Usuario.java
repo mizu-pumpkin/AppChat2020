@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Usuario {
@@ -25,7 +26,8 @@ public class Usuario {
 	private Estado story; // estado
 	private boolean premium; // premium
 	private Collection<Chat> chats; // contactos
-	private HashMap<Usuario, ChatIndividual> privateChats;
+	// TODO: he cambiado el tipado estático a Map, ¿hay algún problema?
+	private Map<Usuario, ChatIndividual> privateChats;
 	
 // ---------------------------------------------------------------------
 //                                                          Constructors

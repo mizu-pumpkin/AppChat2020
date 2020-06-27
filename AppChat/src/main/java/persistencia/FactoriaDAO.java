@@ -21,7 +21,7 @@ public abstract class FactoriaDAO {
 		return instance;
 	}
 
-
+	//FIXME: ¿Llega a usarse este método?
 	public static FactoriaDAO getInstance() throws DAOException {
 		if (instance == null) return getInstance (FactoriaDAO.DAO_TDS);
 		return instance;
