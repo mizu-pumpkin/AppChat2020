@@ -97,6 +97,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 /* Avatar */
 		btnAvatar = new JButton(); //TODO
 		btnAvatar.addActionListener(this);
+		// FIXME: eliminar la siguiente línea una vez el cambio de avatar funcione.
 		// btnAvatar.setIcon(new ImageIcon(BubbleText.getEmoji(2).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)));
 		// TODO: debe poder cambiarse en la ventana "VentanaPerfil" la foto de loggedUser.
 		showAvatar(loggedUser.getAvatar());

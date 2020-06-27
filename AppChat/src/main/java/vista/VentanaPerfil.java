@@ -10,11 +10,17 @@ import persistencia.AdaptadorUsuarioTDS;
 import tds.BubbleText;
 
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -64,7 +70,8 @@ public class VentanaPerfil extends JFrame {
 	
 	private void configurarInfoUsuario() {
 		btnAvatar = new JButton(); //FIXME
-		btnAvatar.setIcon(new ImageIcon(BubbleText.getEmoji(2).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))); //FIXME
+		// btnAvatar.setIcon(new ImageIcon(BubbleText.getEmoji(2).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))); //FIXME
+		showAvatar(user.getAvatar());
 		btnAvatar.setFocusPainted(false);
 		btnAvatar.setMargin(new Insets(0, 0, 0, 0));
 		btnAvatar.setContentAreaFilled(false);
@@ -130,6 +137,19 @@ public class VentanaPerfil extends JFrame {
 		gbc_lblPhone.gridx = 2;
 		gbc_lblPhone.gridy = 6;
 		contentPane.add(new JLabel(user.getPhone()), gbc_lblPhone);
+	}
+	
+	private void showAvatar(String nombre) {
+		URL url = this.getClass().getResource(nombre);
+		BufferedImage myPicture;
+		try { 
+			myPicture = ImageIO.read(url);			
+			Image aux=myPicture.getScaledInstance(MIN_WIDTH, MIN_HEIGHT, Image.SCALE_DEFAULT);
+			btnAvatar.setIcon(new ImageIcon(aux));
+			btnAvatar.repaint();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 }
