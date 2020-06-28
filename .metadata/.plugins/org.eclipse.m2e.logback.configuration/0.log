@@ -12682,3 +12682,817 @@ org.eclipse.core.runtime.CoreException: Launch configuration VentanaLoginn (3) r
 2020-06-28 00:56:28,401 [Worker-118: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
 2020-06-28 00:56:28,402 [Worker-118: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2020-06-28 00:56:28,404 [Worker-118: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:02:32,909 [Worker-114: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:02:32,910 [Worker-114: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:02:32,911 [Worker-114: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:02:32,912 [Worker-114: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:04:10,658 [Worker-125: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:04:10,659 [Worker-125: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:04:10,660 [Worker-125: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:04:10,661 [Worker-125: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:04:32,841 [Worker-123: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:04:32,842 [Worker-123: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:04:32,843 [Worker-123: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:04:32,844 [Worker-123: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:06:41,938 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:06:41,939 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:06:41,940 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:06:41,941 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:07:25,116 [Worker-123: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:07:25,118 [Worker-123: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:07:25,119 [Worker-123: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:07:25,120 [Worker-123: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:09:26,039 [Worker-110: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:09:26,040 [Worker-110: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:09:26,041 [Worker-110: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:09:26,043 [Worker-110: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:11:33,016 [Worker-110: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:11:33,019 [Worker-110: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:11:33,019 [Worker-110: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:11:33,020 [Worker-110: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:12:05,277 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:12:05,278 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:12:05,279 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:12:05,281 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:13:24,572 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:13:24,573 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:13:24,574 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:13:24,575 [Worker-110: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:16:52,406 [Worker-129: Launching PanelEmoticons] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:16:52,407 [Worker-129: Launching PanelEmoticons] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:16:52,408 [Worker-129: Launching PanelEmoticons] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:16:52,410 [Worker-129: Launching PanelEmoticons] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:18:00,928 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:18:00,929 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:18:00,930 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:18:00,931 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:18:33,521 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:18:33,522 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:18:33,523 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:18:33,525 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:18:47,623 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:18:47,625 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:18:47,626 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:18:47,627 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:19:08,143 [Worker-131: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:19:08,144 [Worker-131: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:19:08,145 [Worker-131: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:19:08,147 [Worker-131: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:20:37,991 [Worker-134: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:20:37,993 [Worker-134: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:20:37,993 [Worker-134: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:20:37,994 [Worker-134: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:21:00,531 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:21:00,532 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:21:00,533 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:21:00,535 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:21:29,416 [Worker-110: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:21:29,418 [Worker-110: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:21:29,419 [Worker-110: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:21:29,420 [Worker-110: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:21:37,552 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:21:37,553 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:21:37,553 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:21:37,555 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:21:49,715 [Worker-110: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:21:49,716 [Worker-110: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:21:49,717 [Worker-110: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:21:49,718 [Worker-110: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:22:10,681 [Worker-135: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:22:10,682 [Worker-135: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:22:10,683 [Worker-135: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:22:10,685 [Worker-135: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:22:20,901 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:22:20,903 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:22:20,903 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:22:20,905 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:22:28,552 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:22:28,553 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:22:28,553 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:22:28,555 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:22:57,507 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:22:57,509 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:22:57,510 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:22:57,511 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:23:08,391 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:23:08,392 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:23:08,392 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:23:08,394 [Worker-130: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:23:25,322 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:23:25,323 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:23:25,324 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:23:25,326 [Worker-133: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:23:31,217 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:23:31,218 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:23:31,218 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:23:31,220 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:23:38,539 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:23:38,541 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:23:38,542 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:23:38,543 [Worker-129: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:26:00,148 [Worker-131: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:26:00,149 [Worker-131: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:26:00,150 [Worker-131: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:26:00,151 [Worker-131: Launching prova (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:26:10,302 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:26:10,305 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:26:10,306 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:26:10,307 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:26:23,833 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:26:23,835 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:26:23,836 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:26:23,838 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:27:47,765 [Worker-131: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:27:47,766 [Worker-131: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:27:47,767 [Worker-131: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:27:47,768 [Worker-131: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:27:55,983 [Worker-131: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:27:55,984 [Worker-131: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:27:55,985 [Worker-131: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:27:55,986 [Worker-131: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:28:13,774 [Worker-129: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:28:13,776 [Worker-129: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:28:13,777 [Worker-129: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:28:13,777 [Worker-129: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:28:31,504 [Worker-133: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:28:31,505 [Worker-133: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:28:31,505 [Worker-133: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:28:31,507 [Worker-133: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:28:40,855 [Worker-133: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:28:40,857 [Worker-133: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:28:40,858 [Worker-133: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:28:40,859 [Worker-133: Launching VentanaEmoticons (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:29:31,376 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:29:31,378 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:29:31,379 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:29:31,380 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:31:57,074 [Worker-129: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:31:57,075 [Worker-129: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:31:57,076 [Worker-129: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:31:57,077 [Worker-129: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:32:11,841 [Worker-137: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:32:11,842 [Worker-137: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:32:11,843 [Worker-137: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:32:11,844 [Worker-137: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:32:30,618 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:32:30,620 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:32:30,621 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:32:30,622 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:32:51,513 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:32:51,514 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:32:51,515 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:32:51,517 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:32:57,695 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:32:57,696 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:32:57,697 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:32:57,698 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:33:20,610 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:33:20,611 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:33:20,611 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:33:20,613 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:33:55,216 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:33:55,218 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:33:55,218 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:33:55,220 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:34:06,917 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:34:06,918 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:34:06,920 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:34:06,921 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:34:30,814 [Worker-140: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:34:30,816 [Worker-140: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:34:30,816 [Worker-140: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:34:30,817 [Worker-140: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:34:57,545 [Worker-140: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:34:57,547 [Worker-140: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 01:34:57,548 [Worker-140: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 01:34:57,551 [Worker-140: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 01:37:15,389 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-06-28 09:49:12,546 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-06-28 09:49:16,986 [Worker-0: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:49:16,987 [Worker-0: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:49:16,989 [Worker-0: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:49:16,989 [Worker-0: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 09:53:37,732 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:53:37,732 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:53:37,733 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:53:37,734 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 09:53:47,273 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:53:47,274 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:53:47,275 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:53:47,275 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 09:54:42,319 [Worker-18: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:54:42,319 [Worker-18: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:54:42,320 [Worker-18: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:54:42,320 [Worker-18: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 09:54:50,999 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:54:51,000 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:54:51,001 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:54:51,001 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 09:55:08,812 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:55:08,813 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:55:08,814 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:55:08,814 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 09:55:27,391 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:55:27,391 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:55:27,392 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:55:27,392 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 09:55:47,475 [Worker-16: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:55:47,475 [Worker-16: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:55:47,477 [Worker-16: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:55:47,477 [Worker-16: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 09:55:58,337 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:55:58,337 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:55:58,338 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:55:58,339 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 09:57:33,322 [Worker-2: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:57:33,323 [Worker-2: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:57:33,324 [Worker-2: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:57:33,324 [Worker-2: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 09:59:13,313 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:59:13,314 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 09:59:13,315 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 09:59:13,315 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:04:50,237 [Worker-18: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:04:50,239 [Worker-18: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:04:50,240 [Worker-18: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:04:50,241 [Worker-18: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:07:00,705 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:07:00,706 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:07:00,707 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:07:00,709 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:07:33,889 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:07:33,891 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:07:33,893 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:07:33,894 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:08:27,172 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:08:27,173 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:08:27,174 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:08:27,177 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:08:42,671 [Worker-21: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:08:42,672 [Worker-21: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:08:42,675 [Worker-21: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:08:42,676 [Worker-21: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:09:11,749 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:09:11,750 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:09:11,751 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:09:11,753 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:12:00,555 [Worker-22: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:12:00,556 [Worker-22: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:12:00,558 [Worker-22: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:12:00,559 [Worker-22: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:12:06,515 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:12:06,516 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:12:06,517 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:12:06,519 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:12:34,192 [Worker-25: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:12:34,194 [Worker-25: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:12:34,195 [Worker-25: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:12:34,196 [Worker-25: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:13:10,674 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:13:10,675 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:13:10,676 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:13:10,678 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:13:16,422 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:13:16,424 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:13:16,425 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:13:16,426 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:13:29,419 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:13:29,421 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:13:29,421 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:13:29,423 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:14:00,778 [Worker-22: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:14:00,780 [Worker-22: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:14:00,781 [Worker-22: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:14:00,782 [Worker-22: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:22:27,276 [Worker-30: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:22:27,278 [Worker-30: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:22:27,279 [Worker-30: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:22:27,280 [Worker-30: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:23:36,952 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:23:36,954 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:23:36,954 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:23:36,955 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:24:11,058 [Worker-31: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:24:11,059 [Worker-31: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:24:11,060 [Worker-31: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:24:11,063 [Worker-31: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:24:41,096 [Worker-32: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:24:41,097 [Worker-32: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:24:41,098 [Worker-32: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:24:41,099 [Worker-32: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:25:19,544 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:25:19,545 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:25:19,546 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:25:19,547 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:25:26,523 [Worker-33: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:25:26,525 [Worker-33: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:25:26,526 [Worker-33: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:25:26,527 [Worker-33: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:26:23,736 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:26:23,737 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:26:23,738 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:26:23,740 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:26:42,203 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:26:42,205 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:26:42,206 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:26:42,208 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:26:59,053 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:26:59,054 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:26:59,055 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:26:59,057 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:28:54,610 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:28:54,613 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:28:54,614 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:28:54,616 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:28:59,839 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:28:59,840 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:28:59,842 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:28:59,844 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:29:59,901 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:29:59,903 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:29:59,904 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:29:59,905 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:30:29,753 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:30:29,754 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:30:29,755 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:30:29,757 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:30:55,925 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:30:55,926 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:30:55,927 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:30:55,928 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:31:08,206 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:31:08,208 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:31:08,209 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:31:08,210 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:31:15,534 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:31:15,536 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:31:15,537 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:31:15,538 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:31:23,448 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:31:23,449 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:31:23,450 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:31:23,452 [Worker-35: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:32:10,988 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:32:10,989 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:32:10,990 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:32:10,991 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:32:39,142 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:32:39,143 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:32:39,144 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:32:39,146 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:33:18,687 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:33:18,690 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:33:18,691 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:33:18,692 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:33:27,796 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:33:27,797 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:33:27,799 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:33:27,801 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:33:35,682 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:33:35,684 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:33:35,684 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:33:35,685 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:34:01,625 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:34:01,626 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:34:01,627 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:34:01,629 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:35:12,383 [Worker-39: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:35:12,385 [Worker-39: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:35:12,386 [Worker-39: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:35:12,387 [Worker-39: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:35:29,936 [Worker-40: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:35:29,937 [Worker-40: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:35:29,938 [Worker-40: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:35:29,940 [Worker-40: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:36:24,368 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:36:24,371 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:36:24,371 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:36:24,373 [Worker-30: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:36:38,634 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:36:38,636 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:36:38,636 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:36:38,639 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:37:04,370 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:37:04,372 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:37:04,373 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:37:04,374 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:37:24,614 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:37:24,615 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:37:24,616 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:37:24,617 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:38:14,580 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:38:14,582 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:38:14,583 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:38:14,584 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:39:03,955 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:39:03,956 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:39:03,957 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:39:03,959 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:39:24,598 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:39:24,601 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:39:24,602 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:39:24,603 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:40:16,274 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:40:16,275 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:40:16,276 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:40:16,277 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:41:12,697 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:41:12,700 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:41:12,701 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:41:12,703 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:41:55,311 [Worker-38: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:41:55,312 [Worker-38: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:41:55,315 [Worker-38: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:41:55,316 [Worker-38: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:42:20,055 [Worker-39: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:42:20,057 [Worker-39: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:42:20,058 [Worker-39: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:42:20,059 [Worker-39: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:43:21,638 [Worker-40: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:43:21,639 [Worker-40: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:43:21,641 [Worker-40: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:43:21,642 [Worker-40: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:43:58,541 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:43:58,543 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:43:58,544 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:43:58,545 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:45:22,854 [Worker-35: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:45:22,856 [Worker-35: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:45:22,858 [Worker-35: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:45:22,859 [Worker-35: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:45:34,116 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:45:34,118 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:45:34,120 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:45:34,122 [Worker-37: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:45:57,163 [Worker-41: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:45:57,164 [Worker-41: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:45:57,165 [Worker-41: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:45:57,167 [Worker-41: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:48:55,750 [Worker-37: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:48:55,751 [Worker-37: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:48:55,752 [Worker-37: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:48:55,753 [Worker-37: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:49:43,512 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:49:43,514 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:49:43,515 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:49:43,517 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:49:54,853 [Worker-44: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:49:54,855 [Worker-44: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:49:54,856 [Worker-44: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:49:54,857 [Worker-44: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:50:19,788 [Worker-41: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:50:19,789 [Worker-41: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:50:19,789 [Worker-41: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:50:19,791 [Worker-41: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:50:35,377 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:50:35,378 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:50:35,379 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:50:35,380 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:51:12,009 [Worker-37: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:51:12,010 [Worker-37: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:51:12,011 [Worker-37: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:51:12,013 [Worker-37: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:53:45,751 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:53:45,752 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:53:45,753 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:53:45,754 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:54:45,643 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:54:45,644 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:54:45,645 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:54:45,647 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:55:02,873 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:55:02,874 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:55:02,875 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:55:02,876 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:57:05,099 [Worker-50: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:57:05,100 [Worker-50: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:57:05,100 [Worker-50: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:57:05,101 [Worker-50: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 10:59:32,474 [Worker-50: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:59:32,475 [Worker-50: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 10:59:32,476 [Worker-50: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 10:59:32,477 [Worker-50: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:00:57,855 [Worker-53: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:00:57,856 [Worker-53: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:00:57,856 [Worker-53: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:00:57,857 [Worker-53: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:02:08,549 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:02:08,550 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:02:08,551 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:02:08,552 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:02:43,305 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:02:43,307 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:02:43,307 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:02:43,309 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:03:34,095 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:03:34,096 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:03:34,097 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:03:34,098 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:04:15,243 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:04:15,245 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:04:15,245 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:04:15,247 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:04:51,429 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:04:51,431 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:04:51,431 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:04:51,432 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:05:12,451 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:05:12,453 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:05:12,453 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:05:12,455 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:05:50,520 [Worker-57: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:05:50,522 [Worker-57: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:05:50,522 [Worker-57: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:05:50,523 [Worker-57: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:07:38,627 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:07:38,629 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:07:38,629 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:07:38,630 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:08:32,662 [Worker-59: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:08:32,664 [Worker-59: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:08:32,665 [Worker-59: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:08:32,666 [Worker-59: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:08:35,588 [Worker-53: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:08:35,589 [Worker-53: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:08:35,590 [Worker-53: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:08:35,592 [Worker-53: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:08:49,421 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:08:49,422 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:08:49,422 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:08:49,423 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:09:02,796 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:09:02,797 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:09:02,798 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:09:02,800 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:09:28,517 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:09:28,519 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:09:28,520 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:09:28,521 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:09:41,147 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:09:41,148 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:09:41,149 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:09:41,151 [Worker-47: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:11:26,060 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:11:26,062 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:11:26,063 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:11:26,064 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:13:24,774 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:13:24,775 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:13:24,776 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:13:24,777 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:13:40,430 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:13:40,432 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:13:40,432 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:13:40,433 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:13:50,906 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:13:50,907 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:13:50,908 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:13:50,910 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:13:59,515 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:13:59,517 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:13:59,517 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:13:59,518 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:14:08,613 [Worker-60: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:14:08,614 [Worker-60: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:14:08,615 [Worker-60: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:14:08,617 [Worker-60: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:14:55,870 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:14:55,871 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:14:55,872 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:14:55,873 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:15:36,109 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:15:36,110 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:15:36,111 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:15:36,113 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:15:59,900 [Worker-58: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:15:59,901 [Worker-58: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:15:59,902 [Worker-58: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:15:59,903 [Worker-58: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:16:37,319 [Worker-56: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:16:37,320 [Worker-56: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:16:37,320 [Worker-56: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:16:37,323 [Worker-56: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:16:47,787 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:16:47,789 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:16:47,789 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:16:47,790 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:17:12,179 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:17:12,180 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:17:12,181 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:17:12,183 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:17:26,184 [Worker-59: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:17:26,187 [Worker-59: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:17:26,187 [Worker-59: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:17:26,188 [Worker-59: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:17:36,039 [Worker-59: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:17:36,040 [Worker-59: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:17:36,041 [Worker-59: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:17:36,044 [Worker-59: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:17:49,995 [Worker-62: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:17:49,997 [Worker-62: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:17:49,997 [Worker-62: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:17:49,999 [Worker-62: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:18:34,055 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:18:34,056 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:18:34,056 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:18:34,058 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:18:50,694 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:18:50,696 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:18:50,696 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:18:50,698 [Worker-54: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:20:30,734 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:20:30,735 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:20:30,735 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:20:30,736 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:20:48,177 [Worker-60: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:20:48,179 [Worker-60: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:20:48,179 [Worker-60: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:20:48,181 [Worker-60: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:21:02,941 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:21:02,942 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:21:02,942 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:21:02,944 [Worker-58: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:22:21,935 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:22:21,936 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:22:21,937 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:22:21,938 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:22:34,404 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:22:34,405 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:22:34,406 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:22:34,408 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:23:46,757 [Worker-64: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:23:46,758 [Worker-64: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:23:46,759 [Worker-64: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:23:46,760 [Worker-64: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:24:24,315 [Worker-64: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:24:24,316 [Worker-64: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:24:24,317 [Worker-64: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:24:24,318 [Worker-64: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:25:03,817 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:25:03,819 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:25:03,819 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:25:03,821 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:25:40,399 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:25:40,400 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:25:40,401 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:25:40,403 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:26:02,432 [Worker-61: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:26:02,434 [Worker-61: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:26:02,434 [Worker-61: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:26:02,435 [Worker-61: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:27:04,447 [Worker-63: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:27:04,448 [Worker-63: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:27:04,449 [Worker-63: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:27:04,450 [Worker-63: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:27:12,634 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:27:12,637 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:27:12,638 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:27:12,639 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:27:16,733 [Worker-63: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:27:16,734 [Worker-63: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:27:16,735 [Worker-63: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:27:16,737 [Worker-63: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:27:28,489 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:27:28,491 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:27:28,491 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:27:28,492 [Worker-55: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:28:12,186 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:28:12,187 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:28:12,187 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:28:12,188 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:28:24,464 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:28:24,466 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:28:24,466 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:28:24,467 [Worker-55: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:30:02,444 [Worker-64: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:30:02,445 [Worker-64: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:30:02,445 [Worker-64: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:30:02,446 [Worker-64: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:32:43,524 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:32:43,525 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:32:43,526 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:32:43,527 [Worker-61: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:38:13,338 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:38:13,340 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:38:13,341 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:38:13,343 [Worker-45: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:38:56,319 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:38:56,321 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:38:56,322 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:38:56,323 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:39:40,680 [Worker-72: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:39:40,681 [Worker-72: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:39:40,681 [Worker-72: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:39:40,682 [Worker-72: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:39:58,930 [Worker-71: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:39:58,932 [Worker-71: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:39:58,933 [Worker-71: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:39:58,934 [Worker-71: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:40:32,414 [Worker-73: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:40:32,415 [Worker-73: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:40:32,415 [Worker-73: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:40:32,417 [Worker-73: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:41:25,312 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:41:25,315 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:41:25,315 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:41:25,316 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:42:04,785 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:42:04,786 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:42:04,787 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:42:04,790 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:42:35,246 [Worker-72: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:42:35,248 [Worker-72: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:42:35,250 [Worker-72: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:42:35,251 [Worker-72: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:42:42,434 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:42:42,435 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:42:42,436 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:42:42,438 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:43:09,035 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:43:09,037 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:43:09,038 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:43:09,039 [Worker-70: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:43:17,039 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:43:17,040 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:43:17,041 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:43:17,043 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:43:22,778 [Worker-73: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:43:22,780 [Worker-73: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:43:22,780 [Worker-73: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:43:22,781 [Worker-73: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:44:49,418 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:44:49,419 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:44:49,419 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:44:49,420 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:45:20,304 [Worker-67: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:45:20,306 [Worker-67: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:45:20,306 [Worker-67: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:45:20,308 [Worker-67: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:46:26,242 [Worker-74: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:46:26,243 [Worker-74: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:46:26,244 [Worker-74: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:46:26,245 [Worker-74: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:47:28,227 [Worker-74: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:47:28,228 [Worker-74: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:47:28,228 [Worker-74: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:47:28,229 [Worker-74: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:49:01,463 [Worker-67: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:49:01,464 [Worker-67: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:49:01,464 [Worker-67: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:49:01,465 [Worker-67: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:49:11,137 [Worker-76: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:49:11,139 [Worker-76: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:49:11,139 [Worker-76: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:49:11,141 [Worker-76: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:50:51,610 [Worker-76: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:50:51,611 [Worker-76: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:50:51,612 [Worker-76: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:50:51,613 [Worker-76: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:53:33,845 [Worker-77: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:53:33,846 [Worker-77: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:53:33,847 [Worker-77: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:53:33,848 [Worker-77: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:54:12,769 [Worker-80: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:54:12,770 [Worker-80: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:54:12,771 [Worker-80: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:54:12,773 [Worker-80: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:56:09,332 [Worker-78: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:56:09,333 [Worker-78: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:56:09,334 [Worker-78: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:56:09,335 [Worker-78: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:56:22,136 [Worker-80: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:56:22,137 [Worker-80: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:56:22,138 [Worker-80: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:56:22,140 [Worker-80: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 11:56:27,364 [Worker-82: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:56:27,366 [Worker-82: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 11:56:27,367 [Worker-82: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 11:56:27,368 [Worker-82: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 12:03:53,606 [Worker-80: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:03:53,607 [Worker-80: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 12:03:53,608 [Worker-80: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:03:53,610 [Worker-80: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 12:04:27,834 [Worker-86: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:04:27,836 [Worker-86: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 12:04:27,837 [Worker-86: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:04:27,838 [Worker-86: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 12:07:56,381 [Worker-88: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:07:56,382 [Worker-88: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 12:07:56,383 [Worker-88: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:07:56,385 [Worker-88: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 12:08:27,253 [Worker-89: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:08:27,255 [Worker-89: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 12:08:27,256 [Worker-89: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:08:27,257 [Worker-89: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 12:10:25,362 [Worker-88: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:10:25,363 [Worker-88: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 12:10:25,363 [Worker-88: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:10:25,365 [Worker-88: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 12:13:03,836 [Worker-79: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:13:03,837 [Worker-79: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 12:13:03,837 [Worker-79: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:13:03,839 [Worker-79: Launching VentanaLogin (2)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources
+2020-06-28 12:13:53,183 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:13:53,184 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\main\resources
+2020-06-28 12:13:53,184 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-28 12:13:53,186 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Mizu\UMU\TDS\AppChat\AppChat\src\test\resources

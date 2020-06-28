@@ -6,6 +6,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JSplitPane;
 import javax.swing.JScrollPane;
 import javax.swing.JPanel;
+
+import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JTextField;
@@ -14,6 +16,7 @@ import controlador.AppChat;
 import modelo.Usuario;
 
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -22,6 +25,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
@@ -32,6 +36,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import tds.BubbleText;
+import javax.swing.JPopupMenu;
 
 @SuppressWarnings("serial")
 public class VentanaAppChat extends JFrame implements ActionListener {
@@ -53,6 +58,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private JButton btnEmoji;
 	private JButton btnNewGroup;
 	private JPanel panel_izq_1;
+	private JPopupMenu popupMenuEmoji;
 
 	public VentanaAppChat(Usuario user) {
 		this.loggedUser = user;
@@ -200,7 +206,6 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		txtWriteMsg = new JTextField();
 		txtWriteMsg.setColumns(10);
 		txtWriteMsg.addActionListener(this);
-		//txtWriteMsg.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		GridBagConstraints gbc_txtWrite = new GridBagConstraints();
 		gbc_txtWrite.gridwidth = 2;
 		gbc_txtWrite.insets = new Insets(0, 0, 0, 5);
@@ -209,13 +214,41 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_txtWrite.gridy = 2;
 		panel.add(txtWriteMsg, gbc_txtWrite);
 		
+		configurarBotonEmoji();
+		GridBagConstraints gbc_btnEmoji = new GridBagConstraints();
+		gbc_btnEmoji.gridx = 2;
+		gbc_btnEmoji.gridy = 2;
+		panel.add(btnEmoji, gbc_btnEmoji);
+	}
+	
+	private void configurarBotonEmoji() {
+		ActionListener popupListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelChat.sendEmoji(loggedUser.getUsername(), Integer.parseInt(e.getActionCommand()));
+			}
+		};
+		
+		popupMenuEmoji = new JPopupMenu();
+		popupMenuEmoji.setLayout(new GridLayout(5, 5, 0, 0));//5x5 porque BubbleText.MAXICONO==25
+		popupMenuEmoji.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		for (int i=0; i<=BubbleText.MAXICONO; i++) {
+			JMenuItem emoji = new JMenuItem(BubbleText.getEmoji(i));
+			emoji.addActionListener(popupListener);
+			popupMenuEmoji.add(emoji).setActionCommand(""+i);
+		}
+		
 		btnEmoji = new JButton();
 		btnEmoji.addActionListener(this);
-		btnEmoji.setIcon(new ImageIcon(BubbleText.getEmoji(6).getImage().getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH)));
-		GridBagConstraints gbc_lblEmoji = new GridBagConstraints();
-		gbc_lblEmoji.gridx = 2;
-		gbc_lblEmoji.gridy = 2;
-		panel.add(btnEmoji, gbc_lblEmoji);
+		btnEmoji.setFocusPainted(false);
+		btnEmoji.setMargin(new Insets(0, 0, 0, 0));
+		btnEmoji.setContentAreaFilled(false);
+		btnEmoji.setBorderPainted(false);
+		btnEmoji.setOpaque(false);
+		btnEmoji.setIcon(new ImageIcon(
+			BubbleText.getEmoji(0)
+			.getImage()
+			.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH))
+		);
 	}
 	
 	public void showAvatar(String nombre) {//TODO: entender como usar
@@ -242,8 +275,9 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			return;
 		}
 		if (e.getSource() == btnEmoji) {
-			//TODO
-			panelChat.sendEmoji(loggedUser.getUsername(), BubbleText.MAXICONO);
+			//Se llama show() dos veces porque la primera no sabe la altura del menu
+			popupMenuEmoji.show(btnEmoji, 0, 0);
+			popupMenuEmoji.show(btnEmoji, 0, -popupMenuEmoji.getHeight());
 			return;
 		}
 		if (e.getSource() == txtWriteMsg) {
@@ -266,5 +300,4 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			return;
 		}
 	}
-
 }

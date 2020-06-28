@@ -20,11 +20,11 @@ import modelo.Chat;
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class PanelListaChats extends JPanel {
 
-	private PanelChat panelChat;
+	private PanelChat chat;
 	
 	public PanelListaChats(PanelChat panelChat, Collection<Chat> chats) {
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		this.panelChat = panelChat;
+		this.chat = panelChat;
 		loadList(chats);
 	}
 	
@@ -76,7 +76,7 @@ public class PanelListaChats extends JPanel {
 	private ListSelectionListener createListSelectionListener(JList<Chat> chats) {
 		return e -> {
 			if (e.getValueIsAdjusting()) {
-				panelChat.loadChat(chats.getSelectedValue());
+				chat.loadChat(chats.getSelectedValue());
 			}
 		};
 	}
