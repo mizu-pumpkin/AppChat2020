@@ -270,8 +270,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnAvatar) {
-			new VentanaPerfil(loggedUser);
-			showAvatar(loggedUser.getAvatar());
+			new VentanaPerfil(loggedUser, this);
 			return;
 		}
 		if (e.getSource() == btnNewGroup) {

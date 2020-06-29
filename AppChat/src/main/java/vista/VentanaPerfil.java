@@ -34,8 +34,6 @@ import controlador.AppChat;
 
 @SuppressWarnings("serial")
 public class VentanaPerfil extends JFrame implements ActionListener {
-	
-	// TODO: desde este menú debe poder cambiarse el atributo "avatar" de "user".
 
 	private final static int MIN_WIDTH = 300;
 	private final static int MIN_HEIGHT = 200;
@@ -48,13 +46,18 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 	private JTextField txtGreeting;
 	private JButton btnEdit;
 	private JButton btnAvatar;
+	
+	// FIXME: almaceno aquí la ventana que invoca a esta para actualizar correctamente
+	// el avatar. Probablemente haya otra solución, no es esto lo más elegante.
+	private VentanaAppChat vac;
 
-	public static void main(String[] args) {//FIXME: delete later
+	/*public static void main(String[] args) {//FIXME: delete later
 		new VentanaPerfil(AdaptadorUsuarioTDS.getInstance().read(7284));
-	}
+	}*/
 
-	public VentanaPerfil(Usuario _user) {
+	public VentanaPerfil(Usuario _user, VentanaAppChat _vac) {
 		user = _user;
+		vac = _vac;
 		initialize();
 		setVisible(true);
 	}
@@ -168,6 +171,7 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				AppChat.getInstance().changeAvatar(user, chooser.getSelectedFile().getAbsolutePath());
 				showAvatar(user.getAvatar());
+				vac.showAvatar(user.getAvatar());
 			}
 		}
 	}

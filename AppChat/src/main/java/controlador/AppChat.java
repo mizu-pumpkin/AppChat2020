@@ -108,6 +108,7 @@ public class AppChat {
 	
 	public void changeAvatar(Usuario usuario, String avatar) {
 		usuario.setAvatar(avatar);
+		adaptadorUsuario.update(usuario);
 	}
 
 // ---------------------------------------------------------------------
