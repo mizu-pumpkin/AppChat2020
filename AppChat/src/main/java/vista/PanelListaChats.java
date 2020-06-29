@@ -20,17 +20,17 @@ import modelo.Chat;
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class PanelListaChats extends JPanel {
 
-	private PanelChat panelChat;
-	private JList lista;
+	private PanelChat chat;
 	
 	public PanelListaChats(PanelChat panelChat, Collection<Chat> chats) {
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		this.panelChat = panelChat;
-		iniciarLista(chats);
+		this.chat = panelChat;
+		loadList(chats);
 	}
 	
-	private void iniciarLista(Collection<Chat> chats) {
-		this.lista = new JList();
+	public void loadList(Collection<Chat> chats) {
+		removeAll();
+		JList lista = new JList();
 		// clase interna anónima que hereda de AbstractListModel
 		lista.setModel(new AbstractListModel() {
 			Object[] values = chats.toArray();
@@ -41,11 +41,11 @@ public class PanelListaChats extends JPanel {
 				return values[index];
 			}
 		});
-		
+
 		lista.setCellRenderer(createListRenderer());
 		lista.addListSelectionListener(createListSelectionListener(lista));
-		//lista.setSelectedIndex(0);
 		add(lista);
+		revalidate();
 	}
 	
 	private static ListCellRenderer<? super Chat> createListRenderer() {
@@ -76,7 +76,7 @@ public class PanelListaChats extends JPanel {
 	private ListSelectionListener createListSelectionListener(JList<Chat> chats) {
 		return e -> {
 			if (e.getValueIsAdjusting()) {
-				panelChat.loadChat(chats.getSelectedValue());
+				chat.loadChat(chats.getSelectedValue());
 			}
 		};
 	}

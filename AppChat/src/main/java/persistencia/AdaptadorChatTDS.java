@@ -129,7 +129,7 @@ public class AdaptadorChatTDS implements IAdaptadorChatDAO {
 		
 		// Crear el objeto
 		Chat chat;
-		if (type == TYPE_GROUP) chat = new ChatGrupo(name);
+		if (type.equals(TYPE_GROUP)) chat = new ChatGrupo(name);
 		else chat = new ChatIndividual(name);
 		chat.setId(id);
 		

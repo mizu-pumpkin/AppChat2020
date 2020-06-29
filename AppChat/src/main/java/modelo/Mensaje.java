@@ -9,7 +9,7 @@ public class Mensaje {
 // ---------------------------------------------------------------------
 	
 	public static final int TEXT_BODY = 1;
-	public static final int EMOTICON_BODY = 2;
+	public static final int EMOJI_BODY = 2;
 
 // ---------------------------------------------------------------------
 //                                                            Attributes
@@ -42,20 +42,20 @@ public class Mensaje {
 		this(null, null, text, timestamp);
 	}
 	
-	public Mensaje(Usuario sender, Chat chat, int emoticon, Date timestamp) {
+	public Mensaje(Usuario sender, Chat chat, int emoji, Date timestamp) {
 		this.sender = sender;
 		this.chat = chat;
-		this.body = Integer.toString(emoticon);
+		this.body = Integer.toString(emoji);
 		this.timestamp = timestamp;
-		this.bodyType = EMOTICON_BODY;
+		this.bodyType = EMOJI_BODY;
 	}
 
-	public Mensaje(Usuario sender, Chat chat, int emoticon) {
-		this(sender, chat, emoticon, new Date());
+	public Mensaje(Usuario sender, Chat chat, int emoji) {
+		this(sender, chat, emoji, new Date());
 	}
 	
-	public Mensaje(int emoticon, Date timestamp) {
-		this(null, null, emoticon, timestamp);
+	public Mensaje(int emoji, Date timestamp) {
+		this(null, null, emoji, timestamp);
 	}
 
 // ---------------------------------------------------------------------

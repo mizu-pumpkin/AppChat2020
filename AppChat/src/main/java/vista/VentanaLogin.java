@@ -12,8 +12,13 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import controlador.AppChat;
+import modelo.Usuario;
+import persistencia.AdaptadorUsuarioTDS;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -29,7 +34,26 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	private JButton btnLogin;
 	private JButton btnRegister;
 	
-	public static void main(final String[] args){
+	public static void createTesters() throws ParseException {//FIXME: delete later
+		AdaptadorUsuarioTDS aU = AdaptadorUsuarioTDS.getInstance();
+		if (aU.readAll().size() == 0) {
+			aU.create(new Usuario("mizu", "aaa", "Marisol Zucca",
+				new SimpleDateFormat("yyyy-MM-dd").parse("1989-08-31"),
+				"mizu@um.es", "111", "Ho fame!")
+			);
+			aU.create(new Usuario("rey", "aaa", "Reyes Giraldi",
+				new SimpleDateFormat("yyyy-MM-dd").parse("1988-04-23"),
+				"rey@um.es", "222", "Stupida sexy Catra...")
+			);
+			aU.create(new Usuario("papy", "aaa", "Natasa Tron",
+				new SimpleDateFormat("yyyy-MM-dd").parse("1989-06-16"),
+				"papy@um.es", "333", "")
+			);
+		}
+	}
+	
+	public static void main(final String[] args) throws ParseException{
+		createTesters();
 		new VentanaLogin();
 	}
 	
@@ -91,23 +115,25 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	}
 	
 	private void configurarBotones() {
+		btnLogin = new JButton("Login");
+		btnRegister = new JButton("Register");
+		
+		btnLogin.addActionListener(this);
+		btnRegister.addActionListener(this);
+		
+		getRootPane().setDefaultButton(btnLogin);
+		
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 4;
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 3;
+		
 		JPanel panel_buttons = new JPanel();
 		contentPane.add(panel_buttons, gbc_panel);
-		
-		btnLogin = new JButton("Login");
 		panel_buttons.add(btnLogin);
-		
-		btnRegister = new JButton("Register");
 		panel_buttons.add(btnRegister);
-		
-		btnLogin.addActionListener(this);
-		btnRegister.addActionListener(this);
 	}
 	
 	@Override

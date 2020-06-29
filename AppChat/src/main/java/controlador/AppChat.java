@@ -1,10 +1,12 @@
 package controlador;
 
+import java.util.Collection;
 import java.util.Date;
 
 import modelo.CatalogoUsuarios;
 import modelo.Chat;
 import modelo.ChatGrupo;
+import modelo.ChatIndividual;
 import modelo.Mensaje;
 import modelo.Usuario;
 import persistencia.DAOException;
@@ -171,17 +173,27 @@ public class AppChat {
 	
 	public boolean registerContact(String contactName, String contactPhone) {
 		Usuario user = CatalogoUsuarios.getInstance().getByPhone(contactPhone);
-		if (user == null) return false;
+		if (user == null || user.equals(usuarioActual)) return false;
 		return registerChat(usuarioActual.addContact(contactName, user));
 	}
 	
 	public boolean registerContact(Usuario user) {
-		if (user == null) return false;
+		if (user == null || user.equals(usuarioActual)) return false;
 		return registerChat(usuarioActual.addContact(user));
 	}
 
 	public boolean createGroup(String groupName) {
 		return registerChat(usuarioActual.makeGroup(groupName));
+	}
+
+	public boolean createGroup(String groupName, Collection<ChatIndividual> contacts) {
+		ChatGrupo grupo = usuarioActual.makeGroup(groupName);
+		for (ChatIndividual c : contacts) {
+			grupo.addMember(c);
+			c.getOwner().joinGroup(grupo);
+			registerChat(grupo, c.getOwner());
+		}
+		return registerChat(grupo);
 	}
 
 	public boolean joinGroup(ChatGrupo group) {
