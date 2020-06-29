@@ -15,7 +15,10 @@ import java.awt.Image;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -23,10 +26,14 @@ import java.text.SimpleDateFormat;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import controlador.AppChat;
 
 @SuppressWarnings("serial")
-public class VentanaPerfil extends JFrame {
+public class VentanaPerfil extends JFrame implements ActionListener {
 	
 	// TODO: desde este menú debe poder cambiarse el atributo "avatar" de "user".
 
@@ -69,15 +76,14 @@ public class VentanaPerfil extends JFrame {
 	}
 	
 	private void configurarInfoUsuario() {
-		btnAvatar = new JButton(); //FIXME
-		// btnAvatar.setIcon(new ImageIcon(BubbleText.getEmoji(2).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))); //FIXME
+		btnAvatar = new JButton();
 		showAvatar(user.getAvatar());
 		btnAvatar.setFocusPainted(false);
 		btnAvatar.setMargin(new Insets(0, 0, 0, 0));
 		btnAvatar.setContentAreaFilled(false);
 		btnAvatar.setBorderPainted(false);
 		btnAvatar.setOpaque(false);
-		//btnAvatar.addActionListener(this);
+		btnAvatar.addActionListener(this);
 		GridBagConstraints gbc_lblAvatar = new GridBagConstraints();
 		gbc_lblAvatar.gridheight = 2;
 		gbc_lblAvatar.insets = new Insets(0, 0, 5, 5);
@@ -140,11 +146,11 @@ public class VentanaPerfil extends JFrame {
 	}
 	
 	private void showAvatar(String nombre) {
-		URL url = this.getClass().getResource(nombre);
+		File fichero = new File(nombre);
 		BufferedImage myPicture;
 		try { 
-			myPicture = ImageIO.read(url);			
-			Image aux=myPicture.getScaledInstance(MIN_WIDTH, MIN_HEIGHT, Image.SCALE_DEFAULT);
+			myPicture = ImageIO.read(fichero);			
+			Image aux=myPicture.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
 			btnAvatar.setIcon(new ImageIcon(aux));
 			btnAvatar.repaint();
 		} catch (IOException e1) {
@@ -152,4 +158,17 @@ public class VentanaPerfil extends JFrame {
 		}
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAvatar) {
+			JFileChooser chooser = new JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG o JPEG", "png", "jpg", "jpeg");
+			chooser.setFileFilter(filter);
+			int returnVal = chooser.showOpenDialog(null);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				AppChat.getInstance().changeAvatar(user, chooser.getSelectedFile().getAbsolutePath());
+				showAvatar(user.getAvatar());
+			}
+		}
+	}
 }

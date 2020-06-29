@@ -105,6 +105,10 @@ public class AppChat {
 		if (user == null) user = catalogoUsuarios.getByUsername(data);
 		return user;
 	}
+	
+	public void changeAvatar(Usuario usuario, String avatar) {
+		usuario.setAvatar(avatar);
+	}
 
 // ---------------------------------------------------------------------
 //                                                    Gestión de Mensaje

@@ -13,8 +13,9 @@ public class Usuario {
 // ---------------------------------------------------------------------
 //                                                            Attributes
 // ---------------------------------------------------------------------
-	
-	private static String DEFAULT_AVATAR = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Roto2.svg/256px-Roto2.svg.png";
+	// FIXME: la ruta de "avatar" es abierta por un objeto "File"
+	// hay que acordar una carpeta donde guardar los avatares.
+	private static String DEFAULT_AVATAR = "/home/rufo/git/roto2.png";
 	
 	private int id;
 	private final String username; // usuario

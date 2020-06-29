@@ -32,6 +32,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -106,9 +107,6 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 /* Avatar */
 		btnAvatar = new JButton(); //TODO
 		btnAvatar.addActionListener(this);
-		// FIXME: eliminar la siguiente línea una vez el cambio de avatar funcione.
-		// btnAvatar.setIcon(new ImageIcon(BubbleText.getEmoji(2).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)));
-		// TODO: debe poder cambiarse en la ventana "VentanaPerfil" la foto de loggedUser.
 		showAvatar(loggedUser.getAvatar());
 		btnAvatar.setFocusPainted(false);
 		btnAvatar.setMargin(new Insets(0, 0, 0, 0));
@@ -257,14 +255,14 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	// Dado una ruta almacenada en "nombre", establece la imagen apuntada en esa ruta
 	// como nuevo icono de "btnAvatar".
 	public void showAvatar(String nombre) {
-		URL url = this.getClass().getResource(nombre);
+		File fichero = new File(nombre);
 		BufferedImage myPicture;
 		try { 
-			myPicture = ImageIO.read(url);			
-			Image aux=myPicture.getScaledInstance(MIN_WIDTH, MIN_HEIGHT, Image.SCALE_DEFAULT);
+			myPicture = ImageIO.read(fichero);			
+			Image aux=myPicture.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
 			btnAvatar.setIcon(new ImageIcon(aux));
 			btnAvatar.repaint();
-		} catch (IOException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 	}
@@ -273,6 +271,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnAvatar) {
 			new VentanaPerfil(loggedUser);
+			showAvatar(loggedUser.getAvatar());
 			return;
 		}
 		if (e.getSource() == btnNewGroup) {
