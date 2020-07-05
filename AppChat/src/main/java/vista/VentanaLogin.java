@@ -39,15 +39,15 @@ public class VentanaLogin extends JFrame implements ActionListener {
 		if (aU.readAll().size() == 0) {
 			aU.create(new Usuario("mizu", "aaa", "Marisol Zucca",
 				new SimpleDateFormat("yyyy-MM-dd").parse("1989-08-31"),
-				"mizu@um.es", "111", "Ho fame!")
+				"mizu@um.es", "684253969", "Ho fame!")
 			);
 			aU.create(new Usuario("rey", "aaa", "Reyes Giraldi",
 				new SimpleDateFormat("yyyy-MM-dd").parse("1988-04-23"),
-				"rey@um.es", "222", "Stupida sexy Catra...")
+				"rey@um.es", "684208637", "Stupida sexy Catra...")
 			);
 			aU.create(new Usuario("papy", "aaa", "Natasa Tron",
 				new SimpleDateFormat("yyyy-MM-dd").parse("1989-06-16"),
-				"papy@um.es", "333", "")
+				"papy@um.es", "3333238937", "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890")
 			);
 		}
 	}

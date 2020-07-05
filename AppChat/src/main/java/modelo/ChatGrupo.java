@@ -51,13 +51,20 @@ public class ChatGrupo extends Chat {
 		members.add(m);
 	}
 	
+// ---------------------------------------------------------------------
+//	                                                             Methods
+// ---------------------------------------------------------------------
+	
+	public void join(ChatIndividual m) {
+		addMember(m);
+		m.joinGroup(this);
+	}
+	
 	public void editGroup(String name, List<ChatIndividual> newMembers) {
 		this.name = name;
 		clearGroup();
-		for (ChatIndividual m : newMembers) {
-			addMember(m);
-			m.joinGroup(this);
-		}
+		for (ChatIndividual m : newMembers)
+			join(m);
 	}
 	
 	public void removeMember(Usuario user) {
@@ -80,10 +87,6 @@ public class ChatGrupo extends Chat {
 			m.leaveGroup(this);
 		members.clear();
 	}
-	
-// ---------------------------------------------------------------------
-//	                                                             Methods
-// ---------------------------------------------------------------------
 	
 	public List<Mensaje> findMessagesByUsername(Usuario user) {
 		return messages.stream()

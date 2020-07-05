@@ -141,13 +141,17 @@ public class AppChat {
 		if (recipient.getId() == 0) registerChat(chat, chat.getUser()); //FIXME?
 		return recipient;
 	}
-	
+	/**
+	 * Crea el mensaje en la BD y actualiza el chat que lo contiene.
+	 */
 	private boolean registerMessage(Chat chat, Mensaje msg) {
 		adaptadorMensaje.create(msg);
 		adaptadorChat.update(chat);
 		return true;
 	}
-	
+	/**
+	 * Borra el mensaje en la BD y actualiza el chat que lo contiene.
+	 */
 	public boolean deleteMessage(Mensaje msg) {
 		Chat chat = msg.getChat();
 		chat.removeMessage(msg);
@@ -157,14 +161,37 @@ public class AppChat {
 	}
 
 // ---------------------------------------------------------------------
-//                                         Gestión de ContactoIndividual
+//                                                       Gestión de Chat
 // ---------------------------------------------------------------------
+	
+	public boolean registerContact(String contactName, String contactPhone) {
+		Usuario user = CatalogoUsuarios.getInstance().getByPhone(contactPhone);
+		if (user == null || user.equals(usuarioActual)) return false;
+		
+		return registerChat(usuarioActual.addContact(contactName, user));
+	}
+	
+	public boolean registerContact(Usuario user) {
+		if (user == null || user.equals(usuarioActual)) return false;
+		
+		return registerChat(usuarioActual.getPrivateChat(user));
+	}
+
+	public boolean registerContact(ChatIndividual contact, String text) {
+		if (contact == null) return false;
+		
+		contact.setName(text);
+		return registerChat(contact);
+	}
 	
 	private boolean registerChat(Chat chat) {
 		if (chat == null) return false;
+		
 		return registerChat(chat, usuarioActual);
 	}
-	
+	/**
+	 * Crea el chat en la BD y actualiza el usuario que lo contiene.
+	 */
 	private boolean registerChat(Chat chat, Usuario user) {
 		if (chat == null) return false;
 		if (chat.getId() == 0)
@@ -175,28 +202,12 @@ public class AppChat {
 		
 		return true;
 	}
-	
-	public boolean registerContact(String contactName, String contactPhone) {
-		Usuario user = CatalogoUsuarios.getInstance().getByPhone(contactPhone);
-		if (user == null || user.equals(usuarioActual)) return false;
-		return registerChat(usuarioActual.addContact(contactName, user));
-	}
-	
-	public boolean registerContact(Usuario user) {
-		if (user == null || user.equals(usuarioActual)) return false;
-		return registerChat(usuarioActual.getPrivateChat(user));
-	}
 
-	public boolean createGroup(String groupName) {
-		return registerChat(usuarioActual.makeGroup(groupName));
-	}
-
-	public boolean createGroup(String groupName, Collection<ChatIndividual> contacts) {
+	public boolean createGroup(String groupName, Collection<ChatIndividual> members) {
 		ChatGrupo g = usuarioActual.makeGroup(groupName);
-		for (ChatIndividual c : contacts) {
-			g.addMember(c);
-			c.joinGroup(g);
-			registerChat(g, c.getUser());
+		for (ChatIndividual m : members) {
+			g.join(m);
+			registerChat(g, m.getUser());
 		}
 		return registerChat(g);
 	}
@@ -215,30 +226,47 @@ public class AppChat {
 		return false;
 	}
 	
+	public boolean leaveGroup(ChatGrupo g) {
+		g.removeMember(usuarioActual);
+		
+		adaptadorUsuario.update(usuarioActual);
+		adaptadorChat.update(g);
+		return true;
+	}
+	
 	public boolean deleteChat(Chat chat) {
 		if (chat instanceof ChatGrupo) {
 			ChatGrupo g = (ChatGrupo) chat;
-			List<ChatIndividual> old = g.getMembers();
 			
-			g.clearGroup();
-			
-			for (ChatIndividual m : old) 
-				adaptadorUsuario.update(m.getUser());
+			if (g.isAdmin(usuarioActual)) {
+				List<ChatIndividual> old = g.getMembers();
+				g.clearGroup();
+				for (ChatIndividual m : old) 
+					adaptadorUsuario.update(m.getUser());
+			} else
+				return leaveGroup(g);
 		}
 		usuarioActual.removeChat(chat);
+		
+		//Si se borra un contacto, también se ha borrado de los grupos
+		//en los que aparece, por lo que hay que actualizar la BD
+		if (chat instanceof ChatIndividual) {
+			for (ChatGrupo g : usuarioActual.getAdminGroups())
+				adaptadorChat.update(g);
+			adaptadorUsuario.update(((ChatIndividual) chat).getUser());
+		}
 			
 		adaptadorChat.delete(chat);
 		adaptadorUsuario.update(usuarioActual);
 		return true;
 	}
 	
-	public boolean leaveGroup(ChatGrupo g) {
-		usuarioActual.leaveGroup(g);
-		g.removeMember(usuarioActual);
-		
-		adaptadorUsuario.update(usuarioActual);
-		adaptadorChat.update(g);
-		return true;
+// ---------------------------------------------------------------------
+//	                                                  Gestión de Usuario
+// ---------------------------------------------------------------------
+	
+	public boolean knowsUser(Usuario u) {
+		return usuarioActual.knowsUser(u);
 	}
 
 }

@@ -18,8 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import controlador.AppChat;
-
 @SuppressWarnings("serial")
 public class VentanaPerfil extends JFrame {
 
@@ -116,24 +114,18 @@ public class VentanaPerfil extends JFrame {
 		gbc_greeting.gridx = 2;
 		gbc_greeting.gridy = 2;
 		
-		if (user.equals(AppChat.getInstance().getUsuarioActual())) {
-			txtGreeting = new JTextField();
-			txtGreeting.setText(user.getGreeting());
-			txtGreeting.setColumns(100);
-			contentPane.add(txtGreeting, gbc_greeting);
-			
-			btnEdit = new JButton("Edit");
-			//btnEdit.addActionListener(this);
-			GridBagConstraints gbc_btnEdit = new GridBagConstraints();
-			gbc_btnEdit.insets = new Insets(0, 0, 5, 5);
-			gbc_btnEdit.gridx = 3;
-			gbc_btnEdit.gridy = 2;
-			contentPane.add(btnEdit, gbc_btnEdit);
-		} else {
-			JLabel lblGreeting = new JLabel(user.getGreeting());
-			gbc_greeting.gridwidth = 2;
-			contentPane.add(lblGreeting, gbc_greeting);
-		}
+		txtGreeting = new JTextField();
+		txtGreeting.setText(user.getGreeting());
+		txtGreeting.setColumns(100);
+		contentPane.add(txtGreeting, gbc_greeting);
+		
+		btnEdit = new JButton("Edit");
+		//btnEdit.addActionListener(this);
+		GridBagConstraints gbc_btnEdit = new GridBagConstraints();
+		gbc_btnEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_btnEdit.gridx = 3;
+		gbc_btnEdit.gridy = 2;
+		contentPane.add(btnEdit, gbc_btnEdit);
 	}
 
 }

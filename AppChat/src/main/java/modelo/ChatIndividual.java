@@ -18,7 +18,7 @@ public class ChatIndividual extends Chat {
 	}
 	
 	public ChatIndividual(Usuario user) {
-		this(user.getUsername(), user);//FIXME user.getPhone()
+		this(user.getPhone(), user);
 	}
 	
 // ---------------------------------------------------------------------

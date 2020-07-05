@@ -173,7 +173,7 @@ public class Usuario {
 		chats.add(chat);
 		if (chat instanceof ChatIndividual) {
 			ChatIndividual c = (ChatIndividual) chat;
-			privateChats.put(c.getUser().getId()/*FIXME*/, c);
+			privateChats.put(c.getUser().getId(), c);
 		}
 		return true;
 	}
@@ -184,7 +184,9 @@ public class Usuario {
 		chats.remove(chat);
 		if (chat instanceof ChatIndividual) {
 			ChatIndividual c = (ChatIndividual) chat;
-			privateChats.remove(c.getUser().getId());//FIXME
+			privateChats.remove(c.getUser().getId());
+			for (ChatGrupo g : getAdminGroups())
+				g.removeMember(c);
 		}
 		return true;
 	}
@@ -193,7 +195,7 @@ public class Usuario {
 //                                                               Methods
 // ---------------------------------------------------------------------
 	
-	private boolean knowsUser(Usuario user) {
+	public boolean knowsUser(Usuario user) {
 		return privateChats.containsKey(user.getId());
 	}
 	

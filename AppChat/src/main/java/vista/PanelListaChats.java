@@ -98,7 +98,7 @@ public class PanelListaChats extends JPanel {
 							new VentanaEditorGrupo(user, (ChatGrupo) chat, PanelListaChats.this);
 						else {
 							ChatIndividual c = (ChatIndividual) chat;
-							new VentanaPerfil(c.getUser());
+							new VentanaEditorContacto(c, PanelListaChats.this);
 						}
 					}
 					return;

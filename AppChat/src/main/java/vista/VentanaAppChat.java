@@ -223,7 +223,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private void configurarBotonEmoji() {
 		ActionListener popupListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelChat.sendEmoji(loggedUser.getUsername(), Integer.parseInt(e.getActionCommand()));
+				panelChat.sendEmoji(Integer.parseInt(e.getActionCommand()));
 			}
 		};
 		
@@ -274,20 +274,26 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			return;
 		}
 		if (e.getSource() == txtWriteMsg) {
-			panelChat.sendText(loggedUser.getUsername(), txtWriteMsg.getText());
+			panelChat.sendText(txtWriteMsg.getText());
 			txtWriteMsg.setText("");
 			return;
 		}
-		if (e.getSource() == txtFindUser) {//FIXME
+		if (e.getSource() == txtFindUser) {
 			Usuario user = AppChat.getInstance().findUser(txtFindUser.getText());
-			if (AppChat.getInstance().registerContact(user)) {
-				panelList.reloadList();
+			if (user == null) {
 				JOptionPane.showMessageDialog(
 					this,
-					user.getUsername() +" añadido correctamente.",
-					"New contact success",
-					JOptionPane.INFORMATION_MESSAGE
+					"El usuario " + txtFindUser.getText() +" no existe.",
+					"User doesn't exist",
+					JOptionPane.ERROR_MESSAGE
 				);
+			} else if (user.equals(loggedUser)) {
+				new VentanaPerfil(loggedUser);
+			} else {
+				if (AppChat.getInstance().knowsUser(user))
+					new VentanaEditorContacto(loggedUser.getPrivateChat(user), panelList);
+				else
+					new VentanaEditorContacto(user, panelList);
 			}
 			txtFindUser.setText("");
 			return;

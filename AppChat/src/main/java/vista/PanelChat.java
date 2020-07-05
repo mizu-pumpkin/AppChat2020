@@ -35,9 +35,17 @@ public class PanelChat extends JPanel implements Scrollable {
 		for (Mensaje m : actualChat.getMessages()) {
 			String text = m.getBody();
 			String sender = m.getSenderName();
-			boolean sent = sender.equals(myUsername);
-			Color col = sent ? COLOR_MSG_SENT : COLOR_MSG_RCVD;
-			int inout = sent ? BubbleText.SENT : BubbleText.RECEIVED;
+			
+			Color col;
+			int inout;
+			if(sender.equals(myUsername)) {
+				col = COLOR_MSG_SENT;
+				inout = BubbleText.SENT;
+			} else {
+				col = COLOR_MSG_RCVD;
+				inout = BubbleText.RECEIVED;
+				sender = actualChat.getName();
+			}
 			
 			if (m.getBodyType() == Mensaje.TEXT_BODY)
 				add(new BubbleText(this, text, col, sender, inout));
@@ -47,15 +55,15 @@ public class PanelChat extends JPanel implements Scrollable {
 		revalidate();
 	}
 	
-	public void sendText(String username, String text) {
+	public void sendText(String text) {
 		if (actualChat == null) return;
-		add(new BubbleText(this, text, COLOR_MSG_SENT, username, BubbleText.SENT));
+		add(new BubbleText(this, text, COLOR_MSG_SENT, myUsername, BubbleText.SENT));
 		AppChat.getInstance().sendMessage(actualChat, text);
 	}
 	
-	public void sendEmoji(String username, int emoji) {
+	public void sendEmoji(int emoji) {
 		if (actualChat == null) return;
-		add(new BubbleText(this, emoji, COLOR_MSG_SENT, username, BubbleText.SENT, 12));
+		add(new BubbleText(this, emoji, COLOR_MSG_SENT, myUsername, BubbleText.SENT, 12));
 		AppChat.getInstance().sendMessage(actualChat, emoji);
 	}
 
