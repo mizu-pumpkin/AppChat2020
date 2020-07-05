@@ -2,37 +2,64 @@ package modelo;
 
 public class ChatIndividual extends Chat {
 	
+	private Usuario user;
+	
 // ---------------------------------------------------------------------
 //	                                                        Constructors
 // ---------------------------------------------------------------------
-	
-	public ChatIndividual(String name) {
-		super(name, null);
-	}
 
 	public ChatIndividual(String name, Usuario user) {
-		super(name, user);
+		super(name);
+		this.user = user;
 	}
 
+	public ChatIndividual(String name) {
+		this(name, null);
+	}
+	
 	public ChatIndividual(Usuario user) {
-		super(user.getUsername(), user);
+		this(user.getUsername(), user);//FIXME user.getPhone()
 	}
 	
 // ---------------------------------------------------------------------
 //	                                                 Getters and Setters
 // ---------------------------------------------------------------------
+
+	public Usuario getUser() {
+		return user;
+	}
+
+	public void setUser(Usuario u) {
+		user = u;
+	}
+	
+	public boolean isUser(Usuario u) {
+		return user.equals(u);
+	}
 	
 	public String getPhone() { // movil
-		return getOwner().getPhone();
+		return user.getPhone();
 	}
 	
 // ---------------------------------------------------------------------
 //		                                                         Methods
 // ---------------------------------------------------------------------
 	
+	public void joinGroup(ChatGrupo g) {
+		user.joinGroup(g);
+	}
+
+	public void leaveGroup(ChatGrupo g) {
+		user.leaveGroup(g);
+	}
+	
+	public ChatIndividual getChatWith(Usuario u) {
+		return user.getPrivateChat(u);
+	}
+	
 	@Override
 	public String toString() {
 		return super.toString() + 
-			   "[user=" + getOwner().getId() + "]";
+			   "[user=" + user.getId() + "]";
 	}
 }

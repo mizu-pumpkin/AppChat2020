@@ -57,14 +57,14 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private JButton btnAvatar;
 	private JButton btnEmoji;
 	private JButton btnNewGroup;
-	private JPanel panel_izq_1;
+	private JPanel panel_izq;
 	private JPopupMenu popupMenuEmoji;
 
 	public VentanaAppChat(Usuario user) {
 		this.loggedUser = user;
-		panelChat = new PanelChat(user.getUsername());
-		panelList = new PanelListaChats(panelChat, user.getChats());
-		initialize();
+		this.panelChat = new PanelChat(user.getUsername());
+		this.panelList = new PanelListaChats(panelChat,user);
+		initialize(); 
 		setVisible(true);
 	}
 
@@ -81,9 +81,9 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		splitPane.setResizeWeight(0.2);
 		contentPane.add(splitPane);
 		
-		panel_izq_1 = new JPanel();
-		splitPane.setLeftComponent(panel_izq_1);
-		configurarPanelIzquierdo(panel_izq_1);
+		panel_izq = new JPanel();
+		splitPane.setLeftComponent(panel_izq);
+		configurarPanelIzquierdo(panel_izq);
 		
 		JPanel panel_der = new JPanel();
 		splitPane.setRightComponent(panel_der);
@@ -104,14 +104,12 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 
 	public void configurarInfoUsuario(JPanel panel) {
 /* Avatar */
-		btnAvatar = new JButton(); //TODO
+		btnAvatar = Graphics.makeImageButton(new ImageIcon(//FIXME
+			BubbleText.getEmoji(BubbleText.MAXICONO)
+			.getImage()
+			.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))
+		);
 		btnAvatar.addActionListener(this);
-		btnAvatar.setIcon(new ImageIcon(BubbleText.getEmoji(BubbleText.MAXICONO).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))); //FIXME
-		btnAvatar.setFocusPainted(false);
-		btnAvatar.setMargin(new Insets(0, 0, 0, 0));
-		btnAvatar.setContentAreaFilled(false);
-		btnAvatar.setBorderPainted(false);
-		btnAvatar.setOpaque(false);
 		GridBagConstraints gbc_lblAvatar = new GridBagConstraints();
 		gbc_lblAvatar.gridheight = 2;
 		gbc_lblAvatar.insets = new Insets(0, 0, 5, 5);
@@ -138,7 +136,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		panel.add(lblGreeting, gbc_lblGreeting);
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })//FIXME
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void configurarListaContactos(JPanel panel) {
 /* Contacts */
 		JComboBox cb_selector = new JComboBox();
@@ -155,13 +153,14 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		txtFindUser.setColumns(10);
 		txtFindUser.addActionListener(this);
 		
-		btnNewGroup = new JButton("+");
+		btnNewGroup = Graphics.makeButton("+");
 		btnNewGroup.addActionListener(this);
 		GridBagConstraints gbc_btnNewGroup = new GridBagConstraints();
 		gbc_btnNewGroup.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewGroup.gridx = 0;
 		gbc_btnNewGroup.gridy = 3;
-		panel_izq_1.add(btnNewGroup, gbc_btnNewGroup);
+		panel_izq.add(btnNewGroup, gbc_btnNewGroup);
+		
 		GridBagConstraints gbc_txtFindName = new GridBagConstraints();
 		gbc_txtFindName.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtFindName.insets = new Insets(0, 0, 5, 0);
@@ -237,18 +236,12 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			popupMenuEmoji.add(emoji).setActionCommand(""+i);
 		}
 		
-		btnEmoji = new JButton();
-		btnEmoji.addActionListener(this);
-		btnEmoji.setFocusPainted(false);
-		btnEmoji.setMargin(new Insets(0, 0, 0, 0));
-		btnEmoji.setContentAreaFilled(false);
-		btnEmoji.setBorderPainted(false);
-		btnEmoji.setOpaque(false);
-		btnEmoji.setIcon(new ImageIcon(
+		btnEmoji = Graphics.makeImageButton(new ImageIcon(
 			BubbleText.getEmoji(0)
 			.getImage()
 			.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH))
 		);
+		btnEmoji.addActionListener(this);
 	}
 	
 	public void showAvatar(String nombre) {//TODO: entender como usar
@@ -271,11 +264,11 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			return;
 		}
 		if (e.getSource() == btnNewGroup) {
-			new VentanaNuevoGrupo(loggedUser);
+			new VentanaEditorGrupo(loggedUser, panelList);
 			return;
 		}
 		if (e.getSource() == btnEmoji) {
-			//Se llama show() dos veces porque la primera no sabe la altura del menu
+			//NOTE: Se llama show() dos veces porque la primera no sabe la altura del menu
 			popupMenuEmoji.show(btnEmoji, 0, 0);
 			popupMenuEmoji.show(btnEmoji, 0, -popupMenuEmoji.getHeight());
 			return;
@@ -285,11 +278,10 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			txtWriteMsg.setText("");
 			return;
 		}
-		if (e.getSource() == txtFindUser) {
+		if (e.getSource() == txtFindUser) {//FIXME
 			Usuario user = AppChat.getInstance().findUser(txtFindUser.getText());
-			txtFindUser.setText("");
 			if (AppChat.getInstance().registerContact(user)) {
-				panelList.loadList(loggedUser.getChats());
+				panelList.reloadList();
 				JOptionPane.showMessageDialog(
 					this,
 					user.getUsername() +" añadido correctamente.",
@@ -297,6 +289,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 					JOptionPane.INFORMATION_MESSAGE
 				);
 			}
+			txtFindUser.setText("");
 			return;
 		}
 	}

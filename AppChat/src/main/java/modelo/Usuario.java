@@ -1,10 +1,10 @@
 package modelo;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.stream.Collectors;
 
 public class Usuario {
@@ -17,7 +17,7 @@ public class Usuario {
 	private final String username; // usuario
 	private String password; // contraseña
 	private String name; // nombre
-	private Date birthday; // fechanacimiento
+	private final Date birthday; // fechanacimiento
 	private String email;
 	private String phone; // movil
 	private String greeting;
@@ -145,42 +145,48 @@ public class Usuario {
 	}
 
 	public Collection<Chat> getChats() {
-		return Collections.unmodifiableCollection(chats);
+		return new LinkedList<>(chats);
 	}
 	
 	public Collection<ChatIndividual> getPrivateChats() {
-		return Collections.unmodifiableCollection(privateChats.values());
+		return new LinkedList<>(privateChats.values());
 	}
 	
-	public Collection<Chat> getGroups() {
+	public Collection<ChatGrupo> getGroups() {
 		return chats.stream()
 					.filter(c -> c instanceof ChatGrupo)
+					.map(c -> (ChatGrupo) c)
 					.collect(Collectors.toSet())
 					;
 	}
 
-	public Collection<Chat> getAdminGroups() { // gruposAdmin
+	public Collection<ChatGrupo> getAdminGroups() { // gruposAdmin
 		return getGroups().stream()
-					.filter(g -> g.getOwner().equals(this))
-					.collect(Collectors.toSet())
-					;
+						  .filter(g -> g.getAdmin().equals(this))
+						  .collect(Collectors.toSet())
+						  ;
 	}
 
 	public boolean addChat(Chat chat) {
 		if (chats.contains(chat)) return false;
 		
 		chats.add(chat);
-		if (chat instanceof ChatIndividual)
-			privateChats.put(chat.getOwner().getId(), (ChatIndividual) chat);
+		if (chat instanceof ChatIndividual) {
+			ChatIndividual c = (ChatIndividual) chat;
+			privateChats.put(c.getUser().getId()/*FIXME*/, c);
+		}
 		return true;
 	}
 	
-	public void removeChat(Chat chat) {
-		if (!chats.contains(chat)) return;
+	public boolean removeChat(Chat chat) {
+		if (!chats.contains(chat)) return false;
 		
 		chats.remove(chat);
-		if (chat instanceof ChatIndividual)
-			privateChats.remove(chat.getOwner().getId());
+		if (chat instanceof ChatIndividual) {
+			ChatIndividual c = (ChatIndividual) chat;
+			privateChats.remove(c.getUser().getId());//FIXME
+		}
+		return true;
 	}
 	
 // ---------------------------------------------------------------------
@@ -200,29 +206,25 @@ public class Usuario {
 	}
 	
 	public ChatIndividual addContact(String name, Usuario user) {
-		if (knowsUser(user)) return null;
+		if (knowsUser(user)) return privateChats.get(user.getId());
 		
-		ChatIndividual chat = new ChatIndividual(name, user);
-		addChat(chat);
-		return chat;
-	}
-	
-	public ChatIndividual addContact(Usuario user) {
-		if (knowsUser(user)) return null;
-		
-		ChatIndividual chat = new ChatIndividual(user);
-		addChat(chat);
-		return chat;
+		ChatIndividual c = new ChatIndividual(name, user);
+		addChat(c);
+		return c;
 	}
 	
 	public ChatGrupo makeGroup(String name) {
-		ChatGrupo grupo = new ChatGrupo(name, this);
-		addChat(grupo);
-		return grupo;
+		ChatGrupo g = new ChatGrupo(name, this);
+		addChat(g);
+		return g;
 	}
 	
-	public boolean joinGroup(ChatGrupo grupo) {
-		return addChat(grupo);
+	public boolean joinGroup(ChatGrupo g) {
+		return addChat(g);
+	}
+
+	public boolean leaveGroup(ChatGrupo g) {
+		return removeChat(g);
 	}
 
 	@Override

@@ -1,9 +1,7 @@
 package modelo;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ChatGrupo extends Chat {
@@ -12,15 +10,17 @@ public class ChatGrupo extends Chat {
 //	                                                          Attributes
 // ---------------------------------------------------------------------
 	
-	private Map<Usuario, ChatIndividual> members; // contactos
+	private Usuario admin;
+	private List<ChatIndividual> members; //contactos
 	
 // ---------------------------------------------------------------------
 //	                                                        Constructors
 // ---------------------------------------------------------------------
 		
 	public ChatGrupo(String name, Usuario admin) {
-		super(name, admin);
-		this.members = new HashMap<>();
+		super(name);
+		this.admin = admin;
+		this.members = new LinkedList<>();
 	}
 
 	public ChatGrupo(String name) {
@@ -31,25 +31,53 @@ public class ChatGrupo extends Chat {
 //                                                   Getters and Setters
 // ---------------------------------------------------------------------
 
+	public Usuario getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Usuario a) {
+		admin = a;
+	}
+
+	public boolean isAdmin(Usuario u) {
+		return u.equals(admin);
+	}
+	
 	public List<ChatIndividual> getMembers() {
-		return new LinkedList<ChatIndividual>(members.values());
+		return new LinkedList<>(members);
 	}
 	
-	public void addMember(ChatIndividual contact) {
-		members.put(contact.getOwner(), contact);
+	public void addMember(ChatIndividual m) {
+		members.add(m);
 	}
 	
-	public void removeMember(ChatIndividual contact) {
-		members.remove(contact.getOwner());
+	public void editGroup(String name, List<ChatIndividual> newMembers) {
+		this.name = name;
+		clearGroup();
+		for (ChatIndividual m : newMembers) {
+			addMember(m);
+			m.joinGroup(this);
+		}
 	}
 	
 	public void removeMember(Usuario user) {
-		members.remove(user);
+		ChatIndividual found = null;
+		for (ChatIndividual m : members)
+			if (m.isUser(user)) {
+				found = m;
+				break;
+			}
+		if (found != null) removeMember(found);
+	}
+	
+	public void removeMember(ChatIndividual m) {
+		members.remove(m);
+		m.leaveGroup(this);
 	}
 	
 	public void clearGroup() {
-		for (Usuario u : members.keySet())
-			u.removeChat(this);
+		for (ChatIndividual m : members)
+			m.leaveGroup(this);
 		members.clear();
 	}
 	
@@ -76,11 +104,8 @@ public class ChatGrupo extends Chat {
 
 	@Override
 	public String toString() {
-		String aaa = "";
-		for (Usuario u : members.keySet())
-			aaa += u.getId() + " ";
 		return super.toString() +
-			   "[admin=" + getOwner().getId() + ", members=" + aaa + "]";
+			   "[admin=" + admin.getId() + ", members=" + members + "]";
 	}
 
 }

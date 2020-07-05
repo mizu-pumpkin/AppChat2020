@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import modelo.CatalogoUsuarios;
 import modelo.Chat;
@@ -117,7 +118,7 @@ public class AppChat {
 		if (chat instanceof ChatGrupo)
 			return registerMessage(chat, msg_sent);
 		
-		Chat chatR = getRecipient(chat);
+		Chat chatR = getRecipient((ChatIndividual) chat);
 		Mensaje msg_rcvd = chatR.sendMessage(usuarioActual, text);
 		
 		return registerMessage(chat, msg_sent) && registerMessage(chatR, msg_rcvd);
@@ -129,16 +130,15 @@ public class AppChat {
 		if (chat instanceof ChatGrupo)
 			return registerMessage(chat, msg_sent);
 		
-		Chat chatR = getRecipient(chat);
+		Chat chatR = getRecipient((ChatIndividual) chat);
 		Mensaje msg_rcvd = chatR.sendMessage(usuarioActual, emoticon);
 		
 		return registerMessage(chat, msg_sent) && registerMessage(chatR, msg_rcvd);
 	}
 	
-	private Chat getRecipient(Chat chat) {
-		Usuario user = chat.getOwner();
-		Chat recipient = user.getPrivateChat(usuarioActual);
-		if (recipient.getId() == 0) registerChat(chat, user); //FIXME
+	private Chat getRecipient(ChatIndividual chat) {
+		Chat recipient = chat.getChatWith(usuarioActual);
+		if (recipient.getId() == 0) registerChat(chat, chat.getUser()); //FIXME?
 		return recipient;
 	}
 	
@@ -152,7 +152,6 @@ public class AppChat {
 		Chat chat = msg.getChat();
 		chat.removeMessage(msg);
 		adaptadorChat.update(chat);
-		
 		adaptadorMensaje.delete(msg);
 		return true;
 	}
@@ -162,13 +161,18 @@ public class AppChat {
 // ---------------------------------------------------------------------
 	
 	private boolean registerChat(Chat chat) {
+		if (chat == null) return false;
 		return registerChat(chat, usuarioActual);
 	}
 	
 	private boolean registerChat(Chat chat, Usuario user) {
 		if (chat == null) return false;
-		adaptadorChat.create(chat);
+		if (chat.getId() == 0)
+			adaptadorChat.create(chat);
+		else
+			adaptadorChat.update(chat);
 		adaptadorUsuario.update(user);
+		
 		return true;
 	}
 	
@@ -180,7 +184,7 @@ public class AppChat {
 	
 	public boolean registerContact(Usuario user) {
 		if (user == null || user.equals(usuarioActual)) return false;
-		return registerChat(usuarioActual.addContact(user));
+		return registerChat(usuarioActual.getPrivateChat(user));
 	}
 
 	public boolean createGroup(String groupName) {
@@ -188,18 +192,27 @@ public class AppChat {
 	}
 
 	public boolean createGroup(String groupName, Collection<ChatIndividual> contacts) {
-		ChatGrupo grupo = usuarioActual.makeGroup(groupName);
+		ChatGrupo g = usuarioActual.makeGroup(groupName);
 		for (ChatIndividual c : contacts) {
-			grupo.addMember(c);
-			c.getOwner().joinGroup(grupo);
-			registerChat(grupo, c.getOwner());
+			g.addMember(c);
+			c.joinGroup(g);
+			registerChat(g, c.getUser());
 		}
-		return registerChat(grupo);
+		return registerChat(g);
 	}
 
-	public boolean joinGroup(ChatGrupo group) {
-		usuarioActual.joinGroup(group);
-		return registerChat(group);
+	public boolean editGroup(ChatGrupo g, String name, List<ChatIndividual> members) {
+		List<ChatIndividual> old = g.getMembers();
+		
+		g.editGroup(name, members);
+		
+		adaptadorChat.update(g);
+		for (ChatIndividual m : old)
+			adaptadorUsuario.update(m.getUser());
+		for (ChatIndividual m : g.getMembers())
+			adaptadorUsuario.update(m.getUser());
+		
+		return false;
 	}
 	
 	public boolean deleteChat(Chat chat) {
@@ -213,12 +226,12 @@ public class AppChat {
 		return true;
 	}
 	
-	public boolean leaveGroup(ChatGrupo group) {
-		usuarioActual.removeChat(group);
-		group.removeMember(usuarioActual);
+	public boolean leaveGroup(ChatGrupo g) {
+		usuarioActual.leaveGroup(g);
+		g.removeMember(usuarioActual);
 		
 		adaptadorUsuario.update(usuarioActual);
-		adaptadorChat.update(group);
+		adaptadorChat.update(g);
 		return true;
 	}
 

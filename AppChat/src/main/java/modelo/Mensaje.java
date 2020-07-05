@@ -97,6 +97,10 @@ public class Mensaje {
 	public int getBodyType() {
 		return bodyType;
 	}
+	
+	public String getSenderName() {
+		return sender.getUsername();
+	}
 
 	@Override
 	public String toString() {

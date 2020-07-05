@@ -115,8 +115,8 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	}
 	
 	private void configurarBotones() {
-		btnLogin = new JButton("Login");
-		btnRegister = new JButton("Register");
+		btnLogin = Graphics.makeButton("Login");
+		btnRegister = Graphics.makeButton("Register");
 		
 		btnLogin.addActionListener(this);
 		btnRegister.addActionListener(this);

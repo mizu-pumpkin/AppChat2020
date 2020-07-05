@@ -12,17 +12,15 @@ public abstract class Chat {
 // ---------------------------------------------------------------------
 		
 	private int id;
-	private String name;
-	private Usuario owner; // usuario o admin
+	protected String name;
 	protected List<Mensaje> messages; // mensajes
 	
 // ---------------------------------------------------------------------
 //		                                                    Constructors
 // ---------------------------------------------------------------------
 		
-	public Chat(String name, Usuario owner) {
+	public Chat(String name) {
 		this.name = name;
-		this.owner = owner;
 		this.messages = new LinkedList<>();
 	}
 	
@@ -45,17 +43,9 @@ public abstract class Chat {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public Usuario getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Usuario owner) {
-		this.owner = owner;
-	}
 
 	public List<Mensaje> getMessages() {
-		return new LinkedList<Mensaje>(messages);
+		return new LinkedList<>(messages);
 	}
 	
 	public void addMessage(Mensaje message) {

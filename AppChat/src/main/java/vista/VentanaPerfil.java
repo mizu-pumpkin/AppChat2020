@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import modelo.Usuario;
-import persistencia.AdaptadorUsuarioTDS;
 import tds.BubbleText;
 
 import java.awt.GridBagLayout;
@@ -18,6 +17,8 @@ import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import controlador.AppChat;
 
 @SuppressWarnings("serial")
 public class VentanaPerfil extends JFrame {
@@ -34,12 +35,9 @@ public class VentanaPerfil extends JFrame {
 	private JButton btnEdit;
 	private JButton btnAvatar;
 
-	public static void main(String[] args) {//FIXME: delete later
-		new VentanaPerfil(AdaptadorUsuarioTDS.getInstance().read(7284));
-	}
-
-	public VentanaPerfil(Usuario _user) {
-		user = _user;
+	public VentanaPerfil(Usuario user) {
+		this.user = user;
+		
 		initialize();
 		setVisible(true);
 	}
@@ -58,48 +56,16 @@ public class VentanaPerfil extends JFrame {
 		contentPane.setLayout(gbl);
 		
 		configurarInfoUsuario();
+		configurarEditables();
 	}
 	
 	private void configurarInfoUsuario() {
-		btnAvatar = new JButton(); //FIXME
-		btnAvatar.setIcon(new ImageIcon(BubbleText.getEmoji(2).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))); //FIXME
-		btnAvatar.setFocusPainted(false);
-		btnAvatar.setMargin(new Insets(0, 0, 0, 0));
-		btnAvatar.setContentAreaFilled(false);
-		btnAvatar.setBorderPainted(false);
-		btnAvatar.setOpaque(false);
-		//btnAvatar.addActionListener(this);
-		GridBagConstraints gbc_lblAvatar = new GridBagConstraints();
-		gbc_lblAvatar.gridheight = 2;
-		gbc_lblAvatar.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAvatar.gridx = 1;
-		gbc_lblAvatar.gridy = 1;
-		contentPane.add(btnAvatar, gbc_lblAvatar);
-		
 		GridBagConstraints gbc_lblNick = new GridBagConstraints();
 		gbc_lblNick.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblNick.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNick.gridx = 2;
 		gbc_lblNick.gridy = 1;
 		contentPane.add(new JLabel(user.getUsername()), gbc_lblNick);
-		
-		txtGreeting = new JTextField();
-		txtGreeting.setText(user.getGreeting());
-		txtGreeting.setColumns(100);
-		GridBagConstraints gbc_txtGreeting = new GridBagConstraints();
-		gbc_txtGreeting.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtGreeting.insets = new Insets(0, 0, 5, 5);
-		gbc_txtGreeting.gridx = 2;
-		gbc_txtGreeting.gridy = 2;
-		contentPane.add(txtGreeting, gbc_txtGreeting);
-		
-		btnEdit = new JButton("Edit");
-		//btnEdit.addActionListener(this);
-		GridBagConstraints gbc_btnEdit = new GridBagConstraints();
-		gbc_btnEdit.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEdit.gridx = 3;
-		gbc_btnEdit.gridy = 2;
-		contentPane.add(btnEdit, gbc_btnEdit);
 		
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.fill = GridBagConstraints.HORIZONTAL;
@@ -128,6 +94,46 @@ public class VentanaPerfil extends JFrame {
 		gbc_lblPhone.gridx = 2;
 		gbc_lblPhone.gridy = 6;
 		contentPane.add(new JLabel(user.getPhone()), gbc_lblPhone);
+	}
+	
+	private void configurarEditables() {
+		btnAvatar = Graphics.makeImageButton(new ImageIcon(//FIXME
+			BubbleText.getEmoji(2)
+			.getImage()
+			.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))
+		);
+		//btnAvatar.addActionListener(this);
+		GridBagConstraints gbc_lblAvatar = new GridBagConstraints();
+		gbc_lblAvatar.gridheight = 2;
+		gbc_lblAvatar.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAvatar.gridx = 1;
+		gbc_lblAvatar.gridy = 1;
+		contentPane.add(btnAvatar, gbc_lblAvatar);
+		
+		GridBagConstraints gbc_greeting = new GridBagConstraints();
+		gbc_greeting.fill = GridBagConstraints.HORIZONTAL;
+		gbc_greeting.insets = new Insets(0, 0, 5, 5);
+		gbc_greeting.gridx = 2;
+		gbc_greeting.gridy = 2;
+		
+		if (user.equals(AppChat.getInstance().getUsuarioActual())) {
+			txtGreeting = new JTextField();
+			txtGreeting.setText(user.getGreeting());
+			txtGreeting.setColumns(100);
+			contentPane.add(txtGreeting, gbc_greeting);
+			
+			btnEdit = new JButton("Edit");
+			//btnEdit.addActionListener(this);
+			GridBagConstraints gbc_btnEdit = new GridBagConstraints();
+			gbc_btnEdit.insets = new Insets(0, 0, 5, 5);
+			gbc_btnEdit.gridx = 3;
+			gbc_btnEdit.gridy = 2;
+			contentPane.add(btnEdit, gbc_btnEdit);
+		} else {
+			JLabel lblGreeting = new JLabel(user.getGreeting());
+			gbc_greeting.gridwidth = 2;
+			contentPane.add(lblGreeting, gbc_greeting);
+		}
 	}
 
 }
