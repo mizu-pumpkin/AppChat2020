@@ -105,18 +105,12 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 
 	public void configurarInfoUsuario(JPanel panel) {
 /* Avatar */
-		btnAvatar = Graphics.makeImageButton(new ImageIcon(//FIXME
-			BubbleText.getEmoji(BubbleText.MAXICONO)
-			.getImage()
-			.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))
-		);
+		btnAvatar = Graphics.makeImageButton(new ImageIcon(
+				BubbleText.getEmoji(BubbleText.MAXICONO)
+				.getImage()
+				.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)));
 		btnAvatar.addActionListener(this);
 		showAvatar(loggedUser.getAvatar());
-		btnAvatar.setFocusPainted(false);
-		btnAvatar.setMargin(new Insets(0, 0, 0, 0));
-		btnAvatar.setContentAreaFilled(false);
-		btnAvatar.setBorderPainted(false);
-		btnAvatar.setOpaque(false);
 
 		GridBagConstraints gbc_lblAvatar = new GridBagConstraints();
 		gbc_lblAvatar.gridheight = 2;
@@ -255,6 +249,8 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	// Dado una ruta almacenada en "nombre", establece la imagen apuntada en esa ruta
 	// como nuevo icono de "btnAvatar".
 	public void showAvatar(String nombre) {
+		if (nombre.isEmpty())
+			return;
 		File fichero = new File(nombre);
 		BufferedImage myPicture;
 		try { 

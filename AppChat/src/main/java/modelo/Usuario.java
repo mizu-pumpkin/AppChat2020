@@ -13,9 +13,6 @@ public class Usuario {
 // ---------------------------------------------------------------------
 //                                                            Attributes
 // ---------------------------------------------------------------------
-	// FIXME: la ruta de "avatar" es abierta por un objeto "File"
-	// hay que acordar una carpeta donde guardar los avatares.
-	private static String DEFAULT_AVATAR = "/home/rufo/git/roto2.png";
 	
 	private int id;
 	private final String username; // usuario
@@ -51,7 +48,7 @@ public class Usuario {
 		this.email = email;
 		this.phone = phone;
 		this.greeting = greeting;
-		this.avatar = DEFAULT_AVATAR;
+		this.avatar = "";
 		this.story = new Estado("", "");
 		this.premium = false;
 		this.chats = new HashSet<>();
