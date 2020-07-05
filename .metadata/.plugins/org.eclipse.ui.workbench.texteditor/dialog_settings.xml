@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="get"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="get"/>
+			<item value="config"/>
+			<item value="setCu"/>
+			<item value="avatar"/>
+			<item value="-3"/>
+			<item value="-2"/>
+			<item value="-200"/>
+			<item value="-300"/>
+			<item value="-btn"/>
 			<item value="emot"/>
 			<item value="emo"/>
 			<item value="txt"/>
 			<item value="System.out"/>
 			<item value="system.out"/>
 			<item value="PoolDao"/>
-			<item value="pool"/>
-			<item value="send"/>
-			<item value="App"/>
-			<item value="user"/>
-			<item value="PROPERTY_USER"/>
-			<item value="border"/>
-			<item value="PanelChat"/>
-			<item value="panelList"/>
-			<item value="conta"/>
 		</list>
 		<list key="replacehistory">
 			<item value="phone"/>
@@ -48,5 +48,9 @@
 		<item key="DIALOG_WIDTH" value="284"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="452"/>
+		<item key="DIALOG_Y_ORIGIN" value="247"/>
 	</section>
 </section>

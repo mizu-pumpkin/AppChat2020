@@ -16,8 +16,8 @@ import tds.BubbleText;
 @SuppressWarnings("serial")
 public class PanelChat extends JPanel implements Scrollable {
 
-	public static final Color COLOR_MSG_RCVD = new Color(255, 255, 255);
-	public static final Color COLOR_MSG_SENT = new Color(255, 153, 255);
+	public static final Color COLOR_MSG_RCVD = Graphics.SECONDARY;
+	public static final Color COLOR_MSG_SENT = Graphics.MAIN;
 	
 	private Chat actualChat;
 	private String myUsername;
@@ -34,7 +34,7 @@ public class PanelChat extends JPanel implements Scrollable {
 		this.actualChat = chat;
 		for (Mensaje m : actualChat.getMessages()) {
 			String text = m.getBody();
-			String sender = m.getSender().getUsername();
+			String sender = m.getSenderName();
 			boolean sent = sender.equals(myUsername);
 			Color col = sent ? COLOR_MSG_SENT : COLOR_MSG_RCVD;
 			int inout = sent ? BubbleText.SENT : BubbleText.RECEIVED;

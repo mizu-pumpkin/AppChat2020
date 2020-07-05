@@ -228,10 +228,10 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		JPanel panel_buttons = new JPanel();
 		panel_registration.add(panel_buttons, gbc_panel_botones);
 		
-		btn_register = new JButton("Registrar");
+		btn_register = Graphics.makeButton("Registrar");
 		panel_buttons.add(btn_register);
 
-		btn_cancel = new JButton("Cancelar");
+		btn_cancel = Graphics.makeButton("Cancelar");
 		panel_buttons.add(btn_cancel);
 		
 		btn_register.addActionListener(this);

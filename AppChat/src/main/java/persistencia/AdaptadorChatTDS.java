@@ -58,19 +58,24 @@ public class AdaptadorChatTDS implements IAdaptadorChatDAO {
 		// Crear entidad
 		String type;
 		String memberIDs;
+		int ownerId;
 		if (chat instanceof ChatGrupo) {
+			ChatGrupo g = (ChatGrupo) chat;
 			type = TYPE_GROUP;
-			memberIDs = getMembersIDs(((ChatGrupo) chat).getMembers());
+			memberIDs = getMembersIDs(g.getMembers());
+			ownerId = g.getAdmin().getId();
 		} else {
+			ChatIndividual c = (ChatIndividual) chat;
 			type = TYPE_INDIVIDUAL;
 			memberIDs = "";
+			ownerId = c.getUser().getId();
 		}
 		eChat = new Entidad();
 		eChat.setNombre(ENTITY_NAME);
 		eChat.setPropiedades(new ArrayList<Propiedad>(Arrays.asList(
 			new Propiedad(PROPERTY_CHAT_TYPE, type),
 			new Propiedad(PROPERTY_CHAT_NAME, chat.getName()),
-			new Propiedad(PROPERTY_CHAT_OWNER, String.valueOf(chat.getOwner().getId())),
+			new Propiedad(PROPERTY_CHAT_OWNER, String.valueOf(ownerId)),
 			new Propiedad(PROPERTY_MESSAGES, getMessagesIDs(chat.getMessages())),
 			new Propiedad(PROPERTY_GROUP_MEMBERS, memberIDs)
 		)));
@@ -137,12 +142,18 @@ public class AdaptadorChatTDS implements IAdaptadorChatDAO {
 		PoolDAO.getInstance().addObject(id, chat);
 		
 		// Recuperar propiedades que son objetos llamando a adaptadores
-		chat.setOwner(AdaptadorUsuarioTDS.getInstance().read(idOwner));
 		for (Mensaje m : getMessagesFromIDs(idsMessages))
 			chat.addMessage(m);
-		if (chat instanceof ChatGrupo)
+		
+		if (chat instanceof ChatGrupo) {
+			ChatGrupo g = (ChatGrupo) chat;
+			g.setAdmin(AdaptadorUsuarioTDS.getInstance().read(idOwner));
 			for (ChatIndividual c : getMembersFromIDs(idsMembers))
-				((ChatGrupo) chat).addMember(c);
+				g.addMember(c);
+		} else {
+			ChatIndividual c = (ChatIndividual) chat;
+			c.setUser(AdaptadorUsuarioTDS.getInstance().read(idOwner));
+		}
 
 		return chat;
 	}
@@ -158,14 +169,18 @@ public class AdaptadorChatTDS implements IAdaptadorChatDAO {
 	// -------------------Funciones auxiliares-----------------------------
 	
 	private void registrarObjetos(Chat chat) {
-		AdaptadorUsuarioTDS.getInstance().create(chat.getOwner());
+		if (chat instanceof ChatGrupo) {
+			ChatGrupo g = (ChatGrupo) chat;
+			AdaptadorUsuarioTDS.getInstance().create(g.getAdmin());
+			for (ChatIndividual c : g.getMembers())
+				/*adaptadorChat.*/create(c);
+		} else {
+			ChatIndividual c = (ChatIndividual) chat;
+			AdaptadorUsuarioTDS.getInstance().create(c.getUser());
+		}
 		
 		for (Mensaje m : chat.getMessages())
 			AdaptadorMensajeTDS.getInstance().create(m);
-		
-		if (chat instanceof ChatGrupo)
-			for (ChatIndividual c : ((ChatGrupo) chat).getMembers())
-				/*adaptadorChat.*/create(c);
 	}
 	
 	private String getMessagesIDs(List<Mensaje> messages) {
