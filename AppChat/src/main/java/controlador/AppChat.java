@@ -216,13 +216,19 @@ public class AppChat {
 	}
 	
 	public boolean deleteChat(Chat chat) {
-		if (chat instanceof ChatGrupo)
-			((ChatGrupo) chat).clearGroup();
-		else
-			usuarioActual.removeChat(chat);
+		if (chat instanceof ChatGrupo) {
+			ChatGrupo g = (ChatGrupo) chat;
+			List<ChatIndividual> old = g.getMembers();
 			
-		adaptadorUsuario.update(usuarioActual);
+			g.clearGroup();
+			
+			for (ChatIndividual m : old) 
+				adaptadorUsuario.update(m.getUser());
+		}
+		usuarioActual.removeChat(chat);
+			
 		adaptadorChat.delete(chat);
+		adaptadorUsuario.update(usuarioActual);
 		return true;
 	}
 	
