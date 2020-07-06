@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.Date;
 
-public class Mensaje {
+public class Mensaje implements Comparable {
 
 // ---------------------------------------------------------------------
 //                                                             Constants
@@ -107,4 +107,39 @@ public class Mensaje {
 		return "Mensaje [id=" + id + ", body=" + body + "]";
 	}
 
+	// FIXME: supongo que el identificador es único.
+	@Override
+	public int compareTo(Object arg0) {
+		if (!equals(arg0))
+			return 0;
+		Mensaje other = (Mensaje) arg0;
+		return Integer.compare(id, other.id);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((body == null) ? 0 : body.hashCode());
+		result = prime * result + bodyType;
+		result = prime * result + ((chat == null) ? 0 : chat.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
+		result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mensaje other = (Mensaje) obj;
+		// FIXME: no es realmente un fallo aunque puede que dé problemas.
+		// Supongo que cada mensaje tiene un identificador único.
+		return id == other.id;
+	}
 }

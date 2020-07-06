@@ -2,7 +2,12 @@ package controlador;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import modelo.CatalogoUsuarios;
 import modelo.Chat;
@@ -158,6 +163,41 @@ public class AppChat {
 		adaptadorChat.update(chat);
 		adaptadorMensaje.delete(msg);
 		return true;
+	}
+	
+	public List<Mensaje> findMessages(Chat chat, String text, String user, Date d1, Date d2) {
+		Set<Mensaje> mensajes = new HashSet<>();
+		List<List<Mensaje>> resultados = new LinkedList<>();
+		List<Mensaje> aux;
+		
+		if (!text.isBlank()) {
+			aux = chat.findMessagesByText(text.trim());
+			resultados.add(aux);
+			mensajes.addAll(aux);
+		}
+		if (!user.isBlank()) {
+			aux = chat.findMessagesByUser(user.trim());
+			resultados.add(aux);
+			mensajes.addAll(aux);
+		}
+		// TODO: igual alguna de las dos puede ser nulo para indicar "buscar de d1 en adelante"
+		// o algo así.
+		if (d1 != null && d2 != null) {
+			aux = chat.findMessagesByDate(d1, d2);
+			resultados.add(aux);
+			mensajes.addAll(aux);
+		}
+		
+		// La idea es devolver los mensajes que CUMPLAN TODOS LOS CRITERIOS.
+		// Por ello hago una intersección de las listas usadas con en el conjunto
+		// "mensajes" para luego devolverlo como una lista.
+		for (List<Mensaje> l : resultados)
+			mensajes.containsAll(l);
+		
+		return mensajes.stream()
+					   .sorted((m1, m2) -> m1.getTimestamp().compareTo(m2.getTimestamp()))
+					   .collect(Collectors.toList())
+					   ;
 	}
 
 // ---------------------------------------------------------------------

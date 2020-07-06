@@ -138,10 +138,7 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 	}
 
 	private void configurarEditables() {
-		btnAvatar = Graphics.makeImageButton(new ImageIcon(
-				BubbleText.getEmoji(BubbleText.MAXICONO)
-				.getImage()
-				.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)));
+		btnAvatar = Graphics.makeImageButton();
 		btnAvatar.addActionListener(this);
 		showAvatar(user.getAvatar());
 		

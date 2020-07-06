@@ -7,6 +7,8 @@ import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import tds.BubbleText;
+
 public class Graphics {
 	public static final Color MAIN = new Color(255, 153, 255);
 	public static final Color SECONDARY = new Color(255, 255, 255);
@@ -23,6 +25,14 @@ public class Graphics {
 		btn.setIcon(img);
 		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		return btn;
+	}
+	
+	// Esto ahorra escribir una y otra vez una imagen por defecto.
+	public static JButton makeImageButton() {
+		return makeImageButton(new ImageIcon(
+				BubbleText.getEmoji(BubbleText.MAXICONO)
+				.getImage()
+				.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)));
 	}
 	
 	public static JButton makeButton(String txt) {

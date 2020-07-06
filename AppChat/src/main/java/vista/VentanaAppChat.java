@@ -54,7 +54,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	
 	private JTextField txtWriteMsg;
 	private JTextField txtFindUser;
-	private JTextField txtFindMessage;
+	private JButton btnFindMessage;
 	private JButton btnAvatar;
 	private JButton btnEmoji;
 	private JButton btnNewGroup;
@@ -105,10 +105,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 
 	public void configurarInfoUsuario(JPanel panel) {
 /* Avatar */
-		btnAvatar = Graphics.makeImageButton(new ImageIcon(
-				BubbleText.getEmoji(BubbleText.MAXICONO)
-				.getImage()
-				.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)));
+		btnAvatar = Graphics.makeImageButton();
 		btnAvatar.addActionListener(this);
 		showAvatar(loggedUser.getAvatar());
 
@@ -186,15 +183,16 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbl.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl);
 /* Search message */
-		txtFindMessage = new JTextField();
-		txtFindMessage.setColumns(10);
+		btnFindMessage = Graphics.makeButton("Búsqueda...");
+		btnFindMessage.addActionListener(this);
+		//btnFindMessage.setColumns(10);
 		GridBagConstraints gbc_txtFindMessage = new GridBagConstraints();
 		gbc_txtFindMessage.gridwidth = 2;
 		gbc_txtFindMessage.insets = new Insets(0, 0, 5, 0);
 		gbc_txtFindMessage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtFindMessage.gridx = 1;
 		gbc_txtFindMessage.gridy = 0;
-		panel.add(txtFindMessage, gbc_txtFindMessage);
+		panel.add(btnFindMessage, gbc_txtFindMessage);
 /* Chat panel */
 		GridBagConstraints gbc_scrollPane_chat = new GridBagConstraints();
 		gbc_scrollPane_chat.gridwidth = 3;
@@ -283,6 +281,11 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		if (e.getSource() == txtWriteMsg) {
 			panelChat.sendText(loggedUser.getUsername(), txtWriteMsg.getText());
 			txtWriteMsg.setText("");
+			return;
+		}
+		if (e.getSource() == btnFindMessage) {
+			if (panelChat.hasChat())
+				new VentanaBusquedaMensaje(panelChat.getChat(), loggedUser.getUsername());
 			return;
 		}
 		if (e.getSource() == txtFindUser) {//FIXME
