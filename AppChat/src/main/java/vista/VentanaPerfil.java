@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import modelo.Usuario;
-import tds.BubbleText;
 
 import java.awt.GridBagLayout;
 
@@ -17,13 +16,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controlador.AppChat;
+import javax.swing.BoxLayout;
 
 @SuppressWarnings("serial")
 public class VentanaPerfil extends JFrame implements ActionListener {
@@ -59,87 +58,104 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 		contentPane = (JPanel) getContentPane();
 		
 		GridBagLayout gbl = new GridBagLayout();
-		gbl.columnWidths = new int[]{10, 0, 0, 0, 10, 0};
-		gbl.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl.columnWeights = new double[]{1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl.columnWidths = new int[]{0, 10, 0};
+		gbl.rowHeights = new int[]{0, 0};
+		gbl.columnWeights = new double[]{1.0, 1.0, 1.0};
+		gbl.rowWeights = new double[]{0.0, 0.0};
 		contentPane.setLayout(gbl);
 		
-		configurarInfoUsuario();
-		configurarEditables();
-	}
-	
-	private void configurarInfoUsuario() {
-		
-		GridBagConstraints gbc_lblNick = new GridBagConstraints();
-		gbc_lblNick.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNick.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNick.gridx = 2;
-		gbc_lblNick.gridy = 1;
-		contentPane.add(new JLabel(user.getUsername()), gbc_lblNick);
-		
-		GridBagConstraints gbc_lblName = new GridBagConstraints();
-		gbc_lblName.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblName.insets = new Insets(0, 0, 5, 5);
-		gbc_lblName.gridx = 2;
-		gbc_lblName.gridy = 3;
-		contentPane.add(new JLabel(user.getName()), gbc_lblName);
-		
-		GridBagConstraints gbc_lblBirthday = new GridBagConstraints();
-		gbc_lblBirthday.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblBirthday.insets = new Insets(0, 0, 5, 5);
-		gbc_lblBirthday.gridx = 2;
-		gbc_lblBirthday.gridy = 4;
-		contentPane.add(new JLabel(dateFormat.format(user.getBirthday())), gbc_lblBirthday);
-		
-		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
-		gbc_lblEmail.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEmail.gridx = 2;
-		gbc_lblEmail.gridy = 5;
-		contentPane.add(new JLabel(user.getEmail()), gbc_lblEmail);
-		
-		GridBagConstraints gbc_lblPhone = new GridBagConstraints();
-		gbc_lblPhone.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblPhone.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPhone.gridx = 2;
-		gbc_lblPhone.gridy = 6;
-		contentPane.add(new JLabel(user.getPhone()), gbc_lblPhone);
+		configurarInfo();
 	}
 
-	private void configurarEditables() {
+	private void configurarInfo() {
 /* Parte funcional */
-		btnAvatar = Graphics.makeImageButton(BubbleText.getEmoji(0));
-		btnAvatar.addActionListener(this);
-		Graphics.showAvatar(btnAvatar, user.getAvatar());
-		
 		txtGreeting = new JTextField(user.getGreeting());
 		txtGreeting.setColumns(100);
 		
-		btnEdit = Graphics.makeIconButton(
-			new ImageIcon(getClass().getResource("/edit.png")));
+		btnEdit = Graphics.makeIconButton("/edit.png");
 		btnEdit.addActionListener(this);
 		getRootPane().setDefaultButton(btnEdit);
+		
+		btnAvatar = Graphics.makeAvatarButton();
+		btnAvatar.addActionListener(this);
+		Graphics.showAvatar(btnAvatar, user.getAvatar());
 /* Parte gráfica */
-		GridBagConstraints gbc_lblAvatar = new GridBagConstraints();
-		gbc_lblAvatar.gridheight = 2;
-		gbc_lblAvatar.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAvatar.gridx = 1;
-		gbc_lblAvatar.gridy = 1;
-		contentPane.add(btnAvatar, gbc_lblAvatar);
+		JPanel panel_info = new JPanel();
+		GridBagConstraints gbc_panel_info = new GridBagConstraints();
+		gbc_panel_info.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_info.fill = GridBagConstraints.BOTH;
+		gbc_panel_info.gridx = 1;
+		gbc_panel_info.gridy = 0;
+		getContentPane().add(panel_info, gbc_panel_info);
 		
-		GridBagConstraints gbc_greeting = new GridBagConstraints();
-		gbc_greeting.fill = GridBagConstraints.HORIZONTAL;
-		gbc_greeting.insets = new Insets(0, 0, 5, 5);
-		gbc_greeting.gridx = 2;
-		gbc_greeting.gridy = 2;
-		contentPane.add(txtGreeting, gbc_greeting);
+		GridBagLayout gbl_panel_info = new GridBagLayout();
+		gbl_panel_info.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_info.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_panel_info.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_info.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_info.setLayout(gbl_panel_info);
 		
-		GridBagConstraints gbc_btnEdit = new GridBagConstraints();
-		gbc_btnEdit.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEdit.gridx = 3;
-		gbc_btnEdit.gridy = 2;
-		contentPane.add(btnEdit, gbc_btnEdit);
+		JLabel label = new JLabel(user.getUsername());
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.fill = GridBagConstraints.HORIZONTAL;
+		gbc_label.insets = new Insets(0, 0, 5, 0);
+		gbc_label.gridx = 1;
+		gbc_label.gridy = 0;
+		panel_info.add(label, gbc_label);
+		
+		JLabel label_4 = new JLabel(user.getName());
+		GridBagConstraints gbc_label_4 = new GridBagConstraints();
+		gbc_label_4.fill = GridBagConstraints.HORIZONTAL;
+		gbc_label_4.insets = new Insets(0, 0, 5, 0);
+		gbc_label_4.gridx = 1;
+		gbc_label_4.gridy = 1;
+		panel_info.add(label_4, gbc_label_4);
+		
+		JLabel label_3 = new JLabel(dateFormat.format(user.getBirthday()));
+		GridBagConstraints gbc_label_3 = new GridBagConstraints();
+		gbc_label_3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_label_3.insets = new Insets(0, 0, 5, 0);
+		gbc_label_3.gridx = 1;
+		gbc_label_3.gridy = 2;
+		panel_info.add(label_3, gbc_label_3);
+		
+		JLabel label_2 = new JLabel(user.getEmail());
+		GridBagConstraints gbc_label_2 = new GridBagConstraints();
+		gbc_label_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_label_2.insets = new Insets(0, 0, 5, 0);
+		gbc_label_2.gridx = 1;
+		gbc_label_2.gridy = 3;
+		panel_info.add(label_2, gbc_label_2);
+		
+		JLabel label_1 = new JLabel(user.getPhone());
+		GridBagConstraints gbc_label_1 = new GridBagConstraints();
+		gbc_label_1.anchor = GridBagConstraints.NORTH;
+		gbc_label_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_label_1.gridx = 1;
+		gbc_label_1.gridy = 4;
+		panel_info.add(label_1, gbc_label_1);
+		
+		JPanel panel_avatar = new JPanel();
+		GridBagConstraints gbc_panel_avatar = new GridBagConstraints();
+		gbc_panel_avatar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panel_avatar.gridheight = 5;
+		gbc_panel_avatar.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_avatar.gridx = 0;
+		gbc_panel_avatar.gridy = 0;
+		panel_info.add(panel_avatar, gbc_panel_avatar);
+		panel_avatar.add(btnAvatar);
+		
+		JPanel panel_editGreeting = new JPanel();
+		GridBagConstraints gbc_panel_editGreeting = new GridBagConstraints();
+		gbc_panel_editGreeting.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_editGreeting.fill = GridBagConstraints.BOTH;
+		gbc_panel_editGreeting.gridx = 1;
+		gbc_panel_editGreeting.gridy = 1;
+		getContentPane().add(panel_editGreeting, gbc_panel_editGreeting);
+		panel_editGreeting.setLayout(new BoxLayout(panel_editGreeting, BoxLayout.X_AXIS));
+		
+		panel_editGreeting.add(txtGreeting);
+		panel_editGreeting.add(btnEdit);
 	}
 
 	@Override

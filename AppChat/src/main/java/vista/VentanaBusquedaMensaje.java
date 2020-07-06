@@ -1,14 +1,11 @@
 package vista;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -26,7 +23,7 @@ import java.util.List;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 
-@SuppressWarnings({ "serial", "rawtypes", "unchecked" })
+@SuppressWarnings({ "serial" })
 public class VentanaBusquedaMensaje extends JFrame implements ActionListener {
 
 	private final static int MIN_WIDTH = 300;

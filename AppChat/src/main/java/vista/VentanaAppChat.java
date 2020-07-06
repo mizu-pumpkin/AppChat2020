@@ -19,7 +19,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
@@ -105,7 +104,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 
 	public void configurarInfoUsuario() {
 /* Avatar */
-		btnAvatar = Graphics.makeImageButton(BubbleText.getEmoji(0));
+		btnAvatar = Graphics.makeAvatarButton();
 		btnAvatar.addActionListener(this);
 		Graphics.showAvatar(btnAvatar, loggedUser.getAvatar());
 
@@ -147,23 +146,19 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_panel.gridy = 2;
 		panel_izq.add(toolbar, gbc_panel);
 
-		btnNewGroup = Graphics.makeIconButton(
-			new ImageIcon(this.getClass().getResource("/newgroup.png")));
+		btnNewGroup = Graphics.makeIconButton("/newgroup.png");
 		btnNewGroup.addActionListener(this);
 		toolbar.add(btnNewGroup);
 		
-		btnContacts = Graphics.makeIconButton(
-				new ImageIcon(this.getClass().getResource("/contacts.png")));
+		btnContacts = Graphics.makeIconButton("/contacts.png");
 		btnContacts.addActionListener(this);
 		toolbar.add(btnContacts);
 
-		btnPremium = Graphics.makeIconButton(
-			new ImageIcon(this.getClass().getResource("/premium.png")));
+		btnPremium = Graphics.makeIconButton("/premium.png");
 		btnPremium.addActionListener(this);
 		toolbar.add(btnPremium);
 /* Botones premium */
-		btnStats = Graphics.makeIconButton(
-				new ImageIcon(this.getClass().getResource("/stats.png")));
+		btnStats = Graphics.makeIconButton("/stats.png");
 		btnStats.addActionListener(this);
 		toolbar.add(btnStats);
 		if (!loggedUser.isPremium()) {
@@ -201,8 +196,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbl.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_der.setLayout(gbl);
 /* Search message */
-		btnFindMessage = Graphics.makeIconButton(
-			new ImageIcon(this.getClass().getResource("/searchmsg.png")));
+		btnFindMessage = Graphics.makeIconButton("/searchmsg.png");
 		btnFindMessage.addActionListener(this);
 		//btnFindMessage.setColumns(10);
 		GridBagConstraints gbc_txtFindMessage = new GridBagConstraints();
@@ -255,7 +249,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			popupMenuEmoji.add(emoji).setActionCommand(""+i);
 		}
 		
-		btnEmoji = Graphics.makeIconButton(BubbleText.getEmoji(0));
+		btnEmoji = Graphics.makeIconButton("/emoji.png");
 		btnEmoji.addActionListener(this);
 	}
 	
