@@ -166,38 +166,22 @@ public class AppChat {
 	}
 	
 	public List<Mensaje> findMessages(Chat chat, String text, String user, Date d1, Date d2) {
-		Set<Mensaje> mensajes = new HashSet<>();
-		List<List<Mensaje>> resultados = new LinkedList<>();
 		List<Mensaje> aux;
+		List<List<Mensaje>> listados = new LinkedList<>();
 		
-		if (!text.isBlank()) {
-			aux = chat.findMessagesByText(text.trim());
-			resultados.add(aux);
-			mensajes.addAll(aux);
-		}
-		if (!user.isBlank()) {
-			aux = chat.findMessagesByUser(user.trim());
-			resultados.add(aux);
-			mensajes.addAll(aux);
-		}
-		// TODO: igual alguna de las dos puede ser nulo para indicar "buscar de d1 en adelante"
-		// o algo así.
-		if (d1 != null && d2 != null) {
-			aux = chat.findMessagesByDate(d1, d2);
-			resultados.add(aux);
-			mensajes.addAll(aux);
-		}
+		if (!text.isBlank())
+			listados.add(chat.findMessagesByText(text.trim()));
+		if (!user.isBlank())
+			listados.add(chat.findMessagesByUser(user.trim()));
+		if (d1 != null && d2 != null)
+			listados.add(chat.findMessagesByDate(d1, d2));
 		
-		// La idea es devolver los mensajes que CUMPLAN TODOS LOS CRITERIOS.
-		// Por ello hago una intersección de las listas usadas con en el conjunto
-		// "mensajes" para luego devolverlo como una lista.
-		for (List<Mensaje> l : resultados)
-			mensajes.containsAll(l);
+		aux = new LinkedList<>(listados.get(0));
 		
-		return mensajes.stream()
-					   .sorted((m1, m2) -> m1.getTimestamp().compareTo(m2.getTimestamp()))
-					   .collect(Collectors.toList())
-					   ;
+		for (List<Mensaje> l : listados)
+			aux.retainAll(l);
+		
+		return aux;
 	}
 
 // ---------------------------------------------------------------------

@@ -113,7 +113,7 @@ public class Mensaje implements Comparable {
 		if (!equals(arg0))
 			return 0;
 		Mensaje other = (Mensaje) arg0;
-		return Integer.compare(id, other.id);
+		return timestamp.compareTo(other.timestamp);
 	}
 
 	@Override
@@ -138,8 +138,30 @@ public class Mensaje implements Comparable {
 		if (getClass() != obj.getClass())
 			return false;
 		Mensaje other = (Mensaje) obj;
-		// FIXME: no es realmente un fallo aunque puede que dé problemas.
-		// Supongo que cada mensaje tiene un identificador único.
-		return id == other.id;
+		if (body == null) {
+			if (other.body != null)
+				return false;
+		} else if (!body.equals(other.body))
+			return false;
+		if (bodyType != other.bodyType)
+			return false;
+		if (chat == null) {
+			if (other.chat != null)
+				return false;
+		} else if (!chat.equals(other.chat))
+			return false;
+		if (id != other.id)
+			return false;
+		if (sender == null) {
+			if (other.sender != null)
+				return false;
+		} else if (!sender.equals(other.sender))
+			return false;
+		if (timestamp == null) {
+			if (other.timestamp != null)
+				return false;
+		} else if (!timestamp.equals(other.timestamp))
+			return false;
+		return true;
 	}
 }

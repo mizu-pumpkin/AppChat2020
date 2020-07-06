@@ -79,7 +79,6 @@ public abstract class Chat {
 	public List<Mensaje> findMessagesByText(String text) {
 		return messages.stream()
 					   .filter(m -> m.getBody().contains(text))
-					   .sorted()
 					   .collect(Collectors.toList())
 					   ;
 	}
@@ -88,15 +87,13 @@ public abstract class Chat {
 		return messages.stream()
 					   .filter(m -> !m.getTimestamp().before(d1))
 					   .filter(m -> !m.getTimestamp().after(d2))
-					   .sorted()
 					   .collect(Collectors.toList())
 					   ;
 	}
 	
 	public List<Mensaje> findMessagesByUser(String user) {
 		return messages.stream()
-					   .filter(m -> m.getSender().getName().equals(user))
-					   .sorted()
+					   .filter(m -> m.getSender().getUsername().equals(user))
 					   .collect(Collectors.toList())
 					   ;
 	}
