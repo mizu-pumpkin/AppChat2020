@@ -233,7 +233,7 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [id=" + id +
 				", username=" + username +
-				", phone=" + phone +
+				", premium=" + premium +
 				", chats=" + chats +
 				"]";
 	}

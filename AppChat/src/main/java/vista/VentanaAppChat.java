@@ -11,6 +11,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 
 import controlador.AppChat;
 import modelo.Usuario;
@@ -20,8 +21,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -47,7 +46,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private final Usuario loggedUser;
 	
 	private PanelChat panelChat;
-	private PanelListaChats panelList;
+	private PanelListaChats listaChats;
 	
 	private JPanel contentPane;
 	
@@ -57,14 +56,19 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private JButton btnAvatar;
 	private JButton btnEmoji;
 	private JButton btnNewGroup;
+	private JButton btnPremium;
+	private JButton btnStats;
 	private JLabel lblGreeting;
 	private JPanel panel_izq;
+	private JPanel panel_der;
 	private JPopupMenu popupMenuEmoji;
+	private JToolBar toolbar;
+	private JButton btnContacts;
 
 	public VentanaAppChat(Usuario user) {
 		this.loggedUser = user;
 		this.panelChat = new PanelChat(user.getUsername());
-		this.panelList = new PanelListaChats(panelChat,user);
+		this.listaChats = new PanelListaChats(panelChat,user);
 		initialize(); 
 		setVisible(true);
 	}
@@ -84,14 +88,14 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		
 		panel_izq = new JPanel();
 		splitPane.setLeftComponent(panel_izq);
-		configurarPanelIzquierdo(panel_izq);
+		configurarPanelIzquierdo();
 		
-		JPanel panel_der = new JPanel();
+		panel_der = new JPanel();
 		splitPane.setRightComponent(panel_der);
-		configurarPanelDerecho(panel_der);
+		configurarPanelDerecho();
 	}
 	
-	public void configurarPanelIzquierdo(JPanel panel_izq) {
+	public void configurarPanelIzquierdo() {
 		GridBagLayout gbl_panel_izq_1 = new GridBagLayout();
 		gbl_panel_izq_1.columnWidths = new int[]{0, 0, 0};
 		gbl_panel_izq_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
@@ -99,16 +103,16 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbl_panel_izq_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_izq.setLayout(gbl_panel_izq_1);
 		
-		configurarInfoUsuario(panel_izq);
-		configurarListaContactos(panel_izq);
+		configurarInfoUsuario();
+		configurarToolbar();
+		configurarListaContactos();
 	}
 
-	public void configurarInfoUsuario(JPanel panel) {
+	public void configurarInfoUsuario() {
 /* Avatar */
-		btnAvatar = Graphics.makeImageButton(new ImageIcon(//FIXME
-			BubbleText.getEmoji(BubbleText.MAXICONO)
-			.getImage()
-			.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))
+		btnAvatar = Graphics.makeImageButton(
+			BubbleText.getEmoji(BubbleText.MAXICONO),//FIXME
+			50
 		);
 		btnAvatar.addActionListener(this);
 		GridBagConstraints gbc_lblAvatar = new GridBagConstraints();
@@ -116,7 +120,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_lblAvatar.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAvatar.gridx = 0;
 		gbc_lblAvatar.gridy = 0;
-		panel.add(btnAvatar, gbc_lblAvatar);
+		panel_izq.add(btnAvatar, gbc_lblAvatar);
 /* Username */
 		JLabel lblUsername = new JLabel(loggedUser.getUsername());
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -125,7 +129,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_lblUsername.insets = new Insets(0, 0, 5, 0);
 		gbc_lblUsername.gridx = 1;
 		gbc_lblUsername.gridy = 0;
-		panel.add(lblUsername, gbc_lblUsername);
+		panel_izq.add(lblUsername, gbc_lblUsername);
 /* Greeting */
 		lblGreeting = new JLabel(loggedUser.getGreeting());
 		lblGreeting.setFont(new Font("Tahoma", Font.PLAIN, 9));
@@ -134,56 +138,74 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_lblGreeting.insets = new Insets(0, 0, 5, 0);
 		gbc_lblGreeting.gridx = 1;
 		gbc_lblGreeting.gridy = 1;
-		panel.add(lblGreeting, gbc_lblGreeting);
+		panel_izq.add(lblGreeting, gbc_lblGreeting);
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void configurarListaContactos(JPanel panel) {
-/* Contacts */
-		JComboBox cb_selector = new JComboBox();
-		cb_selector.setModel(new DefaultComboBoxModel(new String[] {"Chats", "Estados"}));
-		GridBagConstraints gbc_cb_selector = new GridBagConstraints();
-		gbc_cb_selector.gridwidth = 2;
-		gbc_cb_selector.fill = GridBagConstraints.HORIZONTAL;
-		gbc_cb_selector.insets = new Insets(0, 0, 5, 0);
-		gbc_cb_selector.gridx = 0;
-		gbc_cb_selector.gridy = 2;
-		panel.add(cb_selector, gbc_cb_selector);
+	private void configurarToolbar() {
+		toolbar = new JToolBar();
+		toolbar.setFloatable(false);
+		toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 2;
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 2;
+		panel_izq.add(toolbar, gbc_panel);
+
+		btnNewGroup = Graphics.makeIconButton(
+			new ImageIcon(this.getClass().getResource("/newgroup.png")));
+		btnNewGroup.addActionListener(this);
+		toolbar.add(btnNewGroup);
+		
+		btnContacts = Graphics.makeIconButton(
+				new ImageIcon(this.getClass().getResource("/contacts.png")));
+		btnContacts.addActionListener(this);
+		toolbar.add(btnContacts);
+
+		btnPremium = Graphics.makeIconButton(
+			new ImageIcon(this.getClass().getResource("/premium.png")));
+		btnPremium.addActionListener(this);
+		toolbar.add(btnPremium);
+/* Botones premium */
+		btnStats = Graphics.makeIconButton(
+				new ImageIcon(this.getClass().getResource("/stats.png")));
+		btnStats.addActionListener(this);
+		toolbar.add(btnStats);
+		if (!loggedUser.isPremium()) {
+			btnStats.setVisible(false);
+		}
+	}
+	
+	private void configurarListaContactos() {
 /* Search */
 		txtFindUser = new JTextField();
 		txtFindUser.setColumns(10);
 		txtFindUser.addActionListener(this);
-		
-		btnNewGroup = Graphics.makeButton("+");
-		btnNewGroup.addActionListener(this);
-		GridBagConstraints gbc_btnNewGroup = new GridBagConstraints();
-		gbc_btnNewGroup.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewGroup.gridx = 0;
-		gbc_btnNewGroup.gridy = 3;
-		panel_izq.add(btnNewGroup, gbc_btnNewGroup);
-		
 		GridBagConstraints gbc_txtFindName = new GridBagConstraints();
+		gbc_txtFindName.gridwidth = 2;
 		gbc_txtFindName.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtFindName.insets = new Insets(0, 0, 5, 0);
-		gbc_txtFindName.gridx = 1;
+		gbc_txtFindName.gridx = 0;
 		gbc_txtFindName.gridy = 3;
-		panel.add(txtFindUser, gbc_txtFindName);
+		panel_izq.add(txtFindUser, gbc_txtFindName);
 /* Contact List panel */
+		JScrollPane scroll = new JScrollPane(listaChats);
 		GridBagConstraints gbc_scrollPane_names = new GridBagConstraints();
 		gbc_scrollPane_names.gridwidth = 2;
 		gbc_scrollPane_names.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane_names.gridx = 0;
 		gbc_scrollPane_names.gridy = 4;
-		panel.add(new JScrollPane(panelList), gbc_scrollPane_names);
+		panel_izq.add(scroll, gbc_scrollPane_names);
 	}
 
-	private void configurarPanelDerecho(JPanel panel) {
+	private void configurarPanelDerecho() {
 		GridBagLayout gbl = new GridBagLayout();
 		gbl.columnWidths = new int[]{0, 0, 0, 0};
 		gbl.rowHeights = new int[]{0, 0, 0, 0};
 		gbl.columnWeights = new double[]{4.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl);
+		panel_der.setLayout(gbl);
 /* Search message */
 		txtFindMessage = new JTextField();
 		txtFindMessage.setColumns(10);
@@ -193,7 +215,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_txtFindMessage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtFindMessage.gridx = 1;
 		gbc_txtFindMessage.gridy = 0;
-		panel.add(txtFindMessage, gbc_txtFindMessage);
+		panel_der.add(txtFindMessage, gbc_txtFindMessage);
 /* Chat panel */
 		GridBagConstraints gbc_scrollPane_chat = new GridBagConstraints();
 		gbc_scrollPane_chat.gridwidth = 3;
@@ -201,7 +223,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_scrollPane_chat.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane_chat.gridx = 0;
 		gbc_scrollPane_chat.gridy = 1;
-		panel.add(new JScrollPane(panelChat), gbc_scrollPane_chat);
+		panel_der.add(new JScrollPane(panelChat), gbc_scrollPane_chat);
 /* Text input */
 		txtWriteMsg = new JTextField();
 		txtWriteMsg.setColumns(10);
@@ -212,13 +234,13 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_txtWrite.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtWrite.gridx = 0;
 		gbc_txtWrite.gridy = 2;
-		panel.add(txtWriteMsg, gbc_txtWrite);
+		panel_der.add(txtWriteMsg, gbc_txtWrite);
 		
 		configurarBotonEmoji();
 		GridBagConstraints gbc_btnEmoji = new GridBagConstraints();
 		gbc_btnEmoji.gridx = 2;
 		gbc_btnEmoji.gridy = 2;
-		panel.add(btnEmoji, gbc_btnEmoji);
+		panel_der.add(btnEmoji, gbc_btnEmoji);
 	}
 	
 	private void configurarBotonEmoji() {
@@ -237,11 +259,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			popupMenuEmoji.add(emoji).setActionCommand(""+i);
 		}
 		
-		btnEmoji = Graphics.makeImageButton(new ImageIcon(
-			BubbleText.getEmoji(0)
-			.getImage()
-			.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH))
-		);
+		btnEmoji = Graphics.makeIconButton(BubbleText.getEmoji(0));
 		btnEmoji.addActionListener(this);
 	}
 	
@@ -265,7 +283,19 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			return;
 		}
 		if (e.getSource() == btnNewGroup) {
-			new VentanaEditorGrupo(loggedUser, panelList);
+			new VentanaEditorGrupo(loggedUser, listaChats);
+			return;
+		}
+		if (e.getSource() == btnPremium) {
+			AppChat.getInstance().togglePremium();
+			if (loggedUser.isPremium())//FIXME
+				btnStats.setVisible(true);
+			else
+				btnStats.setVisible(false);
+			return;
+		}
+		if (e.getSource() == btnStats) {
+			System.out.println("ciao");
 			return;
 		}
 		if (e.getSource() == btnEmoji) {
@@ -292,9 +322,9 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 				new VentanaPerfil(loggedUser, lblGreeting);
 			} else {
 				if (loggedUser.knowsUser(user))
-					new VentanaEditorContacto(loggedUser.getPrivateChat(user), panelList);
+					new VentanaEditorContacto(loggedUser.getPrivateChat(user), listaChats);
 				else
-					new VentanaEditorContacto(user, panelList);
+					new VentanaEditorContacto(user, listaChats);
 			}
 			txtFindUser.setText("");
 			return;

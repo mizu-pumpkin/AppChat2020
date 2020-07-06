@@ -35,7 +35,6 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField txtGreeting;
 	private JButton btnEdit;
-	private JButton btnPremium;
 	private JButton btnAvatar;
 
 	public VentanaPerfil(Usuario user, JLabel lblGreeting) {
@@ -71,14 +70,6 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 		gbc_lblNick.gridy = 1;
 		contentPane.add(new JLabel(user.getUsername()), gbc_lblNick);
 		
-		btnPremium = Graphics.makeButton("Premium");
-		btnPremium.addActionListener(this);
-		GridBagConstraints gbc_btnPremium = new GridBagConstraints();
-		gbc_btnPremium.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPremium.gridx = 3;
-		gbc_btnPremium.gridy = 1;
-		getContentPane().add(btnPremium, gbc_btnPremium);
-		
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblName.insets = new Insets(0, 0, 5, 5);
@@ -110,17 +101,17 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 	
 	private void configurarEditables() {
 /* Parte funcional */
-		btnAvatar = Graphics.makeImageButton(new ImageIcon(//FIXME
-			BubbleText.getEmoji(2)
-			.getImage()
-			.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))
+		btnAvatar = Graphics.makeImageButton(
+			BubbleText.getEmoji(2),//FIXME
+			50
 		);
 		btnAvatar.addActionListener(this);
 		
 		txtGreeting = new JTextField(user.getGreeting());
 		txtGreeting.setColumns(100);
 		
-		btnEdit = Graphics.makeButton("Edit");
+		btnEdit = Graphics.makeIconButton(
+			new ImageIcon(getClass().getResource("/edit.png")));
 		btnEdit.addActionListener(this);
 		getRootPane().setDefaultButton(btnEdit);
 /* Parte gráfica */
@@ -147,10 +138,6 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnPremium) {
-			AppChat.getInstance().becomePremium();
-			return;
-		}
 		if (e.getSource() == btnEdit) {
 			AppChat.getInstance().changeGreeting(txtGreeting.getText());
 			lblGreeting.setText(txtGreeting.getText());

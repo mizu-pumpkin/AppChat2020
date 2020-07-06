@@ -155,7 +155,10 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 		String email = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_EMAIL);
 		String phone = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_PHONE);
 		String greeting = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_GREETING);
-		boolean premium = Boolean.getBoolean(servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_PREMIUM));
+		boolean premium;
+		if (servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_PREMIUM).equals("true"))
+			premium = true;
+		else premium = false;
 		String avatar = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_AVATAR);
 		Estado story = new Estado(servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_STORY_TEXT),
 								  servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_STORY_PICTURE));

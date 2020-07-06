@@ -265,8 +265,11 @@ public class AppChat {
 //	                                                  Gestión de Usuario
 // ---------------------------------------------------------------------
 	
-	public void becomePremium() {
-		usuarioActual.setPremiumOn();
+	public void togglePremium() {//FIXME
+		if (usuarioActual.isPremium())
+			usuarioActual.setPremiumOff();
+		else
+			usuarioActual.setPremiumOn();
 		adaptadorUsuario.update(usuarioActual);
 	}
 
