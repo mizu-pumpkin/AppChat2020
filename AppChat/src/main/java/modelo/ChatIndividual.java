@@ -45,6 +45,10 @@ public class ChatIndividual extends Chat {
 //		                                                         Methods
 // ---------------------------------------------------------------------
 	
+	public String getAvatar() {
+		return user.getAvatar();
+	}
+	
 	public void joinGroup(ChatGrupo g) {
 		user.joinGroup(g);
 	}

@@ -103,6 +103,7 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		btnAdd = Graphics.makeButton("->");
 		btnRmv = Graphics.makeButton("<-");
 		btnOk = Graphics.makeButton("Aceptar");
+		getRootPane().setDefaultButton(btnOk);
 		btnCancel = Graphics.makeButton("Cancelar");
 		
 		btnAdd.addActionListener(this);
@@ -263,12 +264,6 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 			contacts.add((ChatIndividual) added.getElementAt(i));
 		
 		AppChat.getInstance().createGroup(txtNombreGrupo.getText(), contacts);
-		JOptionPane.showMessageDialog(
-			this,
-			"Grupo "+txtNombreGrupo.getText()+" creado correctamente.",
-			"Group creation success",
-			JOptionPane.INFORMATION_MESSAGE
-		);
 		dispose();
 	}
 	
@@ -279,12 +274,6 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 			contacts.add((ChatIndividual) added.getElementAt(i));
 		
 		AppChat.getInstance().editGroup(group, txtNombreGrupo.getText(), contacts);
-		JOptionPane.showMessageDialog(
-			this,
-			"Grupo "+txtNombreGrupo.getText()+" editado correctamente.",
-			"Group edit success",
-			JOptionPane.INFORMATION_MESSAGE
-		);
 		dispose();
 	}
 

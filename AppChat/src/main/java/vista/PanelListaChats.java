@@ -5,26 +5,27 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
-import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionListener;
 
-import controlador.AppChat;
 import modelo.Chat;
 import modelo.ChatGrupo;
 import modelo.ChatIndividual;
+import modelo.Mensaje;
 import modelo.Usuario;
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class PanelListaChats extends JPanel {
+	
+	private final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	private PanelChat chat;
 	private Usuario user;
@@ -67,9 +68,25 @@ public class PanelListaChats extends JPanel {
 				if (c instanceof JLabel)
 				{
 					JLabel label = (JLabel) c;
-					Chat contact = (Chat) value;
-					label.setIcon(new ImageIcon(/*VistaPrincipal.class.getResource(usuario.getImagen())*/));
-					label.setText(contact.getName());
+					Chat chat = (Chat) value;
+					if (chat instanceof ChatIndividual) {
+						ChatIndividual contact = (ChatIndividual) chat;
+						label.setIcon(Graphics.makeAvatar(contact.getAvatar(), Graphics.SIZE_AVATAR_SMALL));
+					} else {
+						label.setIcon(Graphics.makeAvatar("", Graphics.SIZE_AVATAR_SMALL));
+					}
+					Mensaje msg = chat.getNewestMessage();
+					String time = "";
+					String preview = "";
+					if (msg != null) {
+						time = dateFormat.format(msg.getTimestamp());
+						if (msg.getBodyType() == Mensaje.TEXT_BODY) {
+							preview = msg.getBody();
+							if (preview.length() > 20)
+								preview = preview.substring(0,20);
+						} else preview = "*emoji*";
+					}
+					label.setText("<html>"+chat.getName()+" ["+time+"]<br/>"+preview+"</html>");
 					if (!isSelected)
 						label.setBackground(index % 2 == 0 ? background : defaultBackground);
 				}
@@ -94,25 +111,23 @@ public class PanelListaChats extends JPanel {
 					int index = list.locationToIndex(e.getPoint());
 					if (index >= 0) {
 						Object chat = list.getModel().getElementAt(index);
-						if (chat instanceof ChatGrupo)
-							new VentanaEditorGrupo(user, (ChatGrupo) chat, PanelListaChats.this);
-						else {
+						if (chat instanceof ChatGrupo) {
+							ChatGrupo g = (ChatGrupo) chat;
+							if (g.getAdmin().equals(user))
+								new VentanaEditorGrupo(user, g, PanelListaChats.this);
+							else ;//TODO: VentanaInfoGrupo
+						} else {
 							ChatIndividual c = (ChatIndividual) chat;
 							new VentanaEditorContacto(c, PanelListaChats.this);
 						}
 					}
 					return;
 				}
-				if (SwingUtilities.isRightMouseButton(e)) {
-					int index = list.locationToIndex(e.getPoint());
-					if (index >= 0) {
-						Object chat = list.getModel().getElementAt(index);
-						DefaultListModel model = ((DefaultListModel) list.getModel());
-						model.removeElement(chat);
-						AppChat.getInstance().deleteChat((Chat) chat);
-					}
-				}
 			}
 		};
+	}
+
+	public void remove(Chat chat) {
+		model.removeElement(chat);
 	}
 }

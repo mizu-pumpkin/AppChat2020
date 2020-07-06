@@ -30,6 +30,14 @@ public class PanelChat extends JPanel implements Scrollable {
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 	}
 	
+	public Chat removeActualChat() {
+		Chat old = actualChat;
+		actualChat = null;
+		removeAll();
+		revalidate();
+		return old;
+	}
+	
 	public void loadChat(List<Mensaje> listado) {
 		removeAll();
 		for (Mensaje m : listado) {
@@ -44,7 +52,7 @@ public class PanelChat extends JPanel implements Scrollable {
 			} else {
 				col = COLOR_MSG_RCVD;
 				inout = BubbleText.RECEIVED;
-				sender = actualChat.getName();
+				//TODO sender = actualChat.getName();
 			}
 			
 			if (m.getBodyType() == Mensaje.TEXT_BODY)

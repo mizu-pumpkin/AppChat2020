@@ -1,7 +1,5 @@
 package vista;
 
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -27,8 +25,6 @@ import javax.swing.BoxLayout;
 @SuppressWarnings("serial")
 public class VentanaPerfil extends JFrame implements ActionListener {
 
-	private final static int MIN_WIDTH = 300;
-	private final static int MIN_HEIGHT = 200;
 	private final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
 	private Usuario user;
@@ -53,8 +49,9 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 	
 	private void initialize() {
 		setTitle("Perfil - "+user.getUsername());
-		setBounds(100, 100, MIN_WIDTH, MIN_HEIGHT);
-		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
+		setBounds(100, 100, Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT);
+		//setMinimumSize(new Dimension(Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT));
+		setResizable(false);
 		contentPane = (JPanel) getContentPane();
 		
 		GridBagLayout gbl = new GridBagLayout();
@@ -76,9 +73,8 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 		btnEdit.addActionListener(this);
 		getRootPane().setDefaultButton(btnEdit);
 		
-		btnAvatar = Graphics.makeAvatarButton();
+		btnAvatar = Graphics.makeAvatarButton(user.getAvatar());
 		btnAvatar.addActionListener(this);
-		Graphics.showAvatar(btnAvatar, user.getAvatar());
 /* Parte gráfica */
 		JPanel panel_info = new JPanel();
 		GridBagConstraints gbc_panel_info = new GridBagConstraints();

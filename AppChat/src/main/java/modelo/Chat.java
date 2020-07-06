@@ -62,6 +62,12 @@ public abstract class Chat {
 //		                                                         Methods
 // ---------------------------------------------------------------------
 	
+	public Mensaje getNewestMessage() {//TODO tiene que devolver el más nuevo
+		if (messages.size() > 0)
+			return messages.get(0);
+		return null;
+	}
+	
 	public Mensaje sendMessage(Usuario sender, String text) {
 		Mensaje msg = new Mensaje(sender, this, text);
 		addMessage(msg);

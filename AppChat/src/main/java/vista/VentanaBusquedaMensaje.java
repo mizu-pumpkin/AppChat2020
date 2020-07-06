@@ -150,6 +150,7 @@ public class VentanaBusquedaMensaje extends JFrame implements ActionListener {
 		gbc_bttn.gridy = 5;
 		btn_search = Graphics.makeButton("Iniciar búsqueda");
 		btn_search.addActionListener(this);
+		getRootPane().setDefaultButton(btn_search);
 		contentPane.add(btn_search, gbc_bttn);
 	}
 

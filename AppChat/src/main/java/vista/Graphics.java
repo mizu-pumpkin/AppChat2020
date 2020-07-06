@@ -12,12 +12,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Graphics {
+	public final static int MIN_WIDTH = 300;
+	public final static int MIN_HEIGHT = 250;
+	public static final int SIZE_AVATAR_BIG = 100;
+	public static final int SIZE_AVATAR_SMALL = 50;
+	public static final int SIZE_ICON = 25;
 	public static final Color MAIN = new Color(255, 153, 255);
 	public static final Color SECONDARY = new Color(255, 255, 255);
 	public static final Color WHITE = new Color(255, 255, 255);
 	public static final Color TRANSPARENT = new Color(0, 0, 0, 0);
-	public static final int SIZE_AVATAR = 50;
-	public static final int SIZE_ICON = 25;
+	public static final Image DEFAULT_AVATAR = new ImageIcon(
+			Graphics.class.getResource("/default.png")).getImage();
 	
 	public static JButton makeButton(String txt) {
 		JButton btn = new JButton(txt);
@@ -29,11 +34,11 @@ public class Graphics {
 		return makeImageButton(new ImageIcon(Graphics.class.getResource(src)), SIZE_ICON);
 	}
 
-	public static JButton makeAvatarButton() {
-		return makeImageButton(new ImageIcon(Graphics.class.getResource("/default.png")), SIZE_AVATAR);
+	public static JButton makeAvatarButton(String src) {
+		return makeImageButton(makeAvatar(src, SIZE_AVATAR_BIG), SIZE_AVATAR_BIG);
 	}
 	
-	private static JButton makeImageButton(ImageIcon img, int size) {
+	public static JButton makeImageButton(ImageIcon img, int size) {
 		JButton btn = new JButton(new ImageIcon(img.getImage()
 			.getScaledInstance(size,size,java.awt.Image.SCALE_SMOOTH))
 		);
@@ -47,17 +52,21 @@ public class Graphics {
 	}
 	
 	public static void showAvatar(JButton btn, String url) {
+		ImageIcon img = makeAvatar(url, SIZE_AVATAR_SMALL);
+		btn.setIcon(img);
+		btn.repaint();
+	}
+	
+	public static ImageIcon makeAvatar(String url, int size) {
 		if (url.isEmpty())
-			return;
-		Image img = null;
-		try { 
-			img = ImageIO.read(new File(url));
+			return new ImageIcon(DEFAULT_AVATAR
+					.getScaledInstance(size, size, java.awt.Image.SCALE_SMOOTH));
+		try {
+			return new ImageIcon(ImageIO.read(new File(url))
+				.getScaledInstance(size, size, java.awt.Image.SCALE_SMOOTH));
 		} catch (IOException e) {
-			img = new ImageIcon(Graphics.class.getResource("/default.png")).getImage();
-		} finally {
-			btn.setIcon(new ImageIcon(
-				img.getScaledInstance(SIZE_AVATAR, SIZE_AVATAR, java.awt.Image.SCALE_SMOOTH)));
-			btn.repaint();
+			return new ImageIcon(DEFAULT_AVATAR
+					.getScaledInstance(size, size, java.awt.Image.SCALE_SMOOTH));
 		}
 	}
 }
