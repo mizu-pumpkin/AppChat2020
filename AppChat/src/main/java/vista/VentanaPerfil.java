@@ -12,28 +12,34 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import controlador.AppChat;
+
 @SuppressWarnings("serial")
-public class VentanaPerfil extends JFrame {
+public class VentanaPerfil extends JFrame implements ActionListener {
 
 	private final static int MIN_WIDTH = 300;
 	private final static int MIN_HEIGHT = 200;
 	private final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
 	private Usuario user;
+	private JLabel lblGreeting;
 	
 	private JPanel contentPane;
-	
 	private JTextField txtGreeting;
 	private JButton btnEdit;
+	private JButton btnPremium;
 	private JButton btnAvatar;
 
-	public VentanaPerfil(Usuario user) {
+	public VentanaPerfil(Usuario user, JLabel lblGreeting) {
+		this.lblGreeting = lblGreeting;
 		this.user = user;
 		
 		initialize();
@@ -65,6 +71,14 @@ public class VentanaPerfil extends JFrame {
 		gbc_lblNick.gridy = 1;
 		contentPane.add(new JLabel(user.getUsername()), gbc_lblNick);
 		
+		btnPremium = Graphics.makeButton("Premium");
+		btnPremium.addActionListener(this);
+		GridBagConstraints gbc_btnPremium = new GridBagConstraints();
+		gbc_btnPremium.insets = new Insets(0, 0, 5, 5);
+		gbc_btnPremium.gridx = 3;
+		gbc_btnPremium.gridy = 1;
+		getContentPane().add(btnPremium, gbc_btnPremium);
+		
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblName.insets = new Insets(0, 0, 5, 5);
@@ -95,12 +109,21 @@ public class VentanaPerfil extends JFrame {
 	}
 	
 	private void configurarEditables() {
+/* Parte funcional */
 		btnAvatar = Graphics.makeImageButton(new ImageIcon(//FIXME
 			BubbleText.getEmoji(2)
 			.getImage()
 			.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH))
 		);
-		//btnAvatar.addActionListener(this);
+		btnAvatar.addActionListener(this);
+		
+		txtGreeting = new JTextField(user.getGreeting());
+		txtGreeting.setColumns(100);
+		
+		btnEdit = Graphics.makeButton("Edit");
+		btnEdit.addActionListener(this);
+		getRootPane().setDefaultButton(btnEdit);
+/* Parte gráfica */
 		GridBagConstraints gbc_lblAvatar = new GridBagConstraints();
 		gbc_lblAvatar.gridheight = 2;
 		gbc_lblAvatar.insets = new Insets(0, 0, 5, 5);
@@ -113,19 +136,27 @@ public class VentanaPerfil extends JFrame {
 		gbc_greeting.insets = new Insets(0, 0, 5, 5);
 		gbc_greeting.gridx = 2;
 		gbc_greeting.gridy = 2;
-		
-		txtGreeting = new JTextField();
-		txtGreeting.setText(user.getGreeting());
-		txtGreeting.setColumns(100);
 		contentPane.add(txtGreeting, gbc_greeting);
 		
-		btnEdit = new JButton("Edit");
-		//btnEdit.addActionListener(this);
 		GridBagConstraints gbc_btnEdit = new GridBagConstraints();
 		gbc_btnEdit.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEdit.gridx = 3;
 		gbc_btnEdit.gridy = 2;
 		contentPane.add(btnEdit, gbc_btnEdit);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnPremium) {
+			AppChat.getInstance().becomePremium();
+			return;
+		}
+		if (e.getSource() == btnEdit) {
+			AppChat.getInstance().changeGreeting(txtGreeting.getText());
+			lblGreeting.setText(txtGreeting.getText());
+			dispose();
+			return;
+		}
 	}
 
 }

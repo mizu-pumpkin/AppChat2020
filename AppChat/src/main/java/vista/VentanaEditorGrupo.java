@@ -36,7 +36,7 @@ import javax.swing.border.TitledBorder;
 import controlador.AppChat;
 
 @SuppressWarnings({"serial", "rawtypes", "unchecked"})
-public class VentanaEditorGrupo extends JFrame {
+public class VentanaEditorGrupo extends JFrame implements ActionListener {
 
 	private Usuario user;
 	private ChatGrupo group;
@@ -48,6 +48,10 @@ public class VentanaEditorGrupo extends JFrame {
 	private JList list_contacts;
 	private JList list_added;
 	private JTextField txtNombreGrupo;
+	private JButton btnAdd;
+	private JButton btnRmv;
+	private JButton btnOk;
+	private JButton btnCancel;
 	
 	/**
 	 * @wbp.parser.constructor
@@ -96,37 +100,15 @@ public class VentanaEditorGrupo extends JFrame {
 	
 	private void configurarBotones() {
 /* Parte funcional */
-		JButton btnAdd = Graphics.makeButton("->");
-		JButton btnRmv = Graphics.makeButton("<-");
-		JButton btnOk = Graphics.makeButton("Aceptar");
-		JButton btnCancel = Graphics.makeButton("Cancelar");
+		btnAdd = Graphics.makeButton("->");
+		btnRmv = Graphics.makeButton("<-");
+		btnOk = Graphics.makeButton("Aceptar");
+		btnCancel = Graphics.makeButton("Cancelar");
 		
-		btnAdd.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addContact();
-			}
-		});
-		btnRmv.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				removeContact();
-			}
-		});
-		btnOk.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (group == null) crearGrupo();
-				else editarGrupo();
-				listaChats.reloadList();
-			}
-		});
-		btnCancel.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}
-		});
+		btnAdd.addActionListener(this);
+		btnRmv.addActionListener(this);
+		btnOk.addActionListener(this);
+		btnCancel.addActionListener(this);
 /* Parte visual */
 		JPanel panel_addrmv = new JPanel();
 		GridBagConstraints gbc_addrmv = new GridBagConstraints();
@@ -304,6 +286,28 @@ public class VentanaEditorGrupo extends JFrame {
 			JOptionPane.INFORMATION_MESSAGE
 		);
 		dispose();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAdd) {
+			addContact();
+			return;
+		}
+		if (e.getSource() == btnRmv) {
+			removeContact();
+			return;
+		}
+		if (e.getSource() == btnOk) {
+			if (group == null) crearGrupo();
+			else editarGrupo();
+			listaChats.reloadList();
+			return;
+		}
+		if (e.getSource() == btnCancel) {
+			dispose();
+			return;
+		}
 	}
 
 }

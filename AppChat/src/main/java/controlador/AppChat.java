@@ -177,7 +177,7 @@ public class AppChat {
 		return registerChat(usuarioActual.getPrivateChat(user));
 	}
 
-	public boolean registerContact(ChatIndividual contact, String text) {
+	public boolean editContact(ChatIndividual contact, String text) {
 		if (contact == null) return false;
 		
 		contact.setName(text);
@@ -265,8 +265,14 @@ public class AppChat {
 //	                                                  Gestión de Usuario
 // ---------------------------------------------------------------------
 	
-	public boolean knowsUser(Usuario u) {
-		return usuarioActual.knowsUser(u);
+	public void becomePremium() {
+		usuarioActual.setPremiumOn();
+		adaptadorUsuario.update(usuarioActual);
+	}
+
+	public void changeGreeting(String text) {
+		usuarioActual.setGreeting(text);
+		adaptadorUsuario.update(usuarioActual);
 	}
 
 }

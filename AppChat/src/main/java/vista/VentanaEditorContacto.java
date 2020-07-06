@@ -25,7 +25,7 @@ import controlador.AppChat;
 import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
-public class VentanaEditorContacto extends JFrame {
+public class VentanaEditorContacto extends JFrame implements ActionListener {
 
 	private final static int MIN_WIDTH = 300;
 	private final static int MIN_HEIGHT = 200;
@@ -33,6 +33,10 @@ public class VentanaEditorContacto extends JFrame {
 	private ChatIndividual contact;
 	private Usuario user;
 	private PanelListaChats listaChats;
+	
+	private JButton btnEdit;
+	private JButton btnCancel;
+	private JTextField txtName;
 
 	public VentanaEditorContacto(Usuario user, PanelListaChats listaChats) {
 		this.user = user;
@@ -113,36 +117,19 @@ public class VentanaEditorContacto extends JFrame {
 	
 	private void configurarInfoContacto() {
 /* Parte funcional */
-		JTextField txtName = new JTextField();
+		txtName = new JTextField();
 		if (contact != null)
 			txtName.setText(contact.getName());
 		else
 			txtName.setText("Elige un nombre");
 		txtName.setColumns(10);
 		
-		JButton btnEdit = Graphics.makeButton("Guardar");
-		btnEdit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (contact == null) {
-					AppChat.getInstance().registerContact(txtName.getText(), user.getPhone());
-					listaChats.reloadList();
-				} else {
-					AppChat.getInstance().registerContact(contact, txtName.getText());
-					listaChats.reloadList();
-				}
-				dispose();
-			}
-		});
+		btnEdit = Graphics.makeButton("Guardar");
+		btnEdit.addActionListener(this);
 		getRootPane().setDefaultButton(btnEdit);
 		
-		JButton btnCancel = Graphics.makeButton("Cancelar");
-		btnCancel.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
+		btnCancel = Graphics.makeButton("Cancelar");
+		btnCancel.addActionListener(this);
 /* Parte gráfica */
 		GridBagConstraints gbc_txtName = new GridBagConstraints();
 		gbc_txtName.gridwidth = 2;
@@ -163,6 +150,25 @@ public class VentanaEditorContacto extends JFrame {
 		panelBtns.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelBtns.add(btnEdit);
 		panelBtns.add(btnCancel);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnEdit) {
+			if (contact == null) {
+				AppChat.getInstance().registerContact(txtName.getText(), user.getPhone());
+				listaChats.reloadList();
+			} else {
+				AppChat.getInstance().editContact(contact, txtName.getText());
+				listaChats.reloadList();
+			}
+			dispose();
+			return;
+		}
+		if (e.getSource() == btnCancel) {
+			dispose();
+			return;
+		}
 	}
 
 }

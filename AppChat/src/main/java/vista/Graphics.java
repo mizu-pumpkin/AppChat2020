@@ -3,7 +3,6 @@ package vista;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Insets;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 

@@ -57,6 +57,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private JButton btnAvatar;
 	private JButton btnEmoji;
 	private JButton btnNewGroup;
+	private JLabel lblGreeting;
 	private JPanel panel_izq;
 	private JPopupMenu popupMenuEmoji;
 
@@ -126,7 +127,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbc_lblUsername.gridy = 0;
 		panel.add(lblUsername, gbc_lblUsername);
 /* Greeting */
-		JLabel lblGreeting = new JLabel(loggedUser.getGreeting());
+		lblGreeting = new JLabel(loggedUser.getGreeting());
 		lblGreeting.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		GridBagConstraints gbc_lblGreeting = new GridBagConstraints();
 		gbc_lblGreeting.anchor = GridBagConstraints.NORTHWEST;
@@ -260,7 +261,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnAvatar) {
-			new VentanaPerfil(loggedUser);
+			new VentanaPerfil(loggedUser, lblGreeting);
 			return;
 		}
 		if (e.getSource() == btnNewGroup) {
@@ -288,9 +289,9 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 					JOptionPane.ERROR_MESSAGE
 				);
 			} else if (user.equals(loggedUser)) {
-				new VentanaPerfil(loggedUser);
+				new VentanaPerfil(loggedUser, lblGreeting);
 			} else {
-				if (AppChat.getInstance().knowsUser(user))
+				if (loggedUser.knowsUser(user))
 					new VentanaEditorContacto(loggedUser.getPrivateChat(user), panelList);
 				else
 					new VentanaEditorContacto(user, panelList);
