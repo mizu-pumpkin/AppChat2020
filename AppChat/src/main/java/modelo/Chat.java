@@ -61,10 +61,20 @@ public abstract class Chat {
 // ---------------------------------------------------------------------
 //		                                                         Methods
 // ---------------------------------------------------------------------
+
+	public Date getTimeOfMostRecentMessage() {
+		Mensaje msg = getMostRecentMessage();
+		if (msg != null)
+			return msg.getTimestamp();
+		return new Date(0);
+	}
 	
-	public Mensaje getNewestMessage() {//TODO tiene que devolver el más nuevo
+	public Mensaje getMostRecentMessage() {
 		if (messages.size() > 0)
-			return messages.get(0);
+			return messages.stream()
+				.sorted((m1,m2) -> m2.getTimestamp().compareTo(m1.getTimestamp()))
+				.collect(Collectors.toList())
+				.get(0);
 		return null;
 	}
 	

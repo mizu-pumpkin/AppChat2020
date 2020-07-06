@@ -104,7 +104,7 @@ public class Mensaje implements Comparable {
 
 	@Override
 	public String toString() {
-		return "Mensaje [id=" + id + ", body=" + body + "]";
+		return "Mensaje [id=" + id + ", body=" + body + ", date=" + timestamp + "]";
 	}
 
 	// FIXME: supongo que el identificador es único.

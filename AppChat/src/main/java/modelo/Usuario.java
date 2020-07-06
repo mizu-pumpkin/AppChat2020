@@ -1,11 +1,12 @@
 package modelo;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Usuario {
@@ -145,27 +146,48 @@ public class Usuario {
 		this.story = story;
 	}
 
-	public Collection<Chat> getChats() {
-		return new LinkedList<>(chats);
+	public List<Chat> getChats() {
+		return chats
+			.stream()
+			.sorted(new Comparator<Chat>() {//TODO: mover a chat
+				@Override
+				public int compare(Chat c1, Chat c2) {
+					return c2.getTimeOfMostRecentMessage().compareTo(
+						   c1.getTimeOfMostRecentMessage());
+				}
+			})
+			.collect(Collectors.toList())
+			;
 	}
 	
-	public Collection<ChatIndividual> getPrivateChats() {
-		return new LinkedList<>(privateChats.values());
+	public List<ChatIndividual> getPrivateChats() {
+		return privateChats.values()
+			.stream()
+			.sorted(new Comparator<ChatIndividual>() {//TODO: mover a chatindividual
+				@Override
+				public int compare(ChatIndividual c1, ChatIndividual c2) {
+					return c1.getName().compareToIgnoreCase(c2.getName());
+				}
+			})
+			.collect(Collectors.toList())
+			;
 	}
 	
-	public Collection<ChatGrupo> getGroups() {
-		return chats.stream()
-					.filter(c -> c instanceof ChatGrupo)
-					.map(c -> (ChatGrupo) c)
-					.collect(Collectors.toSet())
-					;
+	public List<ChatGrupo> getGroups() {
+		return chats
+			.stream()
+			.filter(c -> c instanceof ChatGrupo)
+			.map(c -> (ChatGrupo) c)
+			.collect(Collectors.toList())
+			;
 	}
 
-	public Collection<ChatGrupo> getAdminGroups() { // gruposAdmin
-		return getGroups().stream()
-						  .filter(g -> g.getAdmin().equals(this))
-						  .collect(Collectors.toSet())
-						  ;
+	public List<ChatGrupo> getAdminGroups() { // gruposAdmin
+		return getGroups()
+			.stream()
+			.filter(g -> g.getAdmin().equals(this))
+			.collect(Collectors.toList())
+			;
 	}
 
 	public boolean addChat(Chat chat) {

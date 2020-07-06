@@ -25,7 +25,7 @@ import modelo.Usuario;
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class PanelListaChats extends JPanel {
 	
-	private final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	private final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
 
 	private PanelChat chat;
 	private Usuario user;
@@ -41,6 +41,7 @@ public class PanelListaChats extends JPanel {
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
 		JList lista = new JList();
+		lista.setFixedCellHeight(Graphics.SIZE_AVATAR_SMALL);
 		lista.setModel(model);
 		lista.setCellRenderer(createListRenderer());
 		lista.addListSelectionListener(createListSelectionListener(lista));
@@ -75,15 +76,15 @@ public class PanelListaChats extends JPanel {
 					} else {
 						label.setIcon(Graphics.makeAvatar("", Graphics.SIZE_AVATAR_SMALL));
 					}
-					Mensaje msg = chat.getNewestMessage();
+					Mensaje msg = chat.getMostRecentMessage();
 					String time = "";
 					String preview = "";
 					if (msg != null) {
 						time = dateFormat.format(msg.getTimestamp());
 						if (msg.getBodyType() == Mensaje.TEXT_BODY) {
 							preview = msg.getBody();
-							if (preview.length() > 20)
-								preview = preview.substring(0,20);
+							if (preview.length() > 30)
+								preview = preview.substring(0,30);
 						} else preview = "*emoji*";
 					}
 					label.setText("<html>"+chat.getName()+" ["+time+"]<br/>"+preview+"</html>");

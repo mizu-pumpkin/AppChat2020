@@ -36,7 +36,7 @@ public class AdaptadorMensajeTDS implements IAdaptadorMensajeDAO {
 	
 	private AdaptadorMensajeTDS() {
 		servPersistencia = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
-		dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	}
 
 	@Override

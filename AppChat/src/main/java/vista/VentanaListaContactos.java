@@ -3,14 +3,26 @@ package vista;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import modelo.ChatIndividual;
 import modelo.Usuario;
@@ -19,12 +31,16 @@ import javax.swing.JTable;
 import java.awt.Component;
 
 @SuppressWarnings({"serial"})
-public class VentanaListaContactos extends JFrame {
+public class VentanaListaContactos extends JFrame implements ActionListener{
+	
+	private final static String userhome = System.getProperty("user.home");
 	
 	private Usuario user;
 
 	private JPanel contentPane;
 	private JButton btnPDF;
+
+	private JTable table;
 	
 	
 	/*
@@ -49,25 +65,26 @@ public class VentanaListaContactos extends JFrame {
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		setContentPane(contentPane);
 
-		JTable tabla = new JTable(new MyTableModel(user.getPrivateChats()));
-		tabla.setRowHeight(Graphics.SIZE_AVATAR_SMALL);
-		JScrollPane scrollPane = new JScrollPane(tabla);
+		table = new JTable(new MyTableModel(user.getPrivateChats()));
+		table.setRowHeight(Graphics.SIZE_AVATAR_SMALL);
+		JScrollPane scrollPane = new JScrollPane(table);
 		contentPane.add(scrollPane);
 		
 		configurarBotonPDF();
 	}
 	
 	class MyTableModel extends AbstractTableModel {
-		private String[] columnNames = {"Imagen","Nombre de contacto","Teléfono"};
+		private String[] columnNames = {"Imagen","Nombre","Teléfono","Grupos"};
 		private Object[][] data;
 		
-		public MyTableModel(Collection<ChatIndividual> contacts) {
-			data = new Object[contacts.size()][3];
+		public MyTableModel(List<ChatIndividual> contacts) {
+			data = new Object[contacts.size()][4];
 			int i = 0;
 			for (ChatIndividual c : contacts) {
 				data[i][0] = Graphics.makeAvatar(c.getAvatar(), Graphics.SIZE_AVATAR_SMALL);
 				data[i][1] = c.getName();
 				data[i][2] = c.getPhone();
+				data[i][3] = "//TODO";//TODO
 				i++;
 			}
 		}
@@ -98,12 +115,56 @@ public class VentanaListaContactos extends JFrame {
 		contentPane.add(btnPDF);
 		if (!user.isPremium()) btnPDF.setVisible(false);
 		
-		btnPDF.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//TODO imprimir PDF
+		btnPDF.addActionListener(this);
+	}
+	
+    public void generarPDF() throws FileNotFoundException, DocumentException {
+        Document doc = new Document();
+        PdfWriter.getInstance(doc, new FileOutputStream(userhome+"\\Contactos.pdf"));
+        doc.open();
+        
+        PdfPTable pdfTable = new PdfPTable(3);
+        pdfTable.addCell(makeTitleCell("Nombre"));
+        pdfTable.addCell(makeTitleCell("Teléfono"));
+        pdfTable.addCell(makeTitleCell("Grupos"));
+        for (int i=0; i<table.getRowCount(); i++) {
+        	pdfTable.addCell(new Paragraph((String)table.getValueAt(i, 1)));
+        	pdfTable.addCell(new Paragraph((String)table.getValueAt(i, 2)));
+        	pdfTable.addCell(new Paragraph((String)table.getValueAt(i, 3)));
+        }
+        doc.add(pdfTable);
+        
+        doc.close();
+     }
+    
+    public PdfPCell makeTitleCell(String phrase) {
+        PdfPCell cell = new PdfPCell(new Phrase(phrase));
+        cell.setBorder(Rectangle.NO_BORDER);
+        cell.setColspan(1);
+        return cell;
+    }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnPDF) {
+			try {
+				generarPDF();
+				JOptionPane.showMessageDialog(
+					this,
+					"PDF generado correctamente y guardado en "+userhome+".",
+					"PDF generated successfully",
+					JOptionPane.INFORMATION_MESSAGE
+				);
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(
+					this,
+					"No se ha podido generar el pdf en "+userhome+".",
+					"Error saving PDF",
+					JOptionPane.ERROR_MESSAGE
+				);
 			}
-		});
+			return;
+		}
 	}
 
 }
