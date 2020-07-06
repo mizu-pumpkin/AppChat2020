@@ -3,6 +3,11 @@ package vista;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -22,6 +27,10 @@ public class Graphics {
 		return makeImageButton(icon, 25);
 	}
 	
+	public static JButton makeImageButton(ImageIcon img) {
+		return makeImageButton(img, 100);
+	}
+	
 	public static JButton makeImageButton(ImageIcon img, int size) {
 		JButton btn = new JButton(new ImageIcon(img.getImage()
 			.getScaledInstance(size,size,java.awt.Image.SCALE_SMOOTH))
@@ -33,5 +42,20 @@ public class Graphics {
 		btn.setOpaque(false);
 		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		return btn;
+	}
+	
+	public static void showAvatar(JButton btn, String url) {
+		if (url.isEmpty())
+			return;
+		File fichero = new File(url);
+		try { 
+			BufferedImage img = ImageIO.read(fichero);
+			btn.setIcon(new ImageIcon(
+				img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH)
+			));
+			btn.repaint();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 }

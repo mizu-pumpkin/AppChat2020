@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import modelo.CatalogoUsuarios;
@@ -87,7 +88,6 @@ public class AppChat {
 						    String phone,
 						    String greeting) {
 			if (isRegistered(username)) return false;
-			
 			Usuario usuario = new Usuario(username, password, name, birthday, email, phone, greeting);
 			adaptadorUsuario.create(usuario);	// Almacenamos el nuevo Usuario en la BD
 			catalogoUsuarios.add(usuario);		// Almacenamos el nuevo Usuario en el catalogo
@@ -106,6 +106,11 @@ public class AppChat {
 		Usuario user = catalogoUsuarios.getByPhone(data);
 		if (user == null) user = catalogoUsuarios.getByUsername(data);
 		return user;
+	}
+	
+	public void changeAvatar(Usuario usuario, String avatar) {
+		usuario.setAvatar(avatar);
+		adaptadorUsuario.update(usuario);
 	}
 
 // ---------------------------------------------------------------------
@@ -158,6 +163,25 @@ public class AppChat {
 		adaptadorChat.update(chat);
 		adaptadorMensaje.delete(msg);
 		return true;
+	}
+	
+	public List<Mensaje> findMessages(Chat chat, String text, String user, Date d1, Date d2) {
+		List<Mensaje> aux;
+		List<List<Mensaje>> listados = new LinkedList<>();
+		
+		if (!text.trim().isEmpty())
+			listados.add(chat.findMessagesByText(text.trim()));
+		if (!user.trim().isEmpty())
+			listados.add(chat.findMessagesByUser(user.trim()));
+		if (d1 != null && d2 != null)
+			listados.add(chat.findMessagesByDate(d1, d2));
+		
+		aux = new LinkedList<>(listados.get(0));
+		
+		for (List<Mensaje> l : listados)
+			aux.retainAll(l);
+		
+		return aux;
 	}
 
 // ---------------------------------------------------------------------

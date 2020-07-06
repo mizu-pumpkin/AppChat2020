@@ -1,7 +1,6 @@
 package vista;
 
 import javax.swing.JFrame;
-import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JSplitPane;
 import javax.swing.JScrollPane;
@@ -18,7 +17,6 @@ import modelo.Usuario;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
@@ -30,9 +28,6 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
 
 import tds.BubbleText;
 import javax.swing.JPopupMenu;
@@ -52,17 +47,17 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	
 	private JTextField txtWriteMsg;
 	private JTextField txtFindUser;
-	private JTextField txtFindMessage;
-	private JButton btnAvatar;
-	private JButton btnEmoji;
-	private JButton btnNewGroup;
-	private JButton btnPremium;
-	private JButton btnStats;
 	private JLabel lblGreeting;
 	private JPanel panel_izq;
 	private JPanel panel_der;
 	private JPopupMenu popupMenuEmoji;
 	private JToolBar toolbar;
+	private JButton btnFindMessage;
+	private JButton btnAvatar;
+	private JButton btnEmoji;
+	private JButton btnNewGroup;
+	private JButton btnPremium;
+	private JButton btnStats;
 	private JButton btnContacts;
 
 	public VentanaAppChat(Usuario user) {
@@ -110,11 +105,10 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 
 	public void configurarInfoUsuario() {
 /* Avatar */
-		btnAvatar = Graphics.makeImageButton(
-			BubbleText.getEmoji(BubbleText.MAXICONO),//FIXME
-			50
-		);
+		btnAvatar = Graphics.makeImageButton(BubbleText.getEmoji(0));
 		btnAvatar.addActionListener(this);
+		Graphics.showAvatar(btnAvatar, loggedUser.getAvatar());
+
 		GridBagConstraints gbc_lblAvatar = new GridBagConstraints();
 		gbc_lblAvatar.gridheight = 2;
 		gbc_lblAvatar.insets = new Insets(0, 0, 5, 5);
@@ -207,15 +201,17 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		gbl.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_der.setLayout(gbl);
 /* Search message */
-		txtFindMessage = new JTextField();
-		txtFindMessage.setColumns(10);
+		btnFindMessage = Graphics.makeIconButton(
+			new ImageIcon(this.getClass().getResource("/searchmsg.png")));
+		btnFindMessage.addActionListener(this);
+		//btnFindMessage.setColumns(10);
 		GridBagConstraints gbc_txtFindMessage = new GridBagConstraints();
 		gbc_txtFindMessage.gridwidth = 2;
 		gbc_txtFindMessage.insets = new Insets(0, 0, 5, 0);
 		gbc_txtFindMessage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtFindMessage.gridx = 1;
 		gbc_txtFindMessage.gridy = 0;
-		panel_der.add(txtFindMessage, gbc_txtFindMessage);
+		panel_der.add(btnFindMessage, gbc_txtFindMessage);
 /* Chat panel */
 		GridBagConstraints gbc_scrollPane_chat = new GridBagConstraints();
 		gbc_scrollPane_chat.gridwidth = 3;
@@ -263,23 +259,19 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		btnEmoji.addActionListener(this);
 	}
 	
-	public void showAvatar(String nombre) {//TODO: entender como usar
-		URL url = this.getClass().getResource(nombre);
-		BufferedImage myPicture;
-		try { 
-			myPicture = ImageIO.read(url);			
-			Image aux=myPicture.getScaledInstance(MIN_WIDTH, MIN_HEIGHT, Image.SCALE_DEFAULT);
-			btnAvatar.setIcon(new ImageIcon(aux));
-			btnAvatar.repaint();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+	public void reloadAvatar() {
+		Graphics.showAvatar(btnAvatar, loggedUser.getAvatar());
+	}
+	
+	public void reloadGreeting() {
+		lblGreeting.setText(loggedUser.getGreeting());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnAvatar) {
-			new VentanaPerfil(loggedUser, lblGreeting);
+			VentanaPerfil v = new VentanaPerfil(loggedUser);
+			v.setVAC(this);
 			return;
 		}
 		if (e.getSource() == btnNewGroup) {
@@ -309,7 +301,12 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			txtWriteMsg.setText("");
 			return;
 		}
-		if (e.getSource() == txtFindUser) {
+		if (e.getSource() == btnFindMessage) {
+			if (panelChat.hasChat())
+				new VentanaBusquedaMensaje(panelChat.getChat(), loggedUser.getUsername());
+			return;
+		}
+		if (e.getSource() == txtFindUser) {//FIXME
 			Usuario user = AppChat.getInstance().findUser(txtFindUser.getText());
 			if (user == null) {
 				JOptionPane.showMessageDialog(
@@ -319,7 +316,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 					JOptionPane.ERROR_MESSAGE
 				);
 			} else if (user.equals(loggedUser)) {
-				new VentanaPerfil(loggedUser, lblGreeting);
+				new VentanaPerfil(loggedUser);
 			} else {
 				if (loggedUser.knowsUser(user))
 					new VentanaEditorContacto(loggedUser.getPrivateChat(user), listaChats);

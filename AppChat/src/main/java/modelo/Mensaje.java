@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.Date;
 
-public class Mensaje {
+public class Mensaje implements Comparable {
 
 // ---------------------------------------------------------------------
 //                                                             Constants
@@ -107,4 +107,61 @@ public class Mensaje {
 		return "Mensaje [id=" + id + ", body=" + body + "]";
 	}
 
+	// FIXME: supongo que el identificador es único.
+	@Override
+	public int compareTo(Object arg0) {
+		if (!equals(arg0))
+			return 0;
+		Mensaje other = (Mensaje) arg0;
+		return timestamp.compareTo(other.timestamp);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((body == null) ? 0 : body.hashCode());
+		result = prime * result + bodyType;
+		result = prime * result + ((chat == null) ? 0 : chat.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
+		result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mensaje other = (Mensaje) obj;
+		if (body == null) {
+			if (other.body != null)
+				return false;
+		} else if (!body.equals(other.body))
+			return false;
+		if (bodyType != other.bodyType)
+			return false;
+		if (chat == null) {
+			if (other.chat != null)
+				return false;
+		} else if (!chat.equals(other.chat))
+			return false;
+		if (id != other.id)
+			return false;
+		if (sender == null) {
+			if (other.sender != null)
+				return false;
+		} else if (!sender.equals(other.sender))
+			return false;
+		if (timestamp == null) {
+			if (other.timestamp != null)
+				return false;
+		} else if (!timestamp.equals(other.timestamp))
+			return false;
+		return true;
+	}
 }

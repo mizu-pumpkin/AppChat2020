@@ -9,6 +9,7 @@ import modelo.Usuario;
 import tds.BubbleText;
 
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -18,7 +19,9 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controlador.AppChat;
 
@@ -30,19 +33,23 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 	private final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
 	private Usuario user;
-	private JLabel lblGreeting;
 	
 	private JPanel contentPane;
 	private JTextField txtGreeting;
 	private JButton btnEdit;
 	private JButton btnAvatar;
+	
+	private VentanaAppChat father;
 
-	public VentanaPerfil(Usuario user, JLabel lblGreeting) {
-		this.lblGreeting = lblGreeting;
+	public VentanaPerfil(Usuario user) {
 		this.user = user;
-		
 		initialize();
 		setVisible(true);
+	}
+	
+	// A fin de evitar incompatibilidad con el constructor anterior, he creado este método.
+	public void setVAC(VentanaAppChat father) {
+		this.father = father;
 	}
 	
 	private void initialize() {
@@ -63,6 +70,7 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 	}
 	
 	private void configurarInfoUsuario() {
+		
 		GridBagConstraints gbc_lblNick = new GridBagConstraints();
 		gbc_lblNick.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblNick.insets = new Insets(0, 0, 5, 5);
@@ -98,14 +106,12 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 		gbc_lblPhone.gridy = 6;
 		contentPane.add(new JLabel(user.getPhone()), gbc_lblPhone);
 	}
-	
+
 	private void configurarEditables() {
 /* Parte funcional */
-		btnAvatar = Graphics.makeImageButton(
-			BubbleText.getEmoji(2),//FIXME
-			50
-		);
+		btnAvatar = Graphics.makeImageButton(BubbleText.getEmoji(0));
 		btnAvatar.addActionListener(this);
+		Graphics.showAvatar(btnAvatar, user.getAvatar());
 		
 		txtGreeting = new JTextField(user.getGreeting());
 		txtGreeting.setColumns(100);
@@ -138,12 +144,22 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAvatar) {
+			JFileChooser chooser = new JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG o JPEG", "png", "jpg", "jpeg");
+			chooser.setFileFilter(filter);
+			int returnVal = chooser.showOpenDialog(null);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				AppChat.getInstance().changeAvatar(user, chooser.getSelectedFile().getAbsolutePath());
+				Graphics.showAvatar(btnAvatar, user.getAvatar());
+				father.reloadAvatar();
+			}
+		}
 		if (e.getSource() == btnEdit) {
 			AppChat.getInstance().changeGreeting(txtGreeting.getText());
-			lblGreeting.setText(txtGreeting.getText());
+			father.reloadGreeting();
 			dispose();
 			return;
 		}
 	}
-
 }

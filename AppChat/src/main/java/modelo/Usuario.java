@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,7 @@ public class Usuario {
 	private Estado story; // estado
 	private boolean premium; // premium
 	private Collection<Chat> chats; // contactos
-	private HashMap<Integer, ChatIndividual> privateChats;
+	private Map<Integer, ChatIndividual> privateChats;
 	
 // ---------------------------------------------------------------------
 //                                                          Constructors

@@ -3,6 +3,7 @@ package vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -29,10 +30,9 @@ public class PanelChat extends JPanel implements Scrollable {
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 	}
 	
-	public void loadChat(Chat chat) {
+	public void loadChat(List<Mensaje> listado) {
 		removeAll();
-		this.actualChat = chat;
-		for (Mensaje m : actualChat.getMessages()) {
+		for (Mensaje m : listado) {
 			String text = m.getBody();
 			String sender = m.getSenderName();
 			
@@ -55,6 +55,11 @@ public class PanelChat extends JPanel implements Scrollable {
 		revalidate();
 	}
 	
+	public void loadChat(Chat chat) {
+		this.actualChat = chat;
+		loadChat(chat.getMessages());
+	}
+
 	public void sendText(String text) {
 		if (actualChat == null) return;
 		add(new BubbleText(this, text, COLOR_MSG_SENT, myUsername, BubbleText.SENT));
@@ -65,6 +70,16 @@ public class PanelChat extends JPanel implements Scrollable {
 		if (actualChat == null) return;
 		add(new BubbleText(this, emoji, COLOR_MSG_SENT, myUsername, BubbleText.SENT, 12));
 		AppChat.getInstance().sendMessage(actualChat, emoji);
+	}
+	
+	// Para que no se ejecute el botón de búsqueda de mensaje si no se ha elegido un chat.
+	public boolean hasChat() {
+		return actualChat != null;
+	}
+	
+	// El panel de búsqueda de chat necesita el chat sobre el que debe buscar.
+	public Chat getChat() {
+		return actualChat;
 	}
 
 	@Override
