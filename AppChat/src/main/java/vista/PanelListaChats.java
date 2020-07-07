@@ -70,12 +70,7 @@ public class PanelListaChats extends JPanel {
 				{
 					JLabel label = (JLabel) c;
 					Chat chat = (Chat) value;
-					if (chat instanceof ChatIndividual) {
-						ChatIndividual contact = (ChatIndividual) chat;
-						label.setIcon(Graphics.makeAvatar(contact.getAvatar(), Graphics.SIZE_AVATAR_SMALL));
-					} else {
-						label.setIcon(Graphics.makeAvatar("", Graphics.SIZE_AVATAR_SMALL));
-					}
+					
 					Mensaje msg = chat.getMostRecentMessage();
 					String time = "";
 					String preview = "";
@@ -83,11 +78,14 @@ public class PanelListaChats extends JPanel {
 						time = dateFormat.format(msg.getTimestamp());
 						if (msg.getBodyType() == Mensaje.TEXT_BODY) {
 							preview = msg.getBody();
-							if (preview.length() > 30)
-								preview = preview.substring(0,30);
+							if (preview.length() > 20) {
+								preview = preview.substring(0,17);
+								preview += "...";
+							}
 						} else preview = "*emoji*";
 					}
-					label.setText("<html>"+chat.getName()+" ["+time+"]<br/>"+preview+"</html>");
+					label.setIcon(Graphics.makeAvatar(chat.getAvatar(), Graphics.SIZE_AVATAR_SMALL));
+					label.setText("<html>"+chat.getName()+"<br/>["+time+"]<br/>"+preview+"</html>");
 					if (!isSelected)
 						label.setBackground(index % 2 == 0 ? background : defaultBackground);
 				}

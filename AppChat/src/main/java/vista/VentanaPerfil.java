@@ -36,21 +36,17 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 	
 	private VentanaAppChat father;
 
-	public VentanaPerfil(Usuario user) {
+	public VentanaPerfil(Usuario user, VentanaAppChat father) {
 		this.user = user;
+		this.father = father;
 		initialize();
 		setVisible(true);
 	}
 	
-	// A fin de evitar incompatibilidad con el constructor anterior, he creado este método.
-	public void setVAC(VentanaAppChat father) {
-		this.father = father;
-	}
-	
 	private void initialize() {
 		setTitle("Perfil - "+user.getUsername());
-		setBounds(100, 100, Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT);
-		//setMinimumSize(new Dimension(Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT));
+		setSize(Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT);
+		setLocationRelativeTo(father);
 		setResizable(false);
 		contentPane = (JPanel) getContentPane();
 		
@@ -163,7 +159,7 @@ public class VentanaPerfil extends JFrame implements ActionListener {
 			int returnVal = chooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				AppChat.getInstance().changeAvatar(user, chooser.getSelectedFile().getAbsolutePath());
-				Graphics.showAvatar(btnAvatar, user.getAvatar());
+				Graphics.reloadAvatarButton(btnAvatar, user.getAvatar());
 				father.reloadAvatar();
 			}
 		}

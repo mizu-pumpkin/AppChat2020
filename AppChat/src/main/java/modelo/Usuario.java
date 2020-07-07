@@ -201,6 +201,11 @@ public class Usuario {
 		return true;
 	}
 	
+	/**
+	 * Borra un contacto y si es un contacto individual, también
+	 * lo elimina de los grupos administrados por el usuario a los
+	 * que el contacto borrado pertenece.
+	 */
 	public boolean removeChat(Chat chat) {
 		if (!chats.contains(chat)) return false;
 		
@@ -251,14 +256,28 @@ public class Usuario {
 	public boolean leaveGroup(ChatGrupo g) {
 		return removeChat(g);
 	}
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id +
-				", username=" + username +
-				", premium=" + premium +
-				", chats=" + chats +
-				"]";
+	
+	private List<Mensaje> getMessagesSent(Date d1, Date d2) {
+		return chats
+				.stream()
+				.flatMap(c -> c.findMessagesByDate(d1, d2).stream())
+				.filter(m -> m.isSender(this))
+				.collect(Collectors.toList());
+	}
+	
+	public long getNumberOfMessagesSent(Date d1, Date d2) {
+		return getMessagesSent(d1, d2)
+				.stream()
+				.count();
+	}
+	
+	public List<ChatGrupo> getGroupsSortedByMostUsed() {
+		return getGroups()
+			.stream()
+			.sorted((g1,g2) -> //FIXME: chapuzilla
+				(int) (g2.getNumberOfMessagesSent(this) - g1.getNumberOfMessagesSent(this)))
+			.collect(Collectors.toList())
+			;
 	}
 
 	@Override
@@ -293,6 +312,14 @@ public class Usuario {
 		if (!username.equals(other.username))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id +
+				", username=" + username +
+				", chats=" + chats +
+				"]";
 	}
 
 }

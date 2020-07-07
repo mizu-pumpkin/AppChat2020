@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.Date;
 
-public class Mensaje implements Comparable {
+public class Mensaje implements Comparable<Mensaje> {
 
 // ---------------------------------------------------------------------
 //                                                             Constants
@@ -102,18 +102,18 @@ public class Mensaje implements Comparable {
 		return sender.getUsername();
 	}
 
-	@Override
-	public String toString() {
-		return "Mensaje [id=" + id + ", body=" + body + ", date=" + timestamp + "]";
+// ---------------------------------------------------------------------
+//	                                                   Getters and Setters
+// ---------------------------------------------------------------------
+	
+	public boolean isSender(Usuario u) {
+		return u.equals(sender);
 	}
-
+	
 	// FIXME: supongo que el identificador es único.
 	@Override
-	public int compareTo(Object arg0) {
-		if (!equals(arg0))
-			return 0;
-		Mensaje other = (Mensaje) arg0;
-		return timestamp.compareTo(other.timestamp);
+	public int compareTo(Mensaje m) {
+		return timestamp.compareTo(m.timestamp);
 	}
 
 	@Override
@@ -163,5 +163,10 @@ public class Mensaje implements Comparable {
 		} else if (!timestamp.equals(other.timestamp))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Mensaje [id=" + id + ", body=" + body + ", date=" + timestamp + "]";
 	}
 }

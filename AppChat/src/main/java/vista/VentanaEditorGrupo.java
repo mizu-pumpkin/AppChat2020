@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -30,7 +31,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
 import controlador.AppChat;
@@ -60,7 +60,9 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		this.user = user;
 		this.group = group;
 		this.listaChats = listaChats;
-		setBounds(100, 100, 450, 300);
+		setSize(450, 300);
+		setMinimumSize(new Dimension(Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT));
+		setLocationRelativeTo(null);
 		setTitle("Editor de grupos");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

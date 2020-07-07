@@ -73,8 +73,9 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private void initialize() {
 		BubbleText.noZoom();
 		setTitle("AppChat");
-		setBounds(100, 100, MIN_WIDTH, MIN_HEIGHT);
+		setSize(MIN_WIDTH, MIN_HEIGHT);
 		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = (JPanel) getContentPane();
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
@@ -84,10 +85,12 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		contentPane.add(splitPane);
 		
 		panel_izq = new JPanel();
+		panel_izq.setMinimumSize(new Dimension(200, 0));
 		splitPane.setLeftComponent(panel_izq);
 		configurarPanelIzquierdo();
 		
 		panel_der = new JPanel();
+		panel_der.setMinimumSize(new Dimension(400, 0));
 		splitPane.setRightComponent(panel_der);
 		configurarPanelDerecho();
 	}
@@ -251,6 +254,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		ActionListener popupListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelChat.sendEmoji(Integer.parseInt(e.getActionCommand()));
+				listaChats.reloadList();
 			}
 		};
 		
@@ -269,7 +273,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	}
 	
 	public void reloadAvatar() {
-		Graphics.showAvatar(btnAvatar, loggedUser.getAvatar());
+		Graphics.reloadAvatarButton(btnAvatar, loggedUser.getAvatar());
 	}
 	
 	public void reloadGreeting() {
@@ -283,8 +287,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnAvatar) {
-			VentanaPerfil v = new VentanaPerfil(loggedUser);
-			v.setVAC(this);
+			new VentanaPerfil(loggedUser, this);
 			return;
 		}
 		if (e.getSource() == btnNewGroup) {
@@ -294,13 +297,14 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		if (e.getSource() == btnPremium) {//TODO
 			AppChat.getInstance().togglePremium();
 			mostrarBotonesPremium(loggedUser.isPremium());
+			//new VentanaPremium(loggedUser, this);
 			return;
 		}
-		if (e.getSource() == btnContacts) {//TODO
+		if (e.getSource() == btnContacts) {
 			new VentanaListaContactos(loggedUser);
 			return;
 		}
-		if (e.getSource() == btnStats) {//TODO
+		if (e.getSource() == btnStats) {
 			new VentanaEstadisticas(loggedUser);
 			return;
 		}
@@ -313,6 +317,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == txtWriteMsg) {
 			panelChat.sendText(txtWriteMsg.getText());
+			listaChats.reloadList();
 			txtWriteMsg.setText("");
 			return;
 		}
@@ -336,7 +341,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 					JOptionPane.ERROR_MESSAGE
 				);
 			} else if (user.equals(loggedUser)) {
-				new VentanaPerfil(loggedUser);
+				new VentanaPerfil(loggedUser, this);
 			} else if (loggedUser.knowsUser(user)) {
 				new VentanaEditorContacto(loggedUser.getPrivateChat(user), listaChats);
 			} else {

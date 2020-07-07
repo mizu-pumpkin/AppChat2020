@@ -42,13 +42,6 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
 
 	private JTable table;
 	
-	
-	/*
-	Por último, con la opción mostrar contactos mostrará una ventana con una tabla con 3 columnas: nombre de
-	contacto, imagen en la cuenta, y teléfono, y nombres de los grupos que comparten. Las filas estarán
-	ordenadas por el nombre del contacto. Esta información se puede generar en un fichero pdf si el usuario es
-	premium (no es necesario que se dibuje la tabla ni considere la imagen).
-	*/
 	public VentanaListaContactos(Usuario user) {
 		this.user = user;
 		initialize();
@@ -57,8 +50,9 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
 	
 	private void initialize() {
 		setTitle("Contactos");
-		setBounds(100, 100, 450, 300);
-		setMinimumSize(new Dimension(300, 250));
+		setSize(450, 300);
+		setMinimumSize(new Dimension(Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT));
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

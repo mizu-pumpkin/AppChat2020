@@ -13,7 +13,7 @@ import modelo.Mensaje;
 public class VentanaResultadoBusqueda extends JFrame {
 	
 	private final static int MIN_WIDTH = 400;
-	private final static int MIN_HEIGHT = 700;
+	private final static int MIN_HEIGHT = 400;
 	
 	private JPanel panel;
 	
@@ -31,7 +31,8 @@ public class VentanaResultadoBusqueda extends JFrame {
 	
 	private void initialize() {
 		setTitle("Mensajes encontrados - \""+ nombreChat + "\"");
-		setBounds(100, 100, MIN_WIDTH, MIN_HEIGHT);
+		setSize(MIN_WIDTH, MIN_HEIGHT);
+		setLocationRelativeTo(null);
 		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
 		panel = (JPanel) getContentPane();
 		

@@ -50,6 +50,11 @@ public class ChatGrupo extends Chat {
 	public void addMember(ChatIndividual m) {
 		members.add(m);
 	}
+
+	@Override
+	public String getAvatar() {
+		return "";//TODO
+	}
 	
 // ---------------------------------------------------------------------
 //	                                                             Methods

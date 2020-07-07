@@ -47,7 +47,7 @@ public class VentanaLogin extends JFrame implements ActionListener {
 			);
 			aU.create(new Usuario("papy", "aaa", "Natasa Tron",
 				new SimpleDateFormat("yyyy-MM-dd").parse("1989-06-16"),
-				"papy@um.es", "3333238937", "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890")
+				"papy@um.es", "3333238937", "")
 			);
 		}
 	}
@@ -59,7 +59,8 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	
 	public VentanaLogin() {
 		setTitle("AppChat - Login");
-		setBounds(100, 100, MIN_WIDTH, MIN_HEIGHT);
+		setSize(MIN_WIDTH, MIN_HEIGHT);
+		setLocationRelativeTo(null);
 		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = (JPanel) this.getContentPane();

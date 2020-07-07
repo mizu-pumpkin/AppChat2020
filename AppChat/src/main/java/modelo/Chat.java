@@ -58,6 +58,8 @@ public abstract class Chat {
 		messages.remove(message);
 	}
 	
+	public abstract String getAvatar();
+	
 // ---------------------------------------------------------------------
 //		                                                         Methods
 // ---------------------------------------------------------------------
@@ -71,11 +73,23 @@ public abstract class Chat {
 	
 	public Mensaje getMostRecentMessage() {
 		if (messages.size() > 0)
-			return messages.stream()
-				.sorted((m1,m2) -> m2.getTimestamp().compareTo(m1.getTimestamp()))
-				.collect(Collectors.toList())
-				.get(0);
+			return messages
+				.stream()
+				.sorted((m1,m2) -> m2.compareTo(m1))
+				.findFirst()
+				.orElse(null);
 		return null;
+	}
+	
+	public long getNumberOfMessagesSent(Usuario u) {
+		return messages
+				.stream()
+				.filter(m -> m.isSender(u))
+				.count();
+	}
+	
+	public float getRatioOfMessagesSent(Usuario u) {
+		return (float) getNumberOfMessagesSent(u) / (float) messages.size();
 	}
 	
 	public Mensaje sendMessage(Usuario sender, String text) {
@@ -93,25 +107,36 @@ public abstract class Chat {
 	// Igual esto se podría resumir en un solo método al que se
 	// le pase un "Predicate"
 	public List<Mensaje> findMessagesByText(String text) {
-		return messages.stream()
-					   .filter(m -> m.getBody().contains(text))
-					   .collect(Collectors.toList())
-					   ;
+		return messages
+				.stream()
+				.filter(m -> m.getBody().contains(text))
+				.collect(Collectors.toList())
+				;
 	}
 	
 	public List<Mensaje> findMessagesByDate(Date d1, Date d2) {
-		return messages.stream()
-					   .filter(m -> !m.getTimestamp().before(d1))
-					   .filter(m -> !m.getTimestamp().after(d2))
-					   .collect(Collectors.toList())
-					   ;
+		return messages
+				.stream()
+				.filter(m -> !m.getTimestamp().before(d1))
+				.filter(m -> !m.getTimestamp().after(d2))
+				.collect(Collectors.toList())
+				;
 	}
 	
-	public List<Mensaje> findMessagesByUser(String user) {
-		return messages.stream()
-					   .filter(m -> m.getSender().getUsername().equals(user))
-					   .collect(Collectors.toList())
-					   ;
+	public List<Mensaje> findMessagesByUser(Usuario user) {
+		return messages
+				.stream()
+				.filter(m -> m.isSender(user))
+				.collect(Collectors.toList())
+				;
+	}
+	
+	public List<Mensaje> findMessagesByUser(String user) {//FIXME violación de patrón experto
+		return messages
+				.stream()
+				.filter(m -> m.getSender().getUsername().equals(user))
+				.collect(Collectors.toList())
+				;
 	}
 
 	@Override

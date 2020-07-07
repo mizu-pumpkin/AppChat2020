@@ -172,7 +172,7 @@ public class AppChat {
 		if (!text.trim().isEmpty())
 			listados.add(chat.findMessagesByText(text.trim()));
 		if (!user.trim().isEmpty())
-			listados.add(chat.findMessagesByUser(user.trim()));
+			listados.add(chat.findMessagesByUser(user.trim()));//FIXME: pasar el usuario para aplicar patrones
 		if (d1 != null && d2 != null)
 			listados.add(chat.findMessagesByDate(d1, d2));
 		

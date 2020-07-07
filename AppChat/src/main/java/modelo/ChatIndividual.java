@@ -45,6 +45,7 @@ public class ChatIndividual extends Chat {
 //		                                                         Methods
 // ---------------------------------------------------------------------
 	
+	@Override
 	public String getAvatar() {
 		return user.getAvatar();
 	}
