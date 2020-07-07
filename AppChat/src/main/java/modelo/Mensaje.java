@@ -110,7 +110,10 @@ public class Mensaje implements Comparable<Mensaje> {
 		return u.equals(sender);
 	}
 	
-	// FIXME: supongo que el identificador es único.
+	public boolean isSender(String username) {
+		return sender.getUsername().equals(username);
+	}
+	
 	@Override
 	public int compareTo(Mensaje m) {
 		return timestamp.compareTo(m.timestamp);

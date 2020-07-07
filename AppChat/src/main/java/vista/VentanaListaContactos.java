@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -50,7 +51,7 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
 	
 	private void initialize() {
 		setTitle("Contactos");
-		setSize(450, 300);
+		setSize(540, 360);
 		setMinimumSize(new Dimension(Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT));
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -59,16 +60,34 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		setContentPane(contentPane);
 
-		table = new JTable(new MyTableModel(user.getPrivateChats()));
-		table.setRowHeight(Graphics.SIZE_AVATAR_SMALL);
-		JScrollPane scrollPane = new JScrollPane(table);
-		contentPane.add(scrollPane);
-		
+		configurarTabla();
 		configurarBotonPDF();
 	}
 	
+	public void configurarTabla() {
+		table = new JTable(new MyTableModel(user.getPrivateChats()));
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+		table.setRowHeight(Graphics.SIZE_AVATAR_SMALL);
+		
+		table.getColumnModel().getColumn(0).setPreferredWidth(Graphics.SIZE_AVATAR_SMALL);
+		table.getColumnModel().getColumn(0).setMaxWidth(Graphics.SIZE_AVATAR_SMALL);
+		table.getColumnModel().getColumn(0).setMinWidth(Graphics.SIZE_AVATAR_SMALL);
+		
+		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		table.getColumnModel().getColumn(1).setMinWidth(100);
+		table.getColumnModel().getColumn(1).setMaxWidth(100);
+		
+		table.getColumnModel().getColumn(2).setPreferredWidth(100);
+		table.getColumnModel().getColumn(2).setMinWidth(100);
+		
+		table.getColumnModel().getColumn(3).setPreferredWidth(350);
+		table.getColumnModel().getColumn(3).setMinWidth(100);
+		
+		contentPane.add(new JScrollPane(table));
+	}
+	
 	class MyTableModel extends AbstractTableModel {
-		private String[] columnNames = {"Imagen","Nombre","Teléfono","Grupos"};
+		private String[] columnNames = {"Imagen","Teléfono","Nombre","Grupos en común"};
 		private Object[][] data;
 		
 		public MyTableModel(List<ChatIndividual> contacts) {
@@ -76,9 +95,15 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
 			int i = 0;
 			for (ChatIndividual c : contacts) {
 				data[i][0] = Graphics.makeAvatar(c.getAvatar(), Graphics.SIZE_AVATAR_SMALL);
-				data[i][1] = c.getName();
-				data[i][2] = c.getPhone();
-				data[i][3] = "//TODO";//TODO
+				data[i][1] = c.getPhone();
+				data[i][2] = c.getName();
+				data[i][3] = c.getUser().getGroups()
+						.stream()
+						.filter(g->g.isMember(user))
+						.map(g->g.getName())
+						.collect(Collectors.toList())
+						.toString()
+						;
 				i++;
 			}
 		}
@@ -122,8 +147,8 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
         pdfTable.addCell(makeTitleCell("Teléfono"));
         pdfTable.addCell(makeTitleCell("Grupos"));
         for (int i=0; i<table.getRowCount(); i++) {
-        	pdfTable.addCell(new Paragraph((String)table.getValueAt(i, 1)));
         	pdfTable.addCell(new Paragraph((String)table.getValueAt(i, 2)));
+        	pdfTable.addCell(new Paragraph((String)table.getValueAt(i, 1)));
         	pdfTable.addCell(new Paragraph((String)table.getValueAt(i, 3)));
         }
         doc.add(pdfTable);

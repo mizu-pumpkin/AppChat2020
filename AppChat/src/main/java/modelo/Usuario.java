@@ -148,36 +148,45 @@ public class Usuario {
 
 	public List<Chat> getChats() {
 		return chats
-			.stream()
-			.sorted(new Comparator<Chat>() {//TODO: mover a chat
-				@Override
-				public int compare(Chat c1, Chat c2) {
-					return c2.getTimeOfMostRecentMessage().compareTo(
-						   c1.getTimeOfMostRecentMessage());
-				}
-			})
-			.collect(Collectors.toList())
-			;
+				.stream()
+				.sorted(new Comparator<Chat>() {
+					@Override
+					public int compare(Chat c1, Chat c2) {
+						return c2.getTimeOfMostRecentMessage().compareTo(
+							   c1.getTimeOfMostRecentMessage());
+					}
+				})
+				.collect(Collectors.toList())
+				;
 	}
 	
 	public List<ChatIndividual> getPrivateChats() {
 		return privateChats.values()
-			.stream()
-			.sorted(new Comparator<ChatIndividual>() {//TODO: mover a chatindividual
-				@Override
-				public int compare(ChatIndividual c1, ChatIndividual c2) {
-					return c1.getName().compareToIgnoreCase(c2.getName());
-				}
-			})
-			.collect(Collectors.toList())
-			;
+				.stream()
+				.sorted(new Comparator<ChatIndividual>() {
+					@Override
+					public int compare(ChatIndividual c1, ChatIndividual c2) {
+						return c1.getName().compareToIgnoreCase(c2.getName());
+					}
+				})
+				.collect(Collectors.toList())
+				;
 	}
 	
 	public List<ChatGrupo> getGroups() {
 		return chats
+				.stream()
+				.filter(c -> c instanceof ChatGrupo)
+				.map(c -> (ChatGrupo) c)
+				.collect(Collectors.toList())
+				;
+	}
+	
+	public List<ChatGrupo> getGroupsSortedByMostUsed() {
+		return getGroups()
 			.stream()
-			.filter(c -> c instanceof ChatGrupo)
-			.map(c -> (ChatGrupo) c)
+			.sorted((g1,g2) ->
+				(int) (g2.getNumberOfMessagesSent(this) - g1.getNumberOfMessagesSent(this)))
 			.collect(Collectors.toList())
 			;
 	}
@@ -269,15 +278,6 @@ public class Usuario {
 		return getMessagesSent(d1, d2)
 				.stream()
 				.count();
-	}
-	
-	public List<ChatGrupo> getGroupsSortedByMostUsed() {
-		return getGroups()
-			.stream()
-			.sorted((g1,g2) -> //FIXME: chapuzilla
-				(int) (g2.getNumberOfMessagesSent(this) - g1.getNumberOfMessagesSent(this)))
-			.collect(Collectors.toList())
-			;
 	}
 
 	@Override

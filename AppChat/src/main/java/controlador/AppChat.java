@@ -1,5 +1,7 @@
 package controlador;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
@@ -143,7 +145,7 @@ public class AppChat {
 	
 	private Chat getRecipient(ChatIndividual chat) {
 		Chat recipient = chat.getChatWith(usuarioActual);
-		if (recipient.getId() == 0) registerChat(chat, chat.getUser()); //FIXME?
+		if (recipient.getId() == 0) registerChat(chat, chat.getUser());
 		return recipient;
 	}
 	/**
@@ -165,14 +167,14 @@ public class AppChat {
 		return true;
 	}
 	
-	public List<Mensaje> findMessages(Chat chat, String text, String user, Date d1, Date d2) {
+	public List<Mensaje> findMessages(Chat chat, String text, String username, Date d1, Date d2) {
 		List<Mensaje> aux;
 		List<List<Mensaje>> listados = new LinkedList<>();
 		
 		if (!text.trim().isEmpty())
 			listados.add(chat.findMessagesByText(text.trim()));
-		if (!user.trim().isEmpty())
-			listados.add(chat.findMessagesByUser(user.trim()));//FIXME: pasar el usuario para aplicar patrones
+		if (!username.trim().isEmpty())
+			listados.add(chat.findMessagesByUser(username.trim()));
 		if (d1 != null && d2 != null)
 			listados.add(chat.findMessagesByDate(d1, d2));
 		
@@ -289,7 +291,7 @@ public class AppChat {
 //	                                                  Gestión de Usuario
 // ---------------------------------------------------------------------
 	
-	public void togglePremium() {//FIXME
+	public void togglePremium() {
 		if (usuarioActual.isPremium())
 			usuarioActual.setPremiumOff();
 		else
@@ -300,6 +302,30 @@ public class AppChat {
 	public void changeGreeting(String text) {
 		usuarioActual.setGreeting(text);
 		adaptadorUsuario.update(usuarioActual);
+	}
+	
+	public boolean isYoung(Usuario user) {
+		try {//TODO cambiar para que sea menores de 20 dinámico
+			Date limiteJoven = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000");
+			return user.getBirthday().after(limiteJoven);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean isSummer() {
+		Date today = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("M/yyyy");
+		try {
+			String year = new SimpleDateFormat("yyyy").format(today);
+			if (today.after(format.parse("7/"+year)) &&	//desde 1 de julio
+				today.before(format.parse("9/"+year)))	//hasta 31 de agosto
+				return true;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

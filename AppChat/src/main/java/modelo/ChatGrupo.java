@@ -43,6 +43,17 @@ public class ChatGrupo extends Chat {
 		return u.equals(admin);
 	}
 	
+	public boolean isMember(ChatIndividual c) {
+		return isAdmin(c.getUser()) || members.contains(c);
+	}
+	
+	public boolean isMember(Usuario user) {
+		return isAdmin(user) || members.stream()
+				.map(m -> m.getUser())
+				.anyMatch(u -> u.equals(user))
+				;
+	}
+	
 	public List<ChatIndividual> getMembers() {
 		return new LinkedList<>(members);
 	}

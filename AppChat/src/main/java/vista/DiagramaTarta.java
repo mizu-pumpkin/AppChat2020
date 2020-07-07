@@ -39,7 +39,7 @@ public class DiagramaTarta implements ExampleChart<PieChart> {
 		
 	    // Series
 		for (ChatGrupo g : firstN) {
-			float ratio = g.getRatioOfMessagesSent(user) * 100;
+			double ratio = (double)Math.round(g.getRatioOfMessagesSent(user) * 100);
 			chart.addSeries(g.getName()+" ("+ratio+" %)", ratio);
 		}
  

@@ -131,10 +131,10 @@ public abstract class Chat {
 				;
 	}
 	
-	public List<Mensaje> findMessagesByUser(String user) {//FIXME violación de patrón experto
+	public List<Mensaje> findMessagesByUser(String username) {
 		return messages
 				.stream()
-				.filter(m -> m.getSender().getUsername().equals(user))
+				.filter(m -> m.isSender(username))
 				.collect(Collectors.toList())
 				;
 	}
