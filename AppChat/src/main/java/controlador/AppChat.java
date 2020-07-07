@@ -1,5 +1,6 @@
 package controlador;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
@@ -16,8 +17,12 @@ import persistencia.FactoriaDAO;
 import persistencia.IAdaptadorChatDAO;
 import persistencia.IAdaptadorMensajeDAO;
 import persistencia.IAdaptadorUsuarioDAO;
+import whatsapp.modelo.CargadorMensajes;
+import whatsapp.modelo.MensajeWhatsApp;
+import whatsapp.modelo.MensajesEvent;
+import whatsapp.modelo.MensajesListener;
 
-public class AppChat {
+public class AppChat implements MensajesListener {
 	
 // ---------------------------------------------------------------------
 //		                                                      Attributes
@@ -31,6 +36,7 @@ public class AppChat {
 
 	private CatalogoUsuarios catalogoUsuarios;
 	private Usuario usuarioActual;
+	private CargadorMensajes cargador;
 	
 // ---------------------------------------------------------------------
 //		                                                    Constructors
@@ -56,6 +62,9 @@ public class AppChat {
 		
 		catalogoUsuarios = CatalogoUsuarios.getInstance();
 		usuarioActual = null;
+		
+		cargador = new CargadorMensajes();
+		cargador.addCambioMensajesListener(this);
 	}
 	
 // ---------------------------------------------------------------------
@@ -176,6 +185,10 @@ public class AppChat {
 		if (d1 != null && d2 != null)
 			listados.add(chat.findMessagesByDate(d1, d2));
 		
+		// A fin de evitar errores por una llamada sin ningún parámetro válido.
+		if (listados.isEmpty())
+			return new LinkedList<>();
+		
 		aux = new LinkedList<>(listados.get(0));
 		
 		for (List<Mensaje> l : listados)
@@ -285,6 +298,18 @@ public class AppChat {
 		return true;
 	}
 	
+	public void readFileChat(File fichero, int formatoFecha) {
+		cargador.setFichero(fichero.getAbsolutePath(), formatoFecha);
+	}
+	
+	@Override
+	public void nuevosMensajes(MensajesEvent ev) {
+		List<MensajeWhatsApp> mensajesWhatsapp = ev.getNuevoMensajes();
+		for (MensajeWhatsApp mwa : mensajesWhatsapp) {
+			System.out.println(mwa.getAutor() + " "+ mwa.getTexto() + " " + mwa.getFecha());
+		}
+	}
+	
 // ---------------------------------------------------------------------
 //	                                                  Gestión de Usuario
 // ---------------------------------------------------------------------
@@ -301,5 +326,4 @@ public class AppChat {
 		usuarioActual.setGreeting(text);
 		adaptadorUsuario.update(usuarioActual);
 	}
-
 }

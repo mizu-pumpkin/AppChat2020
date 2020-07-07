@@ -23,6 +23,7 @@ public class Graphics {
 	public static final Color TRANSPARENT = new Color(0, 0, 0, 0);
 	public static final Image DEFAULT_AVATAR = new ImageIcon(
 			Graphics.class.getResource("/default.png")).getImage();
+	public static final String[] FORMAT_OPTIONS = { "IOS", "ANDROID 1", "ANDROID 2" };
 	
 	public static JButton makeButton(String txt) {
 		JButton btn = new JButton(txt);

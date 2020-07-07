@@ -12,8 +12,10 @@ import java.awt.FlowLayout;
 
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controlador.AppChat;
+import luz.*;
 import modelo.Chat;
 import modelo.Usuario;
 
@@ -22,6 +24,7 @@ import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -29,12 +32,13 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.EventObject;
 
 import tds.BubbleText;
 import javax.swing.JPopupMenu;
 
 @SuppressWarnings("serial")
-public class VentanaAppChat extends JFrame implements ActionListener {
+public class VentanaAppChat extends JFrame implements ActionListener, IEncendidoListener {
 
 	private final static int MIN_WIDTH = 600;
 	private final static int MIN_HEIGHT = 600;
@@ -61,6 +65,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private JButton btnStats;
 	private JButton btnContacts;
 	private JButton btnDeleteChat;
+	private Luz btnLuz;
 
 	public VentanaAppChat(Usuario user) {
 		this.loggedUser = user;
@@ -222,6 +227,13 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		btnFindMessage.setToolTipText("Buscar mensajes");
 		btnFindMessage.addActionListener(this);
 		toolbarChat.add(btnFindMessage);
+		
+/* Luz button */
+		
+		btnLuz = new Luz();
+		btnLuz.addEncendidoListener(this);
+		toolbarChat.add(btnLuz);
+		
 /* Chat panel */
 		GridBagConstraints gbc_scrollPane_chat = new GridBagConstraints();
 		gbc_scrollPane_chat.insets = new Insets(0, 0, 5, 0);
@@ -344,6 +356,31 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			}
 			txtFindUser.setText("");
 			return;
+		}
+	}
+
+	@Override
+	public void enteradoCambioEncendido(EventObject ev) {
+		if (ev.getSource() == btnLuz) {
+			EncendidoEvent ecEv = (EncendidoEvent) ev;
+			if (ecEv.getNewEncendido()) {
+				JFileChooser chooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("TXT con chat", "txt");
+				chooser.setFileFilter(filter);
+				int returnVal = chooser.showOpenDialog(null);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					returnVal = JOptionPane.showOptionDialog(null, 
+							"¿Cuál es el formato?", 
+							"Importar chat", 
+							JOptionPane.YES_NO_OPTION, 
+							JOptionPane.QUESTION_MESSAGE, 
+							null, 
+							Graphics.FORMAT_OPTIONS, 
+							null);
+					AppChat.getInstance().readFileChat(chooser.getSelectedFile(), returnVal);
+				}
+				return;
+			}
 		}
 	}
 }
