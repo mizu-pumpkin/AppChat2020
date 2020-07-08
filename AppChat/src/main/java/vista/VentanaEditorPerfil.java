@@ -49,7 +49,6 @@ public class VentanaEditorPerfil extends JFrame implements ActionListener {
 		setLocationRelativeTo(father);
 		setResizable(false);
 		contentPane = (JPanel) getContentPane();
-		contentPane.setBackground(Graphics.BACKGROUND);
 		
 		GridBagLayout gbl = new GridBagLayout();
 		gbl.columnWidths = new int[]{0, 10, 0};
@@ -74,7 +73,6 @@ public class VentanaEditorPerfil extends JFrame implements ActionListener {
 		btnAvatar.addActionListener(this);
 /* Parte gráfica */
 		JPanel panel_info = new JPanel();
-		panel_info.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_panel_info = new GridBagConstraints();
 		gbc_panel_info.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_info.fill = GridBagConstraints.BOTH;
@@ -130,7 +128,6 @@ public class VentanaEditorPerfil extends JFrame implements ActionListener {
 		panel_info.add(label_1, gbc_label_1);
 		
 		JPanel panel_avatar = new JPanel();
-		panel_avatar.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_panel_avatar = new GridBagConstraints();
 		gbc_panel_avatar.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_avatar.gridheight = 5;
@@ -141,7 +138,6 @@ public class VentanaEditorPerfil extends JFrame implements ActionListener {
 		panel_avatar.add(btnAvatar);
 		
 		JPanel panel_editGreeting = new JPanel();
-		panel_editGreeting.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_panel_editGreeting = new GridBagConstraints();
 		gbc_panel_editGreeting.insets = new Insets(0, 0, 0, 5);
 		gbc_panel_editGreeting.fill = GridBagConstraints.BOTH;

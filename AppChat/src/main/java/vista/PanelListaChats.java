@@ -82,7 +82,10 @@ public class PanelListaChats extends JPanel {
 							}
 						} else preview = "*emoji*";
 					}
-					label.setIcon(Graphics.makeAvatar(chat.getAvatar(), Graphics.SIZE_AVATAR_SMALL));
+					if (chat instanceof ChatIndividual)
+						label.setIcon(Graphics.makeAvatar(chat.getAvatar(), Graphics.SIZE_AVATAR_SMALL));
+					else
+						label.setIcon(Graphics.makeGroupAvatar(Graphics.SIZE_AVATAR_SMALL));
 					label.setText("<html>"+chat.getName()+"<br/>["+time+"]<br/>"+preview+"</html>");
 					if (isSelected) {
 						label.setBackground(Graphics.MAIN);

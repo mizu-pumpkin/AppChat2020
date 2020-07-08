@@ -29,7 +29,6 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 	private ChatIndividual contact;
 	private Usuario user;
 	private PanelListaChats listaChats;
-	
 	private JButton btnEdit;
 	private JButton btnCancel;
 	private JTextField txtName;
@@ -54,9 +53,8 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 	}
 	
 	private void initialize() {
-		setSize(400,250);
-		//setResizable(false);
-		getContentPane().setBackground(Graphics.BACKGROUND);
+		setSize(300,200);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		
 		GridBagLayout gbl = new GridBagLayout();
@@ -73,13 +71,12 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 	
 	private void configurarInfoUsuario() {
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.insets = new Insets(0, 0, 5, 5);
+		gbc.insets = new Insets(0, 0, 0, 0);
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = 1;
 		gbc.gridy = 2;
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Graphics.BACKGROUND);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		getContentPane().add(panel, gbc);
 		
@@ -87,7 +84,6 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 		panel.add(lblAvatar);
 		
 		JPanel panel_personalInfo = new JPanel();
-		panel_personalInfo.setBackground(Graphics.BACKGROUND);
 		panel_personalInfo.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panel.add(panel_personalInfo);
 		GridBagLayout gbl = new GridBagLayout();
@@ -100,7 +96,7 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 		JLabel lblUsername = new JLabel("Username: "+user.getUsername());
 		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
 		gbc_lblUsername.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblUsername.insets = new Insets(0, 0, 5, 0);
+		gbc_lblUsername.insets = new Insets(0, 0, 0, 0);
 		gbc_lblUsername.gridx = 0;
 		gbc_lblUsername.gridy = 0;
 		panel_personalInfo.add(lblUsername, gbc_lblUsername);
@@ -108,13 +104,13 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 		JLabel lblPhone = new JLabel("Teléfono: "+user.getPhone());
 		GridBagConstraints gbc_lblPhone = new GridBagConstraints();
 		gbc_lblPhone.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblPhone.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPhone.insets = new Insets(0, 0, 0, 0);
 		gbc_lblPhone.gridx = 0;
 		gbc_lblPhone.gridy = 1;
 		panel_personalInfo.add(lblPhone, gbc_lblPhone);
 		
 		JTextArea lblGreeting = new JTextArea(user.getGreeting());
-		Graphics.buildGreeting(lblGreeting,200,50);
+		Graphics.buildGreeting(lblGreeting,150,50);
 		GridBagConstraints gbc_lblGreeting = new GridBagConstraints();
 		gbc_lblGreeting.fill = GridBagConstraints.BOTH;
 		gbc_lblGreeting.gridx = 0;
@@ -139,17 +135,16 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 		btnCancel.addActionListener(this);
 /* Parte gráfica */
 		GridBagConstraints gbc_txtName = new GridBagConstraints();
-		gbc_txtName.insets = new Insets(0, 0, 5, 5);
+		gbc_txtName.insets = new Insets(0, 0, 0, 0);
 		gbc_txtName.fill = GridBagConstraints.BOTH;
 		gbc_txtName.gridx = 1;
 		gbc_txtName.gridy = 1;
 		getContentPane().add(txtName, gbc_txtName);
 		
 		JPanel panel_btns = new JPanel();
-		panel_btns.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_panel_btns = new GridBagConstraints();
 		gbc_panel_btns.anchor = GridBagConstraints.NORTH;
-		gbc_panel_btns.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_btns.insets = new Insets(0, 0, 0, 0);
 		gbc_panel_btns.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_btns.gridx = 1;
 		gbc_panel_btns.gridy = 3;

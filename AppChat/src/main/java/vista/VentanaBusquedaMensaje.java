@@ -53,7 +53,6 @@ public class VentanaBusquedaMensaje extends JFrame implements ActionListener {
 		setBounds(100, 100, MIN_WIDTH, MIN_HEIGHT);
 		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
 		contentPane = (JPanel) getContentPane();
-		contentPane.setBackground(Graphics.BACKGROUND);
 		
 		GridBagLayout gbl = new GridBagLayout();
 		gbl.columnWidths = new int[]{10, 0, 0, 0, 10, 0};

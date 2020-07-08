@@ -35,7 +35,6 @@ public class VentanaResultadoBusqueda extends JFrame {
 		setLocationRelativeTo(null);
 		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
 		contentPane = (JPanel) getContentPane();
-		//contentPane.setBackground(Graphics.BACKGROUND);
 		
 		PanelChat panelChat = new PanelChat(nombreUsuario);
 		contentPane.add(new JScrollPane(panelChat));

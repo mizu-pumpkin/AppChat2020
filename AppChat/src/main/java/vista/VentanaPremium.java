@@ -50,14 +50,12 @@ public class VentanaPremium extends JFrame implements ActionListener {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.setBackground(Graphics.BACKGROUND);
 		setContentPane(contentPane);
 		
 		JPanel panel_buy = new JPanel();
 		contentPane.add(panel_buy, BorderLayout.CENTER);
 		panel_buy.setLayout(new BoxLayout(panel_buy, BoxLayout.X_AXIS));
 		JPanel panel_izq = new JPanel();
-		panel_izq.setBackground(Graphics.BACKGROUND);
 		panel_buy.add(panel_izq);
 		
 		GridBagLayout gbl = new GridBagLayout();
@@ -116,7 +114,6 @@ public class VentanaPremium extends JFrame implements ActionListener {
 		panel_izq.add(lblTotal, gbc_lblTotal);
 		
 		JPanel panel_der = new JPanel();
-		panel_der.setBackground(Graphics.BACKGROUND);
 		panel_buy.add(panel_der);
 		GridBagLayout gbl_panel_der = new GridBagLayout();
 		gbl_panel_der.columnWidths = new int[]{0, 0};
@@ -133,15 +130,7 @@ public class VentanaPremium extends JFrame implements ActionListener {
 		gbc_lblDescuentosAplicables.gridy = 1;
 		panel_der.add(lblDescuentosAplicables, gbc_lblDescuentosAplicables);
 		
-		comboBox = new JComboBox<>();
-		comboBox.setBackground(Graphics.BACKGROUND);
-		comboBox.addItem("");
-		if (AppChat.getInstance().isSummer())
-			comboBox.addItem(VERANO);
-		if (AppChat.getInstance().isYoung(user))
-			comboBox.addItem(JOVEN);
-		comboBox.addActionListener(this);
-		comboBox.setToolTipText("Selecciona el descuento a aplicar.");
+		configurarCombobox(user);
 		
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -151,7 +140,6 @@ public class VentanaPremium extends JFrame implements ActionListener {
 		panel_der.add(comboBox, gbc_comboBox);
 		
 		JPanel panel_btns = new JPanel();
-		panel_btns.setBackground(Graphics.BACKGROUND);
 		contentPane.add(panel_btns, BorderLayout.SOUTH);
 		
 		btnPremium = Graphics.makeButton("Premium");
@@ -164,6 +152,17 @@ public class VentanaPremium extends JFrame implements ActionListener {
 		panel_btns.add(btnCancelar);
 
 		setVisible(true);
+	}
+	
+	private void configurarCombobox(Usuario user) {
+		comboBox = new JComboBox<>();
+		comboBox.addItem("");
+		if (AppChat.getInstance().isSummer())
+			comboBox.addItem(VERANO);
+		if (AppChat.getInstance().isYoung(user))
+			comboBox.addItem(JOVEN);
+		comboBox.addActionListener(this);
+		comboBox.setToolTipText("Selecciona el descuento a aplicar.");
 	}
 
 	@Override

@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
+import javax.swing.UIManager;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.plaf.metal.MetalScrollButton;
@@ -30,19 +31,24 @@ public class Graphics {
 	
 	public static final Image DEFAULT_AVATAR = new ImageIcon(
 			Graphics.class.getResource("/default.png")).getImage();
+	public static final Image GROUP_AVATAR = new ImageIcon(
+			Graphics.class.getResource("/defaultg.png")).getImage();
 	
-	public static final Color MAIN = new Color(206, 147, 216);
+	public static final Color MAIN = new Color(206, 147, 216);//new Color(255, 235, 59);
 	public static final Color DARK = new Color(100, 71, 105);
+	public static final Color MEDIUM = new Color(144,102,151);
 	public static final Color LIGHT = new Color(255, 210, 255);
 	public static final Color WHITE = new Color(255, 255, 255);
-	public static final Color SECONDARY = WHITE;//new Color(243, 229, 245);
+	public static final Color BLACK = new Color(0, 0, 0);
+	public static final Color SECONDARY = WHITE;
 	public static final Color BACKGROUND = LIGHT;//new Color(255, 224, 178);
 	
 	public static JButton makeButton(String txt) {
 		JButton btn = new JButton(txt);
 		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btn.setBackground(Graphics.MAIN);
-		btn.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED, null, null, null, null));
+		btn.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED,
+				WHITE, LIGHT, DARK, MEDIUM));
 		return btn;
 	}
 	
@@ -86,6 +92,11 @@ public class Graphics {
 		}
 	}
 	
+	public static ImageIcon makeGroupAvatar(int size) {
+		return new ImageIcon(GROUP_AVATAR
+				.getScaledInstance(size,size,java.awt.Image.SCALE_SMOOTH));
+	}
+	
 	public static void buildGreeting(JTextArea txtArea, int x, int y) {
 		txtArea.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		txtArea.setEditable(false);
@@ -100,7 +111,8 @@ public class Graphics {
 	
 	public static void buildScroll(JScrollBar sb) {
 		sb.setBackground(BACKGROUND);
-		sb.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED, null, null, null, null));
+		sb.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED, 
+				WHITE, LIGHT, DARK, MEDIUM));
 		
 		MetalScrollButton btn = (MetalScrollButton) sb.getComponent(0);
 		btn.setForeground(WHITE);
@@ -113,6 +125,23 @@ public class Graphics {
 		        this.thumbHighlightColor = Graphics.WHITE;
 		        this.thumbLightShadowColor = Graphics.LIGHT;
 		    }
+	        @Override
+	        protected JButton createDecreaseButton(int orientation) {
+	            return createZeroButton();
+	        }
+
+	        @Override    
+	        protected JButton createIncreaseButton(int orientation) {
+	            return createZeroButton();
+	        }
+
+	        private JButton createZeroButton() {
+	            JButton jbutton = new JButton();
+	            jbutton.setPreferredSize(new Dimension(0, 0));
+	            jbutton.setMinimumSize(new Dimension(0, 0));
+	            jbutton.setMaximumSize(new Dimension(0, 0));
+	            return jbutton;
+	        }
 		});
 	}
 	
@@ -120,6 +149,29 @@ public class Graphics {
 		tb.setFloatable(false);
 		tb.setBackground(Graphics.MAIN);
 		tb.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED,
-				WHITE, LIGHT, DARK, DARK));
+				WHITE, LIGHT, DARK, MEDIUM));
+	}
+
+	public static void uimanager() {
+		UIManager.getLookAndFeelDefaults().put("Panel.background", BACKGROUND);
+		UIManager.put("OptionPane.background", BACKGROUND);
+		UIManager.getLookAndFeelDefaults().put("Label.foreground", BLACK);
+		UIManager.getLookAndFeelDefaults().put("List.foreground", BLACK);
+		
+		UIManager.getLookAndFeelDefaults().put("ComboBox.background", BACKGROUND);
+		UIManager.getLookAndFeelDefaults().put("ComboBox.selectionBackground", MAIN);
+		
+		UIManager.getLookAndFeelDefaults().put("Button.background", MAIN);
+		UIManager.getLookAndFeelDefaults().put("Button.darkShadow", DARK);
+		UIManager.getLookAndFeelDefaults().put("Button.shadow", MEDIUM);
+		UIManager.getLookAndFeelDefaults().put("Button.foreground", DARK);
+		UIManager.getLookAndFeelDefaults().put("Button.select", MEDIUM);
+		UIManager.getLookAndFeelDefaults().put("Button.highlight", WHITE);
+		UIManager.getLookAndFeelDefaults().put("Button.light", LIGHT);
+
+		UIManager.getLookAndFeelDefaults().put("ToolTip.background", DARK);
+		UIManager.getLookAndFeelDefaults().put("ToolTip.foreground", LIGHT);
+		
+		UIManager.getLookAndFeelDefaults().put("Viewport.background", BACKGROUND);
 	}
 }

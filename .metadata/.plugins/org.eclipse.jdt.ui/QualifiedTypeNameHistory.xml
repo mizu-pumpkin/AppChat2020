@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.itextpdf.text.pdf.PdfDocument"/>
-<fullyQualifiedTypeName name="javax.persistence.Table"/>
-<fullyQualifiedTypeName name="org.h2.table.Table"/>
 <fullyQualifiedTypeName name="com.itextpdf.text.pdf.PdfPTable"/>
 <fullyQualifiedTypeName name="com.itextpdf.text.Phrase"/>
 <fullyQualifiedTypeName name="com.itextpdf.awt.geom.Rectangle"/>
@@ -26,10 +23,8 @@
 <fullyQualifiedTypeName name="modelo.Mensaje"/>
 <fullyQualifiedTypeName name="java.time.LocalDate"/>
 <fullyQualifiedTypeName name="java.time.Instant"/>
-<fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="java.lang.Long"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="modelo.ChatGrupo"/>
 <fullyQualifiedTypeName name="java.text.DecimalFormat"/>
 <fullyQualifiedTypeName name="org.knowm.xchart.internal.chartpart.Chart"/>
 <fullyQualifiedTypeName name="vista.VentanaAppChat"/>
@@ -59,5 +54,10 @@
 <fullyQualifiedTypeName name="javax.swing.border.SoftBevelBorder"/>
 <fullyQualifiedTypeName name="javax.swing.plaf.basic.BasicScrollBarUI"/>
 <fullyQualifiedTypeName name="javax.swing.JScrollBar"/>
+<fullyQualifiedTypeName name="javafx.scene.control.SplitPane.Divider"/>
+<fullyQualifiedTypeName name="javax.swing.JToolBar"/>
+<fullyQualifiedTypeName name="javax.swing.UIManager"/>
 <fullyQualifiedTypeName name="vista.Graphics"/>
+<fullyQualifiedTypeName name="modelo.ChatGrupo"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
 </qualifiedTypeNameHistroy>

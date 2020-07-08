@@ -27,7 +27,6 @@ public class PanelChat extends JPanel implements Scrollable {
 		this.myUsername = myUsername;
 		//setSize(400, 100);
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		setBackground(Graphics.BACKGROUND);
 	}
 	
 	public Chat removeActualChat() {

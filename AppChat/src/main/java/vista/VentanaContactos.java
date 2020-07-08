@@ -58,7 +58,6 @@ public class VentanaContactos extends JFrame implements ActionListener{
 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-		contentPane.setBackground(Graphics.BACKGROUND);
 		setContentPane(contentPane);
 
 		configurarTabla();

@@ -11,6 +11,7 @@ import javax.swing.JPasswordField;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+
 import controlador.AppChat;
 import modelo.Usuario;
 import persistencia.AdaptadorUsuarioTDS;
@@ -55,6 +56,7 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	}
 	
 	public VentanaLogin() {
+		Graphics.uimanager();
 		setTitle("AppChat - Login");
 		setMinimumSize(new Dimension(540, 360));
 		setLocationRelativeTo(null);
@@ -129,7 +131,6 @@ public class VentanaLogin extends JFrame implements ActionListener {
 		gbc_panel.gridy = 3;
 		
 		JPanel panel_buttons = new JPanel();
-		panel_buttons.setBackground(Graphics.BACKGROUND);
 		contentPane.add(panel_buttons, gbc_panel);
 		panel_buttons.add(btnLogin);
 		panel_buttons.add(btnRegister);

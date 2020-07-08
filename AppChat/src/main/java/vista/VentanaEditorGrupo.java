@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import modelo.ChatGrupo;
@@ -19,7 +18,6 @@ import javax.swing.ListModel;
 
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -66,8 +64,6 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 		setTitle("Editor de grupos");
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setBackground(Graphics.BACKGROUND);
 		setContentPane(contentPane);
 		initialize();
 		setVisible(true);
@@ -93,7 +89,6 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 			txtNombreGrupo.setText("Nombre grupo");
 		GridBagConstraints gbc_txtNombreGrupo = new GridBagConstraints();
 		gbc_txtNombreGrupo.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtNombreGrupo.insets = new Insets(0, 0, 5, 5);
 		gbc_txtNombreGrupo.gridx = 1;
 		gbc_txtNombreGrupo.gridy = 0;
 		contentPane.add(txtNombreGrupo, gbc_txtNombreGrupo);
@@ -116,9 +111,7 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		btnCancel.addActionListener(this);
 /* Parte visual */
 		JPanel panel_addrmv = new JPanel();
-		panel_addrmv.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_addrmv = new GridBagConstraints();
-		gbc_addrmv.insets = new Insets(0, 0, 5, 5);
 		gbc_addrmv.fill = GridBagConstraints.BOTH;
 		gbc_addrmv.gridx = 1;
 		gbc_addrmv.gridy = 1;
@@ -133,20 +126,17 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
 		gbc_btnAdd.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnAdd.insets = new Insets(0, 0, 5, 5);
 		gbc_btnAdd.gridx = 1;
 		gbc_btnAdd.gridy = 1;
 		panel_addrmv.add(btnAdd, gbc_btnAdd);
 		
 		GridBagConstraints gbc_btnRmv = new GridBagConstraints();
 		gbc_btnRmv.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnRmv.insets = new Insets(0, 0, 5, 5);
 		gbc_btnRmv.gridx = 1;
 		gbc_btnRmv.gridy = 2;
 		panel_addrmv.add(btnRmv, gbc_btnRmv);
 		
 		JPanel panel_okback = new JPanel();
-		panel_okback.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_okback = new GridBagConstraints();
 		gbc_okback.gridwidth = 3;
 		gbc_okback.fill = GridBagConstraints.BOTH;
@@ -207,7 +197,6 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 				null, null));
 		GridBagConstraints gbc_scrollPane1 = new GridBagConstraints();
 		gbc_scrollPane1.gridheight = 2;
-		gbc_scrollPane1.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane1.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane1.gridx = 0;
 		gbc_scrollPane1.gridy = 0;
@@ -224,7 +213,6 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 				null, null));
 		GridBagConstraints gbc_scrollPane2 = new GridBagConstraints();
 		gbc_scrollPane2.gridheight = 2;
-		gbc_scrollPane2.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane2.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane2.gridx = 2;
 		gbc_scrollPane2.gridy = 0;

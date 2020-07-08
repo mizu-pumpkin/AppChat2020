@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="JToolBar"/>
+		<item key="selection" value="Insets"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="Insets"/>
+			<item value="setback"/>
+			<item value="new Insets"/>
+			<item value="new Insets(0, 0, 5, 5)"/>
+			<item value="getback"/>
+			<item value="setbac"/>
+			<item value="fixme"/>
+			<item value="SETBAC"/>
+			<item value="UIMa"/>
+			<item value="uimanager"/>
+			<item value="UIMana"/>
+			<item value="new Ins"/>
+			<item value="toolbar"/>
 			<item value="JToolBar"/>
 			<item value="toolBar"/>
-			<item value="tool"/>
-			<item value="cursor"/>
-			<item value="cursos"/>
-			<item value="get"/>
-			<item value="config"/>
-			<item value="setCu"/>
-			<item value="avatar"/>
-			<item value="-3"/>
-			<item value="-2"/>
-			<item value="-200"/>
-			<item value="-300"/>
-			<item value="-btn"/>
-			<item value="emot"/>
 		</list>
 		<list key="replacehistory">
 			<item value="phone"/>

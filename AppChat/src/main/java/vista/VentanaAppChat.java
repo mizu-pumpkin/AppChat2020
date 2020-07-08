@@ -13,6 +13,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 import org.knowm.xchart.CategoryChart;
@@ -39,6 +40,7 @@ import java.awt.event.ActionListener;
 import tds.BubbleText;
 import javax.swing.JPopupMenu;
 import java.awt.BorderLayout;
+import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("serial")
 public class VentanaAppChat extends JFrame implements ActionListener {
@@ -82,7 +84,6 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = (JPanel) getContentPane();
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
-		contentPane.setBackground(Graphics.BACKGROUND);
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.1);
@@ -90,13 +91,11 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		contentPane.add(splitPane);
 		
 		panel_izq = new JPanel();
-		panel_izq.setBackground(Graphics.BACKGROUND);
 		panel_izq.setMinimumSize(new Dimension(200, 0));
 		splitPane.setLeftComponent(panel_izq);
 		configurarPanelIzquierdo();
 		
 		panel_der = new JPanel();
-		panel_der.setBackground(Graphics.BACKGROUND);
 		panel_der.setMinimumSize(new Dimension(200, 0));
 		splitPane.setRightComponent(panel_der);
 		configurarPanelDerecho();
@@ -129,7 +128,6 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 /* Username */
 		JPanel panel_info = new JPanel();
 		panel_info.setLayout(new BoxLayout(panel_info, BoxLayout.Y_AXIS));
-		panel_info.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_info = new GridBagConstraints();
 		gbc_info.fill = GridBagConstraints.BOTH;
 		gbc_info.insets = new Insets(0, 0, 0, 0);
@@ -197,6 +195,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 /* Contact List panel */
 		getContentPane().add(listaChats);
 		JScrollPane scroll = new JScrollPane(listaChats);
+		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		Graphics.buildScroll(scroll.getVerticalScrollBar());
 		Graphics.buildScroll(scroll.getHorizontalScrollBar());
 		GridBagConstraints gbc_scrollPane_names = new GridBagConstraints();
@@ -226,13 +225,12 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		toolbarChat.add(btnFindMessage);
 /* Chat panel */
 		JScrollPane scrollChat = new JScrollPane(panelChat);
-		scrollChat.getViewport().setBackground(Graphics.BACKGROUND);
+		//scrollChat.getViewport().setBackground(Graphics.BACKGROUND);
 		Graphics.buildScroll(scrollChat.getVerticalScrollBar());
 		Graphics.buildScroll(scrollChat.getHorizontalScrollBar());
 		panel_der.add(scrollChat, BorderLayout.CENTER);
 /* Text input */
 		JPanel panel_writeMsg = new JPanel();
-		panel_writeMsg.setBackground(Graphics.BACKGROUND);
 		panel_writeMsg.setLayout(new BoxLayout(panel_writeMsg, BoxLayout.X_AXIS));
 		panel_der.add(panel_writeMsg, BorderLayout.SOUTH);
 		
@@ -253,8 +251,10 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			}
 		};
 		
+		UIManager.getLookAndFeelDefaults().put("MenuItem.background", Graphics.WHITE);
+		UIManager.getLookAndFeelDefaults().put("MenuItem.selectionBackground", Graphics.LIGHT);
 		popupMenuEmoji = new JPopupMenu();
-		popupMenuEmoji.setLayout(new GridLayout(5, 5, 0, 0));//5x5 porque BubbleText.MAXICONO==25
+		popupMenuEmoji.setLayout(new GridLayout(5, 5, 0, 0));//NOTE: 5x5 porque BubbleText.MAXICONO==25
 		popupMenuEmoji.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		for (int i=0; i<=BubbleText.MAXICONO; i++) {
 			JMenuItem emoji = new JMenuItem(BubbleText.getEmoji(i));

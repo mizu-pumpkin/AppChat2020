@@ -54,7 +54,6 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		panel_previous = (JPanel) frame.getContentPane();
 		
 		setLayout(new BorderLayout(0, 0));
-		setBackground(Graphics.BACKGROUND);
 		
 		UIManager.put("TabbedPane.selected", Graphics.MAIN);
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -63,7 +62,6 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		add(tabbedPane, BorderLayout.CENTER);
 		
 		panel_registration = new JPanel();
-		panel_registration.setBackground(Graphics.BACKGROUND);
 		tabbedPane.addTab("User Registrarion", panel_registration);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -231,7 +229,6 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		gbc_panel_botones.gridx = 1;
 		gbc_panel_botones.gridy = 8;
 		JPanel panel_buttons = new JPanel();
-		panel_buttons.setBackground(Graphics.BACKGROUND);
 		panel_registration.add(panel_buttons, gbc_panel_botones);
 		
 		btn_register = Graphics.makeButton("Registrar");
