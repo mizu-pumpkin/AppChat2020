@@ -61,6 +61,12 @@ public class Mensaje implements Comparable {
 		this(null, null, emoji, timestamp);
 	}
 	
+	/**
+	 * Constructor con mensaje de WhatsApp
+	 * @param sender Usuario que ha escrito mwa.
+	 * @param chat Chat donde se ha escrito mwa.
+	 * @param mwa El objeto que se va a transformar en Mensaje.
+	 */
 	public Mensaje(Usuario sender, Chat chat, MensajeWhatsApp mwa) {
 		this(sender, chat, mwa.getTexto(), Date.from(mwa.getFecha().atZone(ZoneId.systemDefault()).toInstant()));
 	}

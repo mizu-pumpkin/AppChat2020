@@ -95,6 +95,12 @@ public abstract class Chat {
 		return msg;
 	}
 	
+	/**
+	 * Método para registrar un mensaje de WhatsApp en el Chat.
+	 * @param sender Usuario que envía el mensaje.
+	 * @param mwa Mensaje de WhatsApp.
+	 * @return Un objeto Mensaje que equivale a mwa.
+	 */
 	public Mensaje registerWhatsAppMessage(Usuario sender, MensajeWhatsApp mwa) {
 		Mensaje msg = new Mensaje(sender, this, mwa);
 		// Debe ser insertado en orden, en el momento que se escribió.

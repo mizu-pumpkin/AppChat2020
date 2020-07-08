@@ -153,6 +153,14 @@ public class AppChat implements MensajesListener {
 		return registerMessage(chat, msg_sent) && registerMessage(chatR, msg_rcvd);
 	}
 	
+	/**
+	 * Método para registrar un mensaje importado de WhatsApp a AppChat.
+	 * @param chat Chat del que envía el mensaje.
+	 * @param chatR Chat del que recibe el mensaje.
+	 * @param sender Usuario que envía el mensaje.
+	 * @param mwa Objeto que contiene el mensaje de WhatsApp.
+	 * @return true en caso de haber registrado mwa en la base de datos con éxito.
+	 */
 	private boolean registerWhatsAppMessage(Chat chat, Chat chatR, Usuario sender, MensajeWhatsApp mwa) {
 		Mensaje msg_sent = chat.registerWhatsAppMessage(sender, mwa);
 		Mensaje msg_rcvd = chatR.registerWhatsAppMessage(sender, mwa);
@@ -307,6 +315,15 @@ public class AppChat implements MensajesListener {
 		return true;
 	}
 	
+	/**
+	 * Manda al cargador de mensajes a leer un fichero indicándole el formato del mismo.
+	 * @param fichero Objeto que contiene el fichero de texto con el chat.
+	 * @param formatoFecha Es un entero que indica el formato de los mensajes
+	 * almacenados en el objeto fichero. Es un valor de 0 a 2 siendo:
+	 * 	0 = IOS
+	 * 	1 = ANDROID 1
+	 * 	2 = ANDROID 2
+	 */
 	public void readFileChat(File fichero, int formatoFecha) {
 		cargador.setFichero(fichero.getAbsolutePath(), formatoFecha);
 	}
