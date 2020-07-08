@@ -3,8 +3,11 @@ package controlador;
 import java.io.File;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import modelo.CatalogoUsuarios;
 import modelo.Chat;
@@ -147,6 +150,12 @@ public class AppChat implements MensajesListener {
 		Chat chatR = getRecipient((ChatIndividual) chat);
 		Mensaje msg_rcvd = chatR.sendMessage(usuarioActual, emoticon);
 		
+		return registerMessage(chat, msg_sent) && registerMessage(chatR, msg_rcvd);
+	}
+	
+	private boolean registerWhatsAppMessage(Chat chat, Chat chatR, Usuario sender, MensajeWhatsApp mwa) {
+		Mensaje msg_sent = chat.registerWhatsAppMessage(sender, mwa);
+		Mensaje msg_rcvd = chatR.registerWhatsAppMessage(sender, mwa);
 		return registerMessage(chat, msg_sent) && registerMessage(chatR, msg_rcvd);
 	}
 	
@@ -305,8 +314,41 @@ public class AppChat implements MensajesListener {
 	@Override
 	public void nuevosMensajes(MensajesEvent ev) {
 		List<MensajeWhatsApp> mensajesWhatsapp = ev.getNuevoMensajes();
-		for (MensajeWhatsApp mwa : mensajesWhatsapp) {
-			System.out.println(mwa.getAutor() + " "+ mwa.getTexto() + " " + mwa.getFecha());
+
+		// 1. Corrección del fichero.
+		//	1.1. Debe haber solo dos usuarios (es para chat privados).
+		//	1.2. El usuario actual debe ser uno de esos usuarios.
+		//	1.3. El otro usuario debe existir en la BBDD.
+		// 2. Proceder a insertar los mensajes al chat correspondiente.
+		//	2.1. Encontrar los chat entre el usuario actual y el otro usuario.
+		//	2.2. Delegar la transformación de objetos MensajeWhatsApp a Mensaje
+		//		 en manos del chat.
+		//	2.3. Registrar en la BBDD los cambios realizados.
+		
+		List<String> nombresUsuarios = mensajesWhatsapp.stream()
+													   .map(m -> m.getAutor())
+													   .collect(Collectors.toList());
+		Set<String> nombresUsuariosNoRepetidos = new HashSet<>(nombresUsuarios);
+		// 1.1. y 1.2.
+		if (nombresUsuariosNoRepetidos.contains(usuarioActual.getUsername())
+				&& nombresUsuariosNoRepetidos.size() == 2) {
+			nombresUsuarios.remove(usuarioActual.getUsername());
+			Usuario otroUsuario = catalogoUsuarios.getByUsername(nombresUsuarios.get(0));
+			// 1.3.
+			if (otroUsuario != null) {
+				// 2.1.
+				registerContact(otroUsuario);
+				Chat chat = usuarioActual.getPrivateChat(otroUsuario);
+				Chat chatR = otroUsuario.getPrivateChat(usuarioActual);
+				// 2.2. y 2.3.
+				for (MensajeWhatsApp mwa : mensajesWhatsapp) {
+					if (mwa.getAutor().equals(usuarioActual.getUsername()))
+						registerWhatsAppMessage(chat, chatR, usuarioActual, mwa);
+					else
+						registerWhatsAppMessage(chatR, chat, otroUsuario, mwa);
+				}
+				System.out.println("Donde writting in DB.");
+			}
 		}
 	}
 	

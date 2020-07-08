@@ -1,0 +1,12 @@
+28/6/20 16:29 - mizu: Rey, estoy pirateando unas 2DS para mis primos pequeños y en la página que estoy usando como guía he encontrado un paper de arxiv donde se explica un ataque al Boot ROM de 3DS
+28/6/20 16:29 - mizu: Me ha hecho gracia encontrar algo así en esa página
+28/6/20 16:29 - mizu: https://arxiv.org/abs/1802.00359
+28/6/20 16:30 - mizu: Al parecer la 3DS tiene dos procesadores ARM, uno para usuario y otro para tareas privilegiadas, y tienen firmas públicas RSA dentro de la ROM que solo Nintendo puede verificar
+28/6/20 16:32 - mizu: A fin de acreditar actualizaciones y demás
+28/6/20 16:37 - mizu: Me estás escribiendo la Biblia
+28/6/20 16:39 - rey: Sí, trabaje con un grupo en internet que se dedicó a tratar de jailbreakear la consola. El procesador de usuario es un ARM11 y el otro ARM9. El ataque a la bootrom es posterior. Primero se encontró un buffer overflow en un juego que decodificaba códigos QR. Con el buffer overflow puedes hacer override de la direccion de retorno que se guarda en la stack al llamar a una función. La consola implementaba  W^R que quiere decir que ninguna página de memoria es escribible y ejecutable a la vez, así que no puedes cargar código propio y saltar a él. Por tanto se usaba una técnica llamada ROP (return oriented programing) que trata de saltar a fragmentos de código que están cerca de un return y hacen lo que quieres. Por ejemplo add eax, eax, ebx y luego un return, así puedes saltar al add y volverte a donde estabas. Después del ROP se encontró un bug en la GPU que permitía hacer DMA, por lo que podías escribir en direcciones físicas de memoria y modificar el código que contenían para ejecutar código propio. Después se consiguió apropiarse de lo que en linux sería el ld.so que es el proceso que se encarga de linkear las librerías dinámicas. Obviamente para linkear código a un proceso debes poder escribir en una zona y hacerla ejecutable, así que una vez tienes control de eso es gameover.
+28/6/20 16:39 - mizu: ou mama
+28/6/20 16:39 - rey: Con eso se adueñaron del user space, el kernel space es más complicado y tiene que ver con las firmas y tal
+28/6/20 16:39 - rey: Es que has tocado en mi tema fuerte
+28/6/20 16:41 - rey: Que por cierto el SO de la 3DS es un micro-kernel
+28/6/20 16:41 - rey: Y a nivel técnico mola bastante

@@ -1,6 +1,9 @@
 package modelo;
 
+import java.time.ZoneId;
 import java.util.Date;
+
+import whatsapp.modelo.MensajeWhatsApp;
 
 public class Mensaje implements Comparable {
 
@@ -56,6 +59,10 @@ public class Mensaje implements Comparable {
 	
 	public Mensaje(int emoji, Date timestamp) {
 		this(null, null, emoji, timestamp);
+	}
+	
+	public Mensaje(Usuario sender, Chat chat, MensajeWhatsApp mwa) {
+		this(sender, chat, mwa.getTexto(), Date.from(mwa.getFecha().atZone(ZoneId.systemDefault()).toInstant()));
 	}
 
 // ---------------------------------------------------------------------
