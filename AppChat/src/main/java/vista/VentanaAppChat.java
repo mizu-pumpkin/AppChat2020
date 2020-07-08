@@ -20,7 +20,10 @@ import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.PieChart;
 import org.knowm.xchart.SwingWrapper;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import controlador.AppChat;
+import luz.*;
 import modelo.Chat;
 import modelo.Usuario;
 
@@ -29,6 +32,7 @@ import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -36,6 +40,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.EventObject;
 
 import tds.BubbleText;
 import javax.swing.JPopupMenu;
@@ -43,7 +48,7 @@ import java.awt.BorderLayout;
 import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("serial")
-public class VentanaAppChat extends JFrame implements ActionListener {
+public class VentanaAppChat extends JFrame implements ActionListener, IEncendidoListener {
 	
 	private final Usuario loggedUser;
 	
@@ -66,6 +71,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private JButton btnStats;
 	private JButton btnContacts;
 	private JButton btnDeleteChat;
+	private Luz btnLuz;
 
 	public VentanaAppChat(Usuario user) {
 		this.loggedUser = user;
@@ -223,6 +229,13 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		btnFindMessage.setToolTipText("Buscar mensajes");
 		btnFindMessage.addActionListener(this);
 		toolbarChat.add(btnFindMessage);
+		
+/* Luz button */
+		
+		btnLuz = new Luz();
+		btnLuz.addEncendidoListener(this);
+		toolbarChat.add(btnLuz);
+		
 /* Chat panel */
 		JScrollPane scrollChat = new JScrollPane(panelChat);
 		//scrollChat.getViewport().setBackground(Graphics.BACKGROUND);
@@ -391,5 +404,32 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		    }
 		   });
 		t.start();
+	}
+	
+
+
+	@Override
+	public void enteradoCambioEncendido(EventObject ev) {
+		if (ev.getSource() == btnLuz) {
+			EncendidoEvent ecEv = (EncendidoEvent) ev;
+			if (ecEv.getNewEncendido()) {
+				JFileChooser chooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("TXT con chat", "txt");
+				chooser.setFileFilter(filter);
+				int returnVal = chooser.showOpenDialog(null);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					returnVal = JOptionPane.showOptionDialog(null, 
+							"¿Cuál es el formato?", 
+							"Importar chat", 
+							JOptionPane.YES_NO_OPTION, 
+							JOptionPane.QUESTION_MESSAGE, 
+							null, 
+							Graphics.FORMAT_OPTIONS, 
+							null);
+					AppChat.getInstance().readFileChat(chooser.getSelectedFile(), returnVal);
+				}
+				return;
+			}
+		}
 	}
 }

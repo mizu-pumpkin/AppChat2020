@@ -2,6 +2,11 @@ package modelo;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import whatsapp.modelo.MensajeWhatsApp;
+
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -101,6 +106,22 @@ public abstract class Chat {
 	public Mensaje sendMessage(Usuario sender, int emoji) {
 		Mensaje msg = new Mensaje(sender, this, emoji);
 		addMessage(msg);
+		return msg;
+	}
+	
+	/**
+	 * Método para registrar un mensaje de WhatsApp en el Chat.
+	 * @param sender Usuario que envía el mensaje.
+	 * @param mwa Mensaje de WhatsApp.
+	 * @return Un objeto Mensaje que equivale a mwa.
+	 */
+	public Mensaje registerWhatsAppMessage(Usuario sender, MensajeWhatsApp mwa) {
+		Mensaje msg = new Mensaje(sender, this, mwa);
+		// Debe ser insertado en orden, en el momento que se escribió.
+		int index = Collections.binarySearch(messages, msg, Comparator.comparing(Mensaje::getTimestamp));
+		if (index < 0)
+			index = -index - 1;
+		messages.add(index, msg);
 		return msg;
 	}
 		
