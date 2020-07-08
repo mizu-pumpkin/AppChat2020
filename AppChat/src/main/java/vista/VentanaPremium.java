@@ -50,12 +50,14 @@ public class VentanaPremium extends JFrame implements ActionListener {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setBackground(Graphics.BACKGROUND);
 		setContentPane(contentPane);
 		
 		JPanel panel_buy = new JPanel();
 		contentPane.add(panel_buy, BorderLayout.CENTER);
 		panel_buy.setLayout(new BoxLayout(panel_buy, BoxLayout.X_AXIS));
 		JPanel panel_izq = new JPanel();
+		panel_izq.setBackground(Graphics.BACKGROUND);
 		panel_buy.add(panel_izq);
 		
 		GridBagLayout gbl = new GridBagLayout();
@@ -114,6 +116,7 @@ public class VentanaPremium extends JFrame implements ActionListener {
 		panel_izq.add(lblTotal, gbc_lblTotal);
 		
 		JPanel panel_der = new JPanel();
+		panel_der.setBackground(Graphics.BACKGROUND);
 		panel_buy.add(panel_der);
 		GridBagLayout gbl_panel_der = new GridBagLayout();
 		gbl_panel_der.columnWidths = new int[]{0, 0};
@@ -131,6 +134,7 @@ public class VentanaPremium extends JFrame implements ActionListener {
 		panel_der.add(lblDescuentosAplicables, gbc_lblDescuentosAplicables);
 		
 		comboBox = new JComboBox<>();
+		comboBox.setBackground(Graphics.BACKGROUND);
 		comboBox.addItem("");
 		if (AppChat.getInstance().isSummer())
 			comboBox.addItem(VERANO);
@@ -147,13 +151,14 @@ public class VentanaPremium extends JFrame implements ActionListener {
 		panel_der.add(comboBox, gbc_comboBox);
 		
 		JPanel panel_btns = new JPanel();
+		panel_btns.setBackground(Graphics.BACKGROUND);
 		contentPane.add(panel_btns, BorderLayout.SOUTH);
 		
-		btnPremium = new JButton("Premium");
+		btnPremium = Graphics.makeButton("Premium");
 		btnPremium.addActionListener(this);
 		panel_btns.add(btnPremium);
 		
-		btnCancelar = new JButton("Cancelar");
+		btnCancelar = Graphics.makeButton("Cancelar");
 		btnCancelar.addActionListener(this);
 		getRootPane().setDefaultButton(btnCancelar);
 		panel_btns.add(btnCancelar);

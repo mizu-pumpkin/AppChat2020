@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import modelo.ChatGrupo;
 import modelo.ChatIndividual;
@@ -66,6 +67,7 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		setTitle("Editor de grupos");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(Graphics.BACKGROUND);
 		setContentPane(contentPane);
 		initialize();
 		setVisible(true);
@@ -114,6 +116,7 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		btnCancel.addActionListener(this);
 /* Parte visual */
 		JPanel panel_addrmv = new JPanel();
+		panel_addrmv.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_addrmv = new GridBagConstraints();
 		gbc_addrmv.insets = new Insets(0, 0, 5, 5);
 		gbc_addrmv.fill = GridBagConstraints.BOTH;
@@ -143,6 +146,7 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		panel_addrmv.add(btnRmv, gbc_btnRmv);
 		
 		JPanel panel_okback = new JPanel();
+		panel_okback.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_okback = new GridBagConstraints();
 		gbc_okback.gridwidth = 3;
 		gbc_okback.fill = GridBagConstraints.BOTH;
@@ -158,6 +162,7 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		ListCellRenderer listRenderer = createListRenderer();
 		
 		list_contacts = new JList(new DefaultListModel());
+		list_contacts.setBackground(Graphics.WHITE);
 		loadContacts(user.getPrivateChats(), list_contacts.getModel());
 		list_contacts.setCellRenderer(listRenderer);
 		list_contacts.addMouseListener(new MouseAdapter() {
@@ -175,6 +180,7 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		});
 		
 		list_added = new JList(new DefaultListModel());
+		list_added.setBackground(Graphics.WHITE);
 		if (group != null) loadContacts(group.getMembers(), list_added.getModel());
 		list_added.setCellRenderer(listRenderer);
 		list_added.addMouseListener(new MouseAdapter() {
@@ -192,7 +198,13 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		});
 /* Parte visual */
 		JScrollPane scrollPane1 = new JScrollPane();
-		scrollPane1.setViewportBorder(new TitledBorder(null, "Contactos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrollPane1.setBackground(Graphics.BACKGROUND);
+		scrollPane1.setViewportBorder(new TitledBorder(
+				new LineBorder(Graphics.DARK),
+				"Contactos",
+				TitledBorder.LEADING,
+				TitledBorder.TOP,
+				null, null));
 		GridBagConstraints gbc_scrollPane1 = new GridBagConstraints();
 		gbc_scrollPane1.gridheight = 2;
 		gbc_scrollPane1.insets = new Insets(0, 0, 5, 5);
@@ -203,7 +215,13 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		scrollPane1.setViewportView(list_contacts);
 		
 		JScrollPane scrollPane2 = new JScrollPane();
-		scrollPane2.setViewportBorder(new TitledBorder(null, "Contactos a\u00F1adidos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrollPane2.setBackground(Graphics.BACKGROUND);
+		scrollPane2.setViewportBorder(new TitledBorder(
+				new LineBorder(Graphics.DARK),
+				"Contactos añadidos",
+				TitledBorder.LEADING,
+				TitledBorder.TOP,
+				null, null));
 		GridBagConstraints gbc_scrollPane2 = new GridBagConstraints();
 		gbc_scrollPane2.gridheight = 2;
 		gbc_scrollPane2.insets = new Insets(0, 0, 5, 0);
@@ -232,10 +250,12 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 					JLabel label = (JLabel) c;
 					ChatIndividual contact = (ChatIndividual) value;
 					label.setText(contact.getName());
-					if (isSelected)
+					if (isSelected) {
 						label.setBackground(Graphics.MAIN);
+						label.setBorder(new LineBorder(Graphics.DARK));
+					}
 					else
-						label.setBackground(Graphics.TRANSPARENT);
+						label.setBackground(Graphics.WHITE);
 				}
 				return c;
 			}

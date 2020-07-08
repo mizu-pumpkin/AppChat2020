@@ -2,6 +2,7 @@ package vista;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import modelo.ChatIndividual;
 import modelo.Usuario;
@@ -20,6 +21,7 @@ import controlador.AppChat;
 
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
+import java.awt.Component;
 
 @SuppressWarnings("serial")
 public class VentanaEditorContacto extends JFrame implements ActionListener {
@@ -52,15 +54,15 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 	}
 	
 	private void initialize() {
-		setSize(Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT);
-		//setMinimumSize(new Dimension(Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT));
-		setResizable(false);
+		setSize(400,250);
+		//setResizable(false);
+		getContentPane().setBackground(Graphics.BACKGROUND);
 		setLocationRelativeTo(null);
 		
 		GridBagLayout gbl = new GridBagLayout();
 		gbl.columnWidths = new int[]{0, 0, 0};
 		gbl.rowHeights = new int[]{10, 0, 0, 10};
-		gbl.columnWeights = new double[]{1.0, 0, 1.0};
+		gbl.columnWeights = new double[]{1.0, 0.0, 1.0};
 		gbl.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0};
 		getContentPane().setLayout(gbl);
 		
@@ -77,24 +79,47 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 		gbc.gridy = 2;
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Graphics.BACKGROUND);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		getContentPane().add(panel, gbc);
 		
 		JLabel lblAvatar = new JLabel(Graphics.makeAvatar(user.getAvatar(), Graphics.SIZE_AVATAR_BIG));
 		panel.add(lblAvatar);
 		
-		JPanel panel_info = new JPanel();
-		panel_info.setLayout(new BoxLayout(panel_info, BoxLayout.Y_AXIS));
-		panel.add(panel_info);
+		JPanel panel_personalInfo = new JPanel();
+		panel_personalInfo.setBackground(Graphics.BACKGROUND);
+		panel_personalInfo.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		panel.add(panel_personalInfo);
+		GridBagLayout gbl = new GridBagLayout();
+		gbl.columnWidths = new int[]{110, 0};
+		gbl.rowHeights = new int[]{14, 14, 0, 0};
+		gbl.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		panel_personalInfo.setLayout(gbl);
 		
-		JLabel lblUsername = new JLabel(user.getUsername());
-		panel_info.add(lblUsername);
+		JLabel lblUsername = new JLabel("Username: "+user.getUsername());
+		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
+		gbc_lblUsername.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblUsername.insets = new Insets(0, 0, 5, 0);
+		gbc_lblUsername.gridx = 0;
+		gbc_lblUsername.gridy = 0;
+		panel_personalInfo.add(lblUsername, gbc_lblUsername);
 		
-		JLabel lblPhone = new JLabel(user.getPhone());
-		panel_info.add(lblPhone);
+		JLabel lblPhone = new JLabel("Teléfono: "+user.getPhone());
+		GridBagConstraints gbc_lblPhone = new GridBagConstraints();
+		gbc_lblPhone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblPhone.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPhone.gridx = 0;
+		gbc_lblPhone.gridy = 1;
+		panel_personalInfo.add(lblPhone, gbc_lblPhone);
 		
-		JLabel lblGreeting = new JLabel(user.getGreeting());
-		panel_info.add(lblGreeting);
+		JTextArea lblGreeting = new JTextArea(user.getGreeting());
+		Graphics.buildGreeting(lblGreeting,200,50);
+		GridBagConstraints gbc_lblGreeting = new GridBagConstraints();
+		gbc_lblGreeting.fill = GridBagConstraints.BOTH;
+		gbc_lblGreeting.gridx = 0;
+		gbc_lblGreeting.gridy = 2;
+		panel_personalInfo.add(lblGreeting, gbc_lblGreeting);
 	}
 	
 	private void configurarInfoContacto() {
@@ -121,9 +146,11 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 		getContentPane().add(txtName, gbc_txtName);
 		
 		JPanel panel_btns = new JPanel();
+		panel_btns.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_panel_btns = new GridBagConstraints();
+		gbc_panel_btns.anchor = GridBagConstraints.NORTH;
 		gbc_panel_btns.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_btns.fill = GridBagConstraints.BOTH;
+		gbc_panel_btns.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_btns.gridx = 1;
 		gbc_panel_btns.gridy = 3;
 		getContentPane().add(panel_btns, gbc_panel_btns);

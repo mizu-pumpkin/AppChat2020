@@ -15,7 +15,7 @@ public class VentanaResultadoBusqueda extends JFrame {
 	private final static int MIN_WIDTH = 400;
 	private final static int MIN_HEIGHT = 400;
 	
-	private JPanel panel;
+	private JPanel contentPane;
 	
 	private String nombreChat;
 	private String nombreUsuario;
@@ -34,10 +34,11 @@ public class VentanaResultadoBusqueda extends JFrame {
 		setSize(MIN_WIDTH, MIN_HEIGHT);
 		setLocationRelativeTo(null);
 		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
-		panel = (JPanel) getContentPane();
+		contentPane = (JPanel) getContentPane();
+		//contentPane.setBackground(Graphics.BACKGROUND);
 		
 		PanelChat panelChat = new PanelChat(nombreUsuario);
-		panel.add(new JScrollPane(panelChat));
+		contentPane.add(new JScrollPane(panelChat));
 		panelChat.loadChat(listadoMensajes);
 	}
 }

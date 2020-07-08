@@ -17,17 +17,17 @@ import tds.BubbleText;
 @SuppressWarnings("serial")
 public class PanelChat extends JPanel implements Scrollable {
 
-	public static final Color COLOR_MSG_RCVD = Graphics.SECONDARY;
 	public static final Color COLOR_MSG_SENT = Graphics.MAIN;
+	public static final Color COLOR_MSG_RCVD = Graphics.SECONDARY;
 	
 	private Chat actualChat;
 	private String myUsername;
 	
 	public PanelChat(String myUsername) {
 		this.myUsername = myUsername;
-		setSize(400, 100);
-		//setPreferredSize(new Dimension(400, 100));
+		//setSize(400, 100);
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		setBackground(Graphics.BACKGROUND);
 	}
 	
 	public Chat removeActualChat() {

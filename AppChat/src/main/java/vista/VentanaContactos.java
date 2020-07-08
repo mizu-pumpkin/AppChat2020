@@ -32,7 +32,7 @@ import javax.swing.JTable;
 import java.awt.Component;
 
 @SuppressWarnings({"serial"})
-public class VentanaListaContactos extends JFrame implements ActionListener{
+public class VentanaContactos extends JFrame implements ActionListener{
 	
 	private final static String userhome = System.getProperty("user.home");
 	
@@ -43,7 +43,7 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
 
 	private JTable table;
 	
-	public VentanaListaContactos(Usuario user) {
+	public VentanaContactos(Usuario user) {
 		this.user = user;
 		initialize();
 		setVisible(true);
@@ -58,6 +58,7 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+		contentPane.setBackground(Graphics.BACKGROUND);
 		setContentPane(contentPane);
 
 		configurarTabla();
@@ -72,18 +73,10 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
 		table.getColumnModel().getColumn(0).setPreferredWidth(Graphics.SIZE_AVATAR_SMALL);
 		table.getColumnModel().getColumn(0).setMaxWidth(Graphics.SIZE_AVATAR_SMALL);
 		table.getColumnModel().getColumn(0).setMinWidth(Graphics.SIZE_AVATAR_SMALL);
-		
-		table.getColumnModel().getColumn(1).setPreferredWidth(100);
-		table.getColumnModel().getColumn(1).setMinWidth(100);
-		table.getColumnModel().getColumn(1).setMaxWidth(100);
-		
-		table.getColumnModel().getColumn(2).setPreferredWidth(100);
-		table.getColumnModel().getColumn(2).setMinWidth(100);
-		
-		table.getColumnModel().getColumn(3).setPreferredWidth(350);
-		table.getColumnModel().getColumn(3).setMinWidth(100);
-		
-		contentPane.add(new JScrollPane(table));
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.getViewport().setBackground(Graphics.BACKGROUND);
+		contentPane.add(scrollPane);
 	}
 	
 	class MyTableModel extends AbstractTableModel {
@@ -129,7 +122,7 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
 	}
 	
 	private void configurarBotonPDF() {
-		btnPDF = new JButton("PDF");
+		btnPDF = Graphics.makeButton("Generar PDF");
 		btnPDF.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		contentPane.add(btnPDF);
 		if (!user.isPremium()) btnPDF.setVisible(false);
@@ -154,7 +147,7 @@ public class VentanaListaContactos extends JFrame implements ActionListener{
         doc.add(pdfTable);
         
         doc.close();
-     }
+    }
     
     public PdfPCell makeTitleCell(String phrase) {
         PdfPCell cell = new PdfPCell(new Phrase(phrase));

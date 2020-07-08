@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -53,13 +54,17 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		panel_previous = (JPanel) frame.getContentPane();
 		
 		setLayout(new BorderLayout(0, 0));
+		setBackground(Graphics.BACKGROUND);
 		
+		UIManager.put("TabbedPane.selected", Graphics.MAIN);
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		tabbedPane.setBackground(Graphics.BACKGROUND);
 		add(tabbedPane, BorderLayout.CENTER);
 		
 		panel_registration = new JPanel();
-		tabbedPane.addTab("User Registrarion", null, panel_registration, null);
+		panel_registration.setBackground(Graphics.BACKGROUND);
+		tabbedPane.addTab("User Registrarion", panel_registration);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 100, 0, 0, 100, 0, 0};
@@ -226,6 +231,7 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		gbc_panel_botones.gridx = 1;
 		gbc_panel_botones.gridy = 8;
 		JPanel panel_buttons = new JPanel();
+		panel_buttons.setBackground(Graphics.BACKGROUND);
 		panel_registration.add(panel_buttons, gbc_panel_botones);
 		
 		btn_register = Graphics.makeButton("Registrar");

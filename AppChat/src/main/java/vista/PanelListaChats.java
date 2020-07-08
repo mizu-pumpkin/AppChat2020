@@ -1,19 +1,19 @@
 package vista;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
+import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionListener;
 
 import modelo.Chat;
@@ -38,9 +38,10 @@ public class PanelListaChats extends JPanel {
 		for (Chat c : user.getChats())
 			model.addElement(c);
 		
-		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		setLayout(new BorderLayout());
 
 		JList lista = new JList();
+		lista.setBackground(Graphics.BACKGROUND);
 		lista.setFixedCellHeight(Graphics.SIZE_AVATAR_SMALL);
 		lista.setModel(model);
 		lista.setCellRenderer(createListRenderer());
@@ -57,9 +58,6 @@ public class PanelListaChats extends JPanel {
 
 	private static ListCellRenderer<? super Chat> createListRenderer() {
 		return new DefaultListCellRenderer() {
-			private Color background = Graphics.TRANSPARENT;
-			private Color defaultBackground = Graphics.TRANSPARENT;
-			
 			@Override
 			public Component getListCellRendererComponent
 			(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus)
@@ -86,8 +84,12 @@ public class PanelListaChats extends JPanel {
 					}
 					label.setIcon(Graphics.makeAvatar(chat.getAvatar(), Graphics.SIZE_AVATAR_SMALL));
 					label.setText("<html>"+chat.getName()+"<br/>["+time+"]<br/>"+preview+"</html>");
-					if (!isSelected)
-						label.setBackground(index % 2 == 0 ? background : defaultBackground);
+					if (isSelected) {
+						label.setBackground(Graphics.MAIN);
+						label.setBorder(new LineBorder(Graphics.DARK));
+					} else
+						label.setBackground(Graphics.BACKGROUND);
+						
 				}
 				return c;
 			}

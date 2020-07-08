@@ -23,9 +23,6 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class VentanaLogin extends JFrame implements ActionListener {
-
-	private final static int MIN_WIDTH = 540;
-	private final static int MIN_HEIGHT = 360;
 	
 	private JPanel contentPane;
 
@@ -59,11 +56,11 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	
 	public VentanaLogin() {
 		setTitle("AppChat - Login");
-		setSize(MIN_WIDTH, MIN_HEIGHT);
+		setMinimumSize(new Dimension(540, 360));
 		setLocationRelativeTo(null);
-		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = (JPanel) this.getContentPane();
+		contentPane.setBackground(Graphics.BACKGROUND);
 		
 		GridBagLayout gbl = new GridBagLayout();
 		gbl.columnWidths = new int[]{0, 0, 0, 0};
@@ -132,6 +129,7 @@ public class VentanaLogin extends JFrame implements ActionListener {
 		gbc_panel.gridy = 3;
 		
 		JPanel panel_buttons = new JPanel();
+		panel_buttons.setBackground(Graphics.BACKGROUND);
 		contentPane.add(panel_buttons, gbc_panel);
 		panel_buttons.add(btnLogin);
 		panel_buttons.add(btnRegister);

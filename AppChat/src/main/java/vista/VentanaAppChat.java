@@ -38,12 +38,10 @@ import java.awt.event.ActionListener;
 
 import tds.BubbleText;
 import javax.swing.JPopupMenu;
+import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
 public class VentanaAppChat extends JFrame implements ActionListener {
-
-	private final static int MIN_WIDTH = 600;
-	private final static int MIN_HEIGHT = 600;
 	
 	private final Usuario loggedUser;
 	
@@ -58,7 +56,6 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private JPanel panel_izq;
 	private JPanel panel_der;
 	private JPopupMenu popupMenuEmoji;
-	private JToolBar toolbar;
 	private JButton btnFindMessage;
 	private JButton btnAvatar;
 	private JButton btnEmoji;
@@ -79,24 +76,28 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	private void initialize() {
 		BubbleText.noZoom();
 		setTitle("AppChat");
-		setSize(MIN_WIDTH, MIN_HEIGHT);
-		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
+		setSize(800, 600);
+		setMinimumSize(new Dimension(600, 400));
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = (JPanel) getContentPane();
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
+		contentPane.setBackground(Graphics.BACKGROUND);
 		
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setResizeWeight(0.2);
+		splitPane.setResizeWeight(0.1);
+		splitPane.setDividerSize(2);
 		contentPane.add(splitPane);
 		
 		panel_izq = new JPanel();
+		panel_izq.setBackground(Graphics.BACKGROUND);
 		panel_izq.setMinimumSize(new Dimension(200, 0));
 		splitPane.setLeftComponent(panel_izq);
 		configurarPanelIzquierdo();
 		
 		panel_der = new JPanel();
-		panel_der.setMinimumSize(new Dimension(400, 0));
+		panel_der.setBackground(Graphics.BACKGROUND);
+		panel_der.setMinimumSize(new Dimension(200, 0));
 		splitPane.setRightComponent(panel_der);
 		configurarPanelDerecho();
 	}
@@ -121,16 +122,17 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		btnAvatar.addActionListener(this);
 
 		GridBagConstraints gbc_avatar = new GridBagConstraints();
-		gbc_avatar.insets = new Insets(0, 0, 5, 5);
+		gbc_avatar.insets = new Insets(0, 0, 0, 0);
 		gbc_avatar.gridx = 0;
 		gbc_avatar.gridy = 0;
 		panel_izq.add(btnAvatar, gbc_avatar);
 /* Username */
 		JPanel panel_info = new JPanel();
 		panel_info.setLayout(new BoxLayout(panel_info, BoxLayout.Y_AXIS));
+		panel_info.setBackground(Graphics.BACKGROUND);
 		GridBagConstraints gbc_info = new GridBagConstraints();
-		gbc_info.anchor = GridBagConstraints.WEST;
-		gbc_info.insets = new Insets(0, 0, 5, 0);
+		gbc_info.fill = GridBagConstraints.BOTH;
+		gbc_info.insets = new Insets(0, 0, 0, 0);
 		gbc_info.gridx = 1;
 		gbc_info.gridy = 0;
 		panel_izq.add(panel_info, gbc_info);
@@ -145,12 +147,12 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	}
 	
 	private void configurarToolbar() {
-		toolbar = new JToolBar();
-		toolbar.setFloatable(false);
+		JToolBar toolbar = new JToolBar();
 		toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
+		Graphics.buildToolbar(toolbar);
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 2;
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.insets = new Insets(0, 0, 0, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 1;
@@ -188,12 +190,15 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		GridBagConstraints gbc_txtFindName = new GridBagConstraints();
 		gbc_txtFindName.gridwidth = 2;
 		gbc_txtFindName.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtFindName.insets = new Insets(0, 0, 5, 0);
+		gbc_txtFindName.insets = new Insets(0, 0, 0, 0);
 		gbc_txtFindName.gridx = 0;
 		gbc_txtFindName.gridy = 2;
 		panel_izq.add(txtFindUser, gbc_txtFindName);
 /* Contact List panel */
+		getContentPane().add(listaChats);
 		JScrollPane scroll = new JScrollPane(listaChats);
+		Graphics.buildScroll(scroll.getVerticalScrollBar());
+		Graphics.buildScroll(scroll.getHorizontalScrollBar());
 		GridBagConstraints gbc_scrollPane_names = new GridBagConstraints();
 		gbc_scrollPane_names.gridwidth = 2;
 		gbc_scrollPane_names.fill = GridBagConstraints.BOTH;
@@ -203,22 +208,12 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	}
 
 	private void configurarPanelDerecho() {
-		GridBagLayout gbl = new GridBagLayout();
-		gbl.columnWidths = new int[]{0, 0};
-		gbl.rowHeights = new int[]{0, 0, 0, 0};
-		gbl.columnWeights = new double[]{4.0, Double.MIN_VALUE};
-		gbl.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		panel_der.setLayout(gbl);
 /* Search message */
+		panel_der.setLayout(new BorderLayout(0, 0));
 		JToolBar toolbarChat = new JToolBar();
 		toolbarChat.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		toolbarChat.setFloatable(false);
-		GridBagConstraints gbc_toolBar = new GridBagConstraints();
-		gbc_toolBar.fill = GridBagConstraints.BOTH;
-		gbc_toolBar.insets = new Insets(0, 0, 5, 0);
-		gbc_toolBar.gridx = 0;
-		gbc_toolBar.gridy = 0;
-		panel_der.add(toolbarChat, gbc_toolBar);
+		Graphics.buildToolbar(toolbarChat);
+		panel_der.add(toolbarChat, BorderLayout.NORTH);
 		
 		btnDeleteChat = Graphics.makeIconButton("/trash.png");
 		btnDeleteChat.setToolTipText("Eliminar chat");
@@ -230,20 +225,16 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		btnFindMessage.addActionListener(this);
 		toolbarChat.add(btnFindMessage);
 /* Chat panel */
-		GridBagConstraints gbc_scrollPane_chat = new GridBagConstraints();
-		gbc_scrollPane_chat.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane_chat.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_chat.gridx = 0;
-		gbc_scrollPane_chat.gridy = 1;
-		panel_der.add(new JScrollPane(panelChat), gbc_scrollPane_chat);
+		JScrollPane scrollChat = new JScrollPane(panelChat);
+		scrollChat.getViewport().setBackground(Graphics.BACKGROUND);
+		Graphics.buildScroll(scrollChat.getVerticalScrollBar());
+		Graphics.buildScroll(scrollChat.getHorizontalScrollBar());
+		panel_der.add(scrollChat, BorderLayout.CENTER);
 /* Text input */
 		JPanel panel_writeMsg = new JPanel();
+		panel_writeMsg.setBackground(Graphics.BACKGROUND);
 		panel_writeMsg.setLayout(new BoxLayout(panel_writeMsg, BoxLayout.X_AXIS));
-		GridBagConstraints gbc_write = new GridBagConstraints();
-		gbc_write.fill = GridBagConstraints.BOTH;
-		gbc_write.gridx = 0;
-		gbc_write.gridy = 2;
-		panel_der.add(panel_writeMsg, gbc_write);
+		panel_der.add(panel_writeMsg, BorderLayout.SOUTH);
 		
 		txtWriteMsg = new JTextField();
 		txtWriteMsg.setColumns(10);
@@ -284,7 +275,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 		lblGreeting.setText(loggedUser.getGreeting());
 	}
 	
-	public void changePremium() {//FIXME
+	public void changePremium() {
 		AppChat.getInstance().togglePremium();
 		btnStats.setVisible(loggedUser.isPremium());
 	}
@@ -292,7 +283,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnAvatar) {
-			new VentanaPerfil(loggedUser, this);
+			new VentanaEditorPerfil(loggedUser, this);
 			return;
 		}
 		if (e.getSource() == btnNewGroup) {
@@ -313,7 +304,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 			return;
 		}
 		if (e.getSource() == btnContacts) {
-			new VentanaListaContactos(loggedUser);
+			new VentanaContactos(loggedUser);
 			return;
 		}
 		if (e.getSource() == btnStats) {
@@ -367,7 +358,7 @@ public class VentanaAppChat extends JFrame implements ActionListener {
 					JOptionPane.ERROR_MESSAGE
 				);
 			} else if (user.equals(loggedUser)) {
-				new VentanaPerfil(loggedUser, this);
+				new VentanaEditorPerfil(loggedUser, this);
 			} else if (loggedUser.knowsUser(user)) {
 				new VentanaEditorContacto(loggedUser.getPrivateChat(user), listaChats);
 			} else {
