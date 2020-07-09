@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import whatsapp.modelo.MensajeWhatsApp;
@@ -152,9 +153,15 @@ public abstract class Chat {
 		messages.add(index, msg);
 		return msg;
 	}
-		
-	// Igual esto se podría resumir en un solo método al que se
-	// le pase un "Predicate"
+	
+	public List<Mensaje> findMessages(Predicate<Mensaje> criterio) {
+		return messages
+				.stream()
+				.filter(criterio)
+				.collect(Collectors.toList())
+				;
+	}
+	
 	/**
 	 * Devuelve los mensajes enviados que incluyen el texto indicado
 	 * en el cuerpo del mensaje.

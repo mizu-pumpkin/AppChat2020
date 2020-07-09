@@ -201,12 +201,15 @@ public class AppChat implements MensajesListener {
 		List<Mensaje> aux;
 		List<List<Mensaje>> listados = new LinkedList<>();
 		
-		if (!text.trim().isEmpty())
-			listados.add(chat.findMessagesByText(text.trim()));
-		if (!username.trim().isEmpty())
-			listados.add(chat.findMessagesByUser(username.trim()));
+		if (chat == null)
+			return new LinkedList<>(); 
+		
+		if (text != null && !text.trim().isEmpty())
+			listados.add(chat.findMessages(m -> m.getBody().contains(text.trim())));
+		if (username != null && !username.trim().isEmpty())
+			listados.add(chat.findMessages(m -> m.isSender(username.trim())));
 		if (d1 != null && d2 != null)
-			listados.add(chat.findMessagesByDate(d1, d2));
+			listados.add(chat.findMessages(m -> !m.getTimestamp().before(d1) && !m.getTimestamp().after(d2)));
 		
 		// A fin de evitar errores por una llamada sin ningún parámetro válido.
 		if (listados.isEmpty())
