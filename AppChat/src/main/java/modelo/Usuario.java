@@ -269,7 +269,7 @@ public class Usuario {
 	private List<Mensaje> getMessagesSent(Date d1, Date d2) {
 		return chats
 				.stream()
-				.flatMap(c -> c.findMessagesByDate(d1, d2).stream())
+				.flatMap(c -> c.findMessages(m -> !m.getTimestamp().before(d1) && !m.getTimestamp().after(d2)).stream())
 				.filter(m -> m.isSender(this))
 				.collect(Collectors.toList());
 	}

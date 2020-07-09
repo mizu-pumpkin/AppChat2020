@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import whatsapp.modelo.MensajeWhatsApp;
@@ -124,38 +125,11 @@ public abstract class Chat {
 		messages.add(index, msg);
 		return msg;
 	}
-		
-	// Igual esto se podría resumir en un solo método al que se
-	// le pase un "Predicate"
-	public List<Mensaje> findMessagesByText(String text) {
-		return messages
-				.stream()
-				.filter(m -> m.getBody().contains(text))
-				.collect(Collectors.toList())
-				;
-	}
 	
-	public List<Mensaje> findMessagesByDate(Date d1, Date d2) {
+	public List<Mensaje> findMessages(Predicate<Mensaje> criterio) {
 		return messages
 				.stream()
-				.filter(m -> !m.getTimestamp().before(d1))
-				.filter(m -> !m.getTimestamp().after(d2))
-				.collect(Collectors.toList())
-				;
-	}
-	
-	public List<Mensaje> findMessagesByUser(Usuario user) {
-		return messages
-				.stream()
-				.filter(m -> m.isSender(user))
-				.collect(Collectors.toList())
-				;
-	}
-	
-	public List<Mensaje> findMessagesByUser(String username) {
-		return messages
-				.stream()
-				.filter(m -> m.isSender(username))
+				.filter(criterio)
 				.collect(Collectors.toList())
 				;
 	}
