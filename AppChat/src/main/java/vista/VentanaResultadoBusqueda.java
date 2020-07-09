@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import modelo.Mensaje;
@@ -14,34 +13,31 @@ import modelo.Mensaje;
 @SuppressWarnings("serial")
 public class VentanaResultadoBusqueda extends JFrame {
 	
-	private final static int MIN_WIDTH = 400;
-	private final static int MIN_HEIGHT = 400;
-	
-	private JPanel contentPane;
-	
 	private String nombreChat;
-	private String nombreUsuario;
 	private List<Mensaje> listadoMensajes;
 	
 	public VentanaResultadoBusqueda(String nombreChat, String nombreUsuario, List<Mensaje> listadoMensajes) {
 		this.nombreChat = nombreChat;
-		this.nombreUsuario = nombreUsuario;
 		this.listadoMensajes = listadoMensajes;
 		initialize();
 		setVisible(true);
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
 		setTitle("Mensajes encontrados - \""+ nombreChat + "\"");
-		setSize(MIN_WIDTH, MIN_HEIGHT);
+		setSize(600, 400);
 		setLocationRelativeTo(null);
-		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
-		contentPane = (JPanel) getContentPane();
+		setMinimumSize(new Dimension(Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT));
 		
 		String[] data = new String[listadoMensajes.size()];
 		Iterator<Mensaje> it = listadoMensajes.iterator();
 		for (int i = 0; it.hasNext(); i++)
 			data[i] = it.next().toString();
-		add(new JList(data));
+		
+		JScrollPane scroll = new JScrollPane(new JList(data));
+		Graphics.buildScroll(scroll.getHorizontalScrollBar());
+		Graphics.buildScroll(scroll.getVerticalScrollBar());
+		add(scroll);
 	}
 }

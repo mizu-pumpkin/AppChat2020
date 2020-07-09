@@ -18,10 +18,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 
 import com.toedter.calendar.JDateChooser;
+
 import controlador.AppChat;
 
 @SuppressWarnings("serial")
 public class PanelRegistro extends JPanel implements ActionListener {
+	
+	private static final AppChat appChat = AppChat.getInstance();
 	
 	private JFrame frame;
 	private JPanel panel_previous;
@@ -380,12 +383,12 @@ public class PanelRegistro extends JPanel implements ActionListener {
 			warningPasswordChk.setVisible(true); 
 			ok=false;
 		}
-		if (AppChat.getInstance().isRegistered(field_username.getText())) {
+		if (appChat.isRegistered(field_username.getText())) {
 			warningUsername.setVisible(true); 
 			warningExiste.setVisible(true); 
 			ok=false;		
 		}
-		if (AppChat.getInstance().isPhoneRegistered(field_phone.getText())) {
+		if (appChat.isPhoneRegistered(field_phone.getText())) {
 			warningPhone.setVisible(true); 
 			warningExisteTel.setVisible(true); 
 			ok=false;
@@ -394,7 +397,7 @@ public class PanelRegistro extends JPanel implements ActionListener {
 	}
 	
 	private boolean register() {
-		boolean ok = AppChat.getInstance().register(
+		boolean ok = appChat .register(
 			field_username.getText(),
 			new String(field_password.getPassword()),
 			field_name.getText(),

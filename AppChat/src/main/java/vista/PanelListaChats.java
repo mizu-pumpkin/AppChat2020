@@ -56,6 +56,10 @@ public class PanelListaChats extends JPanel {
 			model.addElement(c);
 	}
 
+	public void remove(Chat chat) {
+		model.removeElement(chat);
+	}
+
 	private static ListCellRenderer<? super Chat> createListRenderer() {
 		return new DefaultListCellRenderer() {
 			@Override
@@ -129,9 +133,5 @@ public class PanelListaChats extends JPanel {
 				}
 			}
 		};
-	}
-
-	public void remove(Chat chat) {
-		model.removeElement(chat);
 	}
 }

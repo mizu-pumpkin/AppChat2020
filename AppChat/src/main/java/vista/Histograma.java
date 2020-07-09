@@ -27,8 +27,8 @@ public class Histograma implements ExampleChart<CategoryChart> {
 	
 	public Histograma(Usuario user) {
 		this.user = user;
-		Date d1 = null;
-		Date d2 = null;
+		Date d1 = null;//aquí se guardan las 00:00:00 del primer día del mes
+		Date d2 = null;//aquí se guardan las 23:59:59 del último día del mes
 		for (int i=1; i<=12; i++) {
 			try {
 				d1 = dateFormat.parse(i+"/"+year);

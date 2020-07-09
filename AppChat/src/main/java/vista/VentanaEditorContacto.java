@@ -25,6 +25,8 @@ import java.awt.Component;
 
 @SuppressWarnings("serial")
 public class VentanaEditorContacto extends JFrame implements ActionListener {
+
+	private static final AppChat appChat = AppChat.getInstance();
 	
 	private ChatIndividual contact;
 	private Usuario user;
@@ -157,13 +159,11 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnEdit) {
-			if (contact == null) {
-				AppChat.getInstance().saveContact(txtName.getText(), user.getPhone());
-				listaChats.reloadList();
-			} else {
-				AppChat.getInstance().editContact(contact, txtName.getText());
-				listaChats.reloadList();
-			}
+			if (contact == null)
+				appChat.saveContact(txtName.getText(), user.getPhone());
+			else
+				appChat.editContact(contact, txtName.getText());
+			listaChats.reloadList();
 			dispose();
 			return;
 		}

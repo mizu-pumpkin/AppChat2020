@@ -20,11 +20,13 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controlador.AppChat;
+
 import javax.swing.BoxLayout;
 
 @SuppressWarnings("serial")
 public class VentanaEditorPerfil extends JFrame implements ActionListener {
 
+	private static final AppChat appChat = AppChat.getInstance();
 	private final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
 	private Usuario user;
@@ -158,13 +160,13 @@ public class VentanaEditorPerfil extends JFrame implements ActionListener {
 			chooser.setFileFilter(filter);
 			int returnVal = chooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				AppChat.getInstance().changeAvatar(chooser.getSelectedFile().getAbsolutePath());
+				appChat.changeAvatar(chooser.getSelectedFile().getAbsolutePath());
 				Graphics.reloadAvatarButton(btnAvatar, user.getAvatar());
 				father.reloadAvatar();
 			}
 		}
 		if (e.getSource() == btnEdit) {
-			AppChat.getInstance().changeGreeting(txtGreeting.getText());
+			appChat.changeGreeting(txtGreeting.getText());
 			father.reloadGreeting();
 			dispose();
 			return;

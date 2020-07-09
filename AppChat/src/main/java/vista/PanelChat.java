@@ -3,7 +3,6 @@ package vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -17,16 +16,22 @@ import tds.BubbleText;
 @SuppressWarnings("serial")
 public class PanelChat extends JPanel implements Scrollable {
 
+	private static final AppChat appChat = AppChat.getInstance();
+	
 	public static final Color COLOR_MSG_SENT = Graphics.MAIN;
 	public static final Color COLOR_MSG_RCVD = Graphics.SECONDARY;
 	
 	private Chat actualChat;
 	private String myUsername;
 	
-	public PanelChat(String myUsername) {
-		this.myUsername = myUsername;
-		//setSize(400, 100);
+	public PanelChat() {
+		this.myUsername = appChat.getUsuarioActual().getUsername();
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+	}
+	
+	// Para que no se ejecute el botón de búsqueda de mensaje si no se ha elegido un chat.
+	public boolean hasChat() {
+		return actualChat != null;
 	}
 	
 	public Chat getActualChat() {
@@ -41,21 +46,21 @@ public class PanelChat extends JPanel implements Scrollable {
 		return old;
 	}
 	
-	public void loadChat(List<Mensaje> listado) {
+	public void loadChat(Chat chat) {
+		this.actualChat = chat;
 		removeAll();
-		for (Mensaje m : listado) {
+		for (Mensaje m : chat.getMessages()) {
 			String text = m.getBody();
 			String sender = m.getSenderName();
 			
 			Color col;
 			int inout;
-			if(sender.equals(myUsername)) {
+			if (m.isSender(myUsername)) {
 				col = COLOR_MSG_SENT;
 				inout = BubbleText.SENT;
 			} else {
 				col = COLOR_MSG_RCVD;
 				inout = BubbleText.RECEIVED;
-				//TODO sender = actualChat.getName();
 			}
 			
 			if (m.getBodyType() == Mensaje.TEXT_BODY)
@@ -65,42 +70,24 @@ public class PanelChat extends JPanel implements Scrollable {
 		}
 		revalidate();
 	}
-	
-	public void loadChat(Chat chat) {
-		this.actualChat = chat;
-		loadChat(chat.getMessages());
-	}
 
 	public void sendText(String text) {
-		if (actualChat == null) return;
-		add(new BubbleText(this, text, COLOR_MSG_SENT, myUsername, BubbleText.SENT));
-		AppChat.getInstance().sendMessage(actualChat, text);
+		if (hasChat()) {
+			add(new BubbleText(this, text, COLOR_MSG_SENT, myUsername, BubbleText.SENT));
+			appChat.sendMessage(actualChat, text);
+		}
 	}
 	
 	public void sendEmoji(int emoji) {
-		if (actualChat == null) return;
-		add(new BubbleText(this, emoji, COLOR_MSG_SENT, myUsername, BubbleText.SENT, 12));
-		AppChat.getInstance().sendMessage(actualChat, emoji);
-	}
-	
-	// Para que no se ejecute el botón de búsqueda de mensaje si no se ha elegido un chat.
-	public boolean hasChat() {
-		return actualChat != null;
-	}
-	
-	// El panel de búsqueda de chat necesita el chat sobre el que debe buscar.
-	public Chat getChat() {
-		return actualChat;
+		if (hasChat()) {
+			add(new BubbleText(this, emoji, COLOR_MSG_SENT, myUsername, BubbleText.SENT, 12));
+			appChat.sendMessage(actualChat, emoji);
+		}
 	}
 
 	@Override
 	public Dimension getPreferredScrollableViewportSize() {
 		return null;
-	}
-
-	@Override
-	public int getScrollableBlockIncrement(Rectangle arg0, int arg1, int arg2) {
-		return 0;
 	}
 
 	@Override
@@ -114,8 +101,13 @@ public class PanelChat extends JPanel implements Scrollable {
 	}
 
 	@Override
-	public int getScrollableUnitIncrement(Rectangle arg0, int arg1, int arg2) {
-		return 0;
+	public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
+		return 16;
+	}
+
+	@Override
+	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
+		return 16;
 	}
 
 }

@@ -24,6 +24,8 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class VentanaLogin extends JFrame implements ActionListener {
+
+	private static final AppChat appChat = AppChat.getInstance();
 	
 	private JPanel contentPane;
 
@@ -139,10 +141,10 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLogin) {
-			boolean login = AppChat.getInstance().login(
+			boolean login = appChat.login(
 					textField_username.getText(), new String(passwField_password.getPassword()));
 			if (login) {
-				new VentanaAppChat(AppChat.getInstance().getUsuarioActual());
+				new VentanaAppChat(appChat.getUsuarioActual());
 				dispose();
 			} else
 				JOptionPane.showMessageDialog(this,

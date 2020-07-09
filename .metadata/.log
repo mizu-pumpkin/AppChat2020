@@ -4163,3 +4163,129 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2020-07-09 11:12:01.166 -----------------------------------------------
+eclipse.buildId=4.12.0.I20190605-1800
+java.version=1.8.0_231
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2020-07-09 11:12:08.230
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2020-07-09 11:12:18.135
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Mizu'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.core 4 0 2020-07-09 15:04:46.029
+!MESSAGE Pulling 1 repository
+!SUBENTRY 1 org.eclipse.egit.core 4 0 2020-07-09 15:04:46.029
+!MESSAGE Checkout conflict with files: 
+AppChat/src/main/java/controlador/AppChat.java
+AppChat/src/main/java/modelo/Chat.java
+AppChat/src/main/java/modelo/Usuario.java
+!STACK 0
+org.eclipse.jgit.api.errors.CheckoutConflictException: Checkout conflict with files: 
+AppChat/src/main/java/controlador/AppChat.java
+AppChat/src/main/java/modelo/Chat.java
+AppChat/src/main/java/modelo/Usuario.java
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:437)
+	at org.eclipse.jgit.api.PullCommand.call(PullCommand.java:399)
+	at org.eclipse.egit.core.op.PullOperation$PullJob.run(PullOperation.java:256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.CheckoutConflictException: Checkout conflict with files: 
+AppChat/src/main/java/controlador/AppChat.java
+AppChat/src/main/java/modelo/Chat.java
+AppChat/src/main/java/modelo/Usuario.java
+	at org.eclipse.jgit.dircache.DirCacheCheckout.doCheckout(DirCacheCheckout.java:518)
+	at org.eclipse.jgit.dircache.DirCacheCheckout.checkout(DirCacheCheckout.java:486)
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:304)
+	... 3 more
+
+!ENTRY org.eclipse.egit.core 4 0 2020-07-09 15:05:14.208
+!MESSAGE Pulling 1 repository
+!SUBENTRY 1 org.eclipse.egit.core 4 0 2020-07-09 15:05:14.208
+!MESSAGE Checkout conflict with files: 
+AppChat/src/main/java/controlador/AppChat.java
+AppChat/src/main/java/modelo/Chat.java
+AppChat/src/main/java/modelo/Usuario.java
+!STACK 0
+org.eclipse.jgit.api.errors.CheckoutConflictException: Checkout conflict with files: 
+AppChat/src/main/java/controlador/AppChat.java
+AppChat/src/main/java/modelo/Chat.java
+AppChat/src/main/java/modelo/Usuario.java
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:437)
+	at org.eclipse.jgit.api.PullCommand.call(PullCommand.java:399)
+	at org.eclipse.egit.core.op.PullOperation$PullJob.run(PullOperation.java:256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.CheckoutConflictException: Checkout conflict with files: 
+AppChat/src/main/java/controlador/AppChat.java
+AppChat/src/main/java/modelo/Chat.java
+AppChat/src/main/java/modelo/Usuario.java
+	at org.eclipse.jgit.dircache.DirCacheCheckout.doCheckout(DirCacheCheckout.java:518)
+	at org.eclipse.jgit.dircache.DirCacheCheckout.checkout(DirCacheCheckout.java:486)
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:304)
+	... 3 more
+
+!ENTRY org.eclipse.egit.core 4 0 2020-07-09 15:06:25.693
+!MESSAGE Pulling 1 repository
+!SUBENTRY 1 org.eclipse.egit.core 4 0 2020-07-09 15:06:25.693
+!MESSAGE Checkout conflict with files: 
+AppChat/src/main/java/controlador/AppChat.java
+AppChat/src/main/java/modelo/Chat.java
+AppChat/src/main/java/modelo/Usuario.java
+!STACK 0
+org.eclipse.jgit.api.errors.CheckoutConflictException: Checkout conflict with files: 
+AppChat/src/main/java/controlador/AppChat.java
+AppChat/src/main/java/modelo/Chat.java
+AppChat/src/main/java/modelo/Usuario.java
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:437)
+	at org.eclipse.jgit.api.PullCommand.call(PullCommand.java:399)
+	at org.eclipse.egit.core.op.PullOperation$PullJob.run(PullOperation.java:256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.CheckoutConflictException: Checkout conflict with files: 
+AppChat/src/main/java/controlador/AppChat.java
+AppChat/src/main/java/modelo/Chat.java
+AppChat/src/main/java/modelo/Usuario.java
+	at org.eclipse.jgit.dircache.DirCacheCheckout.doCheckout(DirCacheCheckout.java:518)
+	at org.eclipse.jgit.dircache.DirCacheCheckout.checkout(DirCacheCheckout.java:486)
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:304)
+	... 3 more
+!SESSION 2020-07-09 15:08:06.413 -----------------------------------------------
+eclipse.buildId=4.12.0.I20190605-1800
+java.version=1.8.0_231
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2020-07-09 15:08:11.276
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2020-07-09 15:08:19.682
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Mizu'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2020-07-09 17:31:00.103 -----------------------------------------------
+eclipse.buildId=4.12.0.I20190605-1800
+java.version=1.8.0_231
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2020-07-09 17:31:06.780
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2020-07-09 17:31:16.965
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Mizu'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

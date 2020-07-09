@@ -34,8 +34,11 @@ import javax.swing.border.TitledBorder;
 
 import controlador.AppChat;
 
+
 @SuppressWarnings({"serial", "rawtypes", "unchecked"})
 public class VentanaEditorGrupo extends JFrame implements ActionListener {
+
+	private static final AppChat appChat = AppChat.getInstance();
 
 	private Usuario user;
 	private ChatGrupo group;
@@ -273,7 +276,7 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		for (int i=0; i<added.getSize(); i++)
 			contacts.add((ChatIndividual) added.getElementAt(i));
 		
-		AppChat.getInstance().createGroup(txtNombreGrupo.getText(), contacts);
+		appChat.createGroup(txtNombreGrupo.getText(), contacts);
 		dispose();
 	}
 	
@@ -283,7 +286,7 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		for (int i=0; i<added.getSize(); i++)
 			contacts.add((ChatIndividual) added.getElementAt(i));
 		
-		AppChat.getInstance().editGroup(group, txtNombreGrupo.getText(), contacts);
+		appChat.editGroup(group, txtNombreGrupo.getText(), contacts);
 		dispose();
 	}
 

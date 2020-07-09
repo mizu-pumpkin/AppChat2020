@@ -20,9 +20,10 @@ import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.PieChart;
 import org.knowm.xchart.SwingWrapper;
 
+import controlador.AppChat;
+
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import controlador.AppChat;
 import luz.*;
 import modelo.Chat;
 import modelo.ChatGrupo;
@@ -51,6 +52,8 @@ import javax.swing.ScrollPaneConstants;
 @SuppressWarnings("serial")
 public class VentanaAppChat extends JFrame implements ActionListener, IEncendidoListener {
 	
+	private static final AppChat appChat = AppChat.getInstance();
+	
 	private final Usuario loggedUser;
 	
 	private PanelChat panelChat;
@@ -76,7 +79,7 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 
 	public VentanaAppChat(Usuario user) {
 		this.loggedUser = user;
-		this.panelChat = new PanelChat(user.getUsername());
+		this.panelChat = new PanelChat();
 		this.listaChats = new PanelListaChats(panelChat,user);
 		initialize(); 
 		setVisible(true);
@@ -108,7 +111,7 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 		configurarPanelDerecho();
 	}
 	
-	public void configurarPanelIzquierdo() {
+	private void configurarPanelIzquierdo() {
 		GridBagLayout gbl = new GridBagLayout();
 		gbl.columnWidths = new int[]{0, 0};
 		gbl.rowHeights = new int[]{0, 0, 0, 0};
@@ -121,7 +124,7 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 		configurarListaContactos();
 	}
 
-	public void configurarInfoUsuario() {
+	private void configurarInfoUsuario() {
 /* Avatar */
 		btnAvatar = Graphics.makeAvatarButton(loggedUser.getAvatar());
 		btnAvatar.setToolTipText("Mi perfil");
@@ -214,29 +217,25 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 	}
 
 	private void configurarPanelDerecho() {
-/* Search message */
 		panel_der.setLayout(new BorderLayout(0, 0));
 		JToolBar toolbarChat = new JToolBar();
 		toolbarChat.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		Graphics.buildToolbar(toolbarChat);
 		panel_der.add(toolbarChat, BorderLayout.NORTH);
-		
+/* Borrar chat */
 		btnDeleteChat = Graphics.makeIconButton("/trash.png");
 		btnDeleteChat.setToolTipText("Eliminar chat");
 		btnDeleteChat.addActionListener(this);
 		toolbarChat.add(btnDeleteChat);
-		
+/* Search message */
 		btnFindMessage = Graphics.makeIconButton("/searchmsg.png");
 		btnFindMessage.setToolTipText("Buscar mensajes");
 		btnFindMessage.addActionListener(this);
 		toolbarChat.add(btnFindMessage);
-		
 /* Luz button */
-		
 		btnLuz = new Luz();
 		btnLuz.addEncendidoListener(this);
 		toolbarChat.add(btnLuz);
-		
 /* Chat panel */
 		JScrollPane scrollChat = new JScrollPane(panelChat);
 		//scrollChat.getViewport().setBackground(Graphics.BACKGROUND);
@@ -290,8 +289,32 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 	}
 	
 	public void changePremium() {
-		AppChat.getInstance().togglePremium();
+		appChat.togglePremium();
 		btnStats.setVisible(loggedUser.isPremium());
+	}
+	
+	private void mostrarTarta() {
+		Thread t = new Thread(new Runnable() {
+		    @Override
+		    public void run() {
+			    new SwingWrapper<PieChart>(new DiagramaTarta(loggedUser).getChart())
+			    	.displayChart()
+			    	.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		    }
+		   });
+		t.start();
+	}
+
+	private void mostrarHistograma() {
+		Thread t = new Thread(new Runnable() {
+		    @Override
+		    public void run() {
+			    new SwingWrapper<CategoryChart>(new Histograma(loggedUser).getChart())
+			    	.displayChart()
+			    	.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		    }
+		   });
+		t.start();
 	}
 
 	@Override
@@ -371,18 +394,18 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 			);
 			if (opt == JOptionPane.YES_OPTION) {
 				panelChat.removeActualChat();
-				AppChat.getInstance().deleteChat(chat);
+				appChat.deleteChat(chat);
 				listaChats.remove(chat);
 			}
 			return;
 		}
 		if (e.getSource() == btnFindMessage) {
 			if (panelChat.hasChat())
-				new VentanaBusquedaMensaje(panelChat.getChat(), loggedUser.getUsername());
+				new VentanaBusquedaMensaje(panelChat.getActualChat(), loggedUser.getUsername());
 			return;
 		}
 		if (e.getSource() == txtFindUser) {
-			Usuario user = AppChat.getInstance().findUser(txtFindUser.getText());
+			Usuario user = appChat.findUser(txtFindUser.getText());
 			if (user == null) {
 				JOptionPane.showMessageDialog(
 					this,
@@ -402,32 +425,6 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 		}
 	}
 	
-	private void mostrarTarta() {
-		Thread t = new Thread(new Runnable() {
-		    @Override
-		    public void run() {
-			    new SwingWrapper<PieChart>(new DiagramaTarta(loggedUser).getChart())
-			    	.displayChart()
-			    	.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		    }
-		   });
-		t.start();
-	}
-
-	public void mostrarHistograma() {
-		Thread t = new Thread(new Runnable() {
-		    @Override
-		    public void run() {
-			    new SwingWrapper<CategoryChart>(new Histograma(loggedUser).getChart())
-			    	.displayChart()
-			    	.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		    }
-		   });
-		t.start();
-	}
-	
-
-
 	@Override
 	public void enteradoCambioEncendido(EventObject ev) {
 		if (ev.getSource() == btnLuz) {
@@ -446,7 +443,7 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 							null, 
 							Graphics.FORMAT_OPTIONS, 
 							null);
-					AppChat.getInstance().readFileChat(chooser.getSelectedFile(), returnVal);
+					appChat.readFileChat(chooser.getSelectedFile(), returnVal);
 				}
 				return;
 			}

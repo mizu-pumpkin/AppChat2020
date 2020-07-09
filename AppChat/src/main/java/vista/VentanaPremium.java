@@ -25,6 +25,8 @@ import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class VentanaPremium extends JFrame implements ActionListener {
+
+	private static final AppChat appChat = AppChat.getInstance();
 	
 	private static final double PRICE = 5.99; 
 	private static final String VERANO = "Verano";
@@ -157,9 +159,9 @@ public class VentanaPremium extends JFrame implements ActionListener {
 	private void configurarCombobox(Usuario user) {
 		comboBox = new JComboBox<>();
 		comboBox.addItem("");
-		if (AppChat.getInstance().isSummer())
+		if (appChat.isSummer())
 			comboBox.addItem(VERANO);
-		if (AppChat.getInstance().isYoung(user))
+		if (appChat.isYoung(user))
 			comboBox.addItem(JOVEN);
 		comboBox.addActionListener(this);
 		comboBox.setToolTipText("Selecciona el descuento a aplicar.");

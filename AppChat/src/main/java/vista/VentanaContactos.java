@@ -39,8 +39,8 @@ public class VentanaContactos extends JFrame implements ActionListener{
 	private Usuario user;
 
 	private JPanel contentPane;
+	
 	private JButton btnPDF;
-
 	private JTable table;
 	
 	public VentanaContactos(Usuario user) {
