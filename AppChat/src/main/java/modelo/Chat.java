@@ -19,7 +19,7 @@ public abstract class Chat {
 		
 	private int id;
 	private String name;
-	protected List<Mensaje> messages; // mensajes
+	private List<Mensaje> messages; // mensajes
 	
 // ---------------------------------------------------------------------
 //		                                                    Constructors
@@ -76,12 +76,12 @@ public abstract class Chat {
 		Mensaje msg = getMostRecentMessage();
 		if (msg != null)
 			return msg.getTimestamp();
-		return new Date(0);
+		return new Date(0);//devuelve la fecha más antigua posible
 	}
 	
 	/**
 	 * Devuelve el último mensaje enviado al chat.
-	 * @return el mensaje más reciente.
+	 * @return el mensaje más reciente o null si el chat está vacío.
 	 */
 	public Mensaje getMostRecentMessage() {
 		if (messages.size() > 0)
@@ -97,11 +97,8 @@ public abstract class Chat {
 	 * Devuelve el número de mensajes enviados por el usuario.
 	 * @return el número de mensajes enviados por el usuario.
 	 */
-	public long getNumberOfMessagesSent(Usuario u) {
-		return messages
-				.stream()
-				.filter(m -> m.isSender(u))
-				.count();
+	public int getNumberOfMessagesSent(Usuario u) {
+		return findMessages(u).size();
 	}
 	
 	/**
@@ -144,7 +141,7 @@ public abstract class Chat {
 	 * @param mwa Mensaje de WhatsApp.
 	 * @return Un objeto Mensaje que equivale a mwa.
 	 */
-	public Mensaje registerWhatsAppMessage(Usuario sender, MensajeWhatsApp mwa) {
+	public Mensaje sendWhatsAppMessage(Usuario sender, MensajeWhatsApp mwa) {
 		Mensaje msg = new Mensaje(sender, this, mwa);
 		// Debe ser insertado en orden, en el momento que se escribió.
 		int index = Collections.binarySearch(messages, msg, Comparator.comparing(Mensaje::getTimestamp));
@@ -163,32 +160,13 @@ public abstract class Chat {
 	}
 	
 	/**
-	 * Devuelve los mensajes enviados que incluyen el texto indicado
-	 * en el cuerpo del mensaje.
-	 * @param text el texto buscado.
-	 * @return la lista de mensajes que incluyen el texto buscado.
-	 */
-	public List<Mensaje> findMessagesByText(String text) {
-		return messages
-				.stream()
-				.filter(m -> m.getBody().contains(text))
-				.collect(Collectors.toList())
-				;
-	}
-	
-	/**
 	 * Devuelve los mensajes enviados al chat entre dos fechas.
 	 * @param d1 la fecha de inicio.
 	 * @param d2 la fecha de fin.
 	 * @return la lista de mensajes enviados entre las fechas.
 	 */
-	public List<Mensaje> findMessagesByDate(Date d1, Date d2) {
-		return messages
-				.stream()
-				.filter(m -> !m.getTimestamp().before(d1))
-				.filter(m -> !m.getTimestamp().after(d2))
-				.collect(Collectors.toList())
-				;
+	public List<Mensaje> findMessages(Date d1, Date d2) {
+		return findMessages(m -> !m.sentBefore(d1) && !m.sentAfter(d2));
 	}
 
 	/**
@@ -196,12 +174,21 @@ public abstract class Chat {
 	 * @param user el usuario que ha enviado los mensajes.
 	 * @return la lista de mensajes enviados por el usuario.
 	 */
-	public List<Mensaje> findMessagesByUser(Usuario user) {
-		return messages
-				.stream()
-				.filter(m -> m.isSender(user))
-				.collect(Collectors.toList())
-				;
+	public List<Mensaje> findMessages(Usuario user) {
+		return findMessages(m -> m.isSender(user));
+	}
+	
+	/**
+	 * Devuelve los mensajes enviados por el usuario al chat
+	 * entre dos fechas.
+	 * @param user el usuario que ha enviado los mensajes.
+	 * @param d1 la fecha de inicio.
+	 * @param d2 la fecha de fin.
+	 * @return la lista de mensajes enviados entre las fechas.
+	 */
+	public List<Mensaje> findMessages(Usuario user, Date d1, Date d2) {
+		return findMessages(m -> m.isSender(user) &&
+							!m.sentBefore(d1) && !m.sentAfter(d2));
 	}
 
 	/**
@@ -209,12 +196,18 @@ public abstract class Chat {
 	 * @param username el username del usuario que ha enviado los mensajes.
 	 * @return la lista de mensajes enviados por el usuario.
 	 */
-	public List<Mensaje> findMessagesByUser(String username) {
-		return messages
-				.stream()
-				.filter(m -> m.isSender(username))
-				.collect(Collectors.toList())
-				;
+	public List<Mensaje> findMessagesByUsername(String username) {
+		return findMessages(m -> m.isSender(username));
+	}
+	
+	/**
+	 * Devuelve los mensajes enviados que incluyen el texto indicado
+	 * en el cuerpo del mensaje.
+	 * @param text el texto buscado.
+	 * @return la lista de mensajes que incluyen el texto buscado.
+	 */
+	public List<Mensaje> findMessagesByText(String text) {
+		return findMessages(m -> m.containsText(text));
 	}
 	
 }

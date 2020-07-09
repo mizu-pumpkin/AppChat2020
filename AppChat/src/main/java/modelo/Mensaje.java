@@ -110,21 +110,33 @@ public class Mensaje implements Comparable<Mensaje> {
 	public int getBodyType() {
 		return bodyType;
 	}
+
+// ---------------------------------------------------------------------
+//	                                                 Getters and Setters
+// ---------------------------------------------------------------------
 	
 	public String getSenderName() {
 		return sender.getUsername();
 	}
-
-// ---------------------------------------------------------------------
-//	                                                   Getters and Setters
-// ---------------------------------------------------------------------
+	
+	public boolean sentBefore(Date d) {
+		return timestamp.before(d);
+	}
+	
+	public boolean sentAfter(Date d) {
+		return timestamp.after(d);
+	}
 	
 	public boolean isSender(Usuario u) {
 		return u.equals(sender);
 	}
 	
 	public boolean isSender(String username) {
-		return sender.getUsername().equals(username);
+		return getSenderName().equals(username);
+	}
+	
+	public boolean containsText(String text) {
+		return body.contains(text.trim());
 	}
 	
 	@Override

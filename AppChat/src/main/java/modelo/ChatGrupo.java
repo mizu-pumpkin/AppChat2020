@@ -2,7 +2,6 @@ package modelo;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ChatGrupo extends Chat {
 	
@@ -114,13 +113,11 @@ public class ChatGrupo extends Chat {
 	 * @param user el usuario que se quiere eliminar.
 	 */
 	public void removeMember(Usuario user) {
-		ChatIndividual found = null;
 		for (ChatIndividual m : members)
 			if (m.isUser(user)) {
-				found = m;
-				break;
+				removeMember(m);
+				return;
 			}
-		if (found != null) removeMember(found);
 	}
 
 	/**
@@ -141,19 +138,6 @@ public class ChatGrupo extends Chat {
 		for (ChatIndividual m : members)
 			m.leaveGroup(this);
 		members.clear();//Supuestamente esto no se necesita
-	}
-
-	/**
-	 * Devuelve los mensajes enviados al grupo por el usuario.
-	 * @param user el usuario del que se quieren buscar los mensajes.
-	 * @return la lista de mensajes enviados por el usuario.
-	 */
-	public List<Mensaje> findMessagesByUsername(Usuario user) {
-		return messages.stream()
-					   .filter(m -> m.getSender().equals(user))
-					   .sorted()
-					   .collect(Collectors.toList())
-					   ;
 	}
 
 }

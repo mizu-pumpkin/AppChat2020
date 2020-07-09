@@ -13,7 +13,6 @@ import java.util.StringTokenizer;
 import beans.Entidad;
 import beans.Propiedad;
 import modelo.Chat;
-import modelo.Estado;
 import modelo.Usuario;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
@@ -30,8 +29,6 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 	private static final String PROPERTY_GREETING = "greeting";
 	private static final String PROPERTY_PREMIUM = "premium";
 	private static final String PROPERTY_AVATAR = "avatar";
-	private static final String PROPERTY_STORY_TEXT = "storytext";
-	private static final String PROPERTY_STORY_PICTURE = "storypicture";
 	private static final String PROPERTY_CHATS = "chats";
 
 	private static ServicioPersistencia servPersistencia;
@@ -79,8 +76,6 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 			new Propiedad(PROPERTY_GREETING, user.getGreeting()),
 			new Propiedad(PROPERTY_PREMIUM, String.valueOf(user.isPremium())),
 			new Propiedad(PROPERTY_AVATAR, user.getAvatar()),
-			new Propiedad(PROPERTY_STORY_TEXT, user.getStory().getText()),
-			new Propiedad(PROPERTY_STORY_PICTURE, user.getStory().getPicture()),
 			new Propiedad(PROPERTY_CHATS, getChatsIDs(user.getChats()))
 		)));
 		
@@ -110,8 +105,6 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_GREETING);
 		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_PREMIUM);
 		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_AVATAR);
-		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_STORY_TEXT);
-		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_STORY_PICTURE);
 		servPersistencia.eliminarPropiedadEntidad(eUser, PROPERTY_CHATS);
 		
 		// ???:FIXME: debería volver a registrar las propiedades que son objetos?
@@ -125,9 +118,7 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_PHONE, user.getPhone());
 		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_GREETING, user.getGreeting());
 		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_PREMIUM, String.valueOf(user.isPremium()));
-		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_AVATAR, user.getAvatar());
-		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_STORY_TEXT, user.getStory().getText());
-		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_STORY_PICTURE, user.getStory().getPicture());		
+		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_AVATAR, user.getAvatar());	
 		servPersistencia.anadirPropiedadEntidad(eUser, PROPERTY_CHATS, getChatsIDs(user.getChats()));
 		
 		PoolDAO.getInstance().addObject(user.getId(), user);
@@ -160,15 +151,12 @@ public class AdaptadorUsuarioTDS implements IAdaptadorUsuarioDAO {
 			premium = true;
 		else premium = false;
 		String avatar = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_AVATAR);
-		Estado story = new Estado(servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_STORY_TEXT),
-								  servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_STORY_PICTURE));
 		String idsChats = servPersistencia.recuperarPropiedadEntidad(eUser, PROPERTY_CHATS);
 
 		// Crear el objeto
 		Usuario usuario = new Usuario(username, password, name, birthday, email, phone, greeting);
 		usuario.setPremium(premium);
 		usuario.setAvatar(avatar);
-		usuario.setStory(story);
 		usuario.setId(id);
 		
 		// Añadir el cliente al pool antes de llamar a otros adaptadores

@@ -158,7 +158,7 @@ public class VentanaEditorPerfil extends JFrame implements ActionListener {
 			chooser.setFileFilter(filter);
 			int returnVal = chooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				AppChat.getInstance().changeAvatar(user, chooser.getSelectedFile().getAbsolutePath());
+				AppChat.getInstance().changeAvatar(chooser.getSelectedFile().getAbsolutePath());
 				Graphics.reloadAvatarButton(btnAvatar, user.getAvatar());
 				father.reloadAvatar();
 			}

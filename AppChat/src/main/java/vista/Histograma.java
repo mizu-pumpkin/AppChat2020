@@ -21,7 +21,7 @@ public class Histograma implements ExampleChart<CategoryChart> {
 			"Ene", "Feb", "Mar", "Abr", "May", "Jun",
 			"Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
 	};
-	private Long[] nmsgs = new Long[12];
+	private Integer[] nmsgs = new Integer[12];
 	
 	private Usuario user;
 	

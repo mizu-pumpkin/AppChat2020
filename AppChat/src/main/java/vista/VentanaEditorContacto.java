@@ -158,7 +158,7 @@ public class VentanaEditorContacto extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnEdit) {
 			if (contact == null) {
-				AppChat.getInstance().registerContact(txtName.getText(), user.getPhone());
+				AppChat.getInstance().saveContact(txtName.getText(), user.getPhone());
 				listaChats.reloadList();
 			} else {
 				AppChat.getInstance().editContact(contact, txtName.getText());

@@ -105,18 +105,17 @@ public class AppChat implements MensajesListener {
 						    String email,
 						    String phone,
 						    String greeting) {
-			if (isRegistered(username) || isPhoneRegistered(phone)) return false;
-			Usuario usuario = new Usuario(username, password, name, birthday, email, phone, greeting);
-			adaptadorUsuario.create(usuario);	// Almacenamos el nuevo Usuario en la BD
-			catalogoUsuarios.add(usuario);		// Almacenamos el nuevo Usuario en el catalogo
-			return true;
+		if (isRegistered(username) || isPhoneRegistered(phone)) return false;
+		Usuario usuario = new Usuario(username, password, name, birthday, email, phone, greeting);
+		adaptadorUsuario.create(usuario);
+		catalogoUsuarios.add(usuario);
+		return true;
 	}
 	
 	public boolean delete(Usuario usuario) {
 		if (!isRegistered(usuario.getUsername())) return false;
-		
-		catalogoUsuarios.remove(usuario);	// Borramos el Usuario del catalogo
-		adaptadorUsuario.delete(usuario);	// Borramos el Usuario de la BD
+		catalogoUsuarios.remove(usuario);
+		adaptadorUsuario.delete(usuario);
 		return true;
 	}
 	
@@ -126,75 +125,81 @@ public class AppChat implements MensajesListener {
 		return user;
 	}
 	
-	public void changeAvatar(Usuario usuario, String avatar) {
-		usuario.setAvatar(avatar);
-		adaptadorUsuario.update(usuario);
+	public void changeAvatar(String avatar) {
+		usuarioActual.setAvatar(avatar);
+		adaptadorUsuario.update(usuarioActual);
+	}
+
+	public void changeGreeting(String text) {
+		usuarioActual.setGreeting(text);
+		adaptadorUsuario.update(usuarioActual);
+	}
+	
+	public void togglePremium() {
+		if (usuarioActual.isPremium())
+			usuarioActual.setPremiumOff();
+		else
+			usuarioActual.setPremiumOn();
+		adaptadorUsuario.update(usuarioActual);
 	}
 
 // ---------------------------------------------------------------------
 //                                                    Gestión de Mensaje
 // ---------------------------------------------------------------------
 	
-	public boolean sendMessage(Chat chat, String text) {
-		Mensaje msg_sent = chat.sendMessage(usuarioActual, text);
-		
-		if (chat instanceof ChatGrupo)
-			return registerMessage(chat, msg_sent);
-		
-		Chat chatR = getRecipient((ChatIndividual) chat);
-		Mensaje msg_rcvd = chatR.sendMessage(usuarioActual, text);
-		
-		return registerMessage(chat, msg_sent) && registerMessage(chatR, msg_rcvd);
-	}
-
-	public boolean sendMessage(Chat chat, int emoticon) {
-		Mensaje msg_sent = chat.sendMessage(usuarioActual, emoticon);
-		
-		if (chat instanceof ChatGrupo)
-			return registerMessage(chat, msg_sent);
-		
-		Chat chatR = getRecipient((ChatIndividual) chat);
-		Mensaje msg_rcvd = chatR.sendMessage(usuarioActual, emoticon);
-		
-		return registerMessage(chat, msg_sent) && registerMessage(chatR, msg_rcvd);
-	}
-	
-	/**
-	 * Método para registrar un mensaje importado de WhatsApp a AppChat.
-	 * @param chat Chat del que envía el mensaje.
-	 * @param chatR Chat del que recibe el mensaje.
-	 * @param sender Usuario que envía el mensaje.
-	 * @param mwa Objeto que contiene el mensaje de WhatsApp.
-	 * @return true en caso de haber registrado mwa en la base de datos con éxito.
-	 */
-	private boolean registerWhatsAppMessage(Chat chat, Chat chatR, Usuario sender, MensajeWhatsApp mwa) {
-		Mensaje msg_sent = chat.registerWhatsAppMessage(sender, mwa);
-		Mensaje msg_rcvd = chatR.registerWhatsAppMessage(sender, mwa);
-		return registerMessage(chat, msg_sent) && registerMessage(chatR, msg_rcvd);
-	}
-	
-	private Chat getRecipient(ChatIndividual chat) {
-		Chat recipient = chat.getChatWith(usuarioActual);
-		if (recipient.getId() == 0) registerChat(chat, chat.getUser());
-		return recipient;
-	}
-	/**
+	/*
 	 * Crea el mensaje en la BD y actualiza el chat que lo contiene.
 	 */
-	private boolean registerMessage(Chat chat, Mensaje msg) {
+	private void registerMessage(Chat chat, Mensaje msg) {
 		adaptadorMensaje.create(msg);
 		adaptadorChat.update(chat);
-		return true;
 	}
-	/**
+	
+	/*
 	 * Borra el mensaje en la BD y actualiza el chat que lo contiene.
 	 */
-	public boolean deleteMessage(Mensaje msg) {
+	public void deleteMessage(Mensaje msg) {
+		//NOTE aparentemente viola el patrón experto, pero voy a
+		//actualizar la BD tanto para el mensaje como para el chat,
+		//por lo que me interesa obtener el chat del mensaje.
 		Chat chat = msg.getChat();
 		chat.removeMessage(msg);
 		adaptadorChat.update(chat);
 		adaptadorMensaje.delete(msg);
-		return true;
+	}
+	
+	public void sendMessage(Chat chat, String text) {
+		Mensaje msg_sent = chat.sendMessage(usuarioActual, text);
+		registerMessage(chat, msg_sent);
+		
+		if (chat instanceof ChatIndividual) {
+			Chat chatR = getRecipient((ChatIndividual) chat);
+			Mensaje msg_rcvd = chatR.sendMessage(usuarioActual, text);
+			registerMessage(chatR, msg_rcvd);
+		}
+	}
+
+	public void sendMessage(Chat chat, int emoticon) {
+		Mensaje msg_sent = chat.sendMessage(usuarioActual, emoticon);
+		registerMessage(chat, msg_sent);
+		
+		if (chat instanceof ChatIndividual) {
+			Chat chatR = getRecipient((ChatIndividual) chat);
+			Mensaje msg_rcvd = chatR.sendMessage(usuarioActual, emoticon);
+			registerMessage(chatR, msg_rcvd);
+		}
+	}
+	
+	/*
+	 * Devuelve el contacto que corresponde al chat que recibirá un mensaje.
+	 * Cuando se envía un mensaje a un ChatIndividual, hay que asegurarse de que
+	 * el ChatIndividual correspondiente que pertenece al Usuario del contacto
+	 * al que se está enviando un mensaje, también recibe el mensaje.
+	 */
+	private Chat getRecipient(ChatIndividual chat) {
+		Chat recipient = chat.getChatWith(usuarioActual);
+		if (recipient.getId() == 0) registerChat(chat, chat.getUser());
+		return recipient;
 	}
 	
 	public List<Mensaje> findMessages(Chat chat, String text, String username, Date d1, Date d2) {
@@ -204,12 +209,14 @@ public class AppChat implements MensajesListener {
 		if (chat == null)
 			return new LinkedList<>(); 
 		
+		//Se está violando el patrón experto al acceder al Mensaje en el Predicate?
+		//Sería más correcto usar las funciones específicas definidas en Chat?
 		if (text != null && !text.trim().isEmpty())
-			listados.add(chat.findMessages(m -> m.getBody().contains(text.trim())));
+			listados.add(chat.findMessages(m -> m.containsText(text.trim())));
 		if (username != null && !username.trim().isEmpty())
 			listados.add(chat.findMessages(m -> m.isSender(username.trim())));
 		if (d1 != null && d2 != null)
-			listados.add(chat.findMessages(m -> !m.getTimestamp().before(d1) && !m.getTimestamp().after(d2)));
+			listados.add(chat.findMessages(m -> !m.sentBefore(d1) && !m.sentAfter(d2)));
 		
 		// A fin de evitar errores por una llamada sin ningún parámetro válido.
 		if (listados.isEmpty())
@@ -227,55 +234,69 @@ public class AppChat implements MensajesListener {
 //                                                       Gestión de Chat
 // ---------------------------------------------------------------------
 	
-	public boolean registerContact(String contactName, String contactPhone) {
-		Usuario user = CatalogoUsuarios.getInstance().getByPhone(contactPhone);
-		if (user == null || user.equals(usuarioActual)) return false;
-		
-		return registerChat(usuarioActual.addContact(contactName, user));
-	}
-	
-	public boolean registerContact(Usuario user) {
-		if (user == null || user.equals(usuarioActual)) return false;
-		
-		return registerChat(usuarioActual.getPrivateChat(user));
-	}
-
-	public boolean editContact(ChatIndividual contact, String text) {
-		if (contact == null) return false;
-		
-		contact.setName(text);
-		return registerChat(contact);
-	}
-	
-	private boolean registerChat(Chat chat) {
-		if (chat == null) return false;
-		
-		return registerChat(chat, usuarioActual);
-	}
-	/**
+	/*
 	 * Crea el chat en la BD y actualiza el usuario que lo contiene.
 	 */
-	private boolean registerChat(Chat chat, Usuario user) {
-		if (chat == null) return false;
+	private void registerChat(Chat chat, Usuario user) {
+		if (chat == null) return;
 		if (chat.getId() == 0)
 			adaptadorChat.create(chat);
 		else
 			adaptadorChat.update(chat);
 		adaptadorUsuario.update(user);
-		
-		return true;
+	}
+	/*
+	 * Crea el chat en la BD y actualiza el usuario actual.
+	 */
+	private void registerChat(Chat chat) {
+		if (chat != null)
+			registerChat(chat, usuarioActual);
+	}
+	
+	/*
+	 * Guarda un nuevo contacto en los contactos del usuario actual,
+	 * asociandole un nombre elegido por el usuario actual.
+	 */
+	public void saveContact(String contactName, String contactPhone) {
+		Usuario user = catalogoUsuarios.getByPhone(contactPhone);
+		if (user != null && !user.equals(usuarioActual))
+			registerChat(usuarioActual.addContact(contactName, user));
+	}
+	
+	/*
+	 * Guarda un contacto desconocido en los contactos del usuario actual.
+	 */
+	public void saveContact(Usuario user) {
+		if (user != null && !user.equals(usuarioActual))
+			registerChat(usuarioActual.getPrivateChat(user));
 	}
 
-	public boolean createGroup(String groupName, Collection<ChatIndividual> members) {
+	/*
+	 * Edita el nombre del contacto.
+	 */
+	public void editContact(ChatIndividual contact, String text) {
+		if (contact != null) {
+			contact.setName(text);
+			registerChat(contact);
+		}
+	}
+
+	/*
+	 * Crea un nuevo grupo, asociandole un nombre elegido por el usuario actual.
+	 */
+	public void createGroup(String groupName, Collection<ChatIndividual> members) {
 		ChatGrupo g = usuarioActual.makeGroup(groupName);
 		for (ChatIndividual m : members) {
 			g.join(m);
 			registerChat(g, m.getUser());
 		}
-		return registerChat(g);
+		registerChat(g);
 	}
 
-	public boolean editGroup(ChatGrupo g, String name, List<ChatIndividual> members) {
+	/*
+	 * Edita un grupo previamente creado, cambiandole nombre y contactos miembros.
+	 */
+	public void editGroup(ChatGrupo g, String name, List<ChatIndividual> members) {
 		List<ChatIndividual> old = g.getMembers();
 		
 		g.editGroup(name, members);
@@ -285,19 +306,15 @@ public class AppChat implements MensajesListener {
 			adaptadorUsuario.update(m.getUser());
 		for (ChatIndividual m : g.getMembers())
 			adaptadorUsuario.update(m.getUser());
-		
-		return false;
 	}
 	
-	public boolean leaveGroup(ChatGrupo g) {
-		g.removeMember(usuarioActual);
-		
-		adaptadorUsuario.update(usuarioActual);
-		adaptadorChat.update(g);
-		return true;
-	}
-	
-	public boolean deleteChat(Chat chat) {
+	/*
+	 * Borra un contacto o grupo de la lista de chats del usuario actual.
+	 * Si se borra un grupo del que se es admin, habrá que borrar el
+	 * grupo de la lista de chats de todos los miembros. Si se borra un
+	 * grupo del que se es miembro, solo se borra el proprio chat.
+	 */
+	public void deleteChat(Chat chat) {
 		if (chat instanceof ChatGrupo) {
 			ChatGrupo g = (ChatGrupo) chat;
 			
@@ -306,8 +323,12 @@ public class AppChat implements MensajesListener {
 				g.clearGroup();
 				for (ChatIndividual m : old) 
 					adaptadorUsuario.update(m.getUser());
-			} else
-				return leaveGroup(g);
+			} else {
+				g.removeMember(usuarioActual);
+				adaptadorUsuario.update(usuarioActual);
+				adaptadorChat.update(g);
+				return;
+			}
 		}
 		usuarioActual.removeChat(chat);
 		
@@ -321,7 +342,53 @@ public class AppChat implements MensajesListener {
 			
 		adaptadorChat.delete(chat);
 		adaptadorUsuario.update(usuarioActual);
-		return true;
+	}
+
+// ---------------------------------------------------------------------
+//	                                                Gestión de Descuento
+// ---------------------------------------------------------------------
+	
+	public boolean isYoung(Usuario user) {
+		try {//TODO cambiar para que sea menores de 20 dinámico
+			Date limiteJoven = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000");
+			return user.getBirthday().after(limiteJoven);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean isSummer() {
+		Date today = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("M/yyyy");
+		try {
+			String year = new SimpleDateFormat("yyyy").format(today);
+			if (today.after(format.parse("7/"+year)) &&	//desde 1 de julio
+				today.before(format.parse("9/"+year)))	//hasta 31 de agosto
+				return true;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+// ---------------------------------------------------------------------
+//  								Importación de mensajes de WhatsApp
+// ---------------------------------------------------------------------
+	
+	/**
+	 * Método para registrar un mensaje importado de WhatsApp a AppChat.
+	 * @param chat Chat del que envía el mensaje.
+	 * @param chatR Chat del que recibe el mensaje.
+	 * @param sender Usuario que envía el mensaje.
+	 * @param mwa Objeto que contiene el mensaje de WhatsApp.
+	 * @return true en caso de haber registrado mwa en la base de datos con éxito.
+	 */
+	private void registerWhatsAppMessage(Chat chat, Chat chatR, Usuario sender, MensajeWhatsApp mwa) {
+		Mensaje msg_sent = chat.sendWhatsAppMessage(sender, mwa);
+		Mensaje msg_rcvd = chatR.sendWhatsAppMessage(sender, mwa);
+		registerMessage(chat, msg_sent);
+		registerMessage(chatR, msg_rcvd);
 	}
 	
 	/**
@@ -363,7 +430,7 @@ public class AppChat implements MensajesListener {
 			// 1.3.
 			if (otroUsuario != null) {
 				// 2.1.
-				registerContact(otroUsuario);
+				saveContact(otroUsuario);
 				Chat chat = usuarioActual.getPrivateChat(otroUsuario);
 				Chat chatR = otroUsuario.getPrivateChat(usuarioActual);
 				// 2.2. y 2.3.
@@ -376,47 +443,6 @@ public class AppChat implements MensajesListener {
 				System.out.println("Donde writting in DB.");
 			}
 		}
-	}
-	
-// ---------------------------------------------------------------------
-//	                                                  Gestión de Usuario
-// ---------------------------------------------------------------------
-	
-	public void togglePremium() {
-		if (usuarioActual.isPremium())
-			usuarioActual.setPremiumOff();
-		else
-			usuarioActual.setPremiumOn();
-		adaptadorUsuario.update(usuarioActual);
-	}
-
-	public void changeGreeting(String text) {
-		usuarioActual.setGreeting(text);
-		adaptadorUsuario.update(usuarioActual);
-	}
-	
-	public boolean isYoung(Usuario user) {
-		try {//TODO cambiar para que sea menores de 20 dinámico
-			Date limiteJoven = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000");
-			return user.getBirthday().after(limiteJoven);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
-	public boolean isSummer() {
-		Date today = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("M/yyyy");
-		try {
-			String year = new SimpleDateFormat("yyyy").format(today);
-			if (today.after(format.parse("7/"+year)) &&	//desde 1 de julio
-				today.before(format.parse("9/"+year)))	//hasta 31 de agosto
-				return true;
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return false;
 	}
 
 }

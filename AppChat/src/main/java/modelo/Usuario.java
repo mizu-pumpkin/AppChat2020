@@ -24,7 +24,6 @@ public class Usuario {
 	private String phone; // movil
 	private String greeting;
 	private String avatar; // imagen
-	private Estado story; // estado
 	private boolean premium; // premium
 	private Collection<Chat> chats; // contactos
 	private Map<Integer, ChatIndividual> privateChats;
@@ -48,7 +47,6 @@ public class Usuario {
 		this.phone = phone;
 		this.greeting = greeting;
 		this.avatar = "";
-		this.story = new Estado("", "");
 		this.premium = false;
 		this.chats = new HashSet<>();
 		this.privateChats = new HashMap<>();
@@ -136,14 +134,6 @@ public class Usuario {
 
 	public void setPremiumOff() {
 		this.premium = false;
-	}
-
-	public Estado getStory() {
-		return story;
-	}
-
-	public void setStory(Estado story) {
-		this.story = story;
 	}
 
 	/**
@@ -254,7 +244,7 @@ public class Usuario {
 		return getGroups()
 			.stream()
 			.sorted((g1,g2) ->
-				(int) (g2.getNumberOfMessagesSent(this) - g1.getNumberOfMessagesSent(this)))
+				(g2.getNumberOfMessagesSent(this) - g1.getNumberOfMessagesSent(this)))
 			.collect(Collectors.toList())
 			;
 	}
@@ -317,8 +307,7 @@ public class Usuario {
 	private List<Mensaje> getMessagesSent(Date d1, Date d2) {
 		return chats
 				.stream()
-				.flatMap(c -> c.findMessages(m -> !m.getTimestamp().before(d1) && !m.getTimestamp().after(d2)).stream())
-				.filter(m -> m.isSender(this))
+				.flatMap(c -> c.findMessages(this, d1, d2).stream())
 				.collect(Collectors.toList());
 	}
 	
@@ -329,10 +318,8 @@ public class Usuario {
 	 * @param d2 la fecha de fin.
 	 * @return el número de mensajes enviados.
 	 */
-	public long getNumberOfMessagesSent(Date d1, Date d2) {
-		return getMessagesSent(d1, d2)
-				.stream()
-				.count();
+	public int getNumberOfMessagesSent(Date d1, Date d2) {
+		return getMessagesSent(d1, d2).size();
 	}
 
 	@Override
@@ -350,7 +337,6 @@ public class Usuario {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + (premium ? 1231 : 1237);
-		result = prime * result + ((story == null) ? 0 : story.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
