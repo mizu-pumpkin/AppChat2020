@@ -180,4 +180,9 @@ public class Mensaje implements Comparable<Mensaje> {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return "["+ timestamp + "] - "+ sender.getUsername() + ": " + body;
+	}
 }
