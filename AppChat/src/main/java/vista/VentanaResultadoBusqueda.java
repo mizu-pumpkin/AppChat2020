@@ -1,9 +1,11 @@
 package vista;
 
 import java.awt.Dimension;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -36,8 +38,10 @@ public class VentanaResultadoBusqueda extends JFrame {
 		setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
 		contentPane = (JPanel) getContentPane();
 		
-		PanelChat panelChat = new PanelChat(nombreUsuario);
-		contentPane.add(new JScrollPane(panelChat));
-		panelChat.loadChat(listadoMensajes);
+		String[] data = new String[listadoMensajes.size()];
+		Iterator<Mensaje> it = listadoMensajes.iterator();
+		for (int i = 0; it.hasNext(); i++)
+			data[i] = it.next().toString();
+		add(new JList(data));
 	}
 }
