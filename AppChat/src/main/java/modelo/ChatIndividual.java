@@ -33,10 +33,6 @@ public class ChatIndividual extends Chat {
 		user = u;
 	}
 	
-	public boolean isUser(Usuario u) {
-		return user.equals(u);
-	}
-	
 	public String getPhone() { // movil
 		return user.getPhone();
 	}
@@ -45,26 +41,47 @@ public class ChatIndividual extends Chat {
 //		                                                         Methods
 // ---------------------------------------------------------------------
 	
+	/**
+	 * Comprueba si el usuario es el usuario del contacto.
+	 * @param u el usuario del que se quiere comprobar.
+	 * @return true si el usuario coincide.
+	 */
+	public boolean isUser(Usuario u) {
+		return user.equals(u);
+	}
+	
+	/**
+	 * Devuelve el avatar del usuario del contacto.
+	 * return la ruta del avatar del usuario.
+	 */
 	@Override
 	public String getAvatar() {
 		return user.getAvatar();
 	}
 	
+	/**
+	 * Añade el grupo al usuario asociado.
+	 * @param g el grupo al que se quiere unir.
+	 */
 	public void joinGroup(ChatGrupo g) {
-		user.joinGroup(g);
+		user.addChat(g);
 	}
 
+	/**
+	 * El usuario asociado deja el grupo.
+	 * @param g el grupo que se quiere dejar.
+	 */
 	public void leaveGroup(ChatGrupo g) {
-		user.leaveGroup(g);
+		user.removeChat(g);
 	}
 	
+	/**
+	 * Devuelve el contacto que el usuario del contacto asocia al
+	 * usuario pasado como parámetro.
+	 * @param u el usuario del que se quiere obtener el contacto.
+	 * @return el contacto asociado al usuario.
+	 */
 	public ChatIndividual getChatWith(Usuario u) {
 		return user.getPrivateChat(u);
-	}
-	
-	@Override
-	public String toString() {
-		return super.toString() + 
-			   "[user=" + user.getId() + "]";
 	}
 }

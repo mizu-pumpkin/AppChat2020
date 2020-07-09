@@ -39,9 +39,6 @@ public class TestBD {
 			if (u.getId()!=1 && u.getId()!=14 && u.getId()!=27) 
 				aU.delete(u);
 		}
-		
-		//for (Mensaje m : aM.readAll()) System.out.println(m);
-		//for (Chat c : aC.readAll()) System.out.println(c);
 		System.out.println("---------------------------------------");
 		
 		for (Usuario u : aU.readAll()) System.out.println(u);

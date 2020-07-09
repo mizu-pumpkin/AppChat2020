@@ -146,6 +146,11 @@ public class Usuario {
 		this.story = story;
 	}
 
+	/**
+	 * Devuelve una lista de chats ordenados por fecha de envío,
+	 * de más reciente a menos reciente.
+	 * @return la lista de Chat ordenada.
+	 */
 	public List<Chat> getChats() {
 		return chats
 				.stream()
@@ -159,7 +164,12 @@ public class Usuario {
 				.collect(Collectors.toList())
 				;
 	}
-	
+
+	/**
+	 * Devuelve una lista de chats individuales ordenados por
+	 * nombre del chat.
+	 * @return la lista de ChatIndividual ordenada.
+	 */
 	public List<ChatIndividual> getPrivateChats() {
 		return privateChats.values()
 				.stream()
@@ -171,32 +181,6 @@ public class Usuario {
 				})
 				.collect(Collectors.toList())
 				;
-	}
-	
-	public List<ChatGrupo> getGroups() {
-		return chats
-				.stream()
-				.filter(c -> c instanceof ChatGrupo)
-				.map(c -> (ChatGrupo) c)
-				.collect(Collectors.toList())
-				;
-	}
-	
-	public List<ChatGrupo> getGroupsSortedByMostUsed() {
-		return getGroups()
-			.stream()
-			.sorted((g1,g2) ->
-				(int) (g2.getNumberOfMessagesSent(this) - g1.getNumberOfMessagesSent(this)))
-			.collect(Collectors.toList())
-			;
-	}
-
-	public List<ChatGrupo> getAdminGroups() { // gruposAdmin
-		return getGroups()
-			.stream()
-			.filter(g -> g.getAdmin().equals(this))
-			.collect(Collectors.toList())
-			;
 	}
 
 	public boolean addChat(Chat chat) {
@@ -211,9 +195,12 @@ public class Usuario {
 	}
 	
 	/**
-	 * Borra un contacto y si es un contacto individual, también
-	 * lo elimina de los grupos administrados por el usuario a los
-	 * que el contacto borrado pertenece.
+	 * Elimina un chat de la lista de chats del usuario.
+	 * S i es un contacto individual, también lo elimina de
+	 * los grupos administrados por el usuario a los que el
+	 * contacto borrado pertenece.
+	 * @param chat el chat que se quiere eliminar. 
+	 * @return true si se pudo eliminar correctamente.
 	 */
 	public boolean removeChat(Chat chat) {
 		if (!chats.contains(chat)) return false;
@@ -231,11 +218,62 @@ public class Usuario {
 // ---------------------------------------------------------------------
 //                                                               Methods
 // ---------------------------------------------------------------------
+
+	/**
+	 * Devuelve la lista de chats de grupo de los que el usuario
+	 * es admin.
+	 * @return la lista de grupos.
+	 */
+	public List<ChatGrupo> getAdminGroups() { // gruposAdmin
+		return getGroups()
+			.stream()
+			.filter(g -> g.getAdmin().equals(this))
+			.collect(Collectors.toList())
+			;
+	}
+
+	/**
+	 * Devuelve una lista de chats de grupo.
+	 * @return la lista de grupos.
+	 */
+	public List<ChatGrupo> getGroups() {
+		return chats
+				.stream()
+				.filter(c -> c instanceof ChatGrupo)
+				.map(c -> (ChatGrupo) c)
+				.collect(Collectors.toList())
+				;
+	}
+
+	/**
+	 * Devuelve la lista de chats de grupo ordenadas por el número de
+	 * mensajes que el usuario ha enviado al grupo.
+	 * @return la lista de grupos ordenada.
+	 */
+	public List<ChatGrupo> getGroupsSortedByMostUsed() {
+		return getGroups()
+			.stream()
+			.sorted((g1,g2) ->
+				(int) (g2.getNumberOfMessagesSent(this) - g1.getNumberOfMessagesSent(this)))
+			.collect(Collectors.toList())
+			;
+	}
 	
+	/**
+	 * Comprueba si el usuario está en la lista de contactos individuales.
+	 * @param user el usuario del que se hace la comprobación.
+	 * @return true si el usuario pertenece a la lista de contactos.
+	 */
 	public boolean knowsUser(Usuario user) {
 		return privateChats.containsKey(user.getId());
 	}
 	
+	/**
+	 * Devuelve el contacto individual relacionado con el usuario. Si el usuario
+	 * no pertenece a la lista de contactos, crea el contacto.
+	 * @param user el usuario del que se quiere obtener el contacto individual.
+	 * @return el contacto individual relacionado con el usuario.
+	 */
 	public ChatIndividual getPrivateChat(Usuario user) {
 		if (knowsUser(user)) return privateChats.get(user.getId());
 		
@@ -244,6 +282,12 @@ public class Usuario {
 		return c;
 	}
 	
+	/**
+	 * Añade el usuario a la lista de contactos, asociandole un nombre.
+	 * @param name el nombre que se asocia al usuario.
+	 * @param user el usuario que se añade a la lista de contactos.
+	 * @return el contacto individual creado.
+	 */
 	public ChatIndividual addContact(String name, Usuario user) {
 		if (knowsUser(user)) return privateChats.get(user.getId());
 		
@@ -252,20 +296,24 @@ public class Usuario {
 		return c;
 	}
 	
+	/**
+	 * Crea un grupo administrado por el usuario mismo.
+	 * @param name el nombre del grupo que se crea.
+	 * @return el grupo creado.
+	 */
 	public ChatGrupo makeGroup(String name) {
 		ChatGrupo g = new ChatGrupo(name, this);
 		addChat(g);
 		return g;
 	}
 	
-	public boolean joinGroup(ChatGrupo g) {
-		return addChat(g);
-	}
-
-	public boolean leaveGroup(ChatGrupo g) {
-		return removeChat(g);
-	}
-	
+	/**
+	 * Devuelve la lista de mensajes enviados por el usuario
+	 * entre dos fechas.
+	 * @param d1 la fecha de inicio.
+	 * @param d2 la fecha de fin.
+	 * @return la lista de mensajes enviados.
+	 */
 	private List<Mensaje> getMessagesSent(Date d1, Date d2) {
 		return chats
 				.stream()
@@ -274,6 +322,13 @@ public class Usuario {
 				.collect(Collectors.toList());
 	}
 	
+	/**
+	 * Devuelve el número de mensajes enviados por el usuario
+	 * entre dos fechas.
+	 * @param d1 la fecha de inicio.
+	 * @param d2 la fecha de fin.
+	 * @return el número de mensajes enviados.
+	 */
 	public long getNumberOfMessagesSent(Date d1, Date d2) {
 		return getMessagesSent(d1, d2)
 				.stream()
@@ -312,14 +367,6 @@ public class Usuario {
 		if (!username.equals(other.username))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id +
-				", username=" + username +
-				", chats=" + chats +
-				"]";
 	}
 
 }

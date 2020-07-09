@@ -25,6 +25,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import controlador.AppChat;
 import luz.*;
 import modelo.Chat;
+import modelo.ChatGrupo;
 import modelo.Usuario;
 
 import java.awt.GridBagLayout;
@@ -306,7 +307,7 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 		if (e.getSource() == btnPremium) {
 			if (loggedUser.isPremium()) {
 				if (JOptionPane.showConfirmDialog(this,
-						"Ya eres usuario Premium, quieres dejar de serlo?",
+						"Quieres dejar de ser usuario Premium?",
 						"Stop Premium Service",
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
@@ -352,9 +353,28 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 			return;
 		}
 		if (e.getSource() == btnDeleteChat) {
-			Chat chat = panelChat.removeActualChat();
-			AppChat.getInstance().deleteChat(chat);
-			listaChats.remove(chat);
+			String msg = "";
+			Chat chat = panelChat.getActualChat();
+			if (chat == null) return;
+			if (chat instanceof ChatGrupo && !((ChatGrupo) chat).isAdmin(loggedUser))
+					msg = "Abandonar el grupo?";
+			else
+				msg = "Borrar el chat y todos sus mensajes?";
+			int opt = JOptionPane.showOptionDialog(this,
+					msg,
+					"Deleting chat...",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.WARNING_MESSAGE,
+					null,
+					null,
+					null
+			);
+			if (opt == JOptionPane.YES_OPTION) {
+				panelChat.removeActualChat();
+				AppChat.getInstance().deleteChat(chat);
+				listaChats.remove(chat);
+			}
+			return;
 		}
 		if (e.getSource() == btnFindMessage) {
 			if (panelChat.hasChat())

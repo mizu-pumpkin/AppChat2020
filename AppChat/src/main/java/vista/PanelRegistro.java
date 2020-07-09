@@ -48,6 +48,7 @@ public class PanelRegistro extends JPanel implements ActionListener {
 	
 	private JButton btn_register;
 	private JButton btn_cancel;
+	private JLabel warningExisteTel;
 
 	public PanelRegistro(JFrame _frame) {
 		frame = _frame;
@@ -282,6 +283,16 @@ public class PanelRegistro extends JPanel implements ActionListener {
 		gbc_warningPhone.gridy = 4;
 		panel_registration.add(warningPhone, gbc_warningPhone);
 		
+		warningExisteTel = new JLabel("Móvil ya registrado");
+		warningExisteTel.setForeground(Color.RED);
+		GridBagConstraints gbc_warningPhone2 = new GridBagConstraints();
+		gbc_warningPhone2.gridwidth = 2;
+		gbc_warningPhone2.insets = new Insets(0, 0, 5, 5);
+		gbc_warningPhone2.anchor = GridBagConstraints.WEST;
+		gbc_warningPhone2.gridx = 4;
+		gbc_warningPhone2.gridy = 4;
+		panel_registration.add(warningExisteTel, gbc_warningPhone2);
+		
 /* Username */
 		warningUsername = new JLabel("*");
 		warningUsername.setForeground(Color.RED);
@@ -374,6 +385,11 @@ public class PanelRegistro extends JPanel implements ActionListener {
 			warningExiste.setVisible(true); 
 			ok=false;		
 		}
+		if (AppChat.getInstance().isPhoneRegistered(field_phone.getText())) {
+			warningPhone.setVisible(true); 
+			warningExisteTel.setVisible(true); 
+			ok=false;
+		}
 		return ok;
 	}
 	
@@ -409,6 +425,7 @@ public class PanelRegistro extends JPanel implements ActionListener {
 
 	private void ocultarWarnings() {
 		warningExiste.setVisible(false);
+		warningExisteTel.setVisible(false);
 		warningUsername.setVisible(false);
 		warningPassword.setVisible(false);
 		warningPasswordChk.setVisible(false);

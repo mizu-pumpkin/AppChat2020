@@ -180,9 +180,4 @@ public class Mensaje implements Comparable<Mensaje> {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Mensaje [id=" + id + ", body=" + body + ", date=" + timestamp + "]";
-	}
 }

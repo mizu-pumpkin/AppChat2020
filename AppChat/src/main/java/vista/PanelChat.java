@@ -29,6 +29,10 @@ public class PanelChat extends JPanel implements Scrollable {
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 	}
 	
+	public Chat getActualChat() {
+		return actualChat;
+	}
+	
 	public Chat removeActualChat() {
 		Chat old = actualChat;
 		actualChat = null;

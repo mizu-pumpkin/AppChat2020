@@ -17,7 +17,7 @@ public abstract class Chat {
 // ---------------------------------------------------------------------
 		
 	private int id;
-	protected String name;
+	private String name;
 	protected List<Mensaje> messages; // mensajes
 	
 // ---------------------------------------------------------------------
@@ -57,8 +57,6 @@ public abstract class Chat {
 		messages.add(message);
 	}
 	
-	// Para simplificar
-	
 	public void removeMessage(Mensaje message) {
 		messages.remove(message);
 	}
@@ -69,6 +67,10 @@ public abstract class Chat {
 //		                                                         Methods
 // ---------------------------------------------------------------------
 
+	/**
+	 * Devuelve la fecha del último mensaje enviado al chat.
+	 * @return la fecha del mensaje más reciente.
+	 */
 	public Date getTimeOfMostRecentMessage() {
 		Mensaje msg = getMostRecentMessage();
 		if (msg != null)
@@ -76,6 +78,10 @@ public abstract class Chat {
 		return new Date(0);
 	}
 	
+	/**
+	 * Devuelve el último mensaje enviado al chat.
+	 * @return el mensaje más reciente.
+	 */
 	public Mensaje getMostRecentMessage() {
 		if (messages.size() > 0)
 			return messages
@@ -86,6 +92,10 @@ public abstract class Chat {
 		return null;
 	}
 	
+	/**
+	 * Devuelve el número de mensajes enviados por el usuario.
+	 * @return el número de mensajes enviados por el usuario.
+	 */
 	public long getNumberOfMessagesSent(Usuario u) {
 		return messages
 				.stream()
@@ -93,16 +103,34 @@ public abstract class Chat {
 				.count();
 	}
 	
-	public float getRatioOfMessagesSent(Usuario u) {
-		return (float) getNumberOfMessagesSent(u) / (float) messages.size();
+	/**
+	 * Devuelve porcentaje de mensajes enviados por el usuario sobre
+	 * el total de mensajes del chat.
+	 * @return un valor entre 0 y 1 que indica el porcentaje de
+	 * 			mensajes enviados por el usuario.
+	 */
+	public double getRatioOfMessagesSent(Usuario u) {
+		return (double) getNumberOfMessagesSent(u) / (double) messages.size();
 	}
 	
+	/**
+	 * Crea y añade el mensaje a la lista de mensajes del chat.
+	 * @param sender el usuario que envía el mensaje.
+	 * @param text el cuerpo del mensaje.
+	 * @return el mensaje enviado.
+	 */
 	public Mensaje sendMessage(Usuario sender, String text) {
 		Mensaje msg = new Mensaje(sender, this, text);
 		addMessage(msg);
 		return msg;
 	}
-	
+
+	/**
+	 * Crea y añade el mensaje a la lista de mensajes del chat.
+	 * @param sender el usuario que envía el mensaje.
+	 * @param emoji el código del emoji del mensaje.
+	 * @return el mensaje enviado.
+	 */
 	public Mensaje sendMessage(Usuario sender, int emoji) {
 		Mensaje msg = new Mensaje(sender, this, emoji);
 		addMessage(msg);
@@ -127,6 +155,12 @@ public abstract class Chat {
 		
 	// Igual esto se podría resumir en un solo método al que se
 	// le pase un "Predicate"
+	/**
+	 * Devuelve los mensajes enviados que incluyen el texto indicado
+	 * en el cuerpo del mensaje.
+	 * @param text el texto buscado.
+	 * @return la lista de mensajes que incluyen el texto buscado.
+	 */
 	public List<Mensaje> findMessagesByText(String text) {
 		return messages
 				.stream()
@@ -135,6 +169,12 @@ public abstract class Chat {
 				;
 	}
 	
+	/**
+	 * Devuelve los mensajes enviados al chat entre dos fechas.
+	 * @param d1 la fecha de inicio.
+	 * @param d2 la fecha de fin.
+	 * @return la lista de mensajes enviados entre las fechas.
+	 */
 	public List<Mensaje> findMessagesByDate(Date d1, Date d2) {
 		return messages
 				.stream()
@@ -143,7 +183,12 @@ public abstract class Chat {
 				.collect(Collectors.toList())
 				;
 	}
-	
+
+	/**
+	 * Devuelve los mensajes enviados al chat por un usuario.
+	 * @param user el usuario que ha enviado los mensajes.
+	 * @return la lista de mensajes enviados por el usuario.
+	 */
 	public List<Mensaje> findMessagesByUser(Usuario user) {
 		return messages
 				.stream()
@@ -151,19 +196,18 @@ public abstract class Chat {
 				.collect(Collectors.toList())
 				;
 	}
-	
+
+	/**
+	 * Devuelve los mensajes enviados al chat por un usuario.
+	 * @param username el username del usuario que ha enviado los mensajes.
+	 * @return la lista de mensajes enviados por el usuario.
+	 */
 	public List<Mensaje> findMessagesByUser(String username) {
 		return messages
 				.stream()
 				.filter(m -> m.isSender(username))
 				.collect(Collectors.toList())
 				;
-	}
-
-	@Override
-	public String toString() {
-		return this.getClass().getSimpleName() +
-			   " [id=" + id + ", name=" + name + ", messages=" + messages + "]";
 	}
 	
 }

@@ -2,11 +2,11 @@ package modelo;
 
 public class DescuentoVerano implements Descuento {
 
-	public static final double descuento = 0.1;
+	public static final double valorDescuento = 0.1;
 
 	@Override
 	public double getValorDescuento() {
-		return descuento;
+		return valorDescuento;
 	}
 
 }

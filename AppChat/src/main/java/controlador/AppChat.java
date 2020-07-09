@@ -84,6 +84,10 @@ public class AppChat implements MensajesListener {
 		return catalogoUsuarios.getByUsername(username) != null;
 	}
 	
+	public boolean isPhoneRegistered(String phone) {
+		return catalogoUsuarios.getByPhone(phone) != null;
+	}
+	
 	public boolean login(String username,String password) {
 		Usuario usuario = catalogoUsuarios.getByUsername(username);
 		
@@ -101,7 +105,7 @@ public class AppChat implements MensajesListener {
 						    String email,
 						    String phone,
 						    String greeting) {
-			if (isRegistered(username)) return false;
+			if (isRegistered(username) || isPhoneRegistered(phone)) return false;
 			Usuario usuario = new Usuario(username, password, name, birthday, email, phone, greeting);
 			adaptadorUsuario.create(usuario);	// Almacenamos el nuevo Usuario en la BD
 			catalogoUsuarios.add(usuario);		// Almacenamos el nuevo Usuario en el catalogo
