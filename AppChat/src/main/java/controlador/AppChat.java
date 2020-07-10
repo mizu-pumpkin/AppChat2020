@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.io.File;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -267,8 +266,15 @@ public class AppChat implements MensajesListener {
 	 * Guarda un contacto desconocido en los contactos del usuario actual.
 	 */
 	public void saveContact(Usuario user) {
-		if (user != null && !user.equals(usuarioActual))
-			registerChat(usuarioActual.getPrivateChat(user));
+		saveContact(usuarioActual, user);
+	}
+	
+	/*
+	 * Guarda el contacto us2 en los contactos del us1.
+	 */
+	private void saveContact(Usuario us1, Usuario us2) {
+		if (us2 != null && !us2.equals(us1))
+			registerChat(us1.getPrivateChat(us2));
 	}
 
 	/*
@@ -390,19 +396,20 @@ public class AppChat implements MensajesListener {
 		//		 en manos del chat.
 		//	2.3. Registrar en la BBDD los cambios realizados.
 		
-		List<String> nombresUsuarios = mensajesWhatsapp.stream()
-													   .map(m -> m.getAutor())
-													   .collect(Collectors.toList());
-		Set<String> nombresUsuariosNoRepetidos = new HashSet<>(nombresUsuarios);
+		Set<String> nombresUsuarios = mensajesWhatsapp.stream()
+													  .map(m -> m.getAutor())
+													  .collect(Collectors.toSet());
 		// 1.1. y 1.2.
-		if (nombresUsuariosNoRepetidos.contains(usuarioActual.getUsername())
-				&& nombresUsuariosNoRepetidos.size() == 2) {
+		if (nombresUsuarios.contains(usuarioActual.getUsername())
+				&& nombresUsuarios.size() == 2) {
 			nombresUsuarios.remove(usuarioActual.getUsername());
-			Usuario otroUsuario = catalogoUsuarios.getByUsername(nombresUsuarios.get(0));
+			String otroNombre = nombresUsuarios.iterator().next();
+			Usuario otroUsuario = catalogoUsuarios.getByUsername(otroNombre);
 			// 1.3.
 			if (otroUsuario != null) {
 				// 2.1.
-				saveContact(otroUsuario);
+				saveContact(usuarioActual, otroUsuario);
+				saveContact(otroUsuario, usuarioActual);
 				Chat chat = usuarioActual.getPrivateChat(otroUsuario);
 				Chat chatR = otroUsuario.getPrivateChat(usuarioActual);
 				// 2.2. y 2.3.
@@ -412,7 +419,7 @@ public class AppChat implements MensajesListener {
 					else
 						registerWhatsAppMessage(chatR, chat, otroUsuario, mwa);
 				}
-				System.out.println("Donde writting in DB.");
+				System.out.println("Done writting in DB.");
 			}
 		}
 	}
