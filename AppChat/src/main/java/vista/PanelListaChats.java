@@ -123,7 +123,7 @@ public class PanelListaChats extends JPanel {
 							ChatGrupo g = (ChatGrupo) chat;
 							if (g.getAdmin().equals(user))
 								new VentanaEditorGrupo(user, g, PanelListaChats.this);
-							else ;//TODO: VentanaInfoGrupo
+							else new VentanaInfoGrupo(g);
 						} else {
 							ChatIndividual c = (ChatIndividual) chat;
 							new VentanaEditorContacto(c, PanelListaChats.this);

@@ -65,7 +65,10 @@ public class VentanaEditorGrupo extends JFrame implements ActionListener {
 		setSize(450, 300);
 		setMinimumSize(new Dimension(Graphics.MIN_WIDTH, Graphics.MIN_HEIGHT));
 		setLocationRelativeTo(null);
-		setTitle("Editor de grupos");
+		if (group == null)
+			setTitle("Crear grupo");
+		else
+			setTitle("Editar - "+group.getName());
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		initialize();

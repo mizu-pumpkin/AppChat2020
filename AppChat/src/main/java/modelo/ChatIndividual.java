@@ -41,6 +41,10 @@ public class ChatIndividual extends Chat {
 //		                                                         Methods
 // ---------------------------------------------------------------------
 	
+	public String getUsername() {
+		return user.getUsername();
+	}
+	
 	/**
 	 * Comprueba si el usuario es el usuario del contacto.
 	 * @param u el usuario del que se quiere comprobar.

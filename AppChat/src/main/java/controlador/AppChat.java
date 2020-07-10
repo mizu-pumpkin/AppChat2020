@@ -343,34 +343,6 @@ public class AppChat implements MensajesListener {
 		adaptadorChat.delete(chat);
 		adaptadorUsuario.update(usuarioActual);
 	}
-
-// ---------------------------------------------------------------------
-//	                                                Gestión de Descuento
-// ---------------------------------------------------------------------
-	
-	public boolean isYoung(Usuario user) {
-		try {//TODO cambiar para que sea menores de 20 dinámico
-			Date limiteJoven = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000");
-			return user.getBirthday().after(limiteJoven);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
-	public boolean isSummer() {
-		Date today = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("M/yyyy");
-		try {
-			String year = new SimpleDateFormat("yyyy").format(today);
-			if (today.after(format.parse("7/"+year)) &&	//desde 1 de julio
-				today.before(format.parse("9/"+year)))	//hasta 31 de agosto
-				return true;
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
 	
 // ---------------------------------------------------------------------
 //  								Importación de mensajes de WhatsApp
@@ -443,6 +415,42 @@ public class AppChat implements MensajesListener {
 				System.out.println("Donde writting in DB.");
 			}
 		}
+	}
+
+// ---------------------------------------------------------------------
+//		                                         				   Otras
+// ---------------------------------------------------------------------
+	
+	public boolean isYoung(Usuario user) {
+		try {//TODO cambiar para que sea menores de 20 dinámico
+			Date limiteJoven = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000");
+			return user.getBirthday().after(limiteJoven);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean isSummer() {
+		Date today = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("M/yyyy");
+		try {
+			String year = new SimpleDateFormat("yyyy").format(today);
+			if (today.after(format.parse("7/"+year)) &&	//desde 1 de julio
+				today.before(format.parse("9/"+year)))	//hasta 31 de agosto
+				return true;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean itsMe(Usuario user) {
+		return usuarioActual.equals(user);
+	}
+
+	public boolean alreadyKnown(Usuario user) {
+		return usuarioActual.knowsUser(user);
 	}
 
 }

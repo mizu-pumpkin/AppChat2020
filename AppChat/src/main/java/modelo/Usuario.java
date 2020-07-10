@@ -304,7 +304,7 @@ public class Usuario {
 	 * @param d2 la fecha de fin.
 	 * @return la lista de mensajes enviados.
 	 */
-	private List<Mensaje> getMessagesSent(Date d1, Date d2) {
+	public List<Mensaje> getMessagesSent(Date d1, Date d2) {
 		return chats
 				.stream()
 				.flatMap(c -> c.findMessages(this, d1, d2).stream())

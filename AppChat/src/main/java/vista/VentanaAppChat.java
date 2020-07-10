@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 
@@ -63,7 +64,7 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 	
 	private JTextField txtWriteMsg;
 	private JTextField txtFindUser;
-	private JLabel lblGreeting;
+	private JTextArea lblGreeting;
 	private JPanel panel_izq;
 	private JPanel panel_der;
 	private JPopupMenu popupMenuEmoji;
@@ -137,21 +138,21 @@ public class VentanaAppChat extends JFrame implements ActionListener, IEncendido
 		panel_izq.add(btnAvatar, gbc_avatar);
 /* Username */
 		JPanel panel_info = new JPanel();
-		panel_info.setLayout(new BoxLayout(panel_info, BoxLayout.Y_AXIS));
 		GridBagConstraints gbc_info = new GridBagConstraints();
 		gbc_info.fill = GridBagConstraints.BOTH;
 		gbc_info.insets = new Insets(0, 0, 0, 0);
 		gbc_info.gridx = 1;
 		gbc_info.gridy = 0;
 		panel_izq.add(panel_info, gbc_info);
+		panel_info.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblUsername = new JLabel(loggedUser.getUsername());
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 12));
-		panel_info.add(lblUsername);
+		panel_info.add(lblUsername, BorderLayout.NORTH);
 /* Greeting */
-		lblGreeting = new JLabel(loggedUser.getGreeting());
-		lblGreeting.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		panel_info.add(lblGreeting);
+		lblGreeting = new JTextArea(loggedUser.getGreeting());
+		Graphics.buildGreeting(lblGreeting,50,50);
+		panel_info.add(lblGreeting, BorderLayout.CENTER);
 	}
 	
 	private void configurarToolbar() {

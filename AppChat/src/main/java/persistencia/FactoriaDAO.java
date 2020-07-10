@@ -3,6 +3,7 @@ package persistencia;
 //Define una factoria abstracta que devuelve todos los DAO de la aplicacion
 
 public abstract class FactoriaDAO {
+	
 	private static FactoriaDAO instance;
 	
 	public static final String DAO_TDS = "persistencia.TDSFactoriaDAO";
@@ -11,10 +12,10 @@ public abstract class FactoriaDAO {
 	 * Crea un tipo de factoria DAO.
 	 * Solo existe el tipo TDSFactoriaDAO
 	 */
-	public static FactoriaDAO getInstance(String tipo) throws DAOException{
+	public static FactoriaDAO getInstance(String tipo) throws DAOException {
 		if (instance == null)
 			try {
-				instance=(FactoriaDAO) Class.forName(tipo).newInstance();
+				instance = (FactoriaDAO) Class.forName(tipo).newInstance();
 			} catch (Exception e) {	
 				throw new DAOException(e.getMessage());
 			} 
@@ -22,7 +23,7 @@ public abstract class FactoriaDAO {
 	}
 
 	public static FactoriaDAO getInstance() throws DAOException {
-		if (instance == null) return getInstance (FactoriaDAO.DAO_TDS);
+		if (instance == null) return getInstance(FactoriaDAO.DAO_TDS);
 		return instance;
 	}
 
