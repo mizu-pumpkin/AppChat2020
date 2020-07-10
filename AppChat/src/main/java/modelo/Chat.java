@@ -210,9 +210,4 @@ public abstract class Chat {
 		return findMessages(m -> m.containsText(text));
 	}
 	
-	@Override
-		public String toString() {
-			return id+" "+name+" "+messages.toString();
-		}
-	
 }

@@ -13,13 +13,10 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 
 import controlador.AppChat;
-import modelo.Usuario;
-import persistencia.AdaptadorUsuarioTDS;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -34,26 +31,7 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	private JButton btnLogin;
 	private JButton btnRegister;
 	
-	public static void createTesters() throws ParseException {//FIXME: delete later
-		AdaptadorUsuarioTDS aU = AdaptadorUsuarioTDS.getInstance();
-		if (aU.readAll().size() == 0) {
-			aU.create(new Usuario("mizu", "aaa", "Marisol Zucca",
-				new SimpleDateFormat("yyyy-MM-dd").parse("1989-08-31"),
-				"mizu@um.es", "684253969", "Ho fame!")
-			);
-			aU.create(new Usuario("rey", "aaa", "Reyes Giraldi",
-				new SimpleDateFormat("yyyy-MM-dd").parse("1988-04-23"),
-				"rey@um.es", "684208637", "Stupida sexy Catra...")
-			);
-			aU.create(new Usuario("papy", "aaa", "Natasa Tron",
-				new SimpleDateFormat("yyyy-MM-dd").parse("1989-06-16"),
-				"papy@um.es", "3333238937", "")
-			);
-		}
-	}
-	
-	public static void main(final String[] args) throws ParseException{
-		createTesters();
+	public static void main(final String[] args) throws ParseException {
 		new VentanaLogin();
 	}
 	

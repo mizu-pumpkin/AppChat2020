@@ -244,7 +244,6 @@ public class AppChat implements MensajesListener {
 		else
 			adaptadorChat.update(chat);
 		adaptadorUsuario.update(user);
-		System.out.println(user);
 	}
 	/*
 	 * Crea el chat en la BD y actualiza el usuario actual.
