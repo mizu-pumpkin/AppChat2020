@@ -354,5 +354,10 @@ public class Usuario {
 			return false;
 		return true;
 	}
+	
+	@Override
+		public String toString() {
+			return username+" "+chats.toString();
+		}
 
 }

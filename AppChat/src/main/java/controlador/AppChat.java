@@ -3,6 +3,7 @@ package controlador;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.io.File;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
@@ -243,6 +244,7 @@ public class AppChat implements MensajesListener {
 		else
 			adaptadorChat.update(chat);
 		adaptadorUsuario.update(user);
+		System.out.println(user);
 	}
 	/*
 	 * Crea el chat en la BD y actualiza el usuario actual.
@@ -274,7 +276,7 @@ public class AppChat implements MensajesListener {
 	 */
 	private void saveContact(Usuario us1, Usuario us2) {
 		if (us2 != null && !us2.equals(us1))
-			registerChat(us1.getPrivateChat(us2));
+			registerChat(us1.getPrivateChat(us2), us1);
 	}
 
 	/*
@@ -420,6 +422,8 @@ public class AppChat implements MensajesListener {
 						registerWhatsAppMessage(chatR, chat, otroUsuario, mwa);
 				}
 				System.out.println("Done writting in DB.");
+				System.out.println(chat);
+				System.out.println(chatR);
 			}
 		}
 	}
@@ -429,22 +433,19 @@ public class AppChat implements MensajesListener {
 // ---------------------------------------------------------------------
 	
 	public boolean isYoung(Usuario user) {
-		try {//TODO cambiar para que sea menores de 20 dinámico
-			Date limiteJoven = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000");
-			return user.getBirthday().after(limiteJoven);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return false;
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.YEAR, -20);
+		return user.getBirthday().after(cal.getTime());
 	}
 	
 	public boolean isSummer() {
-		Date today = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("M/yyyy");
+		Date now = new Date();
+		int year = Calendar.getInstance().get(Calendar.YEAR);
 		try {
-			String year = new SimpleDateFormat("yyyy").format(today);
-			if (today.after(format.parse("7/"+year)) &&	//desde 1 de julio
-				today.before(format.parse("9/"+year)))	//hasta 31 de agosto
+			SimpleDateFormat format = new SimpleDateFormat("M/yyyy");
+			if (now.after(format.parse("7/"+year)) &&	//desde 1 de julio
+				now.before(format.parse("9/"+year)))	//hasta 31 de agosto
 				return true;
 		} catch (ParseException e) {
 			e.printStackTrace();

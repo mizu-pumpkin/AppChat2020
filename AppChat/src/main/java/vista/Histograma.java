@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.knowm.xchart.CategoryChart;
@@ -16,7 +17,7 @@ import modelo.Usuario;
 public class Histograma implements ExampleChart<CategoryChart> {
 	
 	private final static SimpleDateFormat dateFormat = new SimpleDateFormat("M/yyyy");
-	private final static String year = new SimpleDateFormat("yyyy").format(new Date());
+	private final static int year = Calendar.getInstance().get(Calendar.YEAR);
 	private final static String[] meses = new String[] {
 			"Ene", "Feb", "Mar", "Abr", "May", "Jun",
 			"Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
